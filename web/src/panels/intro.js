@@ -19,7 +19,7 @@ function glance(meta, players) {
   };
   const priceHint = (p) => (p.sim?.price ? `Median ${money(p.sim.price.median)}, 80%: ${moneyRange(p.sim.price.p10, p.sim.price.p90)}` : '');
   const cols = [
-    col('Biggest bidding wars', 'avg teams bidding', h.contested, (v) => v.toFixed(1), (p, v) => `${p.name}: on average ${v.toFixed(1)} teams bid when he comes up`),
+    col('Most wanted', 'teams ready to bid', h.contested, (v) => v.toFixed(1), (p, v) => `${p.name}: on average ${v.toFixed(1)} teams are ready to pay at least his base price when he comes up`),
     col('Likely top prices', 'median', h.priciest, money, priceHint),
     col('Coin flips', 'P(sold)', h.coinFlips, pct, (p, v) => `${p.name}: sold in ${pct(v)} of ${int(meta.runs)} runs`),
   ].join('');
