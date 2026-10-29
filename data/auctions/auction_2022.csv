@@ -1,0 +1,205 @@
+name,country,overseas,team,price_lakh,base_lakh,list_no,dob
+R. Ashwin,India,0,RR,500,200,1,1986-09-17
+Trent Boult,New Zealand,1,RR,800,200,2,1989-07-22
+Pat Cummins,Australia,1,KKR,725,200,3,1993-05-08
+Quinton De Kock,South Africa,1,LSG,675,200,4,1992-12-17
+Shikhar Dhawan,India,0,PBKS,825,200,5,1985-12-05
+Faf Du Plessis,South Africa,1,RCB,700,200,6,1984-07-13
+Shreyas Iyer,India,0,KKR,1225,200,7,1994-12-06
+Kagiso Rabada,South Africa,1,PBKS,925,200,8,1995-05-25
+Mohammad Shami,India,0,GT,625,200,9,1990-03-09
+David Warner,Australia,1,DC,625,200,10,1986-10-27
+Shimron Hetmyer,West Indies,1,RR,850,150,11,1996-12-26
+David Miller,South Africa,1,GT,300,100,12,1989-06-10
+Devdutt Padikkal,India,0,RR,775,200,13,2000-07-07
+Manish Pandey,India,0,LSG,460,100,14,1989-09-10
+Jason Roy,England,1,GT,200,200,16,1990-07-21
+Robin Uthappa,India,0,CSK,200,200,18,1985-11-11
+Dwayne Bravo,West Indies,1,CSK,440,200,20,1983-10-07
+Wanindu Hasaranga,Sri Lanka,1,RCB,1075,100,21,1997-07-29
+Jason Holder,West Indies,1,LSG,875,150,22,1991-11-05
+Mitchell Marsh,Australia,1,DC,650,200,23,1991-10-20
+Mohammad Nabi,Afghanistan,1,KKR,100,100,24,1985-01-01
+Krunal Pandya,India,0,LSG,825,200,25,1991-03-24
+Harshal Patel,India,0,RCB,1075,200,26,1990-11-23
+Nitish Rana,India,0,KKR,800,100,27,1993-12-27
+Washington Sundar,India,0,SRH,875,150,28,1999-10-05
+Jonny Bairstow,England,1,PBKS,675,150,29,1989-09-26
+Sam Billings,England,1,KKR,200,200,30,1991-06-15
+Dinesh Karthik,India,0,RCB,550,200,31,1985-06-01
+Ishan Kishan,India,0,MI,1525,200,32,1998-07-18
+Nicholas Pooran,West Indies,1,SRH,1075,150,33,1995-10-02
+Ambati Rayudu,India,0,CSK,675,200,34,1985-09-23
+Wriddhiman Saha,India,0,GT,190,100,35,1984-10-24
+Matthew Wade,Australia,1,GT,240,200,36,1987-12-26
+Deepak Chahar,India,0,CSK,1400,200,37,1992-08-07
+Lockie Ferguson,New Zealand,1,GT,1000,200,38,1991-06-13
+Josh Hazlewood,Australia,1,RCB,775,200,39,1991-01-08
+Prasidh Krishna,India,0,RR,1000,100,40,1996-02-19
+Bhuvneshwar Kumar,India,0,SRH,420,200,41,1990-02-05
+T. Natarajan,India,0,SRH,400,100,42,1991-05-27
+Mustafizur Rahman,Bangladesh,1,DC,200,200,43,1995-09-06
+Shardul Thakur,India,0,DC,1075,200,44,1991-10-16
+Mark Wood,England,1,LSG,750,200,45,1990-01-11
+Umesh Yadav,India,0,KKR,200,200,46,1987-10-25
+Yuzvendra Chahal,India,0,RR,650,200,47,1990-07-23
+Rahul Chahar,India,0,PBKS,525,75,48,1999-08-04
+Kuldeep Yadav,India,0,DC,200,100,52,1994-11-14
+Dewald Brevis,South Africa,1,MI,300,20,55,2003-04-29
+Priyam Garg,India,0,SRH,20,20,56,2000-11-30
+Ashwin Hebbar,India,0,DC,20,20,57,1995-11-15
+C.Hari Nishaanth,India,0,CSK,20,20,58,1996-08-16
+Abhinav Sadarangani,India,0,GT,260,20,60,1994-09-16
+Anmolpreet Singh,India,0,MI,20,20,61,1998-03-28
+Rahul Tripathi,India,0,SRH,850,40,62,1991-03-02
+Shahbaz Ahamad,India,0,RCB,240,30,63,1994-12-11
+Harpreet Brar,India,0,PBKS,380,20,64,1995-09-16
+Deepak Hooda,India,0,LSG,575,75,65,1995-04-19
+Sarfaraz Khan,India,0,DC,20,20,66,1997-10-22
+Shahrukh Khan,India,0,PBKS,900,40,67,1995-05-27
+Shivam Mavi,India,0,KKR,725,40,68,1998-11-26
+Kamlesh Nagarkoti,India,0,DC,110,40,69,1999-12-28
+Riyan Parag,India,0,RR,380,30,70,2001-11-10
+Abhishek Sharma,India,0,SRH,650,20,71,2000-09-04
+Rahul Tewatia,India,0,GT,900,40,72,1993-05-20
+K.S. Bharat,India,0,DC,200,20,74,1993-10-03
+Sheldon Jackson,India,0,KKR,60,30,75,1986-09-27
+N. Jagadeesan,India,0,CSK,20,20,76,1995-12-24
+Anuj Rawat,India,0,RCB,340,20,77,1999-10-17
+Jitesh Sharma,India,0,PBKS,20,20,78,1993-10-22
+Prabhsimran Singh,India,0,PBKS,60,20,79,2000-08-10
+Vishnu Vinod,India,0,SRH,50,20,81,1993-12-02
+K.M. Asif,India,0,CSK,20,20,82,1993-07-24
+Akash Deep,India,0,RCB,20,20,83,1996-12-15
+Tushar Deshpande,India,0,CSK,20,20,84,1995-05-15
+Avesh Khan,India,0,LSG,1000,20,85,1996-12-13
+Ishan Porel,India,0,PBKS,25,20,86,1998-09-05
+Ankit Singh Rajpoot,India,0,LSG,50,20,87,1993-12-04
+Basil Thampi,India,0,MI,30,30,88,1993-09-11
+Kartik Tyagi,India,0,SRH,400,20,89,2000-11-08
+Noor Ahmad,Afghanistan,1,GT,30,30,90,2005-01-03
+Murugan Ashwin,India,0,MI,160,20,91,1990-09-08
+K.C Cariappa,India,0,RR,30,20,92,1994-04-13
+Shreyas Gopal,India,0,SRH,75,20,93,1993-09-04
+R. Sai Kishore,India,0,GT,300,20,95,1996-11-06
+Jagadeesha Suchith,India,0,SRH,20,20,97,1994-01-16
+Aiden Markram,South Africa,1,SRH,260,100,101,1994-10-04
+Ajinkya Rahane,India,0,KKR,100,100,104,1988-06-06
+Mandeep Singh,India,0,DC,110,50,105,1991-12-18
+Dominic Drakes,West Indies,1,GT,110,75,107,1998-02-06
+Shivam Dube,India,0,CSK,400,50,108,1993-06-26
+K. Gowtham,India,0,LSG,90,50,109,1988-10-20
+Marco Jansen,South Africa,1,SRH,420,50,110,2000-05-01
+Chris Jordan,England,1,CSK,360,200,111,1988-10-04
+Liam Livingstone,England,1,PBKS,1150,100,112,1993-08-04
+James Neesham,New Zealand,1,RR,150,150,113,1990-09-17
+Vijay Shankar,India,0,GT,140,50,114,1991-01-26
+Odean Smith,West Indies,1,PBKS,600,100,115,1996-11-01
+Jayant Yadav,India,0,GT,170,100,116,1990-01-22
+Syed Khaleel Ahmed,India,0,DC,525,50,117,1997-12-05
+Dushmanta Chameera,Sri Lanka,1,LSG,200,50,118,1992-01-11
+Nathan Coulter-Nile,Australia,1,RR,200,200,120,1987-10-11
+Lungisani Ngidi,South Africa,1,DC,50,50,121,1996-03-29
+Navdeep Saini,India,0,RR,260,75,122,1992-11-23
+Chetan Sakariya,India,0,DC,420,50,123,1998-02-28
+Sandeep Sharma,India,0,PBKS,50,50,125,1993-05-18
+Jaydev Unadkat,India,0,MI,130,75,126,1991-10-18
+Mayank Markande,India,0,MI,65,50,129,1997-11-11
+Shahbaz Nadeem,India,0,LSG,50,50,130,1989-08-12
+Karn Sharma,India,0,RCB,50,50,132,1987-10-23
+Maheesh Theekshana,Sri Lanka,1,CSK,70,50,134,2000-08-01
+Rinku Singh,India,0,KKR,55,20,140,1997-10-12
+Manan Vohra,India,0,LSG,20,20,142,1993-07-18
+Raj Angad Bawa,India,0,PBKS,200,20,143,2002-11-12
+Yash Dhull,India,0,DC,50,20,144,2002-11-11
+Rajvardhan Hangargekar,India,0,CSK,150,30,145,2002-11-10
+Mahipal Lomror,India,0,RCB,95,40,146,1999-11-16
+Darshan Nalkande,India,0,GT,20,20,147,1998-10-04
+Vicky Ostwal,India,0,DC,20,20,148,2002-09-01
+Ripal Patel,India,0,DC,20,20,149,1995-09-28
+Anukul Roy,India,0,KKR,20,20,150,1998-11-30
+N. Tilak Varma,India,0,MI,170,20,151,2002-11-08
+Lalit Yadav,India,0,DC,65,20,152,1997-01-03
+Sanjay Yadav,India,0,MI,50,20,153,1995-05-10
+Yash Dayal,India,0,GT,320,20,154,1997-12-13
+Kuldeep Sen,India,0,RR,20,20,156,1996-10-22
+Simarjeet Singh,India,0,CSK,20,20,158,1998-01-17
+Finn Allen,New Zealand,1,RCB,80,50,162,1999-04-22
+Devon Conway,New Zealand,1,CSK,100,100,163,1991-07-08
+Alex Hales,England,1,KKR,150,150,164,1989-01-03
+Evin Lewis,West Indies,1,LSG,200,200,165,1991-12-27
+Karun Nair,India,0,RR,140,50,167,1991-12-06
+Rovman Powell,West Indies,1,DC,280,75,168,1993-07-23
+Rassie Van Der Dussen,South Africa,1,RR,100,100,169,1989-02-07
+Jofra Archer,England,1,MI,800,200,171,1995-04-01
+Rishi Dhawan,India,0,PBKS,55,50,173,1990-02-19
+Daryl Mitchell,New Zealand,1,RR,75,75,175,1991-05-20
+Dwaine Pretorius,South Africa,1,CSK,50,50,176,1989-03-29
+Sherfane Rutherford,West Indies,1,RCB,100,100,177,1998-08-15
+Daniel Sams,Australia,1,MI,260,100,178,1992-10-27
+Mitchell Santner,New Zealand,1,CSK,190,100,179,1992-02-05
+Romario Shepherd,West Indies,1,SRH,775,75,180,1994-11-26
+Glenn Phillips,New Zealand,1,SRH,150,150,191,1996-12-06
+Tim Seifert,New Zealand,1,DC,50,50,192,1994-12-14
+Jason Behrendorff,Australia,1,RCB,75,75,193,1990-04-20
+Nathan Ellis,Australia,1,PBKS,75,75,194,1994-09-22
+Fazalhaq Farooqi,Afghanistan,1,SRH,50,50,195,2000-09-22
+Siddharth Kaul,India,0,RCB,75,75,196,1990-05-19
+Obed Mccoy,West Indies,1,RR,75,75,197,1997-01-04
+Tymal Mills,England,1,MI,150,100,198,1992-08-12
+Adam Milne,New Zealand,1,CSK,190,150,199,1992-04-13
+Subhranshu Senapati,India,0,CSK,20,20,218,1996-12-30
+Tim David,Australia,1,MI,825,40,221,1996-03-16
+Pravin Dubey,India,0,DC,50,20,222,1993-07-01
+Prerak Mankad,India,0,PBKS,20,20,223,1994-04-23
+Suyash Prabhudessai,India,0,RCB,30,20,224,1997-12-06
+Ramandeep Singh,India,0,MI,20,20,225,1997-04-13
+B. Sai Sudharsan,India,0,GT,20,20,226,2001-10-15
+Atharva Taide,India,0,PBKS,20,20,227,2000-04-26
+Dhruv Jurel,India,0,RR,20,20,233,2001-01-21
+Aryan Juyal,India,0,MI,20,20,234,2001-11-11
+Luvnith Sisodia,India,0,RCB,20,20,236,2000-01-15
+Vaibhav Arora,India,0,PBKS,200,20,239,1997-12-14
+Mukesh Choudhary,India,0,CSK,20,20,240,1996-07-06
+Rasikh Dar,India,0,KKR,20,20,241,2000-04-05
+Mohsin Khan,India,0,LSG,20,20,244,1998-07-15
+Chama Milind,India,0,RCB,25,20,246,1994-09-04
+Mayank Yadav,India,0,LSG,20,20,248,2002-06-17
+Tejas Baroka,India,0,RR,20,20,250,1996-02-01
+Prashant Solanki,India,0,CSK,120,20,257,2000-02-22
+Bhanuka Rajapaksa,Sri Lanka,1,PBKS,50,50,263,1991-10-24
+Fabian Allen,West Indies,1,MI,75,75,269,1995-05-07
+Gurkeerat Singh,India,0,GT,50,50,278,1990-06-29
+Sean Abbott,Australia,1,SRH,240,75,279,1992-02-29
+Alzarri Joseph,West Indies,1,GT,240,75,282,1996-11-20
+Riley Meredith,Australia,1,MI,100,100,285,1996-06-21
+Tim Southee,New Zealand,1,KKR,150,150,287,1988-12-11
+Rahul Buddhi,India,0,MI,20,20,290,1997-09-20
+Ayush Badoni,India,0,LSG,20,20,299,1999-12-03
+Aneeshwar Gautam,India,0,RCB,20,20,300,2003-01-16
+Benny Howell,England,1,PBKS,40,40,301,1988-10-05
+Baba Indrajith,India,0,KKR,20,20,311,1994-07-08
+Kuldip Yadav,India,0,RR,20,20,327,1996-10-15
+Chamika Karunaratne,Sri Lanka,1,KKR,50,50,350,1996-05-29
+David Willey,England,1,RCB,200,200,356,1990-02-28
+Varun Aaron,India,0,GT,50,50,357,1989-10-29
+R Samarth,India,0,SRH,20,20,374,1993-01-22
+Abhijeet Tomar,India,0,KKR,40,20,376,1995-03-14
+Aman Khan,India,0,KKR,20,20,382,1996-11-23
+Pradeep Sangwan,India,0,GT,20,20,384,1990-11-05
+Ramesh Kumar,India,0,KKR,20,20,434,1999-01-01
+Pratham Singh,India,0,KKR,20,20,439,1992-08-31
+Writtick Chatterjee,India,0,PBKS,20,20,441,1992-09-28
+Hrithik Shokeen,India,0,MI,20,20,449,2000-08-14
+Shashank Singh,India,0,SRH,20,20,450,1991-11-21
+Kyle Mayers,West Indies,1,LSG,50,50,468,1992-09-08
+Karan Sharma,India,0,LSG,20,20,476,1998-10-31
+Baltej Dhanda,India,0,PBKS,20,20,485,1990-11-04
+Saurabh Dubey,India,0,SRH,20,20,486,1998-01-23
+Mohd. Arshad Khan,India,0,MI,20,20,497,1997-12-20
+Ansh Patel,India,0,PBKS,20,20,498,2002-02-19
+K.Bhagath Varma,India,0,CSK,20,20,501,1998-09-21
+Ashok Sharma,India,0,KKR,55,20,507,2002-06-17
+Arjun Tendulkar,India,0,MI,30,20,535,1999-09-24
+Shubham Garhwal,India,0,RR,20,20,548,1995-05-14
+Anunay Singh,India,0,RR,20,20,564,1993-01-03

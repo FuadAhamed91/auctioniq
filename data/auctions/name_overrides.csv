@@ -1,0 +1,7 @@
+name,cricsheet_id,evidence
+Digvesh Singh,13fc5c6d,"Listed as 'Digvesh Singh' (2025 list no. 151, DDCA, DOB 15/12/1999) and bought by LSG; LSG's 2025 IPL scorecards in Cricsheet carry him as 'DS Rathi' (13fc5c6d), the id the squad check also finds for 'Digvesh Rathi', whom LSG retained in the official 2026 squad list (15.11.2025)"
+Ibrahim Zadran,d4550956,"Only 'Ibrahim Zadran' in player_meta (Afghanistan, opening batter; Cricsheet BPL/ILT20/LPL appearances); BCCI lists give DOB 12/01/2001, player_meta 2001-12-12"
+Nahid Rana,5318ee68,"Only 'Nahid Rana' in player_meta (Bangladesh; Cricsheet T20I for Bangladesh and BPL); BCCI lists give DOB 25/10/2002 and a right-arm fast bowler, player_meta 2002-10-02"
+Fareed Ahmad,67b7bad4,"Only 'Fareed Ahmad' in player_meta (Fareed Ahmad Malik, Afghanistan, left-arm fast-medium), matching the 2024 list (Afghanistan, LHB, left-arm fast medium, capped); DOB 01/02/1995 in the BCCI list vs 1994-08-10 in player_meta"
+Dinesh Bana,224fe44d,"Dinesh Mahabir Bana in player_meta (India, wicketkeeper; Cricsheet SMAT for Haryana as 'DB Bana'); 2023-25 lists: HCA (Haryana) wicketkeeper, DOB 15/09/2004 vs 2004-12-15 in player_meta"
+Hasan Mahmud,80ad39ac,"Only 'Hasan Mahmud' in player_meta (Bangladesh, right-arm pace), matching the 2025 list (Bangladesh, capped bowler); DOB 12/02/1997 in the BCCI list vs 1999-10-12 in player_meta"

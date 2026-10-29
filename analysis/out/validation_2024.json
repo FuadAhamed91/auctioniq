@@ -1,0 +1,3591 @@
+{
+ "auction": "2024 mini-auction",
+ "note": "tuning set: the weights and factors were chosen on it",
+ "runs": 800,
+ "ridge": 16,
+ "ridgeScan": [
+  {
+   "ridge": 0.5,
+   "mae": 1.2975
+  },
+  {
+   "ridge": 1,
+   "mae": 1.2912
+  },
+  {
+   "ridge": 2,
+   "mae": 1.2822
+  },
+  {
+   "ridge": 4,
+   "mae": 1.2705
+  },
+  {
+   "ridge": 8,
+   "mae": 1.2592
+  },
+  {
+   "ridge": 16,
+   "mae": 1.2539
+  },
+  {
+   "ridge": 32,
+   "mae": 1.2649
+  },
+  {
+   "ridge": 64,
+   "mae": 1.2996
+  }
+ ],
+ "weights": {
+  "market_share": 1.0,
+  "noise_sigma": 0.3,
+  "pressure_beta": 1.1,
+  "scarcity_alpha": 0.0,
+  "need_slope": 0.4
+ },
+ "search": [
+  {
+   "market_share": 0.6,
+   "noise_sigma": 0.15,
+   "pressure_beta": 0.5,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8023,
+   "spearman": 0.6574,
+   "auc": 0.7396,
+   "top3": 0.3056,
+   "cover80": 0.625,
+   "objective": 0.8898
+  },
+  {
+   "market_share": 0.8,
+   "noise_sigma": 0.15,
+   "pressure_beta": 0.5,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8151,
+   "spearman": 0.6543,
+   "auc": 0.736,
+   "top3": 0.331,
+   "cover80": 0.6806,
+   "objective": 0.8748
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.15,
+   "pressure_beta": 0.5,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8125,
+   "spearman": 0.6862,
+   "auc": 0.7439,
+   "top3": 0.375,
+   "cover80": 0.7083,
+   "objective": 0.8583
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.05,
+   "pressure_beta": 0.5,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8168,
+   "spearman": 0.68,
+   "auc": 0.7378,
+   "top3": 0.3472,
+   "cover80": 0.7083,
+   "objective": 0.8627
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 0.5,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.809,
+   "spearman": 0.6898,
+   "auc": 0.7418,
+   "top3": 0.3912,
+   "cover80": 0.7222,
+   "objective": 0.8479
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 0.2,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8223,
+   "spearman": 0.6728,
+   "auc": 0.7348,
+   "top3": 0.3565,
+   "cover80": 0.7083,
+   "objective": 0.8682
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 0.8,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8107,
+   "spearman": 0.6746,
+   "auc": 0.7564,
+   "top3": 0.3449,
+   "cover80": 0.7222,
+   "objective": 0.8496
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 1.1,
+   "scarcity_alpha": 0.1,
+   "need_slope": 0.8,
+   "mae": 0.8135,
+   "spearman": 0.6521,
+   "auc": 0.7527,
+   "top3": 0.25,
+   "cover80": 0.7361,
+   "objective": 0.8455
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 1.1,
+   "scarcity_alpha": 0.0,
+   "need_slope": 0.8,
+   "mae": 0.8117,
+   "spearman": 0.6772,
+   "auc": 0.7547,
+   "top3": 0.3287,
+   "cover80": 0.75,
+   "objective": 0.8367
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 1.1,
+   "scarcity_alpha": 0.25,
+   "need_slope": 0.8,
+   "mae": 0.8086,
+   "spearman": 0.6737,
+   "auc": 0.7549,
+   "top3": 0.3021,
+   "cover80": 0.6806,
+   "objective": 0.8684
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 1.1,
+   "scarcity_alpha": 0.0,
+   "need_slope": 0.4,
+   "mae": 0.8042,
+   "spearman": 0.6744,
+   "auc": 0.7654,
+   "top3": 0.3275,
+   "cover80": 0.7361,
+   "objective": 0.8362
+  },
+  {
+   "market_share": 1.0,
+   "noise_sigma": 0.3,
+   "pressure_beta": 1.1,
+   "scarcity_alpha": 0.0,
+   "need_slope": 1.2,
+   "mae": 0.8139,
+   "spearman": 0.6751,
+   "auc": 0.748,
+   "top3": 0.3553,
+   "cover80": 0.7083,
+   "objective": 0.8597
+  }
+ ],
+ "rows": [
+  {
+   "model": "Value only",
+   "mode": "value",
+   "n": 332,
+   "kept": null,
+   "significant95": null,
+   "mae": 0.834,
+   "spearman": 0.654,
+   "auc": 0.78,
+   "top3": 0.329,
+   "cover80": 0.722,
+   "ci": {
+    "mae": [
+     0.629,
+     1.071
+    ],
+    "spearman": [
+     0.471,
+     0.793
+    ],
+    "auc": [
+     0.713,
+     0.841
+    ],
+    "top3": [
+     0.224,
+     0.437
+    ],
+    "cover80": [
+     0.612,
+     0.821
+    ]
+   },
+   "delta": {}
+  },
+  {
+   "model": "+ needs",
+   "mode": "value",
+   "n": 332,
+   "kept": true,
+   "significant95": false,
+   "mae": 0.815,
+   "spearman": 0.65,
+   "auc": 0.76,
+   "top3": 0.403,
+   "cover80": 0.736,
+   "ci": {
+    "mae": [
+     0.596,
+     1.065
+    ],
+    "spearman": [
+     0.449,
+     0.8
+    ],
+    "auc": [
+     0.69,
+     0.823
+    ],
+    "top3": [
+     0.296,
+     0.517
+    ],
+    "cover80": [
+     0.629,
+     0.829
+    ]
+   },
+   "delta": {
+    "mae": [
+     -0.019,
+     -0.053,
+     0.013
+    ],
+    "spearman": [
+     -0.004,
+     -0.052,
+     0.042
+    ],
+    "auc": [
+     -0.02,
+     -0.043,
+     0.001
+    ],
+    "top3": [
+     0.074,
+     -0.04,
+     0.191
+    ],
+    "cover80": [
+     0.014,
+     -0.03,
+     0.062
+    ]
+   }
+  },
+  {
+   "model": "+ matchups",
+   "mode": "value",
+   "n": 332,
+   "kept": false,
+   "significant95": false,
+   "mae": 0.807,
+   "spearman": 0.684,
+   "auc": 0.76,
+   "top3": 0.312,
+   "cover80": 0.736,
+   "ci": {
+    "mae": [
+     0.593,
+     1.054
+    ],
+    "spearman": [
+     0.505,
+     0.813
+    ],
+    "auc": [
+     0.69,
+     0.824
+    ],
+    "top3": [
+     0.213,
+     0.423
+    ],
+    "cover80": [
+     0.629,
+     0.829
+    ]
+   },
+   "delta": {
+    "mae": [
+     -0.008,
+     -0.026,
+     0.009
+    ],
+    "spearman": [
+     0.034,
+     -0.029,
+     0.105
+    ],
+    "auc": [
+     -0.0,
+     -0.008,
+     0.008
+    ],
+    "top3": [
+     -0.09,
+     -0.179,
+     -0.013
+    ],
+    "cover80": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "model": "+ start speed",
+   "mode": "value",
+   "n": 332,
+   "kept": false,
+   "significant95": false,
+   "mae": 0.8,
+   "spearman": 0.654,
+   "auc": 0.761,
+   "top3": 0.396,
+   "cover80": 0.75,
+   "ci": {
+    "mae": [
+     0.585,
+     1.046
+    ],
+    "spearman": [
+     0.465,
+     0.803
+    ],
+    "auc": [
+     0.693,
+     0.824
+    ],
+    "top3": [
+     0.294,
+     0.509
+    ],
+    "cover80": [
+     0.642,
+     0.842
+    ]
+   },
+   "delta": {
+    "mae": [
+     -0.015,
+     -0.037,
+     0.007
+    ],
+    "spearman": [
+     0.004,
+     -0.045,
+     0.055
+    ],
+    "auc": [
+     0.001,
+     -0.011,
+     0.014
+    ],
+    "top3": [
+     -0.007,
+     -0.075,
+     0.062
+    ],
+    "cover80": [
+     0.014,
+     0.0,
+     0.046
+    ]
+   }
+  },
+  {
+   "model": "+ home fit",
+   "mode": "value",
+   "n": 332,
+   "kept": false,
+   "significant95": false,
+   "mae": 0.81,
+   "spearman": 0.651,
+   "auc": 0.761,
+   "top3": 0.368,
+   "cover80": 0.736,
+   "ci": {
+    "mae": [
+     0.589,
+     1.064
+    ],
+    "spearman": [
+     0.452,
+     0.804
+    ],
+    "auc": [
+     0.691,
+     0.825
+    ],
+    "top3": [
+     0.265,
+     0.481
+    ],
+    "cover80": [
+     0.629,
+     0.829
+    ]
+   },
+   "delta": {
+    "mae": [
+     -0.005,
+     -0.017,
+     0.007
+    ],
+    "spearman": [
+     0.001,
+     -0.012,
+     0.015
+    ],
+    "auc": [
+     0.001,
+     -0.003,
+     0.005
+    ],
+    "top3": [
+     -0.035,
+     -0.11,
+     0.033
+    ],
+    "cover80": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "model": "Need only (no value)",
+   "mode": "need_only",
+   "n": 332,
+   "kept": null,
+   "significant95": null,
+   "mae": 0.792,
+   "spearman": 0.669,
+   "auc": 0.751,
+   "top3": 0.243,
+   "cover80": 0.681,
+   "ci": {
+    "mae": [
+     0.599,
+     1.004
+    ],
+    "spearman": [
+     0.495,
+     0.797
+    ],
+    "auc": [
+     0.674,
+     0.82
+    ],
+    "top3": [
+     0.154,
+     0.341
+    ],
+    "cover80": [
+     0.573,
+     0.779
+    ]
+   },
+   "delta": {}
+  },
+  {
+   "model": "Base price",
+   "mode": "baseline",
+   "n": 332,
+   "kept": null,
+   "significant95": null,
+   "mae": 0.853,
+   "spearman": 0.65,
+   "auc": 0.636,
+   "cover80": 0.583,
+   "ci": {
+    "mae": [
+     0.606,
+     1.144
+    ],
+    "spearman": [
+     0.462,
+     0.801
+    ],
+    "auc": [
+     0.565,
+     0.708
+    ],
+    "cover80": [
+     0.461,
+     0.689
+    ]
+   },
+   "delta": {}
+  },
+  {
+   "model": "Last IPL price",
+   "mode": "baseline",
+   "n": 332,
+   "kept": null,
+   "significant95": null,
+   "mae": 0.832,
+   "spearman": 0.643,
+   "auc": 0.626,
+   "cover80": 0.472,
+   "ci": {
+    "mae": [
+     0.602,
+     1.086
+    ],
+    "spearman": [
+     0.445,
+     0.798
+    ],
+    "auc": [
+     0.557,
+     0.693
+    ],
+    "cover80": [
+     0.355,
+     0.588
+    ]
+   },
+   "delta": {}
+  }
+ ],
+ "factors": [
+  "needs"
+ ],
+ "seedNoise": {
+  "mae": 0.0156,
+  "top3": 0.0136
+ },
+ "rule": "kept if it improves price error or buyer accuracy by more than the seed-to-seed noise of the simulation without worsening the other by more; significant95 = the strict paired test",
+ "kept": [
+  "needs"
+ ],
+ "dropped": [
+  "matchups",
+  "start speed",
+  "home fit"
+ ],
+ "needHit": {
+  "est": 0.889,
+  "n": 72
+ },
+ "points": [
+  {
+   "name": "Harry Brook",
+   "sold": true,
+   "price": 400,
+   "median": 720,
+   "p10": 260,
+   "p90": 2350,
+   "pSold": 0.895
+  },
+  {
+   "name": "Travis Head",
+   "sold": true,
+   "price": 680,
+   "median": 360,
+   "p10": 200,
+   "p90": 980,
+   "pSold": 0.61
+  },
+  {
+   "name": "Karun Nair",
+   "sold": false,
+   "price": null,
+   "median": 90,
+   "p10": 50,
+   "p90": 320,
+   "pSold": 0.645
+  },
+  {
+   "name": "Manish Pandey",
+   "sold": true,
+   "price": 50,
+   "median": 110,
+   "p10": 50,
+   "p90": 440,
+   "pSold": 0.78
+  },
+  {
+   "name": "Rovman Powell",
+   "sold": true,
+   "price": 740,
+   "median": 290,
+   "p10": 120,
+   "p90": 1050,
+   "pSold": 0.865
+  },
+  {
+   "name": "Rilee Rossouw",
+   "sold": true,
+   "price": 800,
+   "median": 600,
+   "p10": 220,
+   "p90": 1975,
+   "pSold": 0.864
+  },
+  {
+   "name": "Steve Smith",
+   "sold": false,
+   "price": null,
+   "median": 420,
+   "p10": 200,
+   "p90": 1525,
+   "pSold": 0.755
+  },
+  {
+   "name": "Gerald Coetzee",
+   "sold": true,
+   "price": 500,
+   "median": 320,
+   "p10": 200,
+   "p90": 1073,
+   "pSold": 0.59
+  },
+  {
+   "name": "Pat Cummins",
+   "sold": true,
+   "price": 2050,
+   "median": 700,
+   "p10": 240,
+   "p90": 2350,
+   "pSold": 0.909
+  },
+  {
+   "name": "Wanindu Hasaranga",
+   "sold": true,
+   "price": 150,
+   "median": 1612,
+   "p10": 480,
+   "p90": 2900,
+   "pSold": 0.995
+  },
+  {
+   "name": "Daryl Mitchell",
+   "sold": true,
+   "price": 1400,
+   "median": 180,
+   "p10": 100,
+   "p90": 440,
+   "pSold": 0.544
+  },
+  {
+   "name": "Azmatullah Omarzai",
+   "sold": true,
+   "price": 50,
+   "median": 90,
+   "p10": 50,
+   "p90": 240,
+   "pSold": 0.588
+  },
+  {
+   "name": "Harshal Patel",
+   "sold": true,
+   "price": 1175,
+   "median": 740,
+   "p10": 260,
+   "p90": 2350,
+   "pSold": 0.94
+  },
+  {
+   "name": "Rachin Ravindra",
+   "sold": true,
+   "price": 180,
+   "median": 80,
+   "p10": 50,
+   "p90": 220,
+   "pSold": 0.517
+  },
+  {
+   "name": "Shardul Thakur",
+   "sold": true,
+   "price": 400,
+   "median": 780,
+   "p10": 280,
+   "p90": 2350,
+   "pSold": 0.93
+  },
+  {
+   "name": "Chris Woakes",
+   "sold": true,
+   "price": 420,
+   "median": 420,
+   "p10": 200,
+   "p90": 1225,
+   "pSold": 0.685
+  },
+  {
+   "name": "K.S. Bharat",
+   "sold": true,
+   "price": 50,
+   "median": 65,
+   "p10": 50,
+   "p90": 160,
+   "pSold": 0.456
+  },
+  {
+   "name": "Josh Inglis",
+   "sold": false,
+   "price": null,
+   "median": 330,
+   "p10": 200,
+   "p90": 960,
+   "pSold": 0.485
+  },
+  {
+   "name": "Kusal Mendis",
+   "sold": false,
+   "price": null,
+   "median": 80,
+   "p10": 50,
+   "p90": 240,
+   "pSold": 0.565
+  },
+  {
+   "name": "Philip Salt",
+   "sold": false,
+   "price": null,
+   "median": 360,
+   "p10": 150,
+   "p90": 1300,
+   "pSold": 0.767
+  },
+  {
+   "name": "Tristan Stubbs",
+   "sold": true,
+   "price": 50,
+   "median": 70,
+   "p10": 50,
+   "p90": 175,
+   "pSold": 0.47
+  },
+  {
+   "name": "Lockie Ferguson",
+   "sold": true,
+   "price": 200,
+   "median": 620,
+   "p10": 240,
+   "p90": 1743,
+   "pSold": 0.868
+  },
+  {
+   "name": "Josh Hazlewood",
+   "sold": false,
+   "price": null,
+   "median": 720,
+   "p10": 240,
+   "p90": 1800,
+   "pSold": 0.89
+  },
+  {
+   "name": "Alzarri Joseph",
+   "sold": true,
+   "price": 1150,
+   "median": 220,
+   "p10": 100,
+   "p90": 740,
+   "pSold": 0.748
+  },
+  {
+   "name": "Dilshan Madushanka",
+   "sold": true,
+   "price": 460,
+   "median": 50,
+   "p10": 50,
+   "p90": 115,
+   "pSold": 0.145
+  },
+  {
+   "name": "Shivam Mavi",
+   "sold": true,
+   "price": 640,
+   "median": 160,
+   "p10": 60,
+   "p90": 580,
+   "pSold": 0.902
+  },
+  {
+   "name": "Chetan Sakariya",
+   "sold": true,
+   "price": 50,
+   "median": 140,
+   "p10": 50,
+   "p90": 486,
+   "pSold": 0.873
+  },
+  {
+   "name": "Mitchell Starc",
+   "sold": true,
+   "price": 2475,
+   "median": 280,
+   "p10": 200,
+   "p90": 640,
+   "pSold": 0.419
+  },
+  {
+   "name": "Jaydev Unadkat",
+   "sold": true,
+   "price": 160,
+   "median": 110,
+   "p10": 50,
+   "p90": 340,
+   "pSold": 0.781
+  },
+  {
+   "name": "Umesh Yadav",
+   "sold": true,
+   "price": 580,
+   "median": 380,
+   "p10": 200,
+   "p90": 1275,
+   "pSold": 0.745
+  },
+  {
+   "name": "Akeal Hosein",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 140,
+   "pSold": 0.289
+  },
+  {
+   "name": "Mujeeb Rahman",
+   "sold": true,
+   "price": 200,
+   "median": 320,
+   "p10": 200,
+   "p90": 1028,
+   "pSold": 0.637
+  },
+  {
+   "name": "Adil Rashid",
+   "sold": false,
+   "price": null,
+   "median": 200,
+   "p10": 200,
+   "p90": 420,
+   "pSold": 0.241
+  },
+  {
+   "name": "Mohammad Waqar Salamkheil",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 96,
+   "pSold": 0.087
+  },
+  {
+   "name": "Tabraiz Shamsi",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 130,
+   "pSold": 0.25
+  },
+  {
+   "name": "Ish Sodhi",
+   "sold": false,
+   "price": null,
+   "median": 75,
+   "p10": 75,
+   "p90": 200,
+   "pSold": 0.347
+  },
+  {
+   "name": "Priyansh Arya",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 52,
+   "pSold": 0.31
+  },
+  {
+   "name": "Saurav Chuahan",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.171
+  },
+  {
+   "name": "Shubham Dubey",
+   "sold": true,
+   "price": 580,
+   "median": 25,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.136
+  },
+  {
+   "name": "Rohan Kunnummal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.235
+  },
+  {
+   "name": "Angkrish Raghuvanshi",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.186
+  },
+  {
+   "name": "Sameer Rizvi",
+   "sold": true,
+   "price": 840,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.221
+  },
+  {
+   "name": "Manan Vohra",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 75,
+   "pSold": 0.529
+  },
+  {
+   "name": "Raj Angad Bawa",
+   "sold": false,
+   "price": null,
+   "median": 35,
+   "p10": 20,
+   "p90": 105,
+   "pSold": 0.657
+  },
+  {
+   "name": "Shahrukh Khan",
+   "sold": true,
+   "price": 740,
+   "median": 80,
+   "p10": 40,
+   "p90": 280,
+   "pSold": 0.784
+  },
+  {
+   "name": "Mohd. Arshad Khan",
+   "sold": true,
+   "price": 20,
+   "median": 30,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.29
+  },
+  {
+   "name": "Sarfaraz Khan",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.333
+  },
+  {
+   "name": "Arshin Kulkarni",
+   "sold": true,
+   "price": 20,
+   "median": 25,
+   "p10": 20,
+   "p90": 71,
+   "pSold": 0.388
+  },
+  {
+   "name": "Vivrant Sharma",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.278
+  },
+  {
+   "name": "Atit Sheth",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.325
+  },
+  {
+   "name": "Hrithik Shokeen",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.41
+  },
+  {
+   "name": "Ramandeep Singh",
+   "sold": true,
+   "price": 20,
+   "median": 25,
+   "p10": 20,
+   "p90": 80,
+   "pSold": 0.414
+  },
+  {
+   "name": "Ricky Bhui",
+   "sold": true,
+   "price": 20,
+   "median": 30,
+   "p10": 20,
+   "p90": 75,
+   "pSold": 0.568
+  },
+  {
+   "name": "Tom Kohler-Cadmore",
+   "sold": true,
+   "price": 40,
+   "median": 55,
+   "p10": 40,
+   "p90": 120,
+   "pSold": 0.244
+  },
+  {
+   "name": "Kumar Kushagra",
+   "sold": true,
+   "price": 720,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.14
+  },
+  {
+   "name": "Urvil Patel",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.292
+  },
+  {
+   "name": "Vishnu Solanki",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.169
+  },
+  {
+   "name": "Rasikh Dar",
+   "sold": true,
+   "price": 20,
+   "median": 30,
+   "p10": 20,
+   "p90": 70,
+   "pSold": 0.381
+  },
+  {
+   "name": "Yash Dayal",
+   "sold": true,
+   "price": 500,
+   "median": 35,
+   "p10": 20,
+   "p90": 93,
+   "pSold": 0.581
+  },
+  {
+   "name": "Sushant Mishra",
+   "sold": true,
+   "price": 220,
+   "median": 25,
+   "p10": 20,
+   "p90": 65,
+   "pSold": 0.184
+  },
+  {
+   "name": "Ishan Porel",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 63,
+   "pSold": 0.369
+  },
+  {
+   "name": "Akash Singh",
+   "sold": true,
+   "price": 20,
+   "median": 30,
+   "p10": 20,
+   "p90": 75,
+   "pSold": 0.431
+  },
+  {
+   "name": "Kartik Tyagi",
+   "sold": true,
+   "price": 60,
+   "median": 30,
+   "p10": 20,
+   "p90": 88,
+   "pSold": 0.532
+  },
+  {
+   "name": "Kuldip Yadav",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.244
+  },
+  {
+   "name": "Murgan Ashwin",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.34
+  },
+  {
+   "name": "Shreyas Gopal",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 75,
+   "pSold": 0.551
+  },
+  {
+   "name": "Pulkit Narang",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.141
+  },
+  {
+   "name": "M. Siddharth",
+   "sold": true,
+   "price": 240,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.364
+  },
+  {
+   "name": "Shiva Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.196
+  },
+  {
+   "name": "Manav Suthar",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.165
+  },
+  {
+   "name": "Finn Allen",
+   "sold": false,
+   "price": null,
+   "median": 120,
+   "p10": 75,
+   "p90": 340,
+   "pSold": 0.497
+  },
+  {
+   "name": "Alick Athanaze",
+   "sold": false,
+   "price": null,
+   "median": 52,
+   "p10": 50,
+   "p90": 106,
+   "pSold": 0.022
+  },
+  {
+   "name": "Mark Chapman",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 124,
+   "pSold": 0.121
+  },
+  {
+   "name": "Samuel Hain",
+   "sold": false,
+   "price": null,
+   "median": 65,
+   "p10": 50,
+   "p90": 149,
+   "pSold": 0.128
+  },
+  {
+   "name": "Reeza Hendricks",
+   "sold": false,
+   "price": null,
+   "median": 62,
+   "p10": 50,
+   "p90": 160,
+   "pSold": 0.1
+  },
+  {
+   "name": "Brandon King",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 150,
+   "pSold": 0.241
+  },
+  {
+   "name": "Colin Munro",
+   "sold": false,
+   "price": null,
+   "median": 190,
+   "p10": 150,
+   "p90": 440,
+   "pSold": 0.211
+  },
+  {
+   "name": "Sherfane Rutherford",
+   "sold": true,
+   "price": 150,
+   "median": 190,
+   "p10": 150,
+   "p90": 520,
+   "pSold": 0.388
+  },
+  {
+   "name": "Ashton Turner",
+   "sold": true,
+   "price": 100,
+   "median": 140,
+   "p10": 100,
+   "p90": 320,
+   "pSold": 0.336
+  },
+  {
+   "name": "Rassie Van Der Dussen",
+   "sold": false,
+   "price": null,
+   "median": 260,
+   "p10": 200,
+   "p90": 640,
+   "pSold": 0.1
+  },
+  {
+   "name": "James Vince",
+   "sold": false,
+   "price": null,
+   "median": 260,
+   "p10": 200,
+   "p90": 630,
+   "pSold": 0.258
+  },
+  {
+   "name": "Ibrahim Zadran",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 120,
+   "pSold": 0.074
+  },
+  {
+   "name": "Najibullah Zadran",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 100,
+   "pSold": 0.039
+  },
+  {
+   "name": "Sean Abbott",
+   "sold": false,
+   "price": null,
+   "median": 320,
+   "p10": 200,
+   "p90": 736,
+   "pSold": 0.441
+  },
+  {
+   "name": "Ashton Agar",
+   "sold": false,
+   "price": null,
+   "median": 110,
+   "p10": 100,
+   "p90": 220,
+   "pSold": 0.129
+  },
+  {
+   "name": "Wesley Agar",
+   "sold": false,
+   "price": null,
+   "median": 65,
+   "p10": 50,
+   "p90": 110,
+   "pSold": 0.08
+  },
+  {
+   "name": "Qais Ahamad",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 60,
+   "pSold": 0.061
+  },
+  {
+   "name": "Fabian Allen",
+   "sold": false,
+   "price": null,
+   "median": 85,
+   "p10": 75,
+   "p90": 180,
+   "pSold": 0.179
+  },
+  {
+   "name": "Charith Asalanka",
+   "sold": false,
+   "price": null,
+   "median": 55,
+   "p10": 50,
+   "p90": 110,
+   "pSold": 0.068
+  },
+  {
+   "name": "Michael Bracewell",
+   "sold": false,
+   "price": null,
+   "median": 220,
+   "p10": 100,
+   "p90": 680,
+   "pSold": 0.676
+  },
+  {
+   "name": "Brydon Carse",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 140,
+   "pSold": 0.17
+  },
+  {
+   "name": "Tom Curran",
+   "sold": true,
+   "price": 150,
+   "median": 200,
+   "p10": 150,
+   "p90": 474,
+   "pSold": 0.343
+  },
+  {
+   "name": "Ben Cutting",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 110,
+   "pSold": 0.113
+  },
+  {
+   "name": "Matthew Forde",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 122,
+   "pSold": 0.113
+  },
+  {
+   "name": "George Garton",
+   "sold": false,
+   "price": null,
+   "median": 55,
+   "p10": 50,
+   "p90": 90,
+   "pSold": 0.051
+  },
+  {
+   "name": "Jason Holder",
+   "sold": false,
+   "price": null,
+   "median": 240,
+   "p10": 150,
+   "p90": 620,
+   "pSold": 0.5
+  },
+  {
+   "name": "George Linde",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 130,
+   "pSold": 0.098
+  },
+  {
+   "name": "Keshav Maharaj",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 91,
+   "pSold": 0.021
+  },
+  {
+   "name": "Wiaan Mulder",
+   "sold": false,
+   "price": null,
+   "median": 55,
+   "p10": 50,
+   "p90": 110,
+   "pSold": 0.104
+  },
+  {
+   "name": "Mohammad Nabi",
+   "sold": true,
+   "price": 150,
+   "median": 170,
+   "p10": 150,
+   "p90": 364,
+   "pSold": 0.261
+  },
+  {
+   "name": "James Neesham",
+   "sold": false,
+   "price": null,
+   "median": 220,
+   "p10": 150,
+   "p90": 540,
+   "pSold": 0.359
+  },
+  {
+   "name": "Jamie Overton",
+   "sold": false,
+   "price": null,
+   "median": 200,
+   "p10": 200,
+   "p90": 216,
+   "pSold": 0.004
+  },
+  {
+   "name": "Keemo Paul",
+   "sold": false,
+   "price": null,
+   "median": 80,
+   "p10": 75,
+   "p90": 190,
+   "pSold": 0.186
+  },
+  {
+   "name": "Dwaine Pretorius",
+   "sold": false,
+   "price": null,
+   "median": 120,
+   "p10": 100,
+   "p90": 240,
+   "pSold": 0.142
+  },
+  {
+   "name": "Daniel Sams",
+   "sold": false,
+   "price": null,
+   "median": 190,
+   "p10": 150,
+   "p90": 440,
+   "pSold": 0.31
+  },
+  {
+   "name": "Dasun Shanaka",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 140,
+   "pSold": 0.159
+  },
+  {
+   "name": "Matthew Short",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 160,
+   "pSold": 0.258
+  },
+  {
+   "name": "Odean Smith",
+   "sold": false,
+   "price": null,
+   "median": 55,
+   "p10": 50,
+   "p90": 90,
+   "pSold": 0.061
+  },
+  {
+   "name": "Hanuma Vihari",
+   "sold": false,
+   "price": null,
+   "median": 65,
+   "p10": 50,
+   "p90": 190,
+   "pSold": 0.406
+  },
+  {
+   "name": "David Willey",
+   "sold": true,
+   "price": 200,
+   "median": 280,
+   "p10": 200,
+   "p90": 766,
+   "pSold": 0.497
+  },
+  {
+   "name": "Sam Billings",
+   "sold": false,
+   "price": null,
+   "median": 120,
+   "p10": 100,
+   "p90": 300,
+   "pSold": 0.291
+  },
+  {
+   "name": "Johnson Charles",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 119,
+   "pSold": 0.14
+  },
+  {
+   "name": "Ben Duckett",
+   "sold": false,
+   "price": null,
+   "median": 220,
+   "p10": 200,
+   "p90": 540,
+   "pSold": 0.214
+  },
+  {
+   "name": "Shai Hope",
+   "sold": true,
+   "price": 75,
+   "median": 85,
+   "p10": 75,
+   "p90": 220,
+   "pSold": 0.186
+  },
+  {
+   "name": "Varun Aaron",
+   "sold": false,
+   "price": null,
+   "median": 65,
+   "p10": 50,
+   "p90": 183,
+   "pSold": 0.26
+  },
+  {
+   "name": "Fareed Ahmad",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 65,
+   "pSold": 0.022
+  },
+  {
+   "name": "Gus Atkinson",
+   "sold": true,
+   "price": 100,
+   "median": 100,
+   "p10": 100,
+   "p90": 214,
+   "pSold": 0.116
+  },
+  {
+   "name": "Dushmanta Chameera",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 130,
+   "pSold": 0.176
+  },
+  {
+   "name": "Ben Dwarshuis",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 83,
+   "pSold": 0.029
+  },
+  {
+   "name": "Richard Gleeson",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 70,
+   "pSold": 0.015
+  },
+  {
+   "name": "Matt Henry",
+   "sold": false,
+   "price": null,
+   "median": 90,
+   "p10": 75,
+   "p90": 240,
+   "pSold": 0.365
+  },
+  {
+   "name": "Kyle Jamieson",
+   "sold": false,
+   "price": null,
+   "median": 100,
+   "p10": 100,
+   "p90": 220,
+   "pSold": 0.149
+  },
+  {
+   "name": "Spencer Johnson",
+   "sold": true,
+   "price": 1000,
+   "median": 50,
+   "p10": 50,
+   "p90": 60,
+   "pSold": 0.034
+  },
+  {
+   "name": "Chris Jordan",
+   "sold": false,
+   "price": null,
+   "median": 170,
+   "p10": 150,
+   "p90": 400,
+   "pSold": 0.326
+  },
+  {
+   "name": "Siddharth Kaul",
+   "sold": false,
+   "price": null,
+   "median": 85,
+   "p10": 50,
+   "p90": 280,
+   "pSold": 0.598
+  },
+  {
+   "name": "Lahiru Kumara",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 104,
+   "pSold": 0.071
+  },
+  {
+   "name": "Obed Mccoy",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 109,
+   "pSold": 0.215
+  },
+  {
+   "name": "Riley Meredith",
+   "sold": false,
+   "price": null,
+   "median": 100,
+   "p10": 100,
+   "p90": 191,
+   "pSold": 0.188
+  },
+  {
+   "name": "Tymal Mills",
+   "sold": false,
+   "price": null,
+   "median": 150,
+   "p10": 150,
+   "p90": 274,
+   "pSold": 0.168
+  },
+  {
+   "name": "Adam Milne",
+   "sold": false,
+   "price": null,
+   "median": 100,
+   "p10": 100,
+   "p90": 210,
+   "pSold": 0.182
+  },
+  {
+   "name": "Lance Morris",
+   "sold": false,
+   "price": null,
+   "median": 75,
+   "p10": 75,
+   "p90": 116,
+   "pSold": 0.066
+  },
+  {
+   "name": "Blessing Muzarabani",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 110,
+   "pSold": 0.182
+  },
+  {
+   "name": "Richard Ngarava",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 95,
+   "pSold": 0.104
+  },
+  {
+   "name": "Wayne Parnell",
+   "sold": false,
+   "price": null,
+   "median": 100,
+   "p10": 100,
+   "p90": 264,
+   "pSold": 0.099
+  },
+  {
+   "name": "Mustafizur Rahman",
+   "sold": true,
+   "price": 200,
+   "median": 200,
+   "p10": 200,
+   "p90": 802,
+   "pSold": 0.55
+  },
+  {
+   "name": "Jhye Richardson",
+   "sold": true,
+   "price": 500,
+   "median": 150,
+   "p10": 150,
+   "p90": 298,
+   "pSold": 0.14
+  },
+  {
+   "name": "Ollie Robinson",
+   "sold": false,
+   "price": null,
+   "median": 75,
+   "p10": 75,
+   "p90": 100,
+   "pSold": 0.022
+  },
+  {
+   "name": "George Scrimshaw",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 50,
+   "pSold": 0.019
+  },
+  {
+   "name": "Tim Southee",
+   "sold": false,
+   "price": null,
+   "median": 150,
+   "p10": 150,
+   "p90": 314,
+   "pSold": 0.18
+  },
+  {
+   "name": "Barinder Sran",
+   "sold": false,
+   "price": null,
+   "median": 60,
+   "p10": 50,
+   "p90": 160,
+   "pSold": 0.338
+  },
+  {
+   "name": "Billy Stanlake",
+   "sold": false,
+   "price": null,
+   "median": 75,
+   "p10": 75,
+   "p90": 90,
+   "pSold": 0.058
+  },
+  {
+   "name": "Olly Stone",
+   "sold": false,
+   "price": null,
+   "median": 75,
+   "p10": 75,
+   "p90": 80,
+   "pSold": 0.018
+  },
+  {
+   "name": "Oshane Thomas",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 55,
+   "pSold": 0.06
+  },
+  {
+   "name": "Nuwan Thushara",
+   "sold": true,
+   "price": 480,
+   "median": 50,
+   "p10": 50,
+   "p90": 55,
+   "pSold": 0.021
+  },
+  {
+   "name": "Sandeep Warrier",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 110,
+   "pSold": 0.107
+  },
+  {
+   "name": "Lizaad Williams",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 85,
+   "pSold": 0.016
+  },
+  {
+   "name": "Luke Wood",
+   "sold": false,
+   "price": null,
+   "median": 50,
+   "p10": 50,
+   "p90": 85,
+   "pSold": 0.026
+  },
+  {
+   "name": "Dinesh Bana",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.125
+  },
+  {
+   "name": "Swastik Chhikara",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.064
+  },
+  {
+   "name": "Rajat Dey",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 65,
+   "pSold": 0.304
+  },
+  {
+   "name": "Abhimanyu Easwaran",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 41,
+   "pSold": 0.138
+  },
+  {
+   "name": "Rithik Easwaran",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.064
+  },
+  {
+   "name": "Chirag Gandhi",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.095
+  },
+  {
+   "name": "Nikhil Gangta",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.074
+  },
+  {
+   "name": "Sudip Gharami",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.083
+  },
+  {
+   "name": "Ansh Gosai",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 31,
+   "pSold": 0.049
+  },
+  {
+   "name": "Azim Kazi",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 20,
+   "p90": 80,
+   "pSold": 0.398
+  },
+  {
+   "name": "Amandeep Khare",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.125
+  },
+  {
+   "name": "Ankit Kumar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.147
+  },
+  {
+   "name": "Bhupen Lalwani",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 38,
+   "pSold": 0.048
+  },
+  {
+   "name": "Pukhraj Mann",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.095
+  },
+  {
+   "name": "Tanmay Mishra",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 36,
+   "pSold": 0.01
+  },
+  {
+   "name": "Salman Nizar",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.251
+  },
+  {
+   "name": "Priyank Panchal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.064
+  },
+  {
+   "name": "Akshat Raghuwanshi",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.079
+  },
+  {
+   "name": "Ekant Sen",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.1
+  },
+  {
+   "name": "Subhranshu Senapati",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.114
+  },
+  {
+   "name": "Naushad Shaikh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 39,
+   "pSold": 0.092
+  },
+  {
+   "name": "Dhruv Shorey",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 46,
+   "pSold": 0.099
+  },
+  {
+   "name": "Himmat Singh",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.155
+  },
+  {
+   "name": "Virat Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.268
+  },
+  {
+   "name": "Shashank Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 32,
+   "pSold": 0.046
+  },
+  {
+   "name": "Sumeet Verma",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.041
+  },
+  {
+   "name": "P.A. Abdul",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 75,
+   "pSold": 0.24
+  },
+  {
+   "name": "Murugan Abhishek",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 65,
+   "pSold": 0.24
+  },
+  {
+   "name": "Atharva Ankolekar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.16
+  },
+  {
+   "name": "Baba Aparajith",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.271
+  },
+  {
+   "name": "Jass Inder Baidwan",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.214
+  },
+  {
+   "name": "Corbin Bosch",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 30,
+   "p90": 40,
+   "pSold": 0.048
+  },
+  {
+   "name": "Rahul Buddhi",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.165
+  },
+  {
+   "name": "Vaisakh Chandran",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 69,
+   "pSold": 0.204
+  },
+  {
+   "name": "Writtick Chatterjee",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 65,
+   "pSold": 0.33
+  },
+  {
+   "name": "Raj Chaudhary",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.174
+  },
+  {
+   "name": "Ravi Chauhan",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.116
+  },
+  {
+   "name": "Ashwin Das",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 20,
+   "p90": 75,
+   "pSold": 0.421
+  },
+  {
+   "name": "Aarya Desai",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 38,
+   "pSold": 0.145
+  },
+  {
+   "name": "Vineet Dhankhar",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.212
+  },
+  {
+   "name": "Naman Dhir",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 52,
+   "pSold": 0.221
+  },
+  {
+   "name": "Harsh Dubey",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 70,
+   "pSold": 0.385
+  },
+  {
+   "name": "Prerit Dutta",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.211
+  },
+  {
+   "name": "Jake Fraser-Mcgurk",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 22,
+   "pSold": 0.02
+  },
+  {
+   "name": "Shubhang Hegde",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.114
+  },
+  {
+   "name": "Benny Howell",
+   "sold": false,
+   "price": null,
+   "median": 52,
+   "p10": 42,
+   "p90": 62,
+   "pSold": 0.003
+  },
+  {
+   "name": "Saransh Jain",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.129
+  },
+  {
+   "name": "Duan Jansen",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 20,
+   "pSold": 0.016
+  },
+  {
+   "name": "Mohammad Kaif",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.229
+  },
+  {
+   "name": "Anshul Kamboj",
+   "sold": true,
+   "price": 20,
+   "median": 25,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.193
+  },
+  {
+   "name": "Aman Khan",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 65,
+   "pSold": 0.346
+  },
+  {
+   "name": "Mohd Arslan Khan",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.215
+  },
+  {
+   "name": "Musheer Khan",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.176
+  },
+  {
+   "name": "Tanush Kotian",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.331
+  },
+  {
+   "name": "Sumit Kumar",
+   "sold": true,
+   "price": 100,
+   "median": 25,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.323
+  },
+  {
+   "name": "Manvanth Kumar",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.265
+  },
+  {
+   "name": "Saurabh Kumar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.074
+  },
+  {
+   "name": "Dev Lakra",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.251
+  },
+  {
+   "name": "Nasir Lone",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 62,
+   "pSold": 0.296
+  },
+  {
+   "name": "Kaushik Maity",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.264
+  },
+  {
+   "name": "Divij Mehra",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 49,
+   "pSold": 0.204
+  },
+  {
+   "name": "Mani Sankar Mura Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.2
+  },
+  {
+   "name": "Abid Mushtaq",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.17
+  },
+  {
+   "name": "Kamlesh Nagarkoti",
+   "sold": false,
+   "price": null,
+   "median": 45,
+   "p10": 30,
+   "p90": 144,
+   "pSold": 0.546
+  },
+  {
+   "name": "Sanjay Pahal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.101
+  },
+  {
+   "name": "Jitender Pal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.164
+  },
+  {
+   "name": "Saumy Pandey",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.161
+  },
+  {
+   "name": "Ansh Patel",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 49,
+   "pSold": 0.193
+  },
+  {
+   "name": "Sairaj Patil",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.244
+  },
+  {
+   "name": "Pradosh Paul",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.16
+  },
+  {
+   "name": "Shubham Singh Pundir",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 39,
+   "pSold": 0.092
+  },
+  {
+   "name": "Atal Rai",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.171
+  },
+  {
+   "name": "Abhimanyusingh Rajput",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.274
+  },
+  {
+   "name": "Mohit Rathee",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.199
+  },
+  {
+   "name": "Ninad Rathva",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 20,
+   "p90": 70,
+   "pSold": 0.506
+  },
+  {
+   "name": "Rohit Rayudu",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 46,
+   "pSold": 0.086
+  },
+  {
+   "name": "Aniketh Reddy",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.139
+  },
+  {
+   "name": "Mohit Redkar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.282
+  },
+  {
+   "name": "Jalaj Saxena",
+   "sold": false,
+   "price": null,
+   "median": 45,
+   "p10": 40,
+   "p90": 86,
+   "pSold": 0.036
+  },
+  {
+   "name": "Akash Sengupta",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.314
+  },
+  {
+   "name": "Ashutosh Sharma",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.091
+  },
+  {
+   "name": "Shivalik Sharma",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.228
+  },
+  {
+   "name": "Suryansh Shedge",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.169
+  },
+  {
+   "name": "Aradhya Shukla",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 47,
+   "pSold": 0.149
+  },
+  {
+   "name": "Utkarsh Singh",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.42
+  },
+  {
+   "name": "Vishwanath Pratap Singh",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.122
+  },
+  {
+   "name": "Shashank Singh",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.24
+  },
+  {
+   "name": "Swapnil Singh",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.24
+  },
+  {
+   "name": "Prenelan Subrayen",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 20,
+   "pSold": 0.014
+  },
+  {
+   "name": "Ravi Teja",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.339
+  },
+  {
+   "name": "Tanay Thyagarajann",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 29,
+   "pSold": 0.09
+  },
+  {
+   "name": "Akash Vashisht",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.279
+  },
+  {
+   "name": "David Wiese",
+   "sold": false,
+   "price": null,
+   "median": 100,
+   "p10": 100,
+   "p90": 121,
+   "pSold": 0.062
+  },
+  {
+   "name": "Mohit Ahlawat",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 65,
+   "pSold": 0.095
+  },
+  {
+   "name": "G. Ajitesh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.116
+  },
+  {
+   "name": "Avanish Rao Aravelly",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 38,
+   "pSold": 0.07
+  },
+  {
+   "name": "L.R. Chethan",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.144
+  },
+  {
+   "name": "Gourav Choudhary",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.081
+  },
+  {
+   "name": "Harvik Desai",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.229
+  },
+  {
+   "name": "Shakir Gandhi",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.147
+  },
+  {
+   "name": "Sumit Ghadigaonkar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 39,
+   "pSold": 0.077
+  },
+  {
+   "name": "Baba Indrajith",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.128
+  },
+  {
+   "name": "Bhagmender Lather",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.164
+  },
+  {
+   "name": "Anmol Malhotra",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.104
+  },
+  {
+   "name": "Robin Minz",
+   "sold": true,
+   "price": 360,
+   "median": 20,
+   "p10": 20,
+   "p90": 49,
+   "pSold": 0.092
+  },
+  {
+   "name": "Darshan Misal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.201
+  },
+  {
+   "name": "Nikhil Naik",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.292
+  },
+  {
+   "name": "Prasad Pawar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 34,
+   "pSold": 0.055
+  },
+  {
+   "name": "Mahesh Pithiya",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.086
+  },
+  {
+   "name": "William Salzmann",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 26,
+   "pSold": 0.019
+  },
+  {
+   "name": "Bipin Saurabh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.168
+  },
+  {
+   "name": "B.R. Sharath",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.115
+  },
+  {
+   "name": "K.L. Shrijith",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.101
+  },
+  {
+   "name": "Avneesh Sudha",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.193
+  },
+  {
+   "name": "Aditya Tare",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.161
+  },
+  {
+   "name": "Nihal Ullal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 34,
+   "pSold": 0.046
+  },
+  {
+   "name": "K.M Asif",
+   "sold": false,
+   "price": null,
+   "median": 25,
+   "p10": 20,
+   "p90": 57,
+   "pSold": 0.184
+  },
+  {
+   "name": "Mohit Avasthi",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.154
+  },
+  {
+   "name": "Ottneil Baartman",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 20,
+   "pSold": 0.018
+  },
+  {
+   "name": "Basit Bashir",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 51,
+   "pSold": 0.081
+  },
+  {
+   "name": "Waseem Bashir",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 39,
+   "pSold": 0.068
+  },
+  {
+   "name": "Sachin Bhosale",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 46,
+   "pSold": 0.087
+  },
+  {
+   "name": "Devendra Singh Bora",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.084
+  },
+  {
+   "name": "Gurnoor Singh Brar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.129
+  },
+  {
+   "name": "Nandre Burger",
+   "sold": true,
+   "price": 50,
+   "median": 50,
+   "p10": 50,
+   "p90": 50,
+   "pSold": 0.0
+  },
+  {
+   "name": "Saurabh Dubey",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.054
+  },
+  {
+   "name": "Mrinmoy Dutta",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.133
+  },
+  {
+   "name": "Vishal Godara",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.098
+  },
+  {
+   "name": "Money Grewal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 46,
+   "pSold": 0.074
+  },
+  {
+   "name": "Arpit Guleria",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.066
+  },
+  {
+   "name": "Mukhtar Hussain",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.125
+  },
+  {
+   "name": "Sakib Hussain",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 46,
+   "pSold": 0.131
+  },
+  {
+   "name": "Shamar Joseph",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 26,
+   "pSold": 0.011
+  },
+  {
+   "name": "Mohammed Kaif",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 32,
+   "pSold": 0.05
+  },
+  {
+   "name": "Shubham Kapse",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.044
+  },
+  {
+   "name": "Devang Karamta",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.074
+  },
+  {
+   "name": "Kulwant Khejroliya",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 44,
+   "pSold": 0.129
+  },
+  {
+   "name": "Ravi Kumar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 42,
+   "pSold": 0.084
+  },
+  {
+   "name": "Ashwani Kumar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.089
+  },
+  {
+   "name": "Raj Limbani",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 49,
+   "pSold": 0.061
+  },
+  {
+   "name": "Kwena Maphaka",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 20,
+   "pSold": 0.006
+  },
+  {
+   "name": "Lukman Hussain Meriwala",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 60,
+   "pSold": 0.276
+  },
+  {
+   "name": "Venkatesh Muralidhara",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.069
+  },
+  {
+   "name": "William O'Rourke",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 26,
+   "pSold": 0.006
+  },
+  {
+   "name": "Rakshan Readdi",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.126
+  },
+  {
+   "name": "Manish Reddy",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.064
+  },
+  {
+   "name": "Monish Reddy",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.099
+  },
+  {
+   "name": "Akhin Sathar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.074
+  },
+  {
+   "name": "Divesh Sharma",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.085
+  },
+  {
+   "name": "Ashok Sharma",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 63,
+   "pSold": 0.072
+  },
+  {
+   "name": "Abhilash Shetty",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 43,
+   "pSold": 0.066
+  },
+  {
+   "name": "Rahul Shukla",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.163
+  },
+  {
+   "name": "Manit Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.07
+  },
+  {
+   "name": "Gurjapneet Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 34,
+   "pSold": 0.068
+  },
+  {
+   "name": "Basil Thampi",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 30,
+   "p90": 95,
+   "pSold": 0.236
+  },
+  {
+   "name": "Paul Van Meekeren",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 20,
+   "pSold": 0.004
+  },
+  {
+   "name": "Nitin Verma",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.043
+  },
+  {
+   "name": "Chris Wood",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 22,
+   "pSold": 0.009
+  },
+  {
+   "name": "Gourav Yadav",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 37,
+   "pSold": 0.072
+  },
+  {
+   "name": "Lalit Yadav",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 30,
+   "p90": 62,
+   "pSold": 0.182
+  },
+  {
+   "name": "Prithvi Raj Yarra",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.102
+  },
+  {
+   "name": "Mujtaba Yousuf",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.156
+  },
+  {
+   "name": "Shubham Agrawal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.115
+  },
+  {
+   "name": "Mustaq Beg",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 37,
+   "pSold": 0.048
+  },
+  {
+   "name": "K.C Cariappa",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.325
+  },
+  {
+   "name": "Ganesh Chaudhary",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 40,
+   "pSold": 0.051
+  },
+  {
+   "name": "Prince Choudhary",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 49,
+   "pSold": 0.055
+  },
+  {
+   "name": "Yuvraj Chudasama",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 34,
+   "pSold": 0.079
+  },
+  {
+   "name": "Jasmer Dhankhar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.195
+  },
+  {
+   "name": "Chintal Gandhi",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.062
+  },
+  {
+   "name": "Allah Ghazanfar",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 20,
+   "pSold": 0.001
+  },
+  {
+   "name": "Raghav Goyal",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.084
+  },
+  {
+   "name": "Shreyas Gurav",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 49,
+   "pSold": 0.043
+  },
+  {
+   "name": "Vishu Kashyap",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.034
+  },
+  {
+   "name": "S Midhun",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 30,
+   "p90": 65,
+   "pSold": 0.146
+  },
+  {
+   "name": "Izharulhuq Naveed",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 30,
+   "p90": 30,
+   "pSold": 0.007
+  },
+  {
+   "name": "Bhuwan Rohilla",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 31,
+   "pSold": 0.037
+  },
+  {
+   "name": "Shivam Sharma",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 44,
+   "pSold": 0.092
+  },
+  {
+   "name": "Digvesh Singh",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.046
+  },
+  {
+   "name": "Jhathavedh Subramanyan",
+   "sold": true,
+   "price": 20,
+   "median": 20,
+   "p10": 20,
+   "p90": 30,
+   "pSold": 0.04
+  },
+  {
+   "name": "Jagadeesha Suchith",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 45,
+   "pSold": 0.184
+  },
+  {
+   "name": "B. Surya",
+   "sold": false,
+   "price": null,
+   "median": 30,
+   "p10": 20,
+   "p90": 55,
+   "pSold": 0.026
+  },
+  {
+   "name": "Pankaj Yadav",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 38,
+   "pSold": 0.044
+  },
+  {
+   "name": "Sahil Dhiwan",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 50,
+   "pSold": 0.151
+  },
+  {
+   "name": "Kaushal Tambe",
+   "sold": false,
+   "price": null,
+   "median": 20,
+   "p10": 20,
+   "p90": 35,
+   "pSold": 0.134
+  }
+ ]
+}

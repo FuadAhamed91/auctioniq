@@ -1,0 +1,1067 @@
+name,cricsheet_id,method,key,dob,files,evidence
+Aaqib Khan,d290c5b5,dob,Aaqib Khan,2003-12-25,auction_2025;pool_2026,DOB + name
+Aaron Hardie,d405c0d5,dob,Aaron Hardie,1999-01-07,auction_2025,DOB + name
+Aaron Varghese,,,Aaron Varghese,2006-10-01,pool_2026,
+Aarya Desai,8053c798,dob,Aarya Desai,2003-04-03,auction_2024;auction_2025;pool_2026,DOB + name
+Aashish Bhatt,,,Aashish Bhatt,2003-08-14,auction_2023,
+Abdul Bazith,cc777ffa,dob,Abdul Bazith,1998-10-09,auction_2025;pool_2026,DOB + name
+Abdul P A,cc777ffa,dob,Abdul P A,1998-10-09,auction_2023,DOB + name; squad 2023 RR
+Abdul Samad,8e514b4c,dob,Abdul Samad,2001-10-28,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 SRH
+Abhay Choudhary,,,Abhay Choudhary,2002-06-26,auction_2025,
+Abhijeet Tomar,aa5d8c9e,dob,Abhijeet Tomar,1995-03-14,auction_2022;auction_2023;auction_2025,DOB + name; squad 2022 KKR
+Abhilash Shetty,,,Abhilash Shetty,1998-06-06,auction_2024;auction_2025;pool_2026,
+Abhimanyu Easwaran,10b58586,dob,Abhimanyu Easwaran,1995-09-06,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Abhimanyusingh Rajput,c1d3515b,dob,Abhimanyusingh Rajput,1998-05-09,auction_2024;pool_2026,DOB + name
+Abhinandan Singh,,,Abhinandan Singh,1997-03-30,auction_2025;retained_2026,
+Abhinav Manohar,0890552f,dob,Abhinav Manohar,1994-09-16,auction_2025;pool_2026,DOB + name; squad 2025 SRH
+Abhinav Sadarangani,0890552f,dob+partial-name,Abhinav Sadarangani,1994-09-16,auction_2022;retained_2024,"same DOB and country, one name word shared"
+Abhinav Tejrana,,,Abhinav Tejrana,2000-12-17,pool_2026,
+Abhishek Nair,,,Abhishek Nair,2004-06-06,auction_2025,
+Abhishek Pathak,,,Abhishek Pathak,1997-02-17,pool_2026,
+Abhishek Porel,ad3b6e95,squad,Abhishek Porel,,retained_2024;retained_2026,squad 2023 DC
+Abhishek Saini,,,Abhishek Saini,1998-12-02,auction_2025,
+Abhishek Sharma,f29185a1,dob,Abhishek Sharma,2000-09-04,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Abid Mushtaq,b10e8c85,dob,Abid Mushtaq,1997-01-17,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Abishek Porel,ad3b6e95,dob,Abishek Porel,2002-10-17,auction_2023,DOB + name
+Ackeem Auguste,4b167ede,dob,Ackeem Auguste,2003-09-12,pool_2026,DOB + name
+Adam Milne,350bb1b1,dob,Adam Milne,1992-04-13,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 CSK
+Adam Zampa,14f96089,squad,Adam Zampa,1992-12-31,auction_2023;auction_2025;retained_2024,squad 2023 RR (listed DOB differs from player_meta 1992-03-31)
+Adarsh Singh,,,Adarsh Singh,2005-12-03,pool_2026,
+Adil Rashid,249d60c9,dob,Adil Rashid,1988-02-17,auction_2023;auction_2024;auction_2025,DOB + name; squad 2023 SRH
+Aditya Sarvate,8996a9a0,dob,Aditya Sarvate,1989-12-10,auction_2023,DOB + name
+Aditya Tare,855a210c,dob,Aditya Tare,1987-11-07,auction_2024,DOB + name
+Afif Hossain,37138918,dob,Afif Hossain,1999-09-22,auction_2023,DOB + name
+Agni Chopra,40737b8d,dob,Agni Chopra,1998-11-04,auction_2025,DOB + name
+Agniv Pan,6359ffe3,dob,Agniv Pan,1997-01-01,auction_2023,DOB + name
+Ahammed Imran,,,Ahammed Imran,2006-05-22,pool_2026,
+Aiden Markram,6a26221c,dob,Aiden Markram,1994-10-04,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Ajay Ahlawat,,,Ajay Ahlawat,1997-05-27,auction_2025,
+Ajay Mandal,31ee319e,dob,Ajay Mandal,1996-02-25,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name
+Ajay Sarkar,10636efb,dob,Ajay Sarkar,1997-03-10,auction_2023,DOB + name
+Ajinkya Rahane,29e95537,dob,Ajinkya Rahane,1988-06-06,auction_2022;auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 KKR
+Ajitesh Guruswamy,09a341f9,dob,Ajitesh Guruswamy,2002-09-26,auction_2023;auction_2025;pool_2026,DOB + name
+Akash Deep,0a67aec0,dob,Akash Deep,1996-12-15,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 RCB
+Akash Madhwal,4bd09374,dob,Akash Madhwal,1993-11-25,auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 MI
+Akash Parkar,f992200b,dob,Akash Parkar,1994-05-20,auction_2025,DOB + name
+Akash Pugazhanthi,,,Akash Pugazhanthi,2003-11-28,pool_2026,
+Akash Sengupta,bb3ccb17,dob,Akash Sengupta,2000-10-26,auction_2024,DOB + name
+Akash Singh,,,Akash Singh|1995-12-20,1995-12-20,auction_2023;auction_2025,DOB differs from b483905d
+Akash Singh,b483905d,dob,Akash Singh|2002-04-26,2002-04-26,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 LSG
+Akash Singh,b483905d,dob,Akash Singh|retained_2026|LSG,2002-04-26,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 LSG
+Akash Vashisht,35ccfdd4,dob,Akash Vashisht,1994-12-17,auction_2023;auction_2024;auction_2025,DOB + name
+Akeal Hosein,4d7f517e,dob,Akeal Hosein,1993-04-25,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2023 SRH
+Akhil Chaudhary,,,Akhil Chaudhary,2002-07-15,auction_2025,
+Akhil Rawat,,,Akhil Rawat,2000-11-04,auction_2025,
+Akhil Scaria,,,Akhil Scaria,1998-10-05,pool_2026,
+Akhin Sathar,,,Akhin Sathar,2002-01-12,auction_2024,
+Akshat Raghuwanshi,d8d67045,dob,Akshat Raghuwanshi,2003-09-15,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Akshay Karnewar,e1e7f950,dob,Akshay Karnewar,1992-10-12,auction_2023,DOB + name
+Akshdeep Nath,f10e94c4,dob,Akshdeep Nath,1993-05-10,auction_2023,DOB + name
+Akshu Bajwa,,,Akshu Bajwa,2005-12-18,pool_2026,
+Akul Pandove,,,Akul Pandove,1997-12-21,auction_2023,
+Alex Carey,69d03465,dob,Alex Carey,1991-08-27,auction_2025,DOB + name
+Alex Hales,92aeac25,dob,Alex Hales,1989-01-03,auction_2022,DOB + name
+Ali Khan,b0eaaac6,dob,Ali Khan,1990-12-13,auction_2025,DOB + name
+Alick Athanaze,58c2fac4,dob,Alick Athanaze,1998-12-07,auction_2024;auction_2025,DOB + name
+Allah Ghazanfar,9ca68676,dob,Allah Ghazanfar,2006-03-20,auction_2024;auction_2025;retained_2026,DOB + name
+Allah Mohammad,,,Allah Mohammad,2007-07-15,auction_2023,DOB differs from c8f697bd
+Alzarri Joseph,b0946605,dob,Alzarri Joseph,1996-11-20,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 GT
+Aman Khan,378daa89,dob,Aman Khan,1996-11-23,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 KKR
+Aman Rao Perala,,,Aman Rao Perala,2004-06-02,pool_2026,
+Aman Sharma,,,Aman Sharma,1997-04-03,auction_2023,
+Aman Shekhawat,,,Aman Shekhawat,2000-10-05,pool_2026,
+Amandeep Khare,6c6cc94c,dob,Amandeep Khare,1997-08-05,auction_2023;auction_2024;auction_2025,DOB + name
+Ambati Rayudu,70d205c9,dob,Ambati Rayudu,1985-09-23,auction_2022,DOB + name; squad 2022 CSK
+Amit Ali,b54d8acf,dob~,Amit Ali,2002-10-28,auction_2023,name + DOB one character / day-month off (2002-10-26)
+Amit Kumar,,,Amit Kumar,2002-11-02,pool_2026,"DOB differs from d1f63ad5, e3e9f70a"
+Amit Mishra,6b19d823,dob,Amit Mishra,1982-11-24,auction_2023;retained_2024,DOB + name; squad 2023 LSG
+Amit Pachhara,be271641,dob,Amit Pachhara,1995-09-08,auction_2023,DOB + name
+Amit Yadav,907cb4c1,dob,Amit Yadav,1989-10-10,auction_2023,DOB + name
+Andre Fletcher,1bae756b,dob,Andre Fletcher,1987-11-28,auction_2023;auction_2025,DOB + name
+Andre Russell,bbd41817,squad,Andre Russell,,retained_2024,squad 2023 KKR
+Andre Siddarth,,,Andre Siddarth,2006-08-28,auction_2025,
+Andrew Tye,7c7d63a2,dob,Andrew Tye,1986-12-12,auction_2023;auction_2025,DOB + name
+Aneeshwar Gautam,,,Aneeshwar Gautam,2003-01-16,auction_2022,
+Angkrish Raghuvanshi,d7017798,dob,Angkrish Raghuvanshi,2004-06-05,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 KKR
+Aniket Choudhary,18e6906e,dob,Aniket Choudhary,1990-01-28,auction_2023,DOB + name
+Aniket Verma,a3b0600d,dob,Aniket Verma,2002-02-05,auction_2025;retained_2026,DOB + name; squad 2025 SRH
+Aniketh Reddy,,,Aniketh Reddy,2000-10-28,auction_2024,
+Anirudh Balachander,,,Anirudh Balachander,1994-09-02,auction_2023,
+Anirudh Chowdhary,,,Anirudh Chowdhary,1999-11-08,auction_2025,
+Anirudh Kanwar,6c8e4b0a,dob,Anirudh Kanwar,1994-03-13,auction_2025,DOB + name
+Ankit Kumar,9765545f,dob,Ankit Kumar|1997-11-01,1997-11-01,auction_2024,DOB + name
+Ankit Kumar,,,Ankit Kumar|2004-01-02,2004-01-02,pool_2026,DOB differs from 9765545f
+Ankit Singh Rajpoot,db31895a,dob,Ankit Singh Rajpoot,1993-12-04,auction_2022;auction_2023;auction_2025,DOB + name
+Ankush Bains,cb932841,dob,Ankush Bains,1995-12-16,auction_2023,DOB + name
+Anmol Malhotra,f59e9ac9,dob,Anmol Malhotra,1995-11-29,auction_2023;auction_2024;auction_2025,DOB + name
+Anmolpreet Singh,1399b39c,dob,Anmolpreet Singh,1998-03-28,auction_2022;auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 MI
+Anrich Nortje,acdc62f5,dob,Anrich Nortje,1993-11-16,auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 DC
+Ansh Gosai,,,Ansh Gosai,2004-09-30,auction_2024,
+Ansh Patel,9e76cdb3,dob,Ansh Patel,2002-02-19,auction_2022;auction_2024,DOB + name
+Anshul Kamboj,fcc21ace,dob,Anshul Kamboj,2000-12-06,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 MI
+Anshuman Hooda,,,Anshuman Hooda,2001-01-04,auction_2025,
+Anuj Raj,4d528d92,dob,Anuj Raj,2000-11-01,auction_2023,DOB + name
+Anuj Rawat,c8f5f961,dob,Anuj Rawat,1999-10-17,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 RCB
+Anuj Thakral,,,Anuj Thakral,2002-10-15,pool_2026,
+Anukul Roy,e4cdf230,dob,Anukul Roy,1998-11-30,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 KKR
+Anunay Singh,a3350945,dob,Anunay Singh,1993-01-03,auction_2022;auction_2023,DOB + name
+Apoorv Wankhade,5708d0b6,dob,Apoorv Wankhade,1992-03-14,auction_2023;auction_2025,DOB + name
+Arab Gul,,,Arab Gul,2005-09-01,pool_2026,
+Aradhya Shukla,,,Aradhya Shukla,2004-12-06,auction_2024;auction_2025,
+Arfaz Mohammad,,,Arfaz Mohammad,2001-09-11,pool_2026,
+Arjun Azad,,,Arjun Azad,2001-08-08,auction_2025,
+Arjun Rapria,,,Arjun Rapria,2000-01-16,auction_2023,
+Arjun Tendulkar,44aac2f0,dob,Arjun Tendulkar,1999-09-24,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 MI
+Arman Jaffer,a83208cd,dob,Arman Jaffer,1998-10-25,auction_2023,DOB + name
+Arpit Guleria,,,Arpit Guleria,1997-04-26,auction_2024;auction_2025;pool_2026,
+Arpit Rana,,,Arpit Rana,2003-11-15,pool_2026,
+Arsh Kabir Ranga,,,Arsh Kabir Ranga,2004-11-13,pool_2026,
+Arshdeep Singh,244048f6,dob,Arshdeep Singh,1999-02-05,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 PBKS
+Arshin Kulkarni,2d140b79,dob,Arshin Kulkarni,2005-02-15,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 LSG
+Aryaman Singh Dhaliwal,,,Aryaman Singh Dhaliwal,2002-04-30,auction_2025;pool_2026,
+Aryan Juyal,5f2732f7,dob,Aryan Juyal,2001-11-11,auction_2022;auction_2023;auction_2025,DOB + name
+Arzan Nagwaswalla,01ada0ed,dob,Arzan Nagwaswalla,1997-10-17,auction_2023,DOB + name
+Asad Jamil Ahmed,,,Asad Jamil Ahmed,1999-08-31,auction_2023,
+Ashish Dahariya,,,Ashish Dahariya,2004-10-17,auction_2025,
+Ashok Sharma,,,Ashok Sharma,2002-06-17,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB differs from 691d15fb
+Ashton Agar,a2421394,dob,Ashton Agar,1993-10-14,auction_2024;auction_2025,DOB + name
+Ashton Turner,ff1e12a0,dob,Ashton Turner,1993-01-25,auction_2024;auction_2025,DOB + name; squad 2024 LSG
+Ashutosh Sharma,84d9c311,dob,Ashutosh Sharma,1998-09-15,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 PBKS
+Ashwani Kumar,d45c29b1,dob,Ashwani Kumar,2001-08-29,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 MI
+Ashwin Das,872113ff,dob,Ashwin Das,1995-12-16,auction_2023;auction_2024,DOB + name
+Ashwin Hebbar,b11d8647,dob,Ashwin Hebbar,1995-11-15,auction_2022;auction_2023;auction_2025,DOB + name
+Atal Bihari Rai,,,Atal Bihari Rai,1999-08-05,auction_2023,
+Atal Rai,,,Atal Rai,1999-08-05,auction_2024;pool_2026,
+Ateev Saini,,,Ateev Saini,1996-04-07,auction_2023,
+Atharva Ankolekar,d6cd318e,dob,Atharva Ankolekar,2000-09-26,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Atharva Kale,,,Atharva Kale,1999-09-21,auction_2025,
+Atharva Taide,1ac746c8,dob,Atharva Taide,2000-04-26,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 PBKS
+Atif Mushtaq,,,Atif Mushtaq,2003-03-20,auction_2025;pool_2026,
+Atit Sheth,4312e8f9,dob,Atit Sheth,1996-02-03,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Auqib Dar,7c3c0337,dob,Auqib Dar,1996-11-04,auction_2023;auction_2025;pool_2026,DOB + name
+Avanish Aravelly,,,Avanish Aravelly,2005-06-02,auction_2025,
+Avanish Rao Aravelly,,,Avanish Rao Aravelly,2005-06-02,auction_2024,
+Avesh Khan,eef2536f,dob,Avesh Khan,1996-12-13,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 LSG
+Avinash Singh,,,Avinash Singh,1998-07-05,auction_2023;auction_2025,
+Avneesh Sudha,126e8cb3,dob,Avneesh Sudha,2001-11-20,auction_2023;auction_2024;auction_2025,DOB + name
+Axar Patel,2e171977,squad,Axar Patel,,retained_2024;retained_2026,squad 2023 DC
+Ayaz Khan,,,Ayaz Khan,2002-09-10,auction_2023;auction_2025;pool_2026,
+Ayush Badoni,872b03f7,dob,Ayush Badoni,1999-12-03,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 LSG
+Ayush Doseja,,,Ayush Doseja,2002-08-30,pool_2026,
+Ayush Mhatre,b2b4f545,squad,Ayush Mhatre,2007-07-16,auction_2025;retained_2026,squad 2025 CSK
+Ayush Pandey,,,Ayush Pandey,2003-09-19,auction_2023;auction_2025,
+Ayush Vartak,,,Ayush Vartak,2004-10-29,auction_2025;pool_2026,
+Azim Kazi,ccae927b,dob,Azim Kazi,1993-10-14,auction_2023;auction_2024,DOB + name
+Azmatullah Omarzai,8f6dd463,dob,Azmatullah Omarzai,2000-03-24,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 GT
+B. Sai Sudharsan,d5130a30,dob,B. Sai Sudharsan,2001-10-15,auction_2022;retained_2024,DOB + name; squad 2022 GT
+B. Surya,,,B. Surya,1996-09-19,auction_2023;auction_2024,
+B.R Sharath,c2dd89ea,dob,B.R Sharath,1996-09-28,auction_2023;auction_2024;auction_2025,DOB + name
+B.R. Sharath,c2dd89ea,dob,B.R. Sharath,1996-09-28,auction_2023;auction_2024;auction_2025,DOB + name
+Baba Aparajith,5b627626,dob,Baba Aparajith,1994-07-08,auction_2023;auction_2024;auction_2025,DOB + name
+Baba Indrajith,ff1e68fa,dob,Baba Indrajith,1994-07-08,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2022 KKR
+Bailapudi Yeswanth,,,Bailapudi Yeswanth,2005-03-19,auction_2025;pool_2026,
+Bal Krishna,35dee2d1,dob,Bal Krishna,1998-12-11,pool_2026,DOB + name
+Baltej Dhanda,0c0ef3fb,dob,Baltej Dhanda,1990-11-04,auction_2022;auction_2025,DOB + name
+Bandaru Ayyappa,cb4f31e2,dob,Bandaru Ayyappa,1992-10-27,auction_2023,DOB + name
+Barinder Sran,d8b2f218,dob,Barinder Sran,1992-12-10,auction_2023;auction_2024,DOB + name
+Basil Thampi,871e9faf,dob,Basil Thampi,1993-09-11,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2022 MI
+Basit Bashir,,,Basit Bashir,2003-02-05,auction_2023;auction_2024,
+Bayanda Majola,,,Bayanda Majola,2007-01-08,pool_2026,
+Beau Webster,56b93d46,dob,Beau Webster,1993-12-01,pool_2026,DOB + name
+Ben Cutting,2e11c706,dob,Ben Cutting,1987-01-30,auction_2024,DOB + name
+Ben Duckett,5f26f677,dob,Ben Duckett,1994-10-17,auction_2024;auction_2025;pool_2026,DOB + name
+Ben Dwarshuis,e1b9f3a9,dob,Ben Dwarshuis,1994-06-23,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Ben Howell,0bec3a6c,dob,Ben Howell,1988-10-05,auction_2025,DOB + name
+Ben McDermott,c41043e6,dob,Ben McDermott,1994-12-12,auction_2025,DOB + name
+Ben Sears,e1891e00,dob,Ben Sears,1998-02-11,pool_2026,DOB + name
+Ben Stokes,e087956b,dob,Ben Stokes,1991-06-04,auction_2023,DOB + name; squad 2023 CSK
+Benjamin McDermott,c41043e6,dob,Benjamin McDermott,1994-12-12,pool_2026,DOB + name
+Benjamin Sears,e1891e00,dob,Benjamin Sears,1998-02-11,auction_2025,DOB + name
+Benny Howell,0bec3a6c,dob,Benny Howell,1988-10-05,auction_2022;auction_2023;auction_2024,DOB + name
+Bevan John Jacobs,972f217b,dob,Bevan John Jacobs,2002-05-06,auction_2025,DOB + name
+Bevon-John Jacobs,972f217b,dob,Bevon-John Jacobs,2002-05-06,pool_2026,DOB + name
+Bhagath Varma,5438ffba,dob,Bhagath Varma,1998-09-21,auction_2023,DOB + name
+Bhagmender Lather,44cb17b4,dob,Bhagmender Lather,1997-06-18,auction_2023;auction_2024;auction_2025,DOB + name
+Bhanu Pania,af863475,dob,Bhanu Pania,1996-09-04,auction_2023;pool_2026,DOB + name
+Bhanuka Rajapaksa,6c882e9a,dob,Bhanuka Rajapaksa,1991-10-24,auction_2022;auction_2025,DOB + name; squad 2022 PBKS
+Bharat Sharma,2314745e,dob,Bharat Sharma,1995-11-15,auction_2023;auction_2025,DOB + name
+Bhupen Lalwani,,,Bhupen Lalwani,1999-04-07,auction_2024,
+Bhuvneshwar Kumar,2e81a32d,dob,Bhuvneshwar Kumar,1990-02-05,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Bhuwan Rohilla,,,Bhuwan Rohilla,2001-10-10,auction_2023;auction_2024,
+Billy Stanlake,6834d1f2,dob,Billy Stanlake,1994-11-04,auction_2023;auction_2024;pool_2026,DOB + name
+Binura Fernando,dabbd0ae,dob,Binura Fernando,1995-07-12,pool_2026,DOB + name
+Bipin Saurabh,4cb5e3d1,dob,Bipin Saurabh,1999-11-20,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Blessing Muzarabani,449f4e3c,dob,Blessing Muzarabani,1996-02-10;1996-10-02,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Brandon King,7fca84b7,dob,Brandon King,1994-12-16,auction_2023;auction_2024;auction_2025,DOB + name
+Brandon McMullen,436c763a,dob,Brandon McMullen,1999-10-18,auction_2025,DOB + name
+Brijesh Sharma,,,Brijesh Sharma,1998-12-16,pool_2026,
+Brydon Carse,cad40f5e,dob,Brydon Carse,1995-07-31,auction_2024;auction_2025;retained_2026,DOB + name
+C. Hari Nishaanth,c3f37533,dob,C. Hari Nishaanth,1996-08-16,auction_2022;auction_2023,DOB + name
+C.Hari Nishaanth,c3f37533,dob,C.Hari Nishaanth,1996-08-16,auction_2022;auction_2023,DOB + name
+C.Rakshann Readdi,adee5bbd,dob,C.Rakshann Readdi,2000-09-29,pool_2026,DOB + name
+Cameron Green,eaa76d3c,dob,Cameron Green,1999-06-03,auction_2023;pool_2026;retained_2024,DOB + name; squad 2023 MI
+Carlos Brathwaite,e342e5fb,dob,Carlos Brathwaite,1988-07-18,auction_2023,DOB + name
+Chama Milind,7b5b6311,dob,Chama Milind,1994-09-04,auction_2022;pool_2026,DOB + name
+Chamika Karunaratne,fb3e0d39,dob,Chamika Karunaratne,1996-05-29,auction_2022;auction_2023,DOB + name
+Charith Asalanka,732c038e,dob,Charith Asalanka,1997-06-29,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Chetan Sakariya,2cdce1be,dob,Chetan Sakariya,1998-02-28,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 DC
+Chetan Sharma,,,Chetan Sharma,2005-11-23,auction_2025,DOB differs from cf2e8492
+Chethan L.R.,7ccfdbcb,dob,Chethan L.R.,2000-05-25,auction_2023,DOB + name
+Chintal Gandhi,c5eff91b,dob,Chintal Gandhi,1994-08-25,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Chirag Gandhi,35eb75af,dob,Chirag Gandhi,1990-06-18,auction_2023;auction_2024,DOB + name
+Chirag Jani,783e6111,dob,Chirag Jani,1989-11-09,auction_2023,DOB + name
+Chris Green,19b9f399,dob,Chris Green,1993-10-01,auction_2025;pool_2026,DOB + name
+Chris Jordan,ffe699c0,dob,Chris Jordan,1988-10-04,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2022 CSK
+Chris Lynn,45eda7c8,dob,Chris Lynn,1990-04-10,auction_2023,DOB + name
+Chris Woakes,4c5d73db,dob,Chris Woakes,1989-03-02,auction_2024,DOB + name
+Chris Wood,1cfac535,dob,Chris Wood,1990-06-27,auction_2024,DOB + name
+Christiaan Jonker,a81d6706,dob,Christiaan Jonker,1986-09-24,auction_2023,DOB + name
+Christopher Benjamin,95a15317,dob,Christopher Benjamin,1999-04-29,auction_2023,DOB + name
+Colin Munro,af2c687b,dob,Colin Munro,1987-03-11,auction_2024,DOB + name
+Connor Esterhuizen,ef9acbcc,dob,Connor Esterhuizen,2001-05-31,auction_2023;pool_2026,DOB + name
+Cooper Connolly,fe366f34,dob,Cooper Connolly,2003-08-22,auction_2025;pool_2026,DOB + name
+Corbin Bosch,172dff15,dob,Corbin Bosch,1994-09-10,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 MI
+Craig Overton,e9987a94,dob,Craig Overton,1994-04-10,auction_2023,DOB + name
+Daksh Kamra,,,Daksh Kamra,2003-01-09,pool_2026,
+Dan Lawrence,4b685e2d,dob,Dan Lawrence,1997-07-12,auction_2025,DOB + name
+Daniel Lategan,,,Daniel Lategan,2006-05-25,pool_2026,
+Daniel Lawrence,4b685e2d,dob,Daniel Lawrence,1997-07-12,pool_2026,DOB + name
+Daniel Mousley,876dbe2d,dob,Daniel Mousley,2001-07-08,auction_2025,DOB + name
+Daniel Sams,caf69bf7,dob,Daniel Sams,1992-10-27,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 MI
+Daniel Worrall,208f22ea,dob,Daniel Worrall,1991-07-10,auction_2025,DOB + name
+Danish Malewar,,,Danish Malewar,2003-10-08,pool_2026,
+Darcy Short,1a156c88,dob,Darcy Short,1990-08-09,auction_2023,DOB + name
+Darshan Misal,ce2b42ae,dob,Darshan Misal,1992-09-11,auction_2024,DOB + name
+Darshan Nalkande,cd8d2859,dob,Darshan Nalkande,1998-10-04,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 GT
+Daryl Mitchell,eade4650,dob,Daryl Mitchell,1991-05-20,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 RR
+Daryn Dupavillon,7cb2d9d2,dob,Daryn Dupavillon,1994-07-15,auction_2023;auction_2025,DOB + name
+Dasun Shanaka,3ff033bb,dob,Dasun Shanaka,1991-09-09,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+David Miller,d67d5f00,dob,David Miller,1989-06-10,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 GT
+David Payne,6c79c098,dob,David Payne,1991-02-15,auction_2023;auction_2025,DOB + name
+David Warner,dcce6f09,dob,David Warner,1986-10-27,auction_2022;auction_2025;retained_2024,DOB + name; squad 2022 DC
+David Wiese,aa8d28ae,dob,David Wiese,1985-05-18,auction_2023;auction_2024,DOB + name; squad 2023 KKR
+David Willey,7f048519,dob,David Willey,1990-02-28,auction_2022;auction_2024,DOB + name; squad 2022 RCB
+Dawid Malan,ad9c32a2,dob,Dawid Malan,1987-09-03,auction_2023,DOB + name
+Deepak Chahar,23eeb873,dob,Deepak Chahar,1992-08-07,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 CSK
+Deepak Devadiga,,,Deepak Devadiga,1999-04-14,auction_2025,
+Deepak Hooda,73ad96ed,dob,Deepak Hooda,1995-04-19,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 LSG
+Deepak Punia,5a004050,dob,Deepak Punia,1993-09-27,auction_2023,DOB + name
+Deependra Singh,,,Deependra Singh,2005-08-15,pool_2026,
+Deepesh Nailwal,5081cb4b,dob,Deepesh Nailwal,1997-11-04,auction_2023,DOB + name
+Deepraj Gaonkar,d3c1f849,dob,Deepraj Gaonkar,1998-04-04,auction_2023,DOB + name
+Delano Potgieter,60fbf53a,dob,Delano Potgieter,1996-08-05,pool_2026,DOB + name
+Dev Lakra,e41832f1,dob~,Dev Lakra,2003-01-27,auction_2023;auction_2024,name + DOB one character / day-month off (2003-06-27)
+Devang Karamta,,,Devang Karamta,1998-01-24,auction_2024,
+Devdutt Padikkal,2c25d4f5,dob,Devdutt Padikkal,2000-07-07,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 RR
+Devendra Singh Bora,,,Devendra Singh Bora,2000-06-12,auction_2024,
+Devon Conway,df5a6881,dob,Devon Conway,1991-07-08,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 CSK
+Dewald Brevis,844e79d1,dob,Dewald Brevis,2003-04-29,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 MI
+Dhananjaya Silva,7d608e12,dob,Dhananjaya Silva,1991-09-06,auction_2023,DOB + name
+Dharmendrasinh Jadeja,d330f9b9,dob,Dharmendrasinh Jadeja,1990-08-04,pool_2026,DOB + name
+Dhawal Kulkarni,d2a989fc,dob,Dhawal Kulkarni,1988-12-10,auction_2023,DOB + name
+Dhruv Jurel,bcf325d2,dob,Dhruv Jurel,2001-01-21,auction_2022;retained_2024;retained_2026,DOB + name; squad 2023 RR
+Dhruv Kaushik,,,Dhruv Kaushik,2000-07-11,auction_2025,
+Dhruv Patel,e85f3659,dob,Dhruv Patel,1997-12-09,auction_2023,DOB + name
+Dhruv Shorey,faa7365d,dob~,Dhruv Shorey,1992-06-06,auction_2024,name + DOB one character / day-month off (1992-06-05)
+Dhurmil Matkar,dd506910,dob,Dhurmil Matkar,1996-06-03,pool_2026,DOB + name
+Dian Forrester,23393635,dob,Dian Forrester,2000-06-07,pool_2026,DOB + name
+Digvesh Rathi,13fc5c6d,squad,Digvesh Rathi,,retained_2026,squad 2025 LSG
+Digvesh Singh,13fc5c6d,override,Digvesh Singh,1999-12-15,auction_2023;auction_2024;auction_2025,"Listed as 'Digvesh Singh' (2025 list no. 151, DDCA, DOB 15/12/1999) and bought by LSG; LSG's 2025 IPL scorecards in Cricsheet carry him as 'DS Rathi' (13fc5c6d), the id the squad check also finds for 'Digvesh Rathi', whom LSG retained in the official 2026 squad list (15.11.2025)"
+Digvijay Deshmukh,ddc7a53d,dob,Digvijay Deshmukh,1998-04-12,auction_2025,DOB + name
+Dilshan Madushanka,de7d833e,dob,Dilshan Madushanka,2000-09-18,auction_2023;auction_2024;auction_2025,DOB + name
+Dinesh Bana,224fe44d,override,Dinesh Bana,2004-09-15,auction_2023;auction_2024;auction_2025,"Dinesh Mahabir Bana in player_meta (India, wicketkeeper; Cricsheet SMAT for Haryana as 'DB Bana'); 2023-25 lists: HCA (Haryana) wicketkeeper, DOB 15/09/2004 vs 2004-12-15 in player_meta"
+Dinesh Karthik,c03f1114,dob,Dinesh Karthik,1985-06-01,auction_2022;retained_2024,DOB + name; squad 2022 RCB
+Dipesh Parwani,eaf3f338,dob,Dipesh Parwani,2000-01-14,auction_2025,DOB + name
+Divesh Sharma,,,Divesh Sharma,2001-04-20,auction_2024;auction_2025;pool_2026,
+Divij Mehra,,,Divij Mehra,2002-09-25,auction_2024,
+Divyaansh Saxena,,,Divyaansh Saxena,2001-02-13,auction_2023,
+Divyansh Joshi,989006c5,dob,Divyansh Joshi,2001-09-24,auction_2023,DOB + name
+Dominic Drakes,34b332d3,dob,Dominic Drakes,1998-02-06,auction_2022;auction_2023;auction_2025,DOB + name
+Donovan Ferreira,f0af99a7,dob,Donovan Ferreira,1998-07-21,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2024 RR
+Duan Jansen,8dc152d1,dob,Duan Jansen,2000-05-01,auction_2023;auction_2024;auction_2025,DOB + name; squad 2023 MI
+Dumindu Sewmina,,,Dumindu Sewmina,2004-12-19,auction_2025,
+Dunith Wellalage,736123bb,dob,Dunith Wellalage,2003-01-09,auction_2023;auction_2025;pool_2026,DOB + name
+Dushan Hemantha,58431ca0,dob,Dushan Hemantha,1994-05-24,auction_2025,DOB + name
+Dushmanta Chameera,327b58d3,dob,Dushmanta Chameera,1992-01-11,auction_2022;auction_2023;auction_2024,DOB + name; squad 2022 LSG
+Dushmantha Chameera,327b58d3,dob,Dushmantha Chameera,1992-01-11,auction_2025;retained_2026,DOB + name; squad 2025 DC
+Dwaine Pretorius,11614d87,dob,Dwaine Pretorius,1989-03-29,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 CSK
+Dwayne Bravo,87e562a9,dob,Dwayne Bravo,1983-10-07,auction_2022,DOB + name; squad 2022 CSK
+E. Sanketh,2b22e709,dob,E. Sanketh,1999-10-08,auction_2023,DOB + name
+Eathan Bosch,28d6c44d,dob,Eathan Bosch,1998-04-27,pool_2026,DOB + name
+Edhen Tom,,,Edhen Tom,2005-07-02,pool_2026,
+Ekant Sen,8a0ae9da,dob,Ekant Sen,1995-06-21,auction_2023;auction_2024,DOB + name
+Emanjot Chahal,,,Emanjot Chahal,2004-08-17,auction_2025;pool_2026,
+Esakkimuthu Ayyakutti,,,Esakkimuthu Ayyakutti,2002-02-11,pool_2026,
+Eshan Malinga,5750bcb4,dob,Eshan Malinga,2001-02-04,auction_2025;retained_2026,DOB + name; squad 2025 SRH
+Evan Jones,fbfea9c2,dob,Evan Jones,1996-08-05,auction_2023,DOB + name
+Evin Lewis,0ebfb1ad,dob,Evin Lewis,1991-12-27,auction_2022;auction_2025,DOB + name; squad 2022 LSG
+Fabian Allen,b52ffbbd,dob,Fabian Allen,1995-05-07,auction_2022;auction_2023;auction_2024,DOB + name; squad 2022 MI
+Faf Du Plessis,3355b542,dob,Faf Du Plessis,1984-07-13,auction_2022;auction_2025;retained_2024,DOB + name; squad 2022 RCB
+Fareed Ahmad,67b7bad4,override,Fareed Ahmad,1995-02-01,auction_2024,"Only 'Fareed Ahmad' in player_meta (Fareed Ahmad Malik, Afghanistan, left-arm fast-medium), matching the 2024 list (Afghanistan, LHB, left-arm fast medium, capped); DOB 01/02/1995 in the BCCI list vs 1994-08-10 in player_meta"
+Faridoon Dawoodzai,,,Faridoon Dawoodzai,2005-11-26,auction_2025,
+Fazalhaq Farooqi,e9c7f0d0,dob,Fazalhaq Farooqi,2000-09-22,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 SRH
+Fazil Makaya,514a0408,dob+partial-name,Fazil Makaya,1996-12-11,auction_2023,"same DOB and country, one name word shared"
+Finn Allen,bf74b130,dob,Finn Allen,1999-04-22,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name
+G. Ajitesh,09a341f9,dob,G. Ajitesh,2002-09-26,auction_2024,DOB + name
+G.Aniketh Reddy,14d6a8d5,dob,G.Aniketh Reddy,2000-10-28,auction_2023,DOB + name
+Ganesh Chaudhary,,,Ganesh Chaudhary,2002-10-25,auction_2024,DOB differs from a289e6e6
+Garv Sangwan,,,Garv Sangwan,2004-03-06,auction_2023,
+Gaurav Gambhir,242a9261,dob,Gaurav Gambhir,1987-11-26,auction_2025,DOB + name
+Geet Puri,,,Geet Puri,1994-11-06,auction_2023,
+George Garton,be869ccf,dob,George Garton,1997-04-15,auction_2023;auction_2024;pool_2026,DOB + name
+George Linde,e5437608,dob,George Linde,1991-04-12;1991-12-04,auction_2024;pool_2026,DOB + name
+George Scrimshaw,95a06106,dob,George Scrimshaw,1998-02-10,auction_2024,DOB + name
+Gerald Coetzee,3204c99f,dob,Gerald Coetzee,2000-10-02,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2024 MI
+Girinath Reddy,5d3d423a,dob,Girinath Reddy,1998-10-08,auction_2025,DOB + name
+Glenn Maxwell,b681e71e,dob,Glenn Maxwell,1988-10-14,auction_2025;retained_2024,DOB + name; squad 2023 RCB
+Glenn Phillips,9a46c4e5,dob,Glenn Phillips,1996-12-06,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 SRH
+Glenton Stuurman,d4d37c31,dob,Glenton Stuurman,1992-08-10,auction_2023,DOB + name
+Gourav Choudhary,b05fe3d9,dob,Gourav Choudhary,1998-10-28,auction_2023;auction_2024,DOB + name
+Gourav Koul,,,Gourav Koul,1998-04-16,auction_2023,
+Gourav Yadav,3e5dc16b,dob,Gourav Yadav,1991-10-31,auction_2024,DOB + name
+Gudakesh Motie,97bdec3d,dob,Gudakesh Motie,1995-03-29,auction_2025,DOB + name
+Gulbadin Naib,9f77963a,dob,Gulbadin Naib,1991-06-04,auction_2025;pool_2026,DOB + name
+Gurjapneet Singh,,,Gurjapneet Singh,1998-11-08,auction_2024;auction_2025;retained_2026,
+Gurkeerat Singh,6eb146d2,dob,Gurkeerat Singh,1990-06-29,auction_2022;auction_2023,DOB + name
+Gurnoor Singh Brar,99258814,dob,Gurnoor Singh Brar,2000-05-25,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name
+Gus Atkinson,70d57519,dob,Gus Atkinson,1998-01-19,auction_2024;auction_2025;pool_2026,DOB + name
+Hanuma Vihari,94253925,dob,Hanuma Vihari,1993-10-13,auction_2024,DOB + name
+Hardik Pandya,dbe50b21,squad,Hardik Pandya,,retained_2024;retained_2026,squad 2024 MI
+Hardik Raj,,,Hardik Raj,2006-03-10,auction_2025;pool_2026,
+Hardik Tamore,3082eac3,dob,Hardik Tamore,1997-10-20,auction_2025;pool_2026,DOB + name
+Harnoor Pannu,,,Harnoor Pannu,2003-01-30,auction_2025;retained_2026,
+Harpreet Bhatia,28c78fb3,dob,Harpreet Bhatia,1991-08-11,auction_2023;retained_2024,DOB + name; squad 2023 PBKS
+Harpreet Brar,c05edf8e,dob,Harpreet Brar,1995-09-16,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Harry Brook,4ae1755b,dob,Harry Brook,1999-02-22,auction_2023;auction_2024;auction_2025,DOB + name; squad 2023 SRH
+Harry Tector,59ea70a4,dob,Harry Tector,1999-12-06,auction_2023;auction_2025,DOB + name
+Harsh Dubey,25228673,dob,Harsh Dubey,2002-07-23,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 SRH
+Harsh Tyagi,4a15018a,dob,Harsh Tyagi,1999-12-23,auction_2025;pool_2026,DOB + name
+Harshal Patel,f986ca1a,dob,Harshal Patel,1990-11-23,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 RCB
+Harshit Rana,77b1aa15,squad,Harshit Rana,,retained_2024;retained_2026,squad 2023 KKR
+Harvik Desai,9c86350f,dob,Harvik Desai,1999-10-04,auction_2024;auction_2025,DOB + name
+Hasan Mahmud,80ad39ac,override,Hasan Mahmud,1997-02-12,auction_2025,"Only 'Hasan Mahmud' in player_meta (Bangladesh, right-arm pace), matching the 2025 list (Bangladesh, capped bowler); DOB 12/02/1997 in the BCCI list vs 1999-10-12 in player_meta"
+Hayden Kerr,f422728b,dob,Hayden Kerr,1996-07-10,auction_2023,DOB + name
+Heinrich Klaasen,235c2bb6,dob,Heinrich Klaasen,1991-07-30,auction_2023;retained_2024;retained_2026,DOB + name; squad 2023 SRH
+Hemang Patel,59c8c5b5,dob,Hemang Patel,1998-11-20,pool_2026,DOB + name
+Hemant Kumar,,,Hemant Kumar,1995-10-28,auction_2023,
+Hemanth Kumar,,,Hemanth Kumar,2004-12-12,auction_2025,
+Hilton Cartwright,ab965cad,dob,Hilton Cartwright,1992-02-14,auction_2025,DOB + name
+Himanshu Bisht,24d163d7,dob,Himanshu Bisht,1996-11-17,auction_2023;pool_2026,DOB + name
+Himanshu Chauhan,d05876fd,dob,Himanshu Chauhan,2003-01-18,auction_2025,DOB + name
+Himanshu Rana,9d3940b3,dob,Himanshu Rana,1998-10-01,auction_2023,DOB + name
+Himanshu Sharma,52294a79,dob,Himanshu Sharma,1998-06-06,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 RCB
+Himanshu Singh,,,Himanshu Singh|1997-09-23,1997-09-23,auction_2025,
+Himanshu Singh,,,Himanshu Singh|2003-07-24,2003-07-24,auction_2025,
+Himmat Singh,ebcfef83,dob,Himmat Singh,1996-11-08,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 LSG
+Hrithik Shokeen,0c9652b0,dob,Hrithik Shokeen,2000-08-14,auction_2022;auction_2024,DOB + name; squad 2022 MI
+Hritik Shokeen,0c9652b0,dob,Hritik Shokeen,2000-08-14,auction_2025;pool_2026,DOB + name
+Ibrahim Zadran,d4550956,override,Ibrahim Zadran,2001-01-12,auction_2024;auction_2025,"Only 'Ibrahim Zadran' in player_meta (Afghanistan, opening batter; Cricsheet BPL/ILT20/LPL appearances); BCCI lists give DOB 12/01/2001, player_meta 2001-12-12"
+Irfan Umair,,,Irfan Umair,1996-07-27,pool_2026,
+Ish Sodhi,641ac5ff,dob,Ish Sodhi,1992-10-31,auction_2023;auction_2024,DOB + name
+Ishan Kishan,752f7486,dob,Ishan Kishan,1998-07-18,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 MI
+Ishan Mulchandani,,,Ishan Mulchandani,2000-03-28,pool_2026,
+Ishan Porel,fdf7491e,dob,Ishan Porel,1998-09-05,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Ishant Sharma,5bb1a1c4,dob,Ishant Sharma,1988-09-02,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 DC
+Izaz Sawariya,,,Izaz Sawariya,2005-07-04,pool_2026,
+Izharulhuq Naveed,2cbdd22f,dob,Izharulhuq Naveed,2003-11-10,auction_2023;auction_2024,DOB + name
+Jack Edwards,f787e0eb,dob,Jack Edwards,2000-04-19,pool_2026,DOB + name
+Jack Prestwidge,5f317fd4,dob,Jack Prestwidge,1996-02-28,auction_2023,DOB + name
+Jacob Bethell,3c55c703,dob,Jacob Bethell,2003-10-23,auction_2025;retained_2026,DOB + name; squad 2025 RCB
+Jacob Duffy,dadbdb68,dob,Jacob Duffy,1994-08-02,pool_2026,DOB + name
+Jafar Jamal,37940451,dob,Jafar Jamal,1990-03-20,auction_2025,DOB + name
+Jagadeesha Suchith,4125d931,dob,Jagadeesha Suchith,1994-01-16,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 SRH
+Jake Fraser-McGurk,9b6e1b3f,dob,Jake Fraser-McGurk,2002-04-11,auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 DC
+Jake Fraser-Mcgurk,9b6e1b3f,dob,Jake Fraser-Mcgurk,2002-04-11,auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 DC
+Jalaj Saxena,249abedf,dob,Jalaj Saxena,1986-12-15,auction_2024;auction_2025;pool_2026,DOB + name
+James Anderson,d12143bf,dob,James Anderson,1982-07-30,auction_2025,DOB + name
+James Fuller,dda5aae5,dob,James Fuller,1990-01-24,auction_2023,DOB + name
+James Neesham,9219eff0,dob,James Neesham,1990-09-17,auction_2022;auction_2024,DOB + name; squad 2022 RR
+James Vince,a15618fe,dob,James Vince,1991-03-14,auction_2024;auction_2025,DOB + name
+Jamie Overton,59559bc2,dob,Jamie Overton,1984-04-10;1994-04-10,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 CSK
+Jamie Smith,c834c290,dob,Jamie Smith,2000-07-12,pool_2026,DOB + name
+Jasmer Dhankhar,a7e1f127,dob,Jasmer Dhankhar,1998-10-16,auction_2024;auction_2025,DOB + name
+Jason Behrendorff,4933f499,dob,Jason Behrendorff,1990-04-20,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 MI
+Jason Holder,0f721006,dob,Jason Holder,1991-11-05,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 LSG
+Jason Roy,d1c36f5c,dob,Jason Roy,1990-07-21,auction_2022;auction_2023;retained_2024,DOB + name; squad 2023 KKR
+Jasprit Bumrah,462411b3,squad,Jasprit Bumrah,,retained_2024;retained_2026,squad 2024 MI
+Jass Inder Baidwan,,,Jass Inder Baidwan,1996-12-14,auction_2024;auction_2025,
+Jayant Yadav,81049310,dob,Jayant Yadav,1990-01-22,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 GT
+Jaydev Unadkat,1e66c162,dob,Jaydev Unadkat,1991-10-18,auction_2022;auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 MI
+Jeffery Vandersay,aceb7654,dob,Jeffery Vandersay,1990-02-05,auction_2025,DOB + name
+Jhathavedh Subramanyan,eb19d010,dob,Jhathavedh Subramanyan,1999-09-16,auction_2024;auction_2025;pool_2026,DOB + name
+Jhye Richardson,1ee08e9a,dob,Jhye Richardson,1996-09-20,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2024 DC
+Jikku Bright,,,Jikku Bright,1997-01-16,pool_2026,
+Jimmy Neesham,9219eff0,dob,Jimmy Neesham,1990-09-17,auction_2023;auction_2025,DOB + name
+Jitender Pal,,,Jitender Pal,1999-12-20,auction_2023;auction_2024,
+Jitesh Sharma,800d2d97,dob,Jitesh Sharma,1993-10-22,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Joe Clarke,2eca67f5,dob,Joe Clarke,1996-05-26,pool_2026,DOB + name
+Joe Root,a343262c,dob,Joe Root,1990-12-30,auction_2023,DOB + name; squad 2023 RR
+Jofra Archer,5574750c,dob,Jofra Archer,1995-04-01,auction_2022;auction_2025;retained_2026,DOB + name; squad 2025 RR
+John Turner,cdd875d9,dob,John Turner,2001-04-10,auction_2025,DOB + name
+Johnson Charles,09a9d073,dob,Johnson Charles,1989-01-14,auction_2023;auction_2024;auction_2025,DOB + name
+Jonny Bairstow,abb83e27,dob,Jonny Bairstow,1989-09-26,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 PBKS
+Jonty Sidhu,b3309131,dob,Jonty Sidhu,1997-12-09,auction_2025,DOB + name
+Jordan Cox,ff154ecd,dob,Jordan Cox,2000-10-21,auction_2025;pool_2026,DOB + name
+Jordan Hermann,e87aeca2,dob,Jordan Hermann,2001-12-04,auction_2023,DOB + name
+Jordan Thompson,1d2f290a,dob,Jordan Thompson,1996-10-09,auction_2023,DOB + name
+Jos Buttler,99b75528,dob,Jos Buttler,1990-09-08,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 RR
+Josh Hazlewood,03806cf8,dob,Josh Hazlewood,1991-01-08,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 RCB
+Josh Inglis,989889ff,dob,Josh Inglis,1995-03-04,auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 PBKS
+Josh Little,9061a703,dob,Josh Little,1999-11-01,auction_2025,DOB + name
+Josh Philippe,39086549,dob,Josh Philippe,1997-06-01,auction_2025,DOB + name
+Joshua Brown,647e7d44,dob,Joshua Brown,1993-12-26,auction_2025,DOB + name
+Joshua Little,9061a703,dob,Joshua Little,1999-11-01,auction_2023;pool_2026;retained_2024,DOB + name; squad 2023 GT
+Joshua Philippe,39086549,dob,Joshua Philippe,1997-06-01,auction_2023,DOB + name
+Joshua Tongue,1f1b4c89,dob,Joshua Tongue,1997-11-15,pool_2026,DOB + name
+Junior Dala,1cb14aa4,dob,Junior Dala,1989-12-29,auction_2025,DOB + name
+K. Gowtham,90de905a,dob,K. Gowtham,1988-10-20,auction_2022;retained_2024,DOB + name; squad 2022 LSG
+K.Ajay Singh,,,K.Ajay Singh,1993-06-27,pool_2026,DOB differs from 4738ba32
+K.Bhagath Varma,5438ffba,dob,K.Bhagath Varma,1998-09-21,auction_2022,DOB + name
+K.C Cariappa,edb3d4f8,dob,K.C Cariappa,1994-04-13,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name
+K.C. Cariappa,edb3d4f8,dob,K.C. Cariappa,1994-04-13,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name
+K.L. Shrijith,0372c4c5,dob,K.L. Shrijith,1996-08-12,auction_2024;pool_2026,DOB + name
+K.M Asif,798cc28e,dob,K.M Asif,1993-07-24,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2023 RR
+K.M. Asif,798cc28e,dob,K.M. Asif,1993-07-24,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2023 RR
+K.S Bharat,44a89551,dob,K.S Bharat,1993-10-03,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 DC
+K.S. Bharat,44a89551,dob,K.S. Bharat,1993-10-03,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 DC
+KL Rahul,b17e2f24,dob,KL Rahul,1992-04-18,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 LSG
+Kagiso Rabada,e62dd25d,dob,Kagiso Rabada,1995-05-25,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Kamal Tripathi,cd3dd36e,dob,Kamal Tripathi,1998-08-15,auction_2025,DOB + name
+Kamindu Mendis,08548b13,dob,Kamindu Mendis,1998-09-30,auction_2025;retained_2026,DOB + name; squad 2025 SRH
+Kamlesh Nagarkoti,b4f5c2d9,dob,Kamlesh Nagarkoti,1999-12-28,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 DC
+Kane Williamson,d027ba9f,dob,Kane Williamson,1990-08-08,auction_2023;auction_2025;retained_2024,DOB + name; squad 2023 GT
+Kanishk Chouhan,,,Kanishk Chouhan,2006-09-26,pool_2026,
+Kanwar Singh,7c2e7c17,dob,Kanwar Singh,1991-06-16,auction_2023,DOB + name
+Karan Lal,72147266,dob,Karan Lal,2000-10-19,pool_2026,DOB + name
+Karan Sharma,39ed0d2f,dob,Karan Sharma,1998-10-31,auction_2022,DOB + name; squad 2022 LSG
+Karim Janat,62175638,dob,Karim Janat,1998-08-11,auction_2023;auction_2025,DOB + name; squad 2025 GT
+Karn Sharma,119678fd,dob,Karn Sharma,1987-10-23,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 RCB
+Karteek Sharma,,,Karteek Sharma,2001-10-25,auction_2025,
+Karthik Meiyappan,b91f2a31,dob,Karthik Meiyappan,2000-10-08,auction_2023,DOB + name
+Kartik Chadha,,,Kartik Chadha,2004-01-08,auction_2025;pool_2026,
+Kartik Sharma,,,Kartik Sharma,2006-04-26,pool_2026,
+Kartik Tyagi,5d2eea49,dob,Kartik Tyagi,2000-11-08,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 SRH
+Karun Nair,944533a5,dob,Karun Nair,1991-12-06,auction_2022;auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 RR
+Kaushal Tambe,,,Kaushal Tambe,2002-10-14,auction_2024,
+Kaushik Maity,93b430e8,dob,Kaushik Maity,1999-10-14,auction_2024;auction_2025,DOB + name
+Keemo Paul,75224f22,dob,Keemo Paul,1998-02-21,auction_2023;auction_2024;auction_2025,DOB + name
+Keshav Maharaj,0b60eb09,dob,Keshav Maharaj,1990-02-07,auction_2023;auction_2024;auction_2025,DOB + name
+Khilan Patel,,,Khilan Patel,2006-11-26,pool_2026,
+Khizar Dafedar,fd2037ce,dob,Khizar Dafedar,1997-10-10,auction_2023,DOB + name
+Khrievitso Kense,2597e56b,dob,Khrievitso Kense,2004-03-06,auction_2025,DOB + name
+Kiran Chormale,,,Kiran Chormale,2005-10-11,auction_2025,
+Kirant Shinde,08a349ac,dob,Kirant Shinde,1997-09-19,auction_2023,DOB + name
+Koushik Vasuki,f6cb1703,dob,Koushik Vasuki,1992-09-19,auction_2023,DOB + name
+Krains Fuletra,,,Krains Fuletra,2004-06-19,pool_2026,
+Krish Bhagat,,,Krish Bhagat,2004-11-06,auction_2025;pool_2026,
+Krishnappa Gowtham,90de905a,dob,Krishnappa Gowtham,1988-10-20,auction_2025,DOB + name
+Kritagya Singh,,,Kritagya Singh,2000-09-25,auction_2025,
+Krunal Pandya,5b8c830e,dob,Krunal Pandya,1991-03-24,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 LSG
+Kuldeep Sen,2e78f685,dob,Kuldeep Sen,1996-10-22,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 RR
+Kuldeep Yadav,8d2c70ad,squad,Kuldeep Yadav,1994-11-14,auction_2022;retained_2024;retained_2026,squad 2022 DC
+Kuldip Yadav,030f3089,dob,Kuldip Yadav,1996-10-15,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name
+Kulwant Khejroliya,fa2f1dde,dob,Kulwant Khejroliya,1992-03-13,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2023 KKR
+Kumar Deobrat,bc6d8229,dob,Kumar Deobrat,1992-10-24,auction_2023,DOB + name
+Kumar Kartikeya Singh,f6d8a7ab,dob,Kumar Kartikeya Singh,1997-12-26,auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 MI
+Kumar Kushagra,57ca01b3,dob,Kumar Kushagra,2004-10-23,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 DC
+Kunal Chandela,d38c03d4,dob,Kunal Chandela,1994-07-07,pool_2026,DOB + name
+Kunal Rathore,e3851766,dob,Kunal Rathore,2002-10-09,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2025 RR
+Kunal Singh Chibb,,,Kunal Singh Chibb,1997-03-31,auction_2025,
+Kusal Mendis,5d1e7582,dob,Kusal Mendis,1995-02-02,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 GT
+Kusal Perera,f21043a5,dob,Kusal Perera,1990-08-17,auction_2025;pool_2026,DOB + name
+Kwena Maphaka,107c26fb,dob,Kwena Maphaka,2006-04-08,auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 RR
+Kyle Jamieson,68c56d09,dob,Kyle Jamieson,1994-12-30,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 PBKS
+Kyle Mayers,73c18486,dob,Kyle Mayers,1992-09-08,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 LSG
+Kyle Verreynne,bf814547,dob,Kyle Verreynne,1997-05-12,auction_2025;pool_2026,DOB + name
+L.R Chethan,7ccfdbcb,dob,L.R Chethan,2000-05-25,auction_2024;auction_2025,DOB + name
+L.R. Chethan,7ccfdbcb,dob,L.R. Chethan,2000-05-25,auction_2024;auction_2025,DOB + name
+Lahiru Kumara,4751caa3,dob,Lahiru Kumara,1997-02-13,auction_2023;auction_2024;auction_2025,DOB + name
+Lakshay Jain,,,Lakshay Jain,2002-07-05,auction_2025,DOB differs from cd626284
+Lakshay Thareja,f38fcf70,dob,Lakshay Thareja,1997-09-15,auction_2023,DOB + name
+Lalit Mohan,c206d8dc,dob,Lalit Mohan,1990-03-19,auction_2023,DOB + name
+Lalit Yadav,e0c30d35,dob,Lalit Yadav|1995-12-17,1995-12-17,auction_2024,DOB + name
+Lalit Yadav,ad427b5c,dob,Lalit Yadav|1997-01-03,1997-01-03,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 DC
+Lalit Yadav,ad427b5c,dob,Lalit Yadav|retained_2024|DC,1997-01-03,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 DC
+Lance Morris,b08e58e2,dob,Lance Morris,1998-03-28,auction_2023;auction_2024;auction_2025,DOB + name
+Leus Du Plooy,6e6fb538,dob,Leus Du Plooy,1995-01-12,auction_2025,DOB + name
+Lhuan-Dre Pretorious,60aa2db3,name-tokens,Lhuan-Dre Pretorious,,retained_2026,listed name tokens inside full name
+Liam Dawson,4a461c24,dob,Liam Dawson,1990-03-01,pool_2026,DOB + name
+Liam Livingstone,50c6bc2b,dob,Liam Livingstone,1993-08-04,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 PBKS
+Litton Das,0404d43c,dob,Litton Das,1994-10-13,auction_2023;auction_2025,DOB + name; squad 2023 KKR
+Lizaad Williams,a1d95bd8,dob,Lizaad Williams,1993-10-01,auction_2024;auction_2025,DOB + name
+Lockie Ferguson,2f9d0389,dob,Lockie Ferguson,1991-06-13,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 GT
+Lone Muzaffar,38b43687,dob,Lone Muzaffar,1997-09-05,auction_2023,DOB + name
+Lorcan Tucker,3979b5e0,dob,Lorcan Tucker,1996-09-10,auction_2023,DOB + name
+Luckyrajsinh Vaghela,,,Luckyrajsinh Vaghela,2002-04-14,pool_2026,
+Luke Wood,65b6943c,dob,Luke Wood,1995-08-02,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Lukman Hussain Meriwala,d3611425,dob,Lukman Hussain Meriwala,1991-12-11,auction_2023;auction_2024,DOB + name
+Lungisani Ngidi,f834dcfc,dob,Lungisani Ngidi,1996-03-29,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2025 RCB
+Luvnith Sisodia,a689af4b,dob,Luvnith Sisodia,2000-01-15,auction_2022;auction_2023;auction_2025,DOB + name
+M. Ajnas,,,M. Ajnas,1997-05-08,auction_2025,
+M. Siddharth,cf0ccafa,dob,M. Siddharth,1998-07-03,auction_2023;auction_2024;auction_2025,DOB + name; squad 2024 LSG
+M.Dheeraj Kumar,ca81c65c,dob,M.Dheeraj Kumar,1999-09-04,pool_2026,DOB + name
+MS Dhoni,4a8a2e3b,squad,MS Dhoni,,retained_2024;retained_2026,squad 2023 CSK
+Macneil Noronha,,,Macneil Noronha,2001-09-23,pool_2026,
+Madhav Bajaj,,,Madhav Bajaj,2000-05-06,pool_2026,
+Madhav Kaushik,49110249,dob,Madhav Kaushik,1998-01-03,auction_2023;auction_2025,DOB + name
+Madhav Tiwari,fb5f69e4,squad,Madhav Tiwari,2003-09-28,auction_2025;retained_2026,squad 2025 DC
+Mahedi Hasan,9dad0f2e,dob,Mahedi Hasan,1994-12-12,auction_2025,DOB + name
+Maheesh Theekshana,f24c6701,dob,Maheesh Theekshana,2000-08-01,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 CSK
+Mahesh Pithiya,1c29d51f,dob,Mahesh Pithiya,2001-12-24,auction_2024;auction_2025,DOB + name
+Mahipal Lomror,da934ee8,dob,Mahipal Lomror,1999-11-16,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 RCB
+Mamidi Krishna,,,Mamidi Krishna,2001-07-17,auction_2023,
+Manan Bhardwaj,,,Manan Bhardwaj,2003-12-15,pool_2026,
+Manan Vohra,c03e2850,dob,Manan Vohra,1993-07-18,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 LSG
+Manav Suthar,025c4400,dob,Manav Suthar,2002-08-03,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 GT
+Mandeep Singh,c3a96caf,dob,Mandeep Singh,1991-12-18,auction_2022;auction_2023,DOB + name; squad 2022 DC
+Mangesh Yadav,,,Mangesh Yadav,2002-10-10,pool_2026,
+Mani Sankar Mura Singh,52cb36a0,dob,Mani Sankar Mura Singh,1993-01-01,auction_2024;pool_2026,DOB + name
+Manimaran Siddharth,cf0ccafa,squad,Manimaran Siddharth,,retained_2026,squad 2025 LSG
+Manish Pandey,93b4fc78,dob,Manish Pandey,1989-09-10,auction_2022;auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 LSG
+Manish Reddy,,,Manish Reddy,1999-01-07,auction_2024;auction_2025;pool_2026,
+Manit Singh,,,Manit Singh,2003-11-19,auction_2024,
+Manoj Bhandage,e96801ea,dob,Manoj Bhandage,1998-10-05,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2025 RCB
+Manvanth Kumar,,,Manvanth Kumar,2004-01-11,auction_2024;pool_2026,
+Manvanth Kumar L,,,Manvanth Kumar L,2004-01-11,auction_2025,
+Maramreddy Reddy,,,Maramreddy Reddy,2002-10-28,auction_2025;pool_2026,DOB differs from 791c088d
+Marco Jansen,81c36ee9,dob,Marco Jansen,2000-05-01,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Marcus Stoinis,d9273ee7,dob,Marcus Stoinis,1989-08-16,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 LSG
+Mark Chapman,7fa12533,dob,Mark Chapman,1994-06-27,auction_2024;auction_2025,DOB + name
+Mark Wood,8d92a2c3,dob,Mark Wood,1990-01-11,auction_2022;retained_2024,DOB + name; squad 2023 LSG
+Matheesha Pathirana,64839cb3,dob,Matheesha Pathirana,2002-12-18,pool_2026;retained_2024,DOB + name; squad 2023 CSK
+Matt Henry,e84ac20c,dob,Matt Henry,1991-12-14,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Matthew Breetzke,35f173a0,dob,Matthew Breetzke,1998-11-03,auction_2023;auction_2025;retained_2026,DOB + name; squad 2025 LSG
+Matthew Forde,83d17bbc,dob,Matthew Forde,2002-04-29,auction_2023;auction_2024;auction_2025,DOB + name
+Matthew Potts,894b2d25,dob,Matthew Potts,1998-10-29,auction_2025;pool_2026,DOB + name
+Matthew Short,a90e53ec,dob,Matthew Short,1995-11-08,auction_2024;auction_2025;pool_2026,DOB + name
+Matthew Wade,afa7e784,dob,Matthew Wade,1987-12-26,auction_2022;retained_2024,DOB + name; squad 2022 GT
+Mayank Agarawal,00ea847a,dob,Mayank Agarawal,1991-02-16,auction_2025;pool_2026,DOB + name; squad 2025 RCB
+Mayank Agarwal,00ea847a,dob,Mayank Agarwal,1991-02-16,auction_2023;retained_2024,DOB + name; squad 2023 SRH
+Mayank Dagar,a457cfb5,dob,Mayank Dagar,1996-11-11,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 SRH
+Mayank Gusain,,,Mayank Gusain,2001-09-25,auction_2025;pool_2026,
+Mayank Markande,a9fd84fb,dob,Mayank Markande,1997-11-11,auction_2022;auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 MI
+Mayank Rawat,2b801189,dob,Mayank Rawat,1999-12-04,auction_2025;pool_2026,DOB + name
+Mayank Yadav,b1ad996b,dob,Mayank Yadav,2002-06-17,auction_2022;retained_2024;retained_2026,DOB + name; squad 2024 LSG
+McKenny Clarke,a4ff3629,dob,McKenny Clarke,2003-06-05,auction_2023,DOB + name
+Md Shami,8cf9814c,dob,Md Shami,1990-03-09;1990-09-03,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 GT
+Md Shoriful Islam,bb34fd31,dob,Md Shoriful Islam,2001-06-03,pool_2026,DOB + name
+Mehidy Hasan Miraz,c58b0108,dob,Mehidy Hasan Miraz,1997-10-25,auction_2025,DOB + name
+Michael Bracewell,e38bce7a,dob,Michael Bracewell,1991-02-14,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Michael Neser,0164b064,dob,Michael Neser,1990-03-29,auction_2025,DOB + name
+Michael Pepper,270e4c23,dob,Michael Pepper,1998-06-25,auction_2025,DOB + name
+Mickil Jaiswal,763abbaf,dob,Mickil Jaiswal,1998-05-10,auction_2023,DOB + name
+Mikyle Louis,1d8c298b,dob,Mikyle Louis,2000-08-19,auction_2025,DOB + name
+Miles Hammond,c88bc84a,dob,Miles Hammond,1996-01-11,pool_2026,DOB + name
+Mitch Owen,f2c936d7,squad,Mitch Owen,,retained_2026,squad 2025 PBKS
+Mitchell Marsh,3d8feaf8,dob,Mitchell Marsh,1991-10-20,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 DC
+Mitchell Santner,e4a0deae,dob,Mitchell Santner,1992-02-05,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 CSK
+Mitchell Starc,3fb19989,dob,Mitchell Starc,1990-01-30,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 KKR
+Mitesh Patel,ab636882,dob,Mitesh Patel,1997-05-15,auction_2023,DOB + name
+Moeen Ali,bb351c23,dob,Moeen Ali,1987-06-18,auction_2025;retained_2024,DOB + name; squad 2023 CSK
+Mohamed Ali,,,Mohamed Ali,2004-10-03,auction_2025;pool_2026,"DOB differs from 288dd46e, 3b9f0224, 3c9ff356, 5147ad5b, 8c0a86ef, 8c689890, a005b384, a27d06d1, a40ac203, a7c3cf5f, a86a37ab, abae26ad, adb2f841, b0eaaac6, f49079b8, f7f7bee0"
+Mohammad Izhar,,,Mohammad Izhar,2004-01-01,pool_2026,
+Mohammad Kaif,,,Mohammad Kaif,1996-12-10,auction_2024,DOB differs from d84378a4
+Mohammad Nabi,62af8546,dob,Mohammad Nabi,1985-01-01,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2024 MI
+Mohammad Shami,8cf9814c,dob,Mohammad Shami,1990-03-09;1990-09-03,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 GT
+Mohammad Siraj,2f49c897,dob,Mohammad Siraj,1994-03-13,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 RCB
+Mohammad Waqar Salamkheil,3f1066d0,dob,Mohammad Waqar Salamkheil,2001-10-02,auction_2024;pool_2026,DOB + name
+Mohammed Azharuddeen,4ae89f36,dob,Mohammed Azharuddeen,1994-03-22,auction_2023;auction_2025,DOB + name
+Mohammed Kaif,,,Mohammed Kaif,1996-12-10,auction_2024,DOB differs from d84378a4
+Mohammed Siraj,2f49c897,dob,Mohammed Siraj,1994-03-13,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 RCB
+Mohd Arslan Khan,4b6f8814,dob,Mohd Arslan Khan,1999-09-15,auction_2023;auction_2024,DOB + name
+Mohd. Arshad Khan,12314277,dob,Mohd. Arshad Khan,1997-12-20,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 LSG
+Mohd. Wasim,,,Mohd. Wasim,1999-05-06,auction_2023,"DOB differs from 1e4ef774, 9e9af5f2"
+Mohit Ahlawat,791b8fac,dob~,Mohit Ahlawat,1995-12-27,auction_2024,name + DOB one character / day-month off (1995-12-25)
+Mohit Avasthi,7e83cef2,dob,Mohit Avasthi,1992-11-18,auction_2023;auction_2024;auction_2025,DOB + name
+Mohit Rathee,9a5f2863,dob,Mohit Rathee,1999-01-13,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2023 PBKS
+Mohit Redkar,f64c8577,dob,Mohit Redkar,2000-09-27,auction_2024,DOB + name
+Mohit Sharma,759ac88f,dob,Mohit Sharma,1988-09-18,auction_2023;auction_2025;retained_2024,DOB + name; squad 2023 GT
+Mohsin Khan,c33d8116,dob,Mohsin Khan,1998-07-15,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 LSG
+Moises Henriques,32198ae0,dob,Moises Henriques,1987-02-01,auction_2023,DOB + name
+Money Grewal,,,Money Grewal,2000-10-04,auction_2024;auction_2025;pool_2026,
+Monish Reddy,,,Monish Reddy,2002-11-28,auction_2024,
+Mridul Surroch,,,Mridul Surroch,2003-07-01,pool_2026,
+Mrinmoy Dutta,64959652,dob,Mrinmoy Dutta,1998-11-24,auction_2024,DOB + name
+Muhammad Abbas,c3576908,dob,Muhammad Abbas,2003-11-29,pool_2026,DOB + name
+Muhammed Khan,,,Muhammed Khan,2000-12-30,auction_2025,"DOB differs from 086f5984, 0dc00542, 12314277, 13501ff4, 1c10010a, 1d3782c8, 1edc1155, 24104e5c, 2a731841, 2b0f2af3, 3207b7d2, 32885b08, 32e9794a, 33cb3411, 37da0536, 3b969df3, 45de8d3e, 45ec7a99, 486065b3, 5173fb9d, 684dc2da, 6d5e66b1, 6f14ddcb, 72f03be4, 88a32fa2, 8dfc706f, 9103ecdb, 97334324, 9b8a3c39, 9e84ba17, a14b3bc0, a46de6e0, a6c37940, a7c3cf5f, a94eb41e, af18f490, b0eaaac6, b2322fba, b7cdba34, b84be97f, b9e8462e, c39ee9e0, c5b87d8c, c6e1354c, dd8af149, e083cffd, eb5aa5b9, ee95065d, f17ac7d0, f6c2659d, fbc5b9e2, fd201eb4, feb37330"
+Muhammed Sharafuddeen,518d090c,dob,Muhammed Sharafuddeen,1995-02-14,pool_2026,DOB + name
+Mujeeb Rahman,7d92277a,dob,Mujeeb Rahman,2001-03-28,auction_2023;auction_2024;pool_2026,DOB + name; squad 2025 MI
+Mujeeb Ur Rahman,7d92277a,dob,Mujeeb Ur Rahman,2001-03-28,auction_2025,DOB + name
+Mujtaba Yousuf,f5c9b42c,dob,Mujtaba Yousuf,2002-06-07,auction_2023;auction_2024;auction_2025,DOB + name
+Mukesh Choudhary,765a4731,dob,Mukesh Choudhary,1996-07-06,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 CSK
+Mukesh Kumar,2cffab74,dob,Mukesh Kumar,1993-10-12,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 DC
+Mukhtar Hussain,97114e80,dob,Mukhtar Hussain,1999-01-11,auction_2023;auction_2024;auction_2025,DOB + name
+Mukul Choudhary,,,Mukul Choudhary,2004-08-06,pool_2026,
+Murgan Ashwin,e2db2409,dob,Murgan Ashwin,1990-09-08,auction_2024,DOB + name
+Murugan Abhishek,,,Murugan Abhishek,2004-12-10,auction_2024,
+Murugan Ashwin,e2db2409,dob,Murugan Ashwin,1990-09-08,auction_2022;auction_2023;auction_2025;pool_2026,DOB + name; squad 2022 MI
+Musaif Ajaz,,,Musaif Ajaz,2002-08-03,auction_2025,
+Musheer Khan,d621b427,squad,Musheer Khan,2005-02-27,auction_2024;auction_2025;retained_2026,squad 2025 PBKS
+Mushtaq Beg,,,Mushtaq Beg,1998-07-15,auction_2023,
+Mustafizur Rahman,0a8fce53,dob,Mustafizur Rahman,1995-09-06,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 DC
+Mustaq Beg,,,Mustaq Beg,1998-07-15,auction_2024,
+N. Jagadeesan,bd54eef5,dob,N. Jagadeesan,1995-12-24,auction_2022;auction_2023,DOB + name; squad 2022 CSK
+N. Tilak Varma,b0482a1d,dob,N. Tilak Varma,2002-11-08,auction_2022;retained_2024,DOB + name; squad 2022 MI
+Nahid Rana,5318ee68,override,Nahid Rana,2002-10-25,auction_2025;pool_2026,"Only 'Nahid Rana' in player_meta (Bangladesh; Cricsheet T20I for Bangladesh and BPL); BCCI lists give DOB 25/10/2002 and a right-arm fast bowler, player_meta 2002-10-02"
+Najibullah Zadran,1212cbec,dob,Najibullah Zadran,1993-02-18;1993-02-28,auction_2023;auction_2024;auction_2025,DOB + name
+Naman Dhir,fffa744b,dob,Naman Dhir,1999-12-31,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 MI
+Naman Pushpak,,,Naman Pushpak,2006-12-18,pool_2026,
+Naman Tiwari,,,Naman Tiwari,2005-11-08,auction_2025;pool_2026,
+Nandre Burger,465aa633,dob,Nandre Burger,1995-08-11,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 RR
+Nangeyalia Kharote,75b8e198,dob,Nangeyalia Kharote,2004-04-25,auction_2025,DOB + name
+Narayan Jagadeesan,bd54eef5,dob,Narayan Jagadeesan,1995-12-24,auction_2025,DOB + name
+Nasir Lone,38b43687,dob,Nasir Lone,1997-09-05,auction_2024;auction_2025;pool_2026,DOB + name
+Nathan Coulter-Nile,56ab442f,dob,Nathan Coulter-Nile,1987-10-11,auction_2022;auction_2023,DOB + name; squad 2022 RR
+Nathan Ellis,9eb1455b,dob,Nathan Ellis,1994-09-22,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Nathan McAndrew,38c276e1,dob,Nathan McAndrew,1993-07-14,auction_2023,DOB + name
+Nathan Smith,05b1aef8,dob,Nathan Smith,1998-07-15,auction_2025;pool_2026,DOB + name
+Naushad Shaikh,9ed95736,dob,Naushad Shaikh,1991-10-15,auction_2024,DOB + name
+Navdeep Saini,21d4e29b,dob,Navdeep Saini,1992-11-23,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 RR
+Naveen Ul Haq,c0c411cb,dob,Naveen Ul Haq,1999-09-23,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 LSG
+Nehal Wadhera,d1a60072,dob,Nehal Wadhera,2000-09-04,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 MI
+Nicholas Pooran,3241e3fd,dob,Nicholas Pooran,1995-10-02,auction_2022;auction_2023;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Nihal Ullal,,,Nihal Ullal,1993-01-19,auction_2024,
+Nikhil Chaudhary,1f84183a,dob,Nikhil Chaudhary,1996-05-04,pool_2026,DOB + name
+Nikhil Gangta,8812869d,dob,Nikhil Gangta,1992-09-01,auction_2024,DOB + name
+Nikhil Naik,aedc3b7c,dob,Nikhil Naik,1994-11-09,auction_2024,DOB + name
+Ninad Rathva,8f607eea,dob,Ninad Rathva,1999-03-10,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Nishant Sindhu,3cea23da,dob,Nishant Sindhu,2004-04-09,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name
+Nishanth Saranu,,,Nishanth Saranu,2005-03-03,auction_2025;pool_2026,
+Nishunk Birla,376025f1,dob,Nishunk Birla,2004-10-22,auction_2025,DOB + name
+Nitin Sai Yadav,,,Nitin Sai Yadav,2004-04-16,pool_2026,
+Nitin Verma,,,Nitin Verma,1994-09-26,auction_2024,
+Nitish Kumar Reddy,aad0c365,dob,Nitish Kumar Reddy,2003-05-26,auction_2023;retained_2024;retained_2026,DOB + name; squad 2023 SRH
+Nitish Rana,fb2d1dda,dob,Nitish Rana,1993-12-27,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 KKR
+Noor Ahmad,efc04be7,dob,Noor Ahmad,2005-01-03,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 GT
+Nqabayomzi Peter,212aeedd,dob,Nqabayomzi Peter,2001-12-09,auction_2025,DOB + name
+Nuwan Thushara,ee1b6c27,dob,Nuwan Thushara,1994-08-06,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 MI
+Obed McCoy,529eb9e0,dob,Obed McCoy,1997-01-04,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 RR
+Obed Mccoy,529eb9e0,dob,Obed Mccoy,1997-01-04,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 RR
+Odean Smith,23cca426,dob,Odean Smith,1996-11-01,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2022 PBKS
+Oliver Davies,0ea54eca,dob,Oliver Davies,2000-10-14,auction_2025,DOB + name
+Ollie Pope,e94bc520,dob,Ollie Pope,1998-01-02,auction_2025,DOB + name
+Ollie Robinson,0f3ee070,dob,Ollie Robinson,1993-12-01,auction_2024,DOB + name
+Olly Stone,3f659464,dob,Olly Stone,1993-10-09,auction_2024;auction_2025;pool_2026,DOB + name
+Onkar Tarmale,,,Onkar Tarmale,2002-08-22,pool_2026,
+Oshane Thomas,c6097d68,dob,Oshane Thomas,1997-02-18,auction_2024,DOB + name
+Ottneil Baartman,6b9eb501,dob,Ottneil Baartman,1993-03-18,auction_2023;auction_2024;auction_2025,DOB + name
+P. Vignesh,,,P. Vignesh,2005-04-06,auction_2025,
+P.A. Abdul,,,P.A. Abdul,1998-10-09,auction_2024,
+PV.Satyanarayana Raju,,,PV.Satyanarayana Raju,1999-07-10,pool_2026,
+Pankaj Jaswal,3bc10d5b,dob,Pankaj Jaswal,1995-09-20,auction_2023;auction_2025;pool_2026,DOB + name
+Pankaj Yadav,,,Pankaj Yadav,2002-10-07,auction_2024,
+Parikshit Dhanak,,,Parikshit Dhanak,2002-11-30,pool_2026,
+Parikshit Valsangkar,84ba2fbc,dob,Parikshit Valsangkar,1995-02-24,pool_2026,DOB + name
+Parth Rekhade,17196bf7,dob,Parth Rekhade,1999-07-18,pool_2026,DOB + name
+Parth Vats,,,Parth Vats,2004-01-22,pool_2026,
+Pat Cummins,ded9240e,dob,Pat Cummins,1993-05-08,auction_2022;auction_2024;retained_2026,DOB + name; squad 2022 KKR
+Pathum Nissaanka,8ee36b18,dob,Pathum Nissaanka,1998-05-18,auction_2023,DOB + name
+Pathum Nissanka,8ee36b18,dob,Pathum Nissanka,1998-05-18,auction_2025;pool_2026,DOB + name
+Patrick Kruger,39181592,dob,Patrick Kruger,1995-02-03,auction_2025,DOB + name
+Paul Stirling,cf494ffe,dob,Paul Stirling,1990-09-03,auction_2023,DOB + name
+Paul Van Meekeren,4557dc54,dob,Paul Van Meekeren,1993-01-15,auction_2023;auction_2024,DOB + name
+Pawan Negi,f62772e5,dob,Pawan Negi,1993-01-06,auction_2023,DOB + name
+Peter Hatzoglou,6f95e5fa,dob,Peter Hatzoglou,1998-11-27,auction_2023,DOB + name
+Phil Salt,3d284ca3,dob,Phil Salt,1996-08-28,auction_2023;auction_2025;retained_2026,DOB + name; squad 2023 DC
+Philip Salt,3d284ca3,dob,Philip Salt,1996-08-28,auction_2024,DOB + name
+Piyush Chawla,98ae73b1,dob,Piyush Chawla,1988-12-24,auction_2023;auction_2025;retained_2024,DOB + name; squad 2023 MI
+Prabhsimran Singh,9418198b,dob,Prabhsimran Singh,2000-08-10,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Pradeep Sangwan,9fc0ef64,dob,Pradeep Sangwan,1990-11-05,auction_2022,DOB + name; squad 2022 GT
+Pradosh Paul,,,Pradosh Paul,2000-12-21,auction_2024;auction_2025,
+Pradyuman Kumar Singh,,,Pradyuman Kumar Singh,2001-12-03,auction_2025,
+Praful Hinge,,,Praful Hinge,2002-01-18,auction_2025;pool_2026,
+Pranshu Vijayran,f0380005,dob,Pranshu Vijayran,1995-11-18,auction_2023,DOB + name
+Prasad Pawar,c9f2fc04,dob,Prasad Pawar,1995-01-31,auction_2024,DOB + name
+Prashant Chauhan,,,Prashant Chauhan,2001-04-01,auction_2025,
+Prashant Chopra,8ac93ca2,dob,Prashant Chopra,1992-10-07,auction_2023,DOB + name
+Prashant Sai Painkra,6cdc3215,dob,Prashant Sai Painkra,2002-09-08,auction_2025,DOB + name
+Prashant Solanki,c695b423,dob,Prashant Solanki,2000-02-22,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 CSK
+Prashant Veer,e148e6bd,dob,Prashant Veer,2005-11-24,pool_2026,DOB + name
+Prasidh Krishna,85e0cf10,dob,Prasidh Krishna,1996-02-19,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 RR
+Prateek Yadav,,,Prateek Yadav,1999-02-16,auction_2025,
+Pratham Singh,f9f21866,dob,Pratham Singh,1992-08-31,auction_2022;auction_2025,DOB + name
+Pravin Dubey,ed5a5510,dob,Pravin Dubey,1993-07-01,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 DC
+Prayas Barman,441c72ae,dob,Prayas Barman,2002-10-25,auction_2023,DOB + name
+Prayas Ray Barman,441c72ae,dob,Prayas Ray Barman,2002-10-25,auction_2025,DOB + name
+Prenelan Subrayen,7ec9711d,dob,Prenelan Subrayen,1993-09-23,auction_2023;auction_2024,DOB + name
+Prerak Mankad,663b5e34,dob,Prerak Mankad,1994-04-23,auction_2022;auction_2023;auction_2025;retained_2024,DOB + name; squad 2022 PBKS
+Prerit Dutta,0fdb1546,dob,Prerit Dutta,1998-09-22,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Prince Choudhary,,,Prince Choudhary,1999-09-29,auction_2024;auction_2025,
+Prince Rai,,,Prince Rai,1999-05-05,pool_2026,
+Prince Yadav,,,Prince Yadav|1998-01-02,1998-01-02,auction_2023,DOB differs from 80b2fb19
+Prince Yadav,80b2fb19,dob,Prince Yadav|2001-12-12,2001-12-12,auction_2023;auction_2025;retained_2026,DOB + name; squad 2025 LSG
+Prince Yadav,80b2fb19,dob,Prince Yadav|retained_2026|LSG,2001-12-12,auction_2023;auction_2025;retained_2026,DOB + name; squad 2025 LSG
+Prithvi Raj Yarra,cfa4bd2b,dob,Prithvi Raj Yarra,1998-02-20,auction_2024,DOB + name
+Prithvi Shaw,8b3e9c7c,dob,Prithvi Shaw,1999-11-09,auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 DC
+Prithviraj Yarra,cfa4bd2b,dob,Prithviraj Yarra,1998-02-20,auction_2023;auction_2025;pool_2026,DOB + name
+Priyam Garg,bb965e9a,dob,Priyam Garg,2000-11-30,auction_2022;auction_2023;auction_2025,DOB + name; squad 2022 SRH
+Priyank Panchal,ebf25cf2,dob,Priyank Panchal,1990-04-09,auction_2023;auction_2024,DOB + name
+Priyansh Arya,b5797845,squad,Priyansh Arya,2001-09-18,auction_2023;auction_2024;auction_2025;retained_2026,squad 2025 PBKS
+Priyesh Patel,93b5bd93,dob,Priyesh Patel,2001-10-16,auction_2023,DOB + name
+Pukhraj Mann,4a9a8c3d,dob,Pukhraj Mann,2001-06-07,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Pulkit Narang,9dc27cf0,dob,Pulkit Narang,1994-06-18,auction_2023;auction_2024;auction_2025,DOB + name
+Purav Agarwal,,,Purav Agarwal,2003-08-30,pool_2026,
+Purnank Tyagi,,,Purnank Tyagi,2001-01-20,auction_2023,
+Pyla Avinash,,,Pyla Avinash,2000-07-07,auction_2025;retained_2026,
+Qais Ahamad,8d5d991e,dob,Qais Ahamad,2000-08-15,auction_2024,DOB + name
+Qais Ahmad,8d5d991e,dob,Qais Ahmad,2000-08-15,auction_2023;auction_2025;pool_2026,DOB + name
+Qamran Iqbal,6375ef6a,dob,Qamran Iqbal,2001-10-17,pool_2026,DOB + name
+Quinton De Kock,372455c4,dob,Quinton De Kock,1992-12-17,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 LSG
+R Rajkumar,,,R Rajkumar,1993-09-21,pool_2026,"DOB differs from 3c79f8af, f3ba1bdc"
+R Samarth,f2dbbff5,dob,R Samarth,1993-01-22,auction_2022,DOB + name
+R. Ashwin,495d42a5,dob,R. Ashwin,1986-09-17,auction_2022;retained_2024,DOB + name; squad 2022 RR
+R. Sai Kishore,c7a995d3,dob,R. Sai Kishore,1996-11-06,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 GT
+R.S Ambrish,,,R.S Ambrish,2007-05-28,pool_2026,
+R.Sonu Yadav,6ab96cc2,dob,R.Sonu Yadav,1999-11-11,pool_2026,DOB + name
+Rachin Ravindra,ba5e1069,dob,Rachin Ravindra,1999-11-18,auction_2024;auction_2025;pool_2026,DOB + name; squad 2024 CSK
+Raghav Goyal,266849c1,squad,Raghav Goyal,2001-06-20,auction_2023;auction_2024;auction_2025;pool_2026,squad 2023 MI (listed DOB differs from player_meta 2001-01-26)
+Raghu Sharma,740742ef,squad,Raghu Sharma,,retained_2026,squad 2025 MI
+Rahkeem Cornwall,c4d9634c,dob,Rahkeem Cornwall,1993-02-01,auction_2023,DOB + name
+Rahmanullah Gurbaz,0bacade8,dob,Rahmanullah Gurbaz,2001-11-28,auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 KKR
+Rahul Buddhi,70a9b353,dob,Rahul Buddhi,1997-09-20,auction_2022;auction_2023;auction_2024;pool_2026,DOB + name
+Rahul Chahar,2ed569a0,dob,Rahul Chahar,1999-08-04,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 PBKS
+Rahul Gahlaut,adf454e9,dob,Rahul Gahlaut,1995-09-18,auction_2023,DOB + name
+Rahul Raj Namala,,,Rahul Raj Namala,2000-05-10,pool_2026,
+Rahul Shukla,de4b0555,dob,Rahul Shukla,1990-08-28,auction_2024,DOB + name
+Rahul Tewatia,39a2dfa8,dob,Rahul Tewatia,1993-05-20,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 GT
+Rahul Tripathi,77255a9e,dob,Rahul Tripathi,1991-03-02,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 SRH
+Raj Angad Bawa,ba6b2f91,dob,Raj Angad Bawa,2002-11-12,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 PBKS
+Raj Chaudhary,,,Raj Chaudhary,1996-05-28,auction_2024,
+Raj Limbani,,,Raj Limbani,2005-02-02,auction_2024;auction_2025;pool_2026,
+Rajan Kumar,cd474693,dob,Rajan Kumar,1996-07-08,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name
+Rajandeep Singh,,,Rajandeep Singh,2002-09-05,auction_2023,"DOB differs from be24ead0, edf3773b"
+Rajat Dey,ccc04a61,dob,Rajat Dey,1996-12-31,auction_2024,DOB + name
+Rajat Patidar,c740ea83,squad,Rajat Patidar,,retained_2024;retained_2026,squad 2024 RCB
+Rajat Verma,,,Rajat Verma,1997-12-25,pool_2026,
+Rajeev Singh,,,Rajeev Singh,1995-06-16,auction_2023,
+Rajesh Mohanty,a73f1f24,dob,Rajesh Mohanty,2000-05-20,auction_2023;pool_2026,DOB + name
+Rajneesh Gurbani,bcaf7d33,dob,Rajneesh Gurbani,1993-01-28,auction_2023;auction_2025,DOB + name
+Rajvardhan Hangargekar,c3c92b42,dob,Rajvardhan Hangargekar,2002-11-10,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 CSK
+Rakibul Hasan,77768f72,dob,Rakibul Hasan,2002-09-09,pool_2026,DOB + name
+Rakshan Readdi,adee5bbd,dob,Rakshan Readdi,2000-09-29,auction_2024,DOB + name
+Ramakrishna Ghosh,,,Ramakrishna Ghosh,1997-08-28,auction_2023;auction_2025;retained_2026,
+Ramandeep Singh,be24ead0,dob,Ramandeep Singh,1997-04-13,auction_2022;auction_2024;retained_2026,DOB + name; squad 2022 MI
+Ramesh Kumar,,,Ramesh Kumar,1999-01-01,auction_2022,DOB differs from 003fe1d7
+Ramesh Prasad,,,Ramesh Prasad,1994-01-30,auction_2025,
+Ramon Simmonds,fcf6b0f6,dob,Ramon Simmonds,2001-10-16,auction_2023,DOB + name
+Rashid Khan,5f547c8b,squad,Rashid Khan,,retained_2024;retained_2026,squad 2023 GT
+Rasikh Dar,b8527c3d,dob,Rasikh Dar,2000-04-05,auction_2022;auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 KKR
+Rassie Van Der Dussen,9948e262,dob,Rassie Van Der Dussen,1989-02-07,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2022 RR
+Raunak Kumar,,,Raunak Kumar,2002-12-19,auction_2023,
+Ravi Bishnoi,df064e1a,dob,Ravi Bishnoi,2000-09-05,pool_2026;retained_2024,DOB + name; squad 2023 LSG
+Ravi Chauhan,f7ce1f24,dob,Ravi Chauhan,1993-09-17,auction_2024,DOB + name
+Ravi Kiran Majeti,0ff9728b,dob,Ravi Kiran Majeti,1991-02-01,auction_2023,DOB + name
+Ravi Kumar,,,Ravi Kumar,2003-10-29,auction_2023;auction_2024;auction_2025;pool_2026,DOB differs from ffecc5bc
+Ravi Sharma,,,Ravi Sharma,1996-10-14,auction_2023,
+Ravi Singh,,,Ravi Singh,2001-05-25,pool_2026,
+Ravi Teja,5f39537c,dob,Ravi Teja,1994-10-19,auction_2024,DOB + name
+Ravi Yadav,,,Ravi Yadav,1997-12-26,auction_2025,
+Ravichandaran Ashwin,495d42a5,dob,Ravichandaran Ashwin,1986-09-17,auction_2025,DOB + name; squad 2025 CSK
+Ravindra Jadeja,fe93fd9d,squad,Ravindra Jadeja,,retained_2024;retained_2026,squad 2023 CSK
+Reece Topley,8db7f47f,dob,Reece Topley,1994-02-21,auction_2023;auction_2025;retained_2024,DOB + name; squad 2023 RCB
+Reeza Hendricks,b8cc58c9,dob,Reeza Hendricks,1989-08-14,auction_2023;auction_2024;pool_2026,DOB + name
+Rehan Ahmed,0ecb4de6,dob,Rehan Ahmed,2004-08-13,auction_2023;pool_2026,DOB + name
+Richard Gleeson,402f8494,dob,Richard Gleeson,1987-12-02,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 MI
+Richard Ngarava,6e3f5a5c,dob~,Richard Ngarava,1997-12-29,auction_2024;auction_2025,name + DOB one character / day-month off (1997-12-28)
+Ricky Bhui,b63e358a,dob,Ricky Bhui,1996-09-29,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2024 DC
+Rilee Rossouw,cad00a4d,dob,Rilee Rossouw,1989-10-09,auction_2023;auction_2024;auction_2025,DOB + name; squad 2023 DC
+Riley Meredith,64775749,dob,Riley Meredith,1996-06-21,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 MI
+Rinku Singh,0a509d6b,dob,Rinku Singh,1997-10-12,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 KKR
+Ripal Patel,60500956,dob,Ripal Patel,1995-09-28,auction_2022;auction_2025;pool_2026,DOB + name; squad 2022 DC
+Rishabh Chauhan,a64608ec,dob,Rishabh Chauhan,1999-09-05,auction_2023;pool_2026,DOB + name
+Rishabh Pant,919a3be2,dob,Rishabh Pant,1997-10-04,auction_2025;retained_2024;retained_2026,DOB + name; squad 2024 DC
+Rishad Hossain,5935d694,dob,Rishad Hossain,2002-07-15,auction_2025;pool_2026,DOB + name
+Rishi Dhawan,26a85969,dob,Rishi Dhawan,1990-02-19,auction_2022;auction_2025;retained_2024,DOB + name; squad 2022 PBKS
+Rithik Easwaran,,,Rithik Easwaran,2002-02-15,auction_2024,
+Ritik Tada,,,Ritik Tada,2002-10-10,pool_2026,
+Rituraj Sharma,,,Rituraj Sharma,2002-11-27,auction_2025,
+Ritwik Roy Chowdhury,6033d30a,dob,Ritwik Roy Chowdhury,1995-11-20,auction_2023,DOB + name
+Riyan Parag,04a418e8,dob,Riyan Parag,2001-11-10,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 RR
+Robin Minz,bafd0398,squad,Robin Minz,2002-09-13,auction_2023;auction_2024;auction_2025;retained_2026,squad 2025 MI
+Robin Uthappa,1c17e270,dob,Robin Uthappa,1985-11-11,auction_2022,DOB + name; squad 2022 CSK
+Rocky Bhasker,,,Rocky Bhasker,1993-03-07,auction_2023,
+Rohan Kunnummal,a6004ded,dob,Rohan Kunnummal,1998-05-10,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Rohan Patil,d3da1c8e,dob,Rohan Patil,2001-08-18,auction_2023,DOB + name
+Rohan Rana,,,Rohan Rana,2002-01-12,auction_2025,
+Rohit Rayudu,b4587494,dob,Rohit Rayudu,1994-07-29,auction_2023;auction_2024;auction_2025,DOB + name
+Rohit Sharma,740742ef,squad,Rohit Sharma,,retained_2024;retained_2026,squad 2023 MI
+Rohit Yadav,,,Rohit Yadav,1999-12-04,pool_2026,
+Romario Shepherd,c5aef772,dob,Romario Shepherd,1994-11-26,auction_2022;auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Roshan Waghsare,,,Roshan Waghsare,2003-09-07,auction_2025,
+Roshan Wagshare,,,Roshan Wagshare,2003-09-07,pool_2026,
+Roston Chase,3feda4fa,dob,Roston Chase,1992-03-22,auction_2023;auction_2025;pool_2026,DOB + name
+Rovman Powell,650d5e49,dob,Rovman Powell,1993-07-23,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 DC
+Ruben Trumpelmann,ff6a7ab5,dob,Ruben Trumpelmann,1998-02-01,auction_2023,DOB + name
+Ruchit Ahir,a24c3894,dob,Ruchit Ahir,2000-10-28,pool_2026,DOB + name
+Ruturaj Gaikwad,45a43fe2,squad,Ruturaj Gaikwad,,retained_2024;retained_2026,squad 2023 CSK
+Ryan Rickelton,e66732f8,dob,Ryan Rickelton,1996-07-11,auction_2025;retained_2026,DOB + name; squad 2025 MI
+S Midhun,ade90de7,dob,S Midhun,1994-10-07,auction_2023;auction_2024;auction_2025,DOB + name
+S. Midhun,ade90de7,dob,S. Midhun,1994-10-07,auction_2023;auction_2024;auction_2025,DOB + name
+S. Rithik Easwaran,,,S. Rithik Easwaran,2002-02-15,auction_2025,
+S.Ajith Ram,,,S.Ajith Ram,1998-09-05,auction_2023,
+Sabhay Chadha,,,Sabhay Chadha,1998-05-07,auction_2025,
+Sabir Khan,,,Sabir Khan,2000-11-24,pool_2026,
+Sachin Baby,dc9dd038,dob,Sachin Baby,1988-12-18,auction_2023;auction_2025,DOB + name; squad 2025 SRH
+Sachin Bhosale,,,Sachin Bhosale,1998-01-02,auction_2024,
+Sachin Dhas,,,Sachin Dhas,2005-02-03,auction_2025;pool_2026,
+Sadek Hussain,,,Sadek Hussain,2001-10-25,pool_2026,
+Safvan Patel,6d797d07,dob,Safvan Patel,1998-10-03,pool_2026,DOB + name
+Sagar Solanki,ce2fa609,dob,Sagar Solanki,2000-01-01;2000-09-01,auction_2023;pool_2026,DOB + name
+Sahil Dhiwan,,,Sahil Dhiwan,1997-07-03,auction_2023;auction_2024,
+Sahil Parakh,,,Sahil Parakh,2007-06-07,pool_2026,
+Sai Sudharsan,d5130a30,squad,Sai Sudharsan,,retained_2026,squad 2025 GT
+Sairaj Patil,79b35258,dob,Sairaj Patil,1996-10-31,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Sakib Hussain,280fff14,dob,Sakib Hussain,2004-12-14,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Salil Arora,,,Salil Arora,2002-11-07,auction_2025;pool_2026,
+Salman Khan,25986786,dob,Salman Khan,1998-12-26,auction_2023,DOB + name
+Salman Nizar,47ff3985,dob,Salman Nizar,1997-06-30,auction_2024;auction_2025;pool_2026,DOB + name
+Sam Billings,c16d4035,dob,Sam Billings,1991-06-15,auction_2022;auction_2024;auction_2025,DOB + name; squad 2022 KKR
+Sam Curran,e94915e6,dob,Sam Curran,1998-06-03,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 PBKS
+Samarth Nagraj,,,Samarth Nagraj,2005-10-21,auction_2025,
+Samarth Vyas,34819e70,dob,Samarth Vyas,1995-11-28,auction_2023;auction_2025,DOB + name
+Sameer Rizvi,f89d3b11,dob,Sameer Rizvi,2003-12-06,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 CSK
+Sammar Gajjar,ba19f1be,dob,Sammar Gajjar,2003-08-14,auction_2023;pool_2026,DOB + name
+Sampark Gupta,,,Sampark Gupta,2001-06-19,auction_2023,
+Samuel Hain,67b9536c,dob,Samuel Hain,1995-07-16,auction_2024,DOB + name
+Sandeep Sharma,ce820073,dob,Sandeep Sharma,1993-05-18,auction_2022;auction_2023;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Sandeep Warrier,cdc6bdba,dob,Sandeep Warrier,1991-04-04,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Sanjay Pahal,,,Sanjay Pahal,1993-06-29,auction_2024,
+Sanjay Ramaswamy,a717c88e,dob,Sanjay Ramaswamy,1995-04-01,auction_2023,DOB + name
+Sanjay Yadav,33ffc3dd,dob,Sanjay Yadav,1995-05-10,auction_2022;auction_2023;auction_2025;pool_2026,DOB + name; squad 2022 MI
+Sanjith Devaraj,,,Sanjith Devaraj,1997-09-16,auction_2023,
+Sanju Samson,a4cc73aa,squad,Sanju Samson,,retained_2024;retained_2026,squad 2023 RR
+Sanskar Rawat,,,Sanskar Rawat,2005-06-14,auction_2025,
+Sanvir Singh,b0f2baf4,dob,Sanvir Singh,1996-10-12,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 SRH
+Saqib Mahmood,0f6db197,dob,Saqib Mahmood,1997-02-25,pool_2026,DOB + name
+Saransh Jain,de33074a,dob,Saransh Jain,1993-03-31,auction_2024;auction_2025;pool_2026,DOB + name
+Sarfaraz Khan,f088b960,dob,Sarfaraz Khan,1997-10-22,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 DC
+Sarthak Ranjan,d7cdefa9,dob,Sarthak Ranjan,1996-09-25,auction_2025;pool_2026,DOB + name
+Satvik Deswal,,,Satvik Deswal,2007-03-23,pool_2026,
+Satyajeet Bachhav,09a71776,dob,Satyajeet Bachhav,1992-11-28,auction_2023,DOB + name
+Saumy Pandey,,,Saumy Pandey,2004-11-04,auction_2024;auction_2025;pool_2026,
+Saurabh Dubey,,,Saurabh Dubey,1998-01-23,auction_2022;auction_2024;auction_2025,DOB differs from 66317b81
+Saurabh Kumar,2a6afc6f,dob,Saurabh Kumar,1993-05-01,auction_2023;auction_2024,DOB + name
+Saurabh Netravalkar,c8a3f688,dob,Saurabh Netravalkar,1991-10-16,auction_2025,DOB + name
+Saurav Chauhan,9e7225b0,dob,Saurav Chauhan,2000-05-27,auction_2025,DOB + name
+Saurav Chuahan,9e7225b0,dob,Saurav Chuahan,2000-05-27,auction_2023;auction_2024;pool_2026,DOB + name; squad 2024 RCB
+Sayan Ghosh,d4b8ea98,dob,Sayan Ghosh,1992-09-16,pool_2026,DOB + name
+Sayed Irfan Aftab,,,Sayed Irfan Aftab,2003-11-20,auction_2025;pool_2026,
+Scott Kuggeleijn,fef92afc,dob,Scott Kuggeleijn,1992-01-03,auction_2023,DOB + name
+Sean Abbott,1a2676c5,dob,Sean Abbott,1992-02-29,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 SRH
+Sediqullah Atal,3c28853f,dob,Sediqullah Atal,2001-08-12,auction_2025;pool_2026,DOB + name; squad 2025 DC
+Shahbaz Ahamad,f9e6e7ef,dob,Shahbaz Ahamad,1994-12-11,auction_2022;auction_2025;retained_2024,DOB + name; squad 2022 RCB
+Shahbaz Ahmed,f9e6e7ef,squad,Shahbaz Ahmed,,retained_2026,squad 2025 LSG
+Shahbaz Nadeem,9d80c5e1,dob,Shahbaz Nadeem,1989-08-12,auction_2022;auction_2023,DOB + name
+Shahrukh Dar,74de56cf,dob,Shahrukh Dar,1993-06-12,auction_2023,DOB + name
+Shahrukh Khan,7dcb9bc9,dob,Shahrukh Khan,1995-05-27,auction_2022;auction_2024;retained_2026,DOB + name; squad 2022 PBKS
+Shai Hope,1fc6ef83,dob,Shai Hope,1993-11-10,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2024 DC
+Shaik Rasheed,cbf58a86,dob,Shaik Rasheed,2004-09-24,auction_2023;auction_2025;retained_2024,DOB + name; squad 2025 CSK
+Shakib Al Hasan,7dc35884,dob,Shakib Al Hasan,1987-03-24,auction_2023;auction_2025,DOB + name
+Shakir Gandhi,ee96e425,dob,Shakir Gandhi,1999-10-08,auction_2024,DOB + name
+Shamar Joseph,97290faf,dob,Shamar Joseph,1999-08-31,auction_2024;auction_2025;pool_2026,DOB + name
+Shams Mulani,9d704f6f,dob,Shams Mulani,1997-03-13,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2024 MI
+Shamshuzama Kazi,868e3639,dob,Shamshuzama Kazi,1994-11-10,auction_2023,DOB + name
+Shardul Thakur,1abb78f8,dob,Shardul Thakur,1991-10-16,auction_2022;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 DC
+Shashank Singh,26989d80,dob,Shashank Singh|1991-11-21,1991-11-21,auction_2022;auction_2023;auction_2024;retained_2026,DOB + name; squad 2022 SRH
+Shashank Singh,,,Shashank Singh|2003-12-27,2003-12-27,auction_2024,DOB differs from 26989d80
+Shashank Singh,26989d80,dob,Shashank Singh|retained_2026|PBKS,1991-11-21,auction_2022;auction_2023;auction_2024;retained_2026,DOB + name; squad 2022 SRH
+Shashwat Rawat,7e435410,dob,Shashwat Rawat,2001-04-06,auction_2023;auction_2025,DOB + name
+Sheldon Cottrel,a1d053dd,dob,Sheldon Cottrel,1989-08-19,auction_2023,DOB + name
+Sheldon Jackson,acc1aeda,dob,Sheldon Jackson,1986-09-27,auction_2022;auction_2023,DOB + name; squad 2022 KKR
+Sherfane Rutherford,d014d5ac,dob,Sherfane Rutherford,1998-08-15,auction_2022;auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 RCB
+Shikhar Dhawan,0a476045,dob,Shikhar Dhawan,1985-12-05,auction_2022;retained_2024,DOB + name; squad 2022 PBKS
+Shimron Hetmyer,48a1d7b7,dob,Shimron Hetmyer,1996-12-26,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 RR
+Shiva Singh,3b63b5cc,dob,Shiva Singh,1999-10-16,auction_2024;auction_2025;pool_2026,DOB + name
+Shivalik Sharma,0ebaa16a,dob,Shivalik Sharma,1998-11-28,auction_2024;auction_2025;pool_2026,DOB + name
+Shivam Chaudhary,e53af640,dob,Shivam Chaudhary,1997-08-04,auction_2023,DOB + name
+Shivam Chauhan,c6272773,dob,Shivam Chauhan,1997-10-14,auction_2023,DOB + name
+Shivam Dube,a4e37e47,dob,Shivam Dube,1993-06-26,auction_2022;retained_2024;retained_2026,DOB + name; squad 2022 CSK
+Shivam Mavi,c38d3503,dob,Shivam Mavi,1998-11-26,auction_2022;auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 KKR
+Shivam Sharma,6f49cc6e,dob,Shivam Sharma|1993-09-09,1993-09-09,auction_2023,DOB + name
+Shivam Sharma,982dc390,dob,Shivam Sharma|1995-11-14,1995-11-14,auction_2023;auction_2024,DOB + name
+Shivam Shukla,4de4c0e9,dob,Shivam Shukla,1995-12-11,auction_2025;pool_2026,DOB + name
+Shivam Singh,e1d9ae9c,dob,Shivam Singh,1995-11-25,auction_2023;auction_2025;retained_2024,DOB + name; squad 2024 PBKS
+Shivang Kumar,,,Shivang Kumar,2002-05-26,pool_2026,
+Shivank Vashisth,3a922344,dob,Shivank Vashisth,1995-09-17,auction_2023,DOB + name
+Shoriful Islam,bb34fd31,dob,Shoriful Islam,2001-06-03,auction_2025,DOB + name
+Shoun Roger,,,Shoun Roger,2002-10-16,auction_2023;auction_2025,
+Shreevatsha Acharya,,,Shreevatsha Acharya,2002-03-17,pool_2026,
+Shreyan Chakraborty,,,Shreyan Chakraborty,1996-07-21,pool_2026,
+Shreyas Chavan,,,Shreyas Chavan,2003-09-01,auction_2025;pool_2026,
+Shreyas Gopal,7a8bd078,dob,Shreyas Gopal,1993-09-04,auction_2022;auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2022 SRH
+Shreyas Gurav,,,Shreyas Gurav,2000-03-01,auction_2024,
+Shreyas Iyer,85ec8e33,dob,Shreyas Iyer,1994-12-06,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 KKR
+Shrijith Krishnan,0372c4c5,dob,Shrijith Krishnan,1996-08-12,auction_2025,DOB + name
+Shubham Agrawal,b51f72a5,dob,Shubham Agrawal,1993-11-21,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Shubham Dubey,6b2ff18f,dob,Shubham Dubey,1994-08-27,auction_2024;auction_2025;retained_2026,DOB + name; squad 2024 RR
+Shubham Garhwal,,,Shubham Garhwal,1995-05-14,auction_2022;auction_2023;auction_2025,DOB differs from b51f72a5
+Shubham Kapse,,,Shubham Kapse,1994-07-22,auction_2023;auction_2024;auction_2025;pool_2026,
+Shubham Khajuria,d8a90827,dob,Shubham Khajuria,1995-09-13,auction_2023;auction_2025,DOB + name
+Shubham Rana,,,Shubham Rana,2006-05-26,pool_2026,
+Shubham Sharma,3b892965,dob,Shubham Sharma,1997-03-26,auction_2023,DOB + name
+Shubham Singh,dd6f4040,dob,Shubham Singh,1997-01-05,auction_2023,DOB + name
+Shubham Singh Pundir,86a98b15,dob,Shubham Singh Pundir,1998-10-16,auction_2024,DOB + name
+Shubhang Hegde,4fc7fc34,dob,Shubhang Hegde,2001-03-30,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Shubman Gill,b4b99816,squad,Shubman Gill,,retained_2024;retained_2026,squad 2023 GT
+Siddhant Rana,,,Siddhant Rana,2001-02-18,pool_2026,
+Siddharth Joon,,,Siddharth Joon,2006-08-11,pool_2026,
+Siddharth Kaul,dcf81436,dob,Siddharth Kaul,1990-05-19,auction_2022;auction_2024;auction_2025,DOB + name; squad 2022 RCB
+Siddharth Yadav,,,Siddharth Yadav,2003-08-13,auction_2023;auction_2025;pool_2026,
+Sikandar Raza,26d041c4,dob,Sikandar Raza,1986-04-24,auction_2023;auction_2025;retained_2024,DOB + name; squad 2023 PBKS
+Simarjeet Singh,30df8c66,dob,Simarjeet Singh,1998-01-17,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 CSK
+Sisanda Magala,8361e524,dob,Sisanda Magala,1991-01-07,auction_2023,DOB + name
+Smaran Ravichandaran,,,Smaran Ravichandaran,,retained_2026,
+Smaran Ravichandran,,,Smaran Ravichandran,2003-05-05,auction_2025,
+Sohraab Dhaliwal,564714f5,dob,Sohraab Dhaliwal,1991-11-18,auction_2025,DOB + name
+Sonu Yadav,6ab96cc2,dob,Sonu Yadav,1999-11-11,auction_2023;auction_2025,DOB + name
+Sooraj Sangaraju,,,Sooraj Sangaraju,2002-11-24,pool_2026,
+Spencer Johnson,83c3e8e3,dob,Spencer Johnson,1995-12-16,auction_2024;auction_2025;pool_2026,DOB + name; squad 2024 GT
+Srihari Nair,,,Srihari Nair,2002-10-19,pool_2026,
+Steve Smith,30a45b23,dob,Steve Smith,1989-06-02,auction_2024;auction_2025;pool_2026,DOB + name
+Subhranshu Senapati,0edcb652,dob,Subhranshu Senapati,1996-12-30,auction_2022;auction_2024,DOB + name
+Sudip Gharami,f7220198,dob,Sudip Gharami,1999-03-21,auction_2023;auction_2024;auction_2025,DOB + name
+Sumeet Verma,26b6a4e9,dob,Sumeet Verma,1990-11-18,auction_2023;auction_2024;auction_2025,DOB + name
+Sumit Ghadigaonkar,d2c05733,dob,Sumit Ghadigaonkar,1992-04-11,auction_2024;auction_2025,DOB + name
+Sumit Kumar,8998a68f,dob,Sumit Kumar,1995-12-12,auction_2023;auction_2024;auction_2025,DOB + name; squad 2024 DC
+Sumit Kumar Beniwal,,,Sumit Kumar Beniwal,1999-04-11,auction_2025,
+Sumit Ruikar,f4ef0fd7,dob,Sumit Ruikar,1990-06-06,auction_2023,DOB + name
+Sunil Kumar,,,Sunil Kumar,1997-09-15,pool_2026,"DOB differs from 6fdbf272, ed79b839"
+Sunil Narine,9d430b40,squad,Sunil Narine,,retained_2024;retained_2026,squad 2023 KKR
+Sunny Sandhu,,,Sunny Sandhu,2003-10-15,pool_2026,
+Suresh Kumar,,,Suresh Kumar,1990-11-28,auction_2023,"DOB differs from 177eb92d, 1dc12ab9"
+Surya Kumar Yadav,271f83cd,squad,Surya Kumar Yadav,,retained_2024,squad 2023 MI
+Suryakumar Yadav,271f83cd,squad,Suryakumar Yadav,,retained_2026,squad 2025 MI
+Suryansh Shedge,970ddd24,dob,Suryansh Shedge,2003-01-29,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 PBKS
+Sushant Mishra,,,Sushant Mishra,2000-12-23,auction_2023;auction_2024;auction_2025;pool_2026,
+Suyash Prabhudessai,9385de2e,dob,Suyash Prabhudessai,1997-12-06,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 RCB
+Suyash Sharma,9440ef41,dob,Suyash Sharma,2003-05-15,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 KKR
+Swapnil Singh,983f2f61,dob,Swapnil Singh,1991-01-22,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2023 LSG
+Swastik Chhikara,,,Swastik Chhikara,2005-04-03,auction_2024;auction_2025,
+Swastik Chikara,,,Swastik Chikara,2005-04-03,pool_2026,
+Swastik Samal,48cc6100,dob,Swastik Samal,2000-07-27,pool_2026,DOB + name
+Syed Khaleel Ahmed,a2f46292,dob,Syed Khaleel Ahmed,1997-12-05,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 DC
+T. Natarajan,ce794613,squad,T. Natarajan,1991-05-27,auction_2022;auction_2025;retained_2024;retained_2026,squad 2022 SRH (listed DOB differs from player_meta 1991-04-04)
+Tabraiz Shamsi,a03bba42,dob,Tabraiz Shamsi,1990-02-18,auction_2023;auction_2024;auction_2025,DOB + name
+Tanay Thyagarajann,f1809c03,dob,Tanay Thyagarajann,1995-11-15,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Tanmay Agarwal,e6e9b619,dob,Tanmay Agarwal,1995-05-03,auction_2025;pool_2026,DOB + name
+Tanmay Mishra,c9cac448,dob,Tanmay Mishra,1986-12-22,auction_2024,DOB + name
+Tanush Kotian,5724e517,dob,Tanush Kotian,1998-10-16,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Tanveer Sangha,52c952d9,dob,Tanveer Sangha,2001-11-26,auction_2025,DOB + name
+Tanzim Hasan Sakib,0b0cc297,dob,Tanzim Hasan Sakib,2002-10-20,auction_2025;pool_2026,DOB + name
+Taskin Ahmed,ef18b66e,dob,Taskin Ahmed,1995-04-03,auction_2023;auction_2025;pool_2026,DOB + name
+Tejas Baroka,c28e9f12,dob,Tejas Baroka,1996-02-01,auction_2022;auction_2023;pool_2026,DOB + name
+Tejasvi Dahiya,,,Tejasvi Dahiya,2002-04-18,auction_2025,
+Tejasvi Jaiswal,,,Tejasvi Jaiswal,1997-03-02,auction_2025,
+Tejasvi Singh,,,Tejasvi Singh,2002-04-18,auction_2025;pool_2026,
+Tejpreet Singh,,,Tejpreet Singh,2000-08-11,auction_2025,
+Thomas Helm,74a274cc,dob,Thomas Helm,1994-05-07,auction_2023,DOB + name
+Tiaan Van Vuuren,20afc7e7,dob,Tiaan Van Vuuren,2001-07-31,pool_2026,DOB + name
+Tilak Verma,b0482a1d,squad,Tilak Verma,,retained_2026,squad 2025 MI
+Tim David,f1f99156,dob,Tim David,1996-03-16,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 MI
+Tim Robinson,5d664346,dob,Tim Robinson,2002-04-28,pool_2026,DOB + name
+Tim Seifert,4663bd23,dob,Tim Seifert,1994-12-14,auction_2022;auction_2025;pool_2026,DOB + name; squad 2022 DC
+Tim Southee,13c35c9e,dob,Tim Southee,1988-12-11,auction_2022;auction_2024;auction_2025,DOB + name; squad 2022 KKR
+Tom Banton,25f7b7d6,dob,Tom Banton,1998-11-11,auction_2023;auction_2025;pool_2026,DOB + name
+Tom Curran,e86754b2,dob,Tom Curran,1995-03-12,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Tom Kohler-Cadmore,f836b33d,dob,Tom Kohler-Cadmore,1994-08-19,auction_2024;auction_2025,DOB + name; squad 2024 RR
+Tom Latham,e824e6ee,dob,Tom Latham,1992-04-02,auction_2023;auction_2025,DOB + name
+Tom Moores,85dcb721,dob,Tom Moores,1996-09-04,pool_2026,DOB + name
+Towhid Hridoy,9e52a414,dob,Towhid Hridoy,2000-12-04,auction_2025,DOB + name
+Traveen Mathew,c13e8df5,dob,Traveen Mathew,2004-06-14,pool_2026,DOB + name
+Travis Head,12b610c2,dob,Travis Head,1993-12-29,auction_2023;auction_2024;retained_2026,DOB + name; squad 2024 SRH
+Trent Boult,a818c1be,dob,Trent Boult,1989-07-22,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 RR
+Trilok Nag,,,Trilok Nag,2000-05-28,auction_2023,
+Tripurana Vijay,51ec3919,dob,Tripurana Vijay,2001-09-05,auction_2025;retained_2026,DOB + name
+Tripuresh Singh,3c29632a,dob,Tripuresh Singh,2002-04-13,auction_2025;pool_2026,DOB + name
+Tristan Luus,a0b76243,dob,Tristan Luus,2005-06-26,pool_2026,DOB + name
+Tristan Stubbs,85b3fab2,dob,Tristan Stubbs,2000-08-14,auction_2024;retained_2026,DOB + name; squad 2024 DC
+Tunish Sawkar,276b64d4,dob,Tunish Sawkar,1998-09-25,auction_2023,DOB + name
+Tushar Deshpande,46a9bea1,dob,Tushar Deshpande,1995-05-15,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 CSK
+Tushar Raheja,,,Tushar Raheja,2001-02-07,auction_2025;pool_2026,
+Tymal Mills,245c97cb,dob,Tymal Mills,1992-08-12,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name; squad 2022 MI
+Uday Saharan,,,Uday Saharan,2004-09-08,auction_2025,
+Umang Kumar,2fda74a2,dob,Umang Kumar,2000-12-11,auction_2025,DOB + name
+Umesh Yadav,cc1e8c68,dob,Umesh Yadav,1987-10-25,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 KKR
+Umran Malik,81c08fa3,dob,Umran Malik,1999-11-22,auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 SRH
+Unmukt Chand,0c94f480,dob,Unmukt Chand,1993-03-26,auction_2025,DOB + name
+Upendra Singh Yadav,80ffea17,dob,Upendra Singh Yadav,1996-10-08,auction_2023;auction_2025;retained_2024,DOB + name
+Urvil Patel,cf59b3f0,dob,Urvil Patel,1998-10-17,auction_2023;auction_2024;auction_2025;retained_2026,DOB + name; squad 2025 CSK
+Utkarsh Singh,b2a55ac1,dob,Utkarsh Singh,1998-05-07,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Vaibhav Arora,7c3b3b78,dob,Vaibhav Arora,1997-12-14,auction_2022;auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 PBKS
+Vaibhav Suryavanshi,470f446b,squad,Vaibhav Suryavanshi,2011-03-27,auction_2025;retained_2026,squad 2025 RR
+Vaisakh Chandran,c5215e7c,dob,Vaisakh Chandran,1996-05-31,auction_2023;auction_2024;auction_2025,DOB + name
+Vansh Bedi,,,Vansh Bedi,2002-12-23,auction_2025;pool_2026,
+Varun Aaron,0a3d54b9,dob,Varun Aaron,1989-10-29,auction_2022;auction_2023;auction_2024,DOB + name; squad 2022 GT
+Varun Chakaravarthy,5b7ab5a9,squad,Varun Chakaravarthy,,retained_2024;retained_2026,squad 2023 KKR
+Varun Raj Singh Bisht,,,Varun Raj Singh Bisht,2004-01-05,pool_2026,
+Vasu Vats,,,Vasu Vats,2002-09-08,auction_2023;auction_2025,
+Venkata Satyanarayana Penmetsa,,,Venkata Satyanarayana Penmetsa,1999-07-10,auction_2025,
+Venkatesh Iyer,a24be938,dob,Venkatesh Iyer,1994-12-25,auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 KKR
+Venkatesh Muralidhara,,,Venkatesh Muralidhara,2000-05-12,auction_2023;auction_2024,
+Vicky Ostwal,,,Vicky Ostwal,2002-09-01,auction_2022;auction_2025;pool_2026;retained_2024,
+Vidwath Kaverappa,d4d929b0,dob,Vidwath Kaverappa,1999-02-25,auction_2023;auction_2025;pool_2026;retained_2024,DOB + name; squad 2024 PBKS
+Vidyadhar Patil,30fc60b5,dob,Vidyadhar Patil,2000-09-05,auction_2025;pool_2026,DOB + name
+Vignesh Puthur,1e030637,squad,Vignesh Puthur,2001-03-02,auction_2025;pool_2026,squad 2025 MI
+Vihaan Malhotra,,,Vihaan Malhotra,2007-01-01,pool_2026,
+Vijay Kumar,,,Vijay Kumar,2005-12-24,auction_2025;pool_2026,DOB differs from 44c69e2b
+Vijay Shankar,0994d0ae,dob,Vijay Shankar,1991-01-26,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2022 GT
+Vijay Yadav,,,Vijay Yadav,2001-12-19,auction_2025,DOB differs from 1e1ce0d8
+Vijayakanth Viyaskanth,03a83c50,dob,Vijayakanth Viyaskanth,2001-12-05,auction_2025,DOB + name
+Vikash Singh,8b018008,dob,Vikash Singh,1994-06-28,auction_2023,DOB + name
+Vineet Dhankhar,,,Vineet Dhankhar,2004-05-03,auction_2024,
+Vineet Panwar,c86b2f09,dob,Vineet Panwar,1998-06-28,auction_2025,DOB + name
+Vipraj Nigam,5ffc0565,dob,Vipraj Nigam,2004-07-28,auction_2025;retained_2026,DOB + name; squad 2025 DC
+Virandeep Singh,415d30b6,dob,Virandeep Singh,1999-03-23,pool_2026,DOB + name
+Virat Kohli,ba607b88,squad,Virat Kohli,,retained_2024;retained_2026,squad 2023 RCB
+Virat Singh,26d76ad9,dob,Virat Singh,1997-12-08,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Vishal Godara,,,Vishal Godara,2003-02-25,auction_2024;auction_2025,
+Vishal Mandwal,,,Vishal Mandwal,1997-01-26,pool_2026,
+Vishal Nishad,,,Vishal Nishad,2005-04-01,pool_2026,
+Vishnu Solanki,2e802011,dob,Vishnu Solanki,1992-10-15,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name
+Vishnu Vinod,0494fa6e,dob,Vishnu Vinod,1993-12-02,auction_2022;auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 MI
+Vishu Kashyap,,,Vishu Kashyap,1997-12-26,auction_2024,
+Vishvarajsinh Jadeja,d30c6f81,dob,Vishvarajsinh Jadeja,1998-07-19,pool_2026,DOB + name
+Vishwanath Pratap Singh,,,Vishwanath Pratap Singh,1998-06-18,auction_2024;auction_2025,
+Vivek Singh,a446c7be,dob,Vivek Singh,1993-11-01,auction_2023,DOB + name
+Vivrant Sharma,1b7b0fa7,dob,Vivrant Sharma,1999-10-30,auction_2023;auction_2024;auction_2025;pool_2026,DOB + name; squad 2023 SRH
+Viyaskanth Vijayakanth,03a83c50,dob,Viyaskanth Vijayakanth,2001-12-05,pool_2026,DOB + name
+Vyshak Vijay Kumar,54e52590,dob,Vyshak Vijay Kumar,1997-01-31,auction_2023;retained_2024,DOB + name; squad 2023 RCB
+Vyshak Vijaykumar,54e52590,dob,Vyshak Vijaykumar,1997-01-31,auction_2025;retained_2026,DOB + name; squad 2025 PBKS
+Wahidullah Zadran,c6cc27f4,dob,Wahidullah Zadran,2007-11-15,pool_2026,DOB + name
+Wanindu Hasaranga,a97c8ec2,dob,Wanindu Hasaranga,1997-07-29,auction_2022;auction_2024;auction_2025;pool_2026,DOB + name; squad 2022 RCB
+Waqar Salamkheil,3f1066d0,dob,Waqar Salamkheil,2001-10-02,auction_2025,DOB + name
+Waseem Bashir,,,Waseem Bashir,2000-01-20,auction_2024,
+Waseem Khanday,,,Waseem Khanday,2000-01-20,auction_2023;pool_2026,
+Washington Sundar,f19ccfad,dob,Washington Sundar,1999-10-05,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 SRH
+Wayne Parnell,3a60e0b5,dob,Wayne Parnell,1989-07-30,auction_2023;auction_2024;auction_2025,DOB + name
+Wesley Agar,15de1f5d,dob,Wesley Agar,1997-02-05,auction_2024;pool_2026,DOB + name
+Wiaan Mulder,c96f6ac5,dob,Wiaan Mulder,1998-02-19,auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 SRH
+Will Jacks,9caf69a1,dob,Will Jacks,1998-11-21,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2024 RCB
+Will Smeed,4e18e961,dob,Will Smeed,2001-10-26,auction_2023,DOB + name
+Will Young,8afe73e2,dob,Will Young,1992-11-22,auction_2025,DOB + name
+William O'Rourke,cb9b8664,dob,William O'Rourke,2001-08-06,auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 LSG
+William Orourke,cb9b8664,dob,William Orourke,2001-08-06,auction_2024;auction_2025;pool_2026,DOB + name; squad 2025 LSG
+William Salzmann,,,William Salzmann,2003-11-19,auction_2024,
+William Sutherland,bc2d4f2e,dob,William Sutherland,1999-10-27,auction_2025;pool_2026,DOB + name
+Wriddhiman Saha,fe11caa6,dob,Wriddhiman Saha,1984-10-24,auction_2022;retained_2024,DOB + name; squad 2022 GT
+Writtick Chatterjee,a00e1842,dob,Writtick Chatterjee,1992-09-28,auction_2022;auction_2023;auction_2024;auction_2025,DOB + name
+Xavier Bartlett,3b53243a,dob,Xavier Bartlett,1998-12-17,auction_2025;retained_2026,DOB + name; squad 2025 PBKS
+Yajas Sharma,,,Yajas Sharma,2005-08-21,auction_2025,
+Yash Dabas,,,Yash Dabas,2004-12-08,auction_2025,
+Yash Dayal,7210d461,dob,Yash Dayal,1997-12-13,auction_2022;auction_2024;retained_2026,DOB + name; squad 2022 GT
+Yash Dhull,dd7e9b3b,dob,Yash Dhull,2002-11-11,auction_2022;auction_2025;pool_2026;retained_2024,DOB + name; squad 2023 DC
+Yash Dicholkar,,,Yash Dicholkar,1996-07-15,pool_2026,
+Yash Kothari,c2aaa4be,dob,Yash Kothari,1995-10-06,auction_2023,DOB + name
+Yash Raj Punja,,,Yash Raj Punja,2006-01-26,pool_2026,
+Yash Thakur,4b31f3a3,dob,Yash Thakur,1998-12-28,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 LSG
+Yashaswi Jaiswal,6c19c6e5,squad,Yashaswi Jaiswal,,retained_2024;retained_2026,squad 2023 RR
+Yashovardhan Singh,,,Yashovardhan Singh,2002-08-21,auction_2023,
+Yashvardhan Dalal,,,Yashvardhan Dalal,2005-07-20,pool_2026,
+Yeddala Reddy,,,Yeddala Reddy,1999-12-13,auction_2025,
+Yudhvir Charak,4885bbe6,dob,Yudhvir Charak,1997-09-13,auction_2023;auction_2025;retained_2024;retained_2026,DOB + name; squad 2023 LSG
+Yuvraj Chaudhary,1730e08e,dob,Yuvraj Chaudhary,2001-10-06,auction_2025;pool_2026,DOB + name
+Yuvraj Chudasama,20666746,dob,Yuvraj Chudasama,1995-11-23,auction_2023;auction_2024;auction_2025,DOB + name
+Yuzvendra Chahal,57ee1fde,dob,Yuzvendra Chahal,1990-07-23,auction_2022;auction_2025;retained_2024;retained_2026,DOB + name; squad 2022 RR
+Zahir Khan Pakten,786b7fe8,dob,Zahir Khan Pakten,1998-12-20,auction_2025,DOB + name
+Zak Foulkes,30f92334,dob,Zak Foulkes,2002-06-05,auction_2025;pool_2026,DOB + name
+Zeeshan Ansari,36619795,dob,Zeeshan Ansari,1999-12-16,auction_2025;retained_2026,DOB + name; squad 2025 SRH

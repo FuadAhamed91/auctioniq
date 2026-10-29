@@ -1,0 +1,148 @@
+# AuctionIQ: the one config file. Every weight the model and the agents use lives here.
+
+[data]
+# No peeking: the 2026 simulation sees only matches dated before this day.
+cutoff = "2025-12-16"
+# Older matches are dropped; recency weighting makes them negligible anyway.
+history_start = "2017-01-01"
+cricsheet = "https://cricsheet.org/downloads/"
+register = "https://cricsheet.org/register/"
+player_meta_rda = "https://github.com/robjhyndman/cricketdata/raw/master/data/player_meta.rda"
+
+# Cricsheet archive code -> competition label. Men's T20 only; The Hundred is skipped.
+[data.competitions]
+ipl = "IPL"
+t20s = "T20I"
+sma = "SMAT"
+bbl = "BBL"
+psl = "PSL"
+cpl = "CPL"
+sat = "SA20"
+ilt = "ILT20"
+mlc = "MLC"
+bpl = "BPL"
+lpl = "LPL"
+ntb = "T20 Blast"
+ssm = "Super Smash"
+
+# Candidate home grounds per team; each is weighted by IPL games hosted in the last season.
+[home]
+CSK = ["MA Chidambaram Stadium"]
+DC = ["Arun Jaitley Stadium", "Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium"]
+GT = ["Narendra Modi Stadium"]
+KKR = ["Eden Gardens"]
+LSG = ["Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium"]
+MI = ["Wankhede Stadium"]
+PBKS = ["Maharaja Yadavindra Singh International Cricket Stadium", "Punjab Cricket Association IS Bindra Stadium", "Himachal Pradesh Cricket Association Stadium"]
+RCB = ["M Chinnaswamy Stadium"]
+RR = ["Sawai Mansingh Stadium", "Barsapara Cricket Stadium"]
+SRH = ["Rajiv Gandhi International Stadium"]
+
+[skills]
+half_life_days = 730          # recency weight halves every two years
+re_window = 4                 # run expectancy: cells smoothed over +-4 balls
+re_prior = 30                 # ...and shrunk toward the fitted curve by 30 weighted innings
+venue_prior_balls = 3000      # shrinks a venue's park factor toward its competition average
+league_min_balls = 60         # a player bridges two competitions with at least this many balls in each
+league_prior_balls = 3000     # shrinks a league offset toward the pooled non-IPL offset
+start_balls = 10              # "start speed" looks at a batter's first 10 balls
+pct_min_balls = 300           # percentiles are taken against regulars with this many balls
+k_min_balls = 500             # shrinkage strength is estimated from players with this many balls
+z_min_balls = 100             # start speed and matchups are standardised on players with this many balls
+
+[roles]
+bowler_balls_per_match = 9    # 1.5 overs a game makes a bowling option
+batter_balls_per_match = 8    # 8 balls a game makes a batting option
+max_bat_pos = 7               # ...batting at 7 or higher
+ar_bat_balls_per_match = 12   # an all-rounder facing 12 balls a game has a batting second role
+opener_pp_share = 0.5         # half his balls in the powerplay -> powerplay opener
+finisher_death_share = 0.33   # a third of his balls at the death -> finisher
+finisher_min_pos = 4          # ...or a middle-order hitter: batting at 4 or lower
+finisher_min_sr = 145         # ...with a strike rate of at least 145
+second_role_share = 0.3       # a second phase with this share becomes the second role
+min_balls = 60                # below this a role comes from the listed playing role
+
+# Auction rules (verified in docs/RULES.md). Money in lakhs: 100 = ₹1 Cr.
+[rules]
+increments = [[100, 5], [200, 10], [500, 20], [1000000, 25]]  # [band upper bound, step]: bids are multiples of the step
+min_squad = 18
+max_squad = 25
+max_overseas = 8
+overseas_fee_cap = 1800       # an overseas player keeps at most ₹18 Cr; the rest goes to the BCCI
+reserve_per_slot = 30         # purse kept back for every minimum slot still unfilled
+
+# Auctions. Simulated ones train only on earlier auctions; accelerated_from = first list
+# number of the accelerated round. Procedure and sources: docs/AUCTION.md.
+[auction.2023]
+date = "2022-12-23"
+kind = "mini"
+
+[auction.2024]
+date = "2023-12-19"
+kind = "mini"
+train = [2023]
+accelerated_from = 71         # the first 70 names (10 sets) are called in set order
+# Lowest base price was ₹20 L. The published ladder says ₹25 L steps above ₹5 Cr, but every 2024
+# sale price between ₹5 Cr and ₹10 Cr is a multiple of ₹20 L (Head ₹6.80 Cr), so we follow the prices.
+rules = { reserve_per_slot = 20, increments = [[100, 5], [200, 10], [1000, 20], [1000000, 25]] }
+
+[auction.2025]
+date = "2024-11-24"
+kind = "mega"
+
+[auction.2026]
+date = "2025-12-16"
+kind = "mini"
+city = "Abu Dhabi"
+train = [2023, 2024, 2025]
+accelerated_from = 71         # "after player No. 70" (docs/AUCTION.md)
+rules = { reserve_per_slot = 30, increments = [[100, 5], [200, 10], [500, 20], [1000000, 25]] }
+
+[value]
+ridge = 16                   # ridge penalty on standardised coefficients
+em_iterations = 200
+
+[needs]
+template_seasons = 3          # squad template = average role mix of IPL squads over 3 seasons
+second_role = 0.5             # a second role counts half
+upgrade_weight = 0.6          # an upgrade counts this much next to a depth gap
+upgrade_cap = 1.0             # an upgrade of one standard deviation counts in full
+keeper_weight = 0.5
+matchup_weight = 0.4          # lineup weaknesses (batting vs a bowler type, no left-arm pace)
+weakness_cap = 0.5            # a lineup weakness of half a standard deviation counts in full
+start_weight = 0.5            # start speed's share of an opener's or finisher's batting quality
+gate = 0.15                   # need score that opens the bid gate
+core = 7                      # a lineup weakness is judged on the team's seven best batters
+fast_start_z = 1.0            # "fast starter" tag: start speed one standard deviation above regulars
+fill = 0.3                    # in the last accelerated round, an open slot makes any player this much of a need
+
+[agents]
+need_floor = 0.7              # need multiplier = floor + slope x min(need, cap)
+need_slope = 0.4
+need_cap = 1.5
+scarcity_alpha = 0.0          # scarcity = ((demand + 1) / (supply + 1)) ^ alpha
+scarcity_comparable = 0.6     # supply counts players worth at least 60% of this one
+scarcity_range = [0.8, 1.4]
+pressure_beta = 1.1           # pressure = (purse per open slot / auction average) ^ beta
+pressure_range = [0.5, 1.6]
+home_weight = 0.5             # home fit multiplier = 1 + weight x fit
+home_fit_cap = 0.2
+home_scale = 0.2              # fit per run-per-over of spin edge
+style_prior = 5               # shrinks a team's past over/under-payment toward neutral
+style_range = [0.85, 1.2]
+market_share = 1.0            # share of the value model's error drawn once per player per run, shared by all teams
+noise_sigma = 0.3            # each team's own lognormal noise on its walk-away price
+need_only_multiple = 3.0      # need-only bidders (ablation) value a player at this many times base
+entry_spread = 0.6            # a team joins a bidding war at a random point up to 60% of the way to its walk-away
+duel = 0.85                   # chance the team just outbid answers straight back (replay realism; no effect on price)
+
+[montecarlo]
+runs = 1000
+seed = 20251216
+featured = 6                  # runs kept per player for "Show another run"
+
+# Factors used for the 2026 run. Each was kept only if it beat the simulation's own noise on the
+# 2024 back-test (needs did; matchups, start speed and home fit did not).
+# Evidence and the tuned weights: analysis/out/validation_2024.json.
+[model]
+factors = ["needs"]

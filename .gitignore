@@ -1,0 +1,10 @@
+.cache/
+data/raw/
+engine/out/logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+web/dist/
+.claude/
+blender/preview.png

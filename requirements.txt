@@ -1,0 +1,4 @@
+numpy==2.3.4
+pandas==2.3.3
+pyreadr==0.5.3   # only for the one-time player_meta export in pipeline.fetch
+pytest==8.4.2    # tests
