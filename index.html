@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>AuctionIQ · The IPL 2026 mini-auction, simulated 1,000 times</title>
+    <meta name="description" content="Replay the IPL 2026 mini-auction as simulated 1,000 times by rule-based franchise agents, using only what was known on the morning of 16 Dec 2025. Unofficial — not affiliated with the IPL or BCCI." />
+    <meta name="theme-color" content="#F7F6F2" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" />
+    <script type="module" crossorigin src="./assets/index-B0G4mRds.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-aGIh-XgD.css">
+  </head>
+  <body>
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <span class="logo logo-xl" role="img" aria-label="AuctionIQ"><span class="logo-word" aria-hidden="true">AuctionI</span><svg class="logo-q" viewBox="0 0 130 100" aria-hidden="true"><ellipse cx="45" cy="50" rx="36" ry="38" fill="none" stroke="currentColor" stroke-width="16"/><g class="logo-paddle"><circle cx="111" cy="43" r="15" stroke-width="7"/><path d="M68 79 L101 52" stroke-width="10.5" stroke-linecap="round"/></g></svg></span>
+        <div class="loader-bar" aria-hidden="true"><i id="loader-fill"></i></div>
+        <p class="loader-msg" id="loader-msg">Loading the auction room…</p>
+      </div>
+    </div>
+
+    <div class="app" id="app" aria-hidden="true">
+      <header class="top">
+        <a class="brand" href="./" id="brand" aria-label="AuctionIQ — restart"></a>
+        <p class="event-line" id="event-line"></p>
+        <div class="top-actions">
+          <button class="search-btn" id="search-btn" type="button" aria-label="Search players (/)">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.75"/><path d="M13 13l4.25 4.25"/></svg>
+            <span class="search-label">Search players</span><kbd>/</kbd>
+          </button>
+          <div class="run-chip" id="run-chip" aria-live="polite"></div>
+          <button class="btn btn-quiet" id="another-run" type="button" title="Show another run (N)">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 7.5A6 6 0 1 0 16 12"/><path d="M16 3.5v4h-4"/></svg>
+            <span>Show another run</span><kbd>N</kbd>
+          </button>
+          <button class="icon-btn" id="about-btn" type="button" aria-label="About the method" title="About the method">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v5"/><circle cx="10" cy="6.4" r=".6" class="fill"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="layout" id="layout" data-tab="lot">
+        <section class="col col-left" aria-label="Current lot">
+          <article class="panel lot-card" id="lot-card" data-tabpanel="lot"></article>
+          <section class="panel ladder" id="ladder" data-tabpanel="bids" aria-label="Bid ladder"></section>
+        </section>
+
+        <section class="stage" id="stage" aria-label="Auction room">
+          <div class="room" id="room"></div>
+          <div class="stage-hud" id="stage-hud"></div>
+          <div class="controls" id="controls"></div>
+        </section>
+
+        <section class="col col-right" id="col-right" aria-label="Across all runs">
+          <section class="panel stats" id="stats" data-tabpanel="runs"></section>
+          <aside class="team-panel" id="team-panel" aria-label="Team decision" hidden></aside>
+        </section>
+
+        <nav class="tabs" id="tabs" aria-label="Panels">
+          <button type="button" data-tab="lot" aria-pressed="true">Lot</button>
+          <button type="button" data-tab="bids" aria-pressed="false">Bids</button>
+          <button type="button" data-tab="runs" aria-pressed="false">1,000 runs</button>
+        </nav>
+      </main>
+
+      <section class="purse-strip" id="purse-strip" aria-label="Team purses"></section>
+
+      <footer class="foot">
+        <span id="foot-data"></span>
+        <span>Unofficial — not affiliated with the IPL or BCCI.</span>
+      </footer>
+    </div>
+
+    <div id="overlays"></div>
+    <div class="sr-only" id="announcer" aria-live="polite"></div>
+  </body>
+</html>
