@@ -74,7 +74,9 @@ The app never computes model numbers itself; it only replays and formats them.
                "ci":    { "mae": [0.56, 1.05] },             // bootstrap 95% interval per metric
                "delta": { "mae": [-0.044, -0.09, 0.0] } }],  // vs the model it would replace: [diff, lo, hi], paired bootstrap
     "kept": ["needs", "matchups"], "dropped": ["start speed", "home fit"], "factors": ["matchups", "needs"],
-    "needHit": { "est": 0.76, "n": 72 },                // share of real buys where the buyer had a pre-auction need
+    "needHit": { "est": 0.89, "base": 0.84, "top3": 0.45, "n": 72 },  // pre-auction needs vs real buyers (no simulation):
+                                                        // est = buyer's gate open, base = any team's gate open for the
+                                                        // same players, top3 = buyer among the three neediest teams
     "points": []                                        // see "Added fields (v2)"
   }
 }
@@ -93,6 +95,12 @@ buyer had a pre-auction need for the player. `kept` is null for the baseline and
 // meta.validation also carries the 2024 back-test, one row per player in the 2024 list:
 "points": [{ "name": "Mitchell Starc", "sold": true, "price": 2475,   // real 2024 outcome (null if unsold)
              "median": 1450, "p10": 900, "p90": 2300, "pSold": 0.97 }], // simulated with pre-auction data only
+// meta.validation.valueBacktests: the value model alone on past auctions, each fitted only on earlier
+// auctions of the same kind (no simulation). loglik: censored log-likelihood per player; mae / spearman:
+// natural-log price error and rank correlation of the median price given a sale (sold players);
+// auc: how well the chance of a sale separates sold from unsold
+"valueBacktests": [{ "auction": 2025, "kind": "mega", "train": [2022], "n": 577, "n_sold": 182,
+                     "loglik": -0.633, "mae": 0.590, "spearman": 0.856, "auc": 0.872 }],
 // meta.highlights: auction-at-a-glance lists of player ids, computed from the 1,000 runs
 "highlights": {
   "contested": [[12, 6.2]],   // most wanted: [id, average number of teams ready to pay at least his base]

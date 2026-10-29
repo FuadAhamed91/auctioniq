@@ -39,7 +39,7 @@ def test_2026_pool_carries_no_results():
     assert pool.lot_no.is_unique and (pool.base_lakh >= 30).all()
 
 
-@pytest.mark.parametrize("year", [2023, 2024, 2025])
+@pytest.mark.parametrize("year", [2022, 2023, 2024, 2025])
 def test_past_auction_prices_sit_on_the_ladder(year):
     a = pd.read_csv(AUC / f"auction_{year}.csv")
     sold = a[(a.status == "sold") & (a.price_lakh > a.base_lakh)]
@@ -48,6 +48,21 @@ def test_past_auction_prices_sit_on_the_ladder(year):
     for price in sold.price_lakh.astype(int):
         step = next(s for up_to, s in bands if price <= up_to)
         assert price % step == 0, (year, price)
+
+
+def test_2022_mega_auction_is_complete():
+    """The 2022 file holds the whole auction-day pool, sold and unsold, with the official totals."""
+    a = pd.read_csv(AUC / "auction_2022.csv")
+    sold = a[a.status == "sold"]
+    assert (len(a), len(sold), int(sold.price_lakh.sum()), int(sold.overseas.sum())) == (600, 204, 55170, 67)
+    assert a.lot_no.tolist() == list(range(1, 601))
+
+
+def test_value_models_learn_only_from_earlier_auctions_of_the_same_kind():
+    """Mega and mini auctions price players differently, so their data are never mixed."""
+    for year, a in CFG["auction"].items():
+        for y in a.get("train", []):
+            assert y < int(year) and CFG["auction"][str(y)]["kind"] == a["kind"], (year, y)
 
 
 def test_only_the_comparison_script_reads_2026_results():

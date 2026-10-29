@@ -13,7 +13,7 @@ captures; the capture timestamp is part of each link. PDFs were converted with `
 
 | Auction | File (capture) | Gave |
 |---|---|---|
-| 2022 | [IPL2022PlayerAuction_List_Sets.pdf](https://web.archive.org/web/20241102102010/https://documents.iplt20.com/documents/IPL/document/2022/02/IPL2022PlayerAuction_List_Sets.pdf), list of 01.02.2022 (590 players) | base price, list no., DOB of the 2022 players (`auction_2022.csv`); set boundaries in RULES.md |
+| 2022 | [IPL2022PlayerAuction_List_Sets.pdf](https://web.archive.org/web/20241102102010/https://documents.iplt20.com/documents/IPL/document/2022/02/IPL2022PlayerAuction_List_Sets.pdf), list of 01.02.2022 (590 players) | same fields as 2023 (`auction_2022.csv`); set boundaries in RULES.md |
 | 2023 | [TATA IPL 2023 Player Auction List.pdf](https://web.archive.org/web/20221213233047/https://documents.bcci.tv/bcci/documents/1670855906324_TATA%20IPL%202023%20Player%20Auction%20List.pdf), list of 12.12.2022 (405) | list no., set no./code, name, country, C/U/A, role, base, DOB, age, bat/bowl style, Test/ODI/T20I/IPL caps |
 | 2024 | [IPL 2024 Auction List- 11.12.23.pdf](https://web.archive.org/web/20250503045038/https://documents.iplt20.com/bcci/documents/1702300206581_IPL%202024%20Auction%20List-%2011.12.23.pdf) (333) | same fields |
 | 2025 | [TATA IPL 2025- Auction List with RTM -19.11.24.pdf](https://web.archive.org/web/20241122082227/https://documents.iplt20.com/bcci/documents/1732248356511_TATA%20IPL%202025-%20Auction%20List%20with%20RTM%20-19.11.24.pdf) (577 = 574 of [15.11.24](https://web.archive.org/web/20241115135058/https://documents.iplt20.com/bcci/documents/1731674068078_TATA%20IPL%202025-%20Auction%20List%20-15.11.24.pdf) + 3 additions) | same fields (+ RTM franchise, not used) |
@@ -68,9 +68,10 @@ unsold tables.
   `bowling_style` (blank where the list prints "-"), `test_caps`, `odi_caps`, `t20i_caps`,
   `ipl_caps` exactly as printed (blank where the list is blank; the four caps columns exist in all
   three lists). `role` maps the list's BATSMAN to BATTER. `capped` is the list's C/U/A in lower case.
-- **auction_2022.csv** – the 204 sold players (sold table of the page), with base price from the
-  pre-auction page and DOB/list number from the 01.02.2022 list. All 10 players added after that
-  list went unsold, so every sold row has a list number.
+- **auction_2022.csv** – same columns and rules as 2023–2025: the 600-player auction-day pool (590
+  from the 01.02.2022 list, then the 10 added after it, in the order of the pre-auction page), sold
+  and unsold. The 10 additions went unsold and carry only what the page shows (name, overseas, role,
+  base price). 204 sold, ₹551.70 Cr, 67 overseas, as on the post-auction page.
 - **pool_2026.csv** – the final 369-player list (S12 in RULES.md), in list order; `team_2025` and
   `ipl_2025_matches` are the list's "2025 Team" / "2025 IPL" columns (the 2026 list has no
   "previous teams" column); `ipl_caps` is the list's "IPL" column.

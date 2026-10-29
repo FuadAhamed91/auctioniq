@@ -80,7 +80,7 @@ def prev_prices(year: int) -> pd.DataFrame:
             if "status" in a:
                 a = a[a.status.eq("sold")]
             rows.append(a.assign(year=y, cid=cricsheet_ids(a, f"auction_{y}"))[["name", "team", "price_lakh", "year", "cid"]])
-    p = pd.concat(rows)
+    p = pd.concat(rows) if rows else pd.DataFrame(columns=["name", "team", "price_lakh", "year", "cid"])
     p["key"] = p.cid.fillna(p.name)
     return p.sort_values("year").groupby("key").last()
 
@@ -160,7 +160,7 @@ def value_frame(df: pd.DataFrame, year: int, factors: set) -> pd.DataFrame:
     """Value-model features for an auction list already run through profile()."""
     prev = prev_prices(year)
     key = df.cid.fillna(df.name)
-    pp = prev.price_lakh.reindex(key).to_numpy()
+    pp = prev.price_lakh.reindex(key).to_numpy(float)
     main = df.main.to_numpy()
     out = pd.DataFrame(index=df.index)
     out["log_base"] = np.log(df.base_lakh)
@@ -186,6 +186,10 @@ def value_frame(df: pd.DataFrame, year: int, factors: set) -> pd.DataFrame:
     ipl = df.ipl_caps.fillna(df.ipl_matches) if "ipl_caps" in df else df.ipl_matches
     out["ipl_exp"] = np.log1p(ipl)
     out["start_z"] = np.where(np.isin(main, needs.BAT + needs.AR), df.start_z, 0.0)
+    # how far down the official list his set comes (published a week before): sets are called in
+    # list order, and after the first few only the players a franchise asks for are called
+    setn = df.set_no.fillna(df.set_no.max() + 1)  # late additions without a set come last
+    out["set_pos"] = setn / setn.max()
     out["prev_price"] = pp
     return out.astype({c: float for c in out.columns})
 
@@ -200,7 +204,6 @@ def training(years: list[int], factors: set) -> pd.DataFrame:
         sold = a.status.eq("sold").to_numpy()
         f["y"] = np.where(sold, np.log(a.price_lakh.where(sold, 1)), np.log(a.base_lakh)) - mps
         f["sold"] = sold
-        f["mega"] = float(CFG["auction"][str(y)]["kind"] == "mega")
         f["team"] = a.team.where(sold)
         f["year"] = y
         frames.append(f)
@@ -208,9 +211,10 @@ def training(years: list[int], factors: set) -> pd.DataFrame:
 
 
 def fit_value(year: int, factors: set, ridge: float | None = None) -> tuple[ValueModel, pd.DataFrame]:
+    """Fitted on the earlier auctions of the same kind (config `train`): mega and mini auctions
+    price players differently, so they are never mixed."""
     train = training(CFG["auction"][str(year)]["train"], factors)
-    cols = features(factors) + (["mega"] if train.mega.nunique() > 1 else [])
-    model = ValueModel(cols, CFG["value"]["ridge"] if ridge is None else ridge).fit(train)
+    model = ValueModel(features(factors), CFG["value"]["ridge"] if ridge is None else ridge).fit(train)
     return model, train
 
 
@@ -219,7 +223,7 @@ def team_styles(model: ValueModel, train: pd.DataFrame) -> dict[str, float]:
     against model value, shrunk. (Every buyer pays above the model's mean - that is why the
     player sold - so residuals are compared with the average buyer's, not with zero.)"""
     sold = train[train.sold].copy()
-    sold["resid"] = sold.y - model.predict(sold.assign(mega=sold.get("mega", 0)), 0).value_mu
+    sold["resid"] = sold.y - model.predict(sold, 0).value_mu
     sold["resid"] -= sold.resid.mean()
     g = sold.groupby("team").resid.agg(["sum", "size"])
     style = np.exp(g["sum"] / (g["size"] + A["style_prior"]))
@@ -239,7 +243,7 @@ def build(year: int, factors: set, mode: str = "value", ridge: float | None = No
     pool["lot"] = np.arange(1, len(pool) + 1)  # call order; list numbers decide the accelerated rounds
     pool["set_no"] = pool.set_no.fillna(pool.set_no.max() + 1)  # late additions without a set come last
     prof = profile(pool, asof, factors)
-    vf = value_frame(prof, year, factors).assign(mega=0.0)
+    vf = value_frame(prof, year, factors)
     vals = model.predict(vf, np.log(market(year)))
     styles = team_styles(model, train)
 

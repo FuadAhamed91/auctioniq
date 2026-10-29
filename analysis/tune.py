@@ -1,11 +1,15 @@
 """Tune the agent weights and run the ablation on the 2024 mini-auction, using only what was
 known before it: skills as of 19 Dec 2023, and a value model and team styles fitted on the 2023
-auction alone. The real 2024 results are the target, so these are tuning-set numbers; the honest
-out-of-sample test is the 2026 comparison.
+mini-auction (mega auctions are never mixed in). The real 2024 results are the target, so these are
+tuning-set numbers; the honest out-of-sample test is the 2026 comparison.
+
+The value model is also checked on its own, before any simulation, on the 2024 mini-auction and on
+the 2025 mega auction (fitted on the 2022 mega auction); its ridge penalty is chosen on 2024.
 
     python -m analysis.tune            # writes analysis/out/validation_2024.json
 """
 import json
+from statistics import NormalDist
 
 import numpy as np
 import pandas as pd
@@ -15,16 +19,18 @@ from config import CFG, ROOT
 from engine import inputs, montecarlo as mc, needs
 
 YEAR = 2024
+BACKTESTS = [2024, 2025]  # value model alone, each fitted on the earlier auctions of its kind
+STD = NormalDist()
 OUT = ROOT / "analysis" / "out"
 ALL = {"needs", "matchups", "start_speed", "home_fit"}
-FACTORS = ["needs", "matchups", "start_speed", "home_fit"]
+FACTORS = ["needs", "matchups", "start_speed", "home_fit"]  # needs first: the core, then the add-ons
 LABELS = {"needs": "needs", "matchups": "matchups", "start_speed": "start speed", "home_fit": "home fit"}
 SEARCH = {  # coordinate search; each range brackets the weight's plausible values
     "market_share": [0.6, 0.8, 1.0],
-    "noise_sigma": [0.05, 0.15, 0.3],
-    "pressure_beta": [0.2, 0.5, 0.8, 1.1],
+    "noise_sigma": [0.05, 0.15, 0.3, 0.45],
+    "pressure_beta": [0.2, 0.5, 0.8, 1.1, 1.4],
     "scarcity_alpha": [0.0, 0.1, 0.25],
-    "need_slope": [0.4, 0.8, 1.2],
+    "need_slope": [0.2, 0.4, 0.8, 1.2],
 }
 
 
@@ -38,14 +44,20 @@ def predictions(ctx: dict, runs: int, start: int = 0) -> pd.DataFrame:
     return s
 
 
-def need_hits(ctx: dict, teams: pd.Series) -> np.ndarray:
-    """Whether each real buyer had a pre-auction need for his player (needs model, all factors)."""
-    hits = np.zeros(len(teams), bool)
-    for spec in ctx["teams"]:
-        sq = needs.Squad(spec["squad"], ctx["P"], ctx["tmpl"], ctx["keep_tmpl"], ALL)
-        mine = teams.eq(spec["code"]).to_numpy()
-        hits[mine] = sq.needs(np.arange(ctx["n_pool"]))[0][mine] >= CFG["needs"]["gate"]
-    return hits
+def need_check(ctx: dict, act: pd.DataFrame) -> dict:
+    """How well pre-auction needs (all factors, no simulation) point at the real buyers. est: share
+    of real buys where the buyer's need opened its bid gate; base: share of all teams whose gate was
+    open for the same players; top3: how often the buyer was among the three neediest teams (ties
+    share the credit; 30% by chance)."""
+    sold = act.sold.to_numpy()
+    need = np.array([needs.Squad(s["squad"], ctx["P"], ctx["tmpl"], ctx["keep_tmpl"], ALL)
+                     .needs(np.arange(ctx["n_pool"]))[0][sold] for s in ctx["teams"]])
+    codes = [s["code"] for s in ctx["teams"]]
+    buyer = np.array([codes.index(t) for t in act.team[sold]])
+    gate = need >= CFG["needs"]["gate"]
+    top3 = [metrics.top3_hit(need[:, j], codes[b]) for j, b in enumerate(buyer)]
+    return {"est": round(float(gate[buyer, np.arange(len(buyer))].mean()), 3),
+            "base": round(float(gate.mean()), 3), "top3": round(float(np.mean(top3)), 3), "n": int(sold.sum())}
 
 
 def actuals(ctx: dict) -> pd.DataFrame:
@@ -64,20 +76,36 @@ def baselines(ctx: dict, year: int) -> dict[str, pd.DataFrame]:
             "Last IPL price": pd.DataFrame({"p_sold": prev.fillna(0), "median": last, "p10": last, "p90": last})}
 
 
+def value_check(year: int, ridge: float) -> dict:
+    """The value model alone on one past auction. loglik: censored log-likelihood per player (a sold
+    player scores the density of his price, an unsold one the chance his price fell short of his
+    base); on the sold, the error and rank correlation of the median price given a sale; and how
+    well the chance of a sale separates sold from unsold."""
+    model, _ = inputs.fit_value(year, set(), ridge)
+    pool = inputs.auction_list(year).sort_values("lot_no", kind="stable").reset_index(drop=True)
+    frame = inputs.value_frame(inputs.profile(pool, inputs.date_of(year), set()), year, set())
+    mu = model.predict(frame, np.log(inputs.market(year))).value_mu.to_numpy()
+    s, sold = model.sigma, pool.status.eq("sold").to_numpy()
+    short = np.array([STD.cdf(z) for z in (np.log(pool.base_lakh.to_numpy(float)) - mu) / s])  # P(unsold)
+    log_price = np.log(pool.price_lakh.where(sold, 1).to_numpy(float))
+    ll = np.where(sold, -0.5 * ((log_price - mu) / s) ** 2 - np.log(s * np.sqrt(2 * np.pi)),
+                  np.log(np.maximum(short, 1e-300)))
+    median = mu + s * np.array([STD.inv_cdf(min(p, 1 - 1e-12)) for p in (1 + short) / 2])
+    return {"auction": year, "kind": CFG["auction"][str(year)]["kind"],
+            "train": CFG["auction"][str(year)]["train"], "n": int(len(pool)),
+            "n_sold": int(sold.sum()), "loglik": round(float(ll.mean()), 4),
+            "mae": round(float(np.mean(np.abs(log_price[sold] - median[sold]))), 4),
+            "spearman": round(metrics.spearman(log_price[sold], median[sold]), 4),
+            "auc": round(metrics.auc(1 - short, sold), 4)}
+
+
 def tune_ridge() -> tuple[float, list]:
-    """Pick the value model's ridge penalty by its own 2024 price error (no simulation)."""
-    pool = inputs.auction_list(YEAR)
-    sold = pool.status.eq("sold").to_numpy()
-    prof = inputs.profile(pool, inputs.date_of(YEAR), ALL)
-    frame = inputs.value_frame(prof, YEAR, ALL).assign(mega=0.0)
+    """Pick the value model's ridge penalty by its censored log-likelihood on 2024 (no simulation)."""
     rows = []
-    for lam in (0.5, 1, 2, 4, 8, 16, 32, 64):
-        model, _ = inputs.fit_value(YEAR, ALL, lam)
-        mid = model.predict(frame, np.log(inputs.market(YEAR))).value_mid.to_numpy()
-        mae = float(np.mean(np.abs(np.log(pool.price_lakh.to_numpy()[sold]) - np.log(mid[sold]))))
-        rows.append({"ridge": lam, "mae": round(mae, 4)})
-        print(f"ridge {lam:>5}: value-model MAE {mae:.3f}", flush=True)
-    return min(rows, key=lambda r: r["mae"])["ridge"], rows
+    for lam in (2, 4, 8, 16, 32, 64):
+        rows.append({"ridge": lam, "loglik": value_check(YEAR, lam)["loglik"]})
+        print(f"ridge {lam:>3}: log-likelihood {rows[-1]['loglik']:.4f}", flush=True)
+    return max(rows, key=lambda r: r["loglik"])["ridge"], rows
 
 
 def objective(m: dict) -> float:
@@ -124,14 +152,18 @@ def beyond_noise(delta: dict, noise: dict) -> bool:
             or (d_top3 > noise["top3"] and d_mae < noise["mae"]))
 
 
-def seed_noise(ctx: dict, runs: int, act: pd.DataFrame, blocks: int = 3) -> dict:
-    """How much the metrics move between independent blocks of runs of the same model (2 sd)."""
+def seed_noise(ctx: dict, runs: int, act: pd.DataFrame, blocks: int = 6) -> dict:
+    """How much the metrics move between independent blocks of runs of the same model (2 sd). Six
+    blocks: a spread estimated from three swung tenfold between otherwise identical tunings."""
     scores = [metrics.point(predictions(ctx, runs, b * runs), act) for b in range(blocks)]
+    print("seed blocks", [{k: round(s[k], 4) for k in ("mae", "top3")} for s in scores], flush=True)
     return {k: round(2 * float(np.std([s[k] for s in scores], ddof=1)), 4) for k in ("mae", "top3")}
 
 
 def ablation(runs: int) -> tuple[list[dict], set, tuple, dict]:
-    """Forward selection: each factor joins the kept set only if it clearly improves the back-test."""
+    """Forward selection on top of the core. Team needs are the core: they decide which teams bid at
+    all, and need_check() tests them directly against the real buyers. Each add-on joins only if it
+    clearly improves the back-test; value-only and need-only bidders are reported for comparison."""
     def run(label, factors, mode="value"):
         ctx = inputs.build(YEAR, factors, mode)
         pred, act = predictions(ctx, runs), actuals(ctx)
@@ -139,11 +171,11 @@ def ablation(runs: int) -> tuple[list[dict], set, tuple, dict]:
         print(label, {k: round(v["est"], 3) for k, v in row.items() if isinstance(v, dict)}, flush=True)
         return row, (pred, act, ctx)
 
-    best, chosen = run("Value only", set())
+    best, chosen = run("Value + needs", {FACTORS[0]})
     noise = seed_noise(chosen[2], runs, chosen[1])
     print("seed noise (2 sd)", noise, flush=True)
-    rows, kept = [best], set()
-    for f in FACTORS:
+    rows, kept = [best], {FACTORS[0]}
+    for f in FACTORS[1:]:
         row, cand = run("+ " + LABELS[f], kept | {f})
         row["delta"] = metrics.paired(chosen[0], cand[0], cand[1])  # against the model it would replace
         row["kept"] = beyond_noise(row["delta"], noise)
@@ -151,7 +183,8 @@ def ablation(runs: int) -> tuple[list[dict], set, tuple, dict]:
         rows.append(row)
         if row["kept"]:
             kept, chosen = kept | {f}, cand
-    rows.append(run("Need only (no value)", kept | {"needs"}, "need_only")[0])
+    rows.append(run("Without needs", kept - {FACTORS[0]})[0])  # the chosen model, needs off
+    rows.append(run("Need only (no value)", kept, "need_only")[0])
     for name, pred in baselines(chosen[2], YEAR).items():
         rows.append({"model": name, "factors": [], "mode": "baseline", **metrics.evaluate(pred, chosen[1])})
     return rows, kept, chosen, noise
@@ -178,8 +211,6 @@ def main(search_runs: int = 200, runs: int = 800, ablation_only: bool = False) -
         best, log = search(search_runs)
         CFG["agents"].update(best)
     rows, kept, (pred, act, ctx), noise = ablation(runs)
-    sold = act.sold.to_numpy()
-    hits = need_hits(ctx, act.team.where(act.sold, ""))[sold]
     table = [{"model": r["model"], "mode": r["mode"], "n": r["n"], "kept": r.get("kept"),
               "significant95": r.get("significant95"),
               **{k: round(r[k]["est"], 3) for k in metrics.NAMES if k in r},
@@ -189,13 +220,16 @@ def main(search_runs: int = 200, runs: int = 800, ablation_only: bool = False) -
              for r in rows]
     result = {
         "auction": "2024 mini-auction", "note": "tuning set: the weights and factors were chosen on it",
-        "runs": runs, "ridge": ridge, "ridgeScan": ridge_rows, "weights": best, "search": log,
+        "runs": runs, "ridge": ridge, "ridgeScan": ridge_rows,
+        "valueBacktests": [value_check(y, ridge) for y in BACKTESTS],
+        "weights": best, "search": log,
         "rows": table, "factors": sorted(kept), "seedNoise": noise,
-        "rule": "kept if it improves price error or buyer accuracy by more than the seed-to-seed noise "
-                "of the simulation without worsening the other by more; significant95 = the strict paired test",
+        "rule": "needs are the core; an add-on is kept if it improves price error or buyer accuracy by more "
+                "than the seed-to-seed noise of the simulation without worsening the other by more; "
+                "significant95 = the strict paired test",
         "kept": [LABELS[f] for f in FACTORS if f in kept],
         "dropped": [LABELS[f] for f in FACTORS if f not in kept],
-        "needHit": {"est": round(float(hits.mean()), 3), "n": int(sold.sum())},
+        "needHit": need_check(ctx, act),
         "points": points(pred, act, ctx["pool"]["name"]),
     }
     (OUT / "validation_2024.json").write_text(json.dumps(result, indent=1), encoding="utf-8")

@@ -54,9 +54,24 @@ A censored (Tobit) ridge regression on log price, fitted by EM. Sold players giv
 unsold players say only that their price was below their base. Prices are modelled relative to
 the auction's money per open slot. Features: log base price, previous IPL auction price, overseas,
 capped, international caps and career IPL caps (both printed on the official list), age, role group,
-keeper, main-role skill, evidence (and start speed when that factor is on). The ridge penalty is
-chosen by the model's own 2024 price error. The 80% interval is `exp(μ ± 1.2816σ)`. Fitted only on
-earlier auctions: the 2023 auction for the 2024 back-test; 2023–2025 for 2026.
+keeper, main-role skill, evidence, how far down the official list the player's set comes (and start
+speed when that factor is on). Set position matters because sets are called in list order and, after
+the first ten, a player is called only if a franchise asks for him; the list is published about a
+week before the auction. The 80% interval is `exp(μ ± 1.2816σ)`.
+
+**Same kind only.** A mini-auction model learns only from earlier mini auctions and a mega-auction
+model only from earlier mega auctions, because the two are priced differently (whole squads rebuilt,
+far bigger purses, right-to-match cards). For 2026 that is the 2023 and 2024 mini auctions; for the
+2024 back-test, 2023. A mega-auction price still counts as a player's previous price. Mixing the two
+kinds (with an indicator for mega) was tried and changed the back-tests by less than their noise.
+
+**Back-tests of the value model alone.** Before any simulation, the value model is scored on the
+2024 mini auction (fitted on 2023) and the 2025 mega auction (fitted on 2022): censored
+log-likelihood per player (a sold player scores the density of his price, an unsold one the chance
+his price fell short of base), the price error and rank correlation of the median price given a
+sale, and the sold/unsold AUC. The ridge penalty is the one with the best 2024 log-likelihood. Set
+position was kept because it improved both back-tests: sold/unsold AUC 0.70 → 0.79 on 2024 and
+0.80 → 0.87 on 2025.
 
 ## 4. Needs (`engine/needs.py`)
 
@@ -106,16 +121,30 @@ depth gap filled.
 
 ## 8. Tuning and ablation (`analysis/tune.py`)
 
-On the 2024 auction, with only what was known before it: the value model's ridge penalty is chosen by
-its own price error; the agent weights by a coordinate search (200 runs per point, one coordinate pass,
+On the 2024 auction, with only what was known before it (the value model's ridge penalty comes from
+its own back-test in section 3): the agent weights are chosen by a coordinate search (200 runs per point, one coordinate pass,
 common random numbers) minimising price error plus a penalty for 80% ranges that miss 80% coverage.
 
-Then a forward ablation with 800 runs per step. Starting from value only, each factor (needs, matchups,
-start speed, home fit) is kept if it improves price error or buyer accuracy by more than the
-simulation's own seed-to-seed noise (two standard deviations across three independent blocks of runs)
-without making the other worse by more than that. Every step also reports the paired-bootstrap 95%
-interval of its difference. With only 72 sales in 2024, no factor clears the strict 95% test, needs
-included; the table shows those intervals rather than hiding them.
+**Team needs are the core.** They decide which teams bid at all, so they are tested directly
+against the real buyers, with no simulation in between: in 2024 the real buyer was one of the three
+teams with the greatest pre-auction need for the player in 45% of the 72 buys, against 30% by chance
+(about 2.7 standard errors). The need gate itself is permissive (open for 84% of teams on the
+players who sold), so it is the need score, not the gate, that carries this signal. Stricter gates
+(0.3 to 0.8) were tried: buyer accuracy moved by less than the noise and price error got worse.
+
+**Add-ons.** Then a forward ablation with 800 runs per step. Starting from value plus needs, each
+add-on (matchups, start speed, home fit) is kept if it improves price error or buyer accuracy by more
+than the simulation's own seed-to-seed noise (two standard deviations across six independent blocks
+of runs) without making the other worse by more than that. Every step also reports the
+paired-bootstrap 95% interval of its difference. With only 72 sales in 2024, no add-on clears the
+strict 95% test; the table shows those intervals rather than hiding them. The same model without
+needs, and need-only bidders, are reported for comparison.
+
+**Why six blocks, and why needs are not ablated.** With three blocks the noise estimate swung tenfold
+between two otherwise identical tunings, and decisions flipped with it. In the simulation, needs
+added about 3 points of buyer accuracy against 6 points of noise once the value model improved, while
+the direct test above is clear; the agents are built on needs, so they stay, and the table still
+shows the model without them.
 
 Because the weights and factors were chosen on 2024, those numbers are tuning-set fits; the honest
 test is the separate 2026 comparison. Naive baselines (every player at his base price, or at his last
