@@ -1,15 +1,23 @@
 // Playback state machine: player -> featured run -> appearances -> events, on a virtual clock.
+// Two modes: 'auction' plays the list continuously; 'focus' plays one player's lot and stops on its result.
 import { UNSOLD } from './data.js';
+import { feeSplit } from './format.js';
 
-// Durations in ms at 1×; 5× divides them, `min` keeps a real-time floor so results stay readable.
+// Presentation pace, in ms at 1× (Slow doubles every wait, 3× divides it by three). Long bidding wars are
+// slow for their first and last bids and quicker in between; `min` floors are real time, so the key moments
+// stay readable at any speed.
 const T = {
-  intro: 1700, ff: 1200, open: 240, openTail: 700, dropRun: 170, drop: 420,
-  bidFirst: 950, bidMin: 170, bidDecay: 0.88,
-  going: 1200, sold: 3200, unsold: 2400, skipHold: 1600, interstitial: 2100, brk: 1900, never: 2600,
+  intro: 3000, ff: 1200, open: 700, interest: 2600, drop: 1500, dropRun: 1100,
+  bid: 1200, bidQuick: 600, slowFirst: 8, slowLast: 6,
+  going: 3000, sold: 5000, unsold: 4000, focusHold: 2200, skipHold: 1600,
+  interstitial: 3000, brk: 3000, never: 3000,
 };
-const MIN = { going: 380, sold: 1300, unsold: 1000, interstitial: 1000, never: 1200 };
-// Accelerated rounds are rapid-fire on the day: their lots run at this fraction of the normal pace.
+const MIN = { interest: 1200, drop: 700, going: 1100, sold: 2000, unsold: 1600, interstitial: 1500, never: 1500 };
+// Accelerated rounds are rapid-fire on the day: in the continuous auction their lots run at this fraction of
+// the normal pace (a single player in focus keeps the full pace, so his story stays easy to follow).
 const ACCEL = { steps: 0.5, hold: 0.7 };
+const NORMAL = { steps: 1, hold: 1 };
+export const SPEEDS = [0.5, 1, 3];
 
 export function createReplay({ meta, players, store }) {
   const codes = meta.teams.map((t) => t.code);
@@ -21,7 +29,7 @@ export function createReplay({ meta, players, store }) {
     player: null, feature: null, featureIdx: 0, run: null,
     apps: [], appIdx: 0, app: null, logged: true, seq: 0, round: 0,
     econ: [], status: [], price: null, leader: -1, ladder: [], result: null,
-    phase: 'idle', playing: false, speed: 1, error: null,
+    phase: 'idle', playing: false, speed: 1, mode: 'auction', ended: false, error: null,
   };
 
   let queue = [], wait = 0, busy = false, token = 0, outcomes = null, last = performance.now();
@@ -41,6 +49,23 @@ export function createReplay({ meta, players, store }) {
     if (state.playing === on) return;
     state.playing = on;
     emit('playing', on);
+  }
+  function setMode(mode) {
+    if (state.mode === mode) return;
+    state.mode = mode;
+    emit('mode', mode);
+  }
+  function setEnded(on) {
+    if (state.ended === on) return;
+    state.ended = on;
+    emit('ended', on);
+  }
+  /** Focus mode: the player's story is told; stop on the result. */
+  function finish() {
+    queue = [];
+    wait = 0;
+    setPlaying(false);
+    setEnded(true);
   }
 
   // ---- event application (shared by live playback and instant skip) ----
@@ -87,7 +112,8 @@ export function createReplay({ meta, players, store }) {
     state.status[t] = { state: 'won', chip: state.status[t].chip };
     state.leader = t;
     state.price = price;
-    state.result = { type: 'sold', team: t, price };
+    // an overseas player keeps at most the fee cap; the rest of the price goes to the BCCI
+    state.result = { type: 'sold', team: t, price, split: feeSplit(state.player, price, meta.rules?.overseasFeeCap) };
     state.ladder.push({ type: 'sold', team: t, price });
     setPhase('sold');
     emit('step', { type: 'sold', team: t, price, instant });
@@ -102,21 +128,30 @@ export function createReplay({ meta, players, store }) {
     emit('step', { type: 'unsold', text: reason, instant });
   }
 
-  function buildSteps(events, pace) {
+  /** Timed steps for one appearance. A logged lot gets a beat after the gates open to sum up the interest. */
+  function buildSteps(events, pace, logged) {
     const steps = [];
     const k = pace.steps, h = pace.hold;
-    let bids = 0;
+    const totalBids = events.filter((ev) => ev[0] === 'bid').length;
+    let bids = 0, summed = !logged;
     events.forEach((ev, i) => {
       const next = events[i + 1]?.[0];
+      if (ev[0] !== 'open' && !summed) {
+        summed = true;
+        steps.push({ dur: T.interest * k, min: MIN.interest, fn: (inst) => { if (!inst) setPhase('interest'); } });
+      }
       switch (ev[0]) {
         case 'open':
-          steps.push({ dur: (next === 'open' ? T.open : T.openTail) * k, fn: (inst) => applyOpen(ev, inst) });
+          steps.push({ dur: T.open * k, fn: (inst) => applyOpen(ev, inst) });
           break;
-        case 'bid':
-          steps.push({ dur: Math.max(T.bidMin * k, T.bidFirst * k * T.bidDecay ** bids++), fn: (inst) => applyBid(ev, inst) });
+        case 'bid': {
+          const slow = bids < T.slowFirst || bids >= totalBids - T.slowLast;
+          bids += 1;
+          steps.push({ dur: (slow ? T.bid : T.bidQuick) * k, fn: (inst) => applyBid(ev, inst) });
           break;
+        }
         case 'drop':
-          steps.push({ dur: (next === 'drop' ? T.dropRun : T.drop) * k, fn: (inst) => applyDrop(ev, inst) });
+          steps.push({ dur: (next === 'drop' ? T.dropRun : T.drop) * k, min: MIN.drop, fn: (inst) => applyDrop(ev, inst) });
           break;
         case 'sold':
           steps.push({ dur: T.going * h, min: MIN.going, fn: (inst) => { if (!inst) setPhase('going'); } });
@@ -141,14 +176,14 @@ export function createReplay({ meta, players, store }) {
       price: null, leader: -1, ladder: [], result: null,
     });
     const count = Math.max(0, app.seq - ffFrom);
-    const pace = app.round > 0 ? ACCEL : { steps: 1, hold: 1 };
+    const pace = app.round > 0 && state.mode === 'auction' ? ACCEL : NORMAL;
     const brk = app.round > 0 && lastRound === 0 && !breakShown;
     lastRound = app.round;
     emit('lot', { newPlayer });
     if (count > 0) emit('ff', { count, run: state.run });
     emit('econ', { animate: true });
     const intro = (count > 0 ? Math.max(T.intro, T.ff + 500) : T.intro) * pace.steps;
-    queue = buildSteps(app.events || [], pace);
+    queue = buildSteps(app.events || [], pace, state.logged);
     if (brk) {
       // the one-off break before the accelerated round: franchises hand in the names they want
       setPhase('break');
@@ -183,7 +218,11 @@ export function createReplay({ meta, players, store }) {
     wait = Math.max(T.never, MIN.never * state.speed);
   }
 
-  /** Play player `id` in his featured run `featureIdx`, or in any run via opts.run (deep links). */
+  /**
+   * Play player `id` in his featured run `featureIdx`, or in any run via opts.run (deep links).
+   * opts.play starts or stops playback, opts.focus picks single-player focus (true) or the continuous
+   * auction (false), and opts.ff = false replays a lot without the fast-forward ticker.
+   */
   async function goTo(id, featureIdx = 0, opts = {}) {
     if (!players.length) return;
     id = Math.min(players.length - 1, Math.max(0, id));
@@ -191,6 +230,8 @@ export function createReplay({ meta, players, store }) {
     queue = [];
     wait = 0;
     busy = true;
+    setEnded(false);
+    if (opts.focus !== undefined) setMode(opts.focus ? 'focus' : 'auction');
     if (opts.play !== undefined) setPlaying(opts.play);
     const player = players[id];
     const features = player.sim?.feature || [];
@@ -227,14 +268,14 @@ export function createReplay({ meta, players, store }) {
     let apps = log?.runs?.[feature.run];
     state.logged = Array.isArray(apps) && apps.length > 0;
     if (!Array.isArray(apps)) apps = outcomes.seqsOf(feature.run, id).map((seq) => fromOutcome(feature.run, seq, player));
-    const sameRunFrom = (seq) => (prev.run === feature.run && prev.seq < seq ? prev.seq + 1 : 0);
+    const sameRunFrom = (seq) => (opts.ff === false ? seq : prev.run === feature.run && prev.seq < seq ? prev.seq + 1 : 0);
     if (!apps.length) { showAbsent('notcalled', newPlayer, sameRunFrom(outcomes.count[feature.run])); return; }
     state.apps = [...apps].sort((a, b) => a.seq - b.seq);
     startApp(0, sameRunFrom(state.apps[0].seq), newPlayer);
   }
 
   function advance() {
-    if (busy || state.phase === 'end' || state.phase === 'error' || !state.player) return;
+    if (busy || state.phase === 'end' || state.phase === 'error' || !state.player || state.ended) return;
     if (state.app && state.appIdx + 1 < state.apps.length) {
       const nextApp = state.apps[state.appIdx + 1];
       setPhase('interstitial');
@@ -243,6 +284,7 @@ export function createReplay({ meta, players, store }) {
       wait = Math.max(T.interstitial, MIN.interstitial * state.speed);
       return;
     }
+    if (state.mode === 'focus') { finish(); return; }
     if (state.player.id + 1 >= players.length) {
       setPlaying(false);
       setPhase('end');
@@ -261,12 +303,14 @@ export function createReplay({ meta, players, store }) {
       const step = queue.shift();
       if (!step) { advance(); break; }
       step.fn(false);
-      wait += Math.max(step.dur, (step.min || 0) * state.speed);
+      // in focus mode nothing follows the result but the card, so the hold is short
+      const dur = step.final && state.mode === 'focus' ? T.focusHold : step.dur;
+      wait += Math.max(dur, (step.min || 0) * state.speed);
     }
   }
   requestAnimationFrame(frame);
 
-  return {
+  const api = {
     state,
     codes,
     on(type, fn) {
@@ -275,22 +319,35 @@ export function createReplay({ meta, players, store }) {
       return () => listeners.get(type).delete(fn);
     },
     goTo,
+    /** Play; after a focused lot has ended, carry on with the auction from the next lot. */
     play() {
-      if (state.phase === 'end') { goTo(0, 0, { play: true }); return; }
+      if (state.phase === 'end') { goTo(0, 0, { play: true, focus: false }); return; }
+      if (state.ended) { api.continueAuction(); return; }
       setPlaying(true);
     },
     pause() { setPlaying(false); },
-    toggle() { if (state.playing) setPlaying(false); else this.play(); },
+    toggle() { if (state.playing) setPlaying(false); else api.play(); },
     setSpeed(speed) {
-      if (state.speed === speed) return;
+      if (!SPEEDS.includes(speed) || state.speed === speed) return;
       state.speed = speed;
       emit('speed', speed);
+    },
+    /** Continuous autoplay from the lot on screen (the intro's "Start the auction"). */
+    startAuction() {
+      setMode('auction');
+      if (state.ended) { api.continueAuction(); return; }
+      setPlaying(true);
+    },
+    continueAuction() {
+      if (state.player) goTo(state.player.id + 1, 0, { play: true, focus: false });
     },
     /** Finish the current lot instantly; if it is already finished, move on. */
     skip() {
       if (busy || state.phase === 'loading') return;
+      if (state.ended) { api.next(); return; }
       if (queue.some((s) => s.final)) {
         while (queue.length) queue.shift().fn(true);
+        if (state.mode === 'focus' && state.appIdx + 1 >= state.apps.length) { finish(); return; }
         wait = T.skipHold;
       } else if (queue.length) {
         queue.shift().fn(false);
@@ -299,11 +356,16 @@ export function createReplay({ meta, players, store }) {
         advance();
       }
     },
-    prev() { if (state.player) goTo(state.player.id - 1, 0); },
-    next() { if (state.player) goTo(state.player.id + 1, 0); },
+    /** Play the same lot again, in the same run. */
+    replayLot() {
+      if (state.player) goTo(state.player.id, state.featureIdx, { run: state.run ?? undefined, play: true, ff: false });
+    },
+    prev() { if (state.player) goTo(state.player.id - 1, 0, { play: state.mode === 'focus' || state.playing }); },
+    next() { if (state.player) goTo(state.player.id + 1, 0, { play: state.mode === 'focus' || state.playing }); },
     anotherRun() {
       const n = state.player?.sim?.feature?.length || 0;
-      if (n > 1 || (n === 1 && state.featureIdx < 0)) goTo(state.player.id, state.featureIdx + 1);
+      if (n > 1 || (n === 1 && state.featureIdx < 0)) goTo(state.player.id, state.featureIdx + 1, { play: true, focus: true });
     },
   };
+  return api;
 }

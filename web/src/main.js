@@ -85,9 +85,10 @@ async function boot() {
     onSelectTeam(fn) { selectListeners.add(fn); return () => selectListeners.delete(fn); },
     emitSelectTeam(ti) { selectListeners.forEach((fn) => fn(ti)); },
     openTeam(ti) { teamPanel.open(ti); },
+    /** A player picked from search, the intro or a link plays on his own and stops on his result. */
     selectPlayer(id) {
       teamPanel.close();
-      replay.goTo(id, 0, { play: true });
+      replay.goTo(id, 0, { play: true, focus: true });
     },
     openPalette() { intro?.close(); about.close(); palette.open(); },
     modalOpen: () => !!(intro?.isOpen || palette.isOpen || about.isOpen),
@@ -169,7 +170,7 @@ async function boot() {
     intro?.close();
     palette.close();
     teamPanel.close();
-    replay.goTo(link.p, 0, { run: link.run, play: true });
+    replay.goTo(link.p, 0, { run: link.run, play: true, focus: true });
   });
 
   // hand over from the loader: straight to a linked lot, otherwise the intro over lot 1
@@ -178,12 +179,12 @@ async function boot() {
   setTimeout(() => loader.remove(), 600);
   const link = parseLink();
   if (link) {
-    replay.goTo(link.p, 0, { run: link.run, play: true });
+    replay.goTo(link.p, 0, { run: link.run, play: true, focus: true });
     return;
   }
   replay.goTo(0, 0, { play: false });
   intro = mountIntro(overlays, ctx, {
-    onStart: () => replay.play(),
+    onStart: () => replay.startAuction(),
     onPick: () => palette.open(),
     onPlayer: (id) => ctx.selectPlayer(id),
   });

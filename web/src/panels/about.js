@@ -3,8 +3,8 @@ import { esc } from '../dom.js';
 import { money, int, pct, date, plural, signed } from '../format.js';
 import { coverage, mountCalibration } from './backtest.js';
 
-const KEYS = [['Space', 'Play / pause'], ['1 · 5', 'Speed 1× / 5×'], ['S or →', 'Finish lot (again: next lot)'], ['←', 'Previous lot'],
-  ['N', 'Show another run'], ['/ or Ctrl K', 'Search players'], ['Esc', 'Close panels']];
+const KEYS = [['Space', 'Play / pause (after a single lot: carry on with the auction)'], ['0 · 1 · 3', 'Speed: slow · 1× · 3×'],
+  ['S or →', 'Finish lot (again: next lot)'], ['←', 'Previous lot'], ['N', 'Show another run'], ['/ or Ctrl K', 'Search players'], ['Esc', 'Close panels']];
 
 // [key, header, value format, interval format, difference format, name in a difference line]
 const dec = (d) => (x) => (x == null ? '—' : x.toFixed(d));
@@ -63,14 +63,42 @@ function validationTable(v) {
     ${v.kept?.length || v.dropped?.length ? `<p class="fine">Kept after the ablation: ${esc((v.kept || []).join(', ') || '—')}. Dropped: ${esc((v.dropped || []).join(', ') || '—')}.</p>` : ''}`;
 }
 
+/** "a mini and a mega auction" when each row is a different kind, otherwise "2 past auctions". */
+function auctionsPhrase(rows) {
+  const kinds = rows.map((r) => String(r.kind || ''));
+  if (kinds.every(Boolean) && new Set(kinds).size === kinds.length) {
+    const each = kinds.map((k) => `${/^[aeiou]/i.test(k) ? 'an' : 'a'} ${k}`);
+    return `${each.length > 1 ? `${each.slice(0, -1).join(', ')} and ${each[each.length - 1]}` : each[0]} auction`;
+  }
+  return `${int(rows.length)} past auctions`;
+}
+
+/** The value model alone (no simulation) on past auctions, each row fitted only on earlier auctions of its kind. */
+function valueTable(rows) {
+  if (!rows?.length) return '';
+  const body = rows.map((r) => `<tr>
+      <th scope="row" title="${esc(`${plural(r.n, 'player')}, ${int(r.n_sold)} sold`)}">${esc(r.auction)} · ${esc(r.kind)}</th>
+      <td class="mono">${esc((r.train || []).join(', ') || '—')}</td>
+      <td class="mono">${dec(2)(r.auc)}</td><td class="mono">${dec(2)(r.spearman)}</td><td class="mono">${dec(2)(r.mae)}</td>
+    </tr>`).join('');
+  return `<h4 class="vt-title">The value model alone, on ${esc(auctionsPhrase(rows))}</h4>
+    <p class="fine vt-note">Each fitted only on earlier auctions of the same kind; no simulation.</p>
+    <div class="table-wrap"><table class="vtable vt-value">
+      <thead><tr><th scope="col">Auction</th><th scope="col">Trained on</th><th scope="col">Sold / unsold <small>AUC</small></th>
+        <th scope="col">Price rank <small>Spearman</small></th><th scope="col">Price error <small>MAE, log price</small></th></tr></thead>
+      <tbody>${body}</tbody>
+    </table></div>`;
+}
+
 function backtest(v) {
   const points = v?.points || [];
   const cov = coverage(points);
   return `<p>The same pipeline, run with only what was known before the ${esc(v?.auction || '2024 auction')}, scored against what really happened.</p>
     ${cov.n ? `<p class="cal-note"><b class="mono">${pct(cov.inside / cov.n)}</b> of real prices fell inside the simulated 80% range <span class="muted">(${int(cov.inside)} of ${int(cov.n)} sold players)</span>.</p>` : ''}
-    ${v?.needHit?.est != null ? `<p class="cal-note"><b class="mono">${pct(v.needHit.est)}</b> of real buys went to a team that had a pre-auction need for the player${v.needHit.n ? ` <span class="muted">(${plural(v.needHit.n, 'buy')})</span>` : ''}.</p>` : ''}
+    ${v?.needHit?.top3 != null ? `<p class="cal-note"><b class="mono">${pct(v.needHit.top3)}</b> of real buys went to one of the three teams with the greatest pre-auction need for the player <span class="muted">(30% by chance${v.needHit.n ? `; ${plural(v.needHit.n, 'buy')}` : ''})</span>.</p>` : ''}
     ${cov.n ? '<figure class="cal"></figure>' : ''}
-    ${validationTable(v)}`;
+    ${validationTable(v)}
+    ${valueTable(v?.valueBacktests)}`;
 }
 
 /** "+₹5 L up to ₹1.00 Cr, +₹10 L to ₹2.00 Cr, … +₹25 L above" from rules.increments. */

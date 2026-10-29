@@ -1,8 +1,8 @@
 // 3D auction room: loads room.glb (Draco), lights it, and drives lamps, paddles, hammer and screen from the replay.
 import {
   Box3, CanvasTexture, Color, DirectionalLight, HalfFloatType, HemisphereLight, MathUtils, Mesh, MeshBasicMaterial, NeutralToneMapping,
-  Object3D, PCFShadowMap, PerspectiveCamera, PMREMGenerator, Quaternion, Raycaster, Scene, SRGBColorSpace, Vector2, Vector3,
-  WebGLRenderer, WebGLRenderTarget,
+  Object3D, PCFShadowMap, PerspectiveCamera, PMREMGenerator, Quaternion, Raycaster, Scene, ShaderMaterial, SpotLight, SRGBColorSpace,
+  Vector2, Vector3, WebGLRenderer, WebGLRenderTarget,
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
@@ -10,6 +10,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { reducedMotion, tweener, easeOutCubic, easeInOut } from '../dom.js';
 import { COLORS, screenModel, paintScreen } from './screen.js';
@@ -27,9 +29,14 @@ function silhouetteFor(p) {
   return BAT.has(p.role2) ? 'Batter' : 'Bowler';
 }
 
-// Lamp colour and glow per table state (the only room colours the app drives; the GLB owns the rest).
-const LAMP = { idle: ['#C3C9D2', 0.15], open: [COLORS.teal, 1.3], leading: [COLORS.brass, 1.6], out: ['#D6D9DF', 0], won: [COLORS.red, 1.9] };
-const BACKDROP = '#FFFFFF'; // matches the stage panel, so the canvas blends into it
+// Lamp colour and glow per table state (the only room colours the app drives; the GLB owns the rest). Idle and
+// out lamps sit dark in their white rims, so the lit states stand out in the hall.
+const LAMP = { idle: ['#6E7787', 0.12], open: [COLORS.teal, 1.3], leading: [COLORS.brass, 1.6], out: ['#3A414E', 0], won: [COLORS.red, 1.9] };
+const BACKDROP = '#0B0E1A'; // the hall's own dark, also behind the canvas while it loads
+// Emissive materials that bloom, and how much: lamps fully (state must read), the big LED backdrop and the
+// warm strips only a touch so the glow stays a halo rather than a haze over the screen.
+const GLOW = [[/^M_Lamp_/, 1], [/^M_(Lens|Teal)/, 0.7], [/^M_Flood/, 0.35], [/^M_LED_/, 0.15]];
+const GLOW_LAYER = 1;
 const UP = new Vector3(0, 1, 0);
 const HAMMER_HIT = 0.61; // rad about the hammer's local X from its raised rest to the block (room.glb rig)
 
@@ -81,12 +88,15 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
   const renderer = new WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.toneMapping = NeutralToneMapping; // keeps whites white and brand colours true
-  renderer.toneMappingExposure = 1;
+  renderer.toneMappingExposure = 1.1;
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFShadowMap;
+  renderer.shadowMap.autoUpdate = false; // refreshed once per frame, not again for the AO and glow passes
   renderer.debug.checkShaderErrors = false; // no per-program info-log round trips (and no ANGLE precision chatter)
   renderer.domElement.className = 'room3d';
+  // a broadcast window inside the white panel: its own dark ground and the panel's corner radius
+  Object.assign(renderer.domElement.style, { background: BACKDROP, borderRadius: 'var(--r)' });
 
   // WASM decoder only (every WebGL2 browser has WebAssembly); without it DRACOLoader throws and we fall back to 2D.
   const dracoDir = new URL('draco/', document.baseURI);
@@ -112,11 +122,12 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
 
   const pmrem = new PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-  scene.environmentIntensity = 0.42; // soft studio fill from every side
+  scene.environmentIntensity = 0.3; // reflections and a little fill; the hall's light comes from the rig below
   pmrem.dispose();
 
-  // ---- shadows (materials stay exactly as authored) ----
-  const noCast = /^(Floor|Wall|Inlay|EdgeLight|LightBlades|ScreenPanel|Screen)/;
+  // ---- shadows (materials stay exactly as authored); the ceiling, walls and rig never cast, or the key light,
+  // which sits above the ceiling, would put the whole hall in shadow ----
+  const noCast = /^(Floor|Carpet|Inlay|Wall|Slats|Ceiling|Truss|Fixtures|LEDWall|LEDColumns|EdgeLight|LightBlades|ScreenPanel|Screen)/;
   root.traverse((o) => {
     if (!o.isMesh) return;
     o.receiveShadow = true;
@@ -221,9 +232,10 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
   const baseQuat = glCam.getWorldQuaternion(new Quaternion());
   const forward = new Vector3(0, 0, -1).applyQuaternion(baseQuat);
 
-  // studio recipe from the 3D build: soft sky/ground fill, a warm key with soft shadows, and a wash on the stage
-  scene.add(new HemisphereLight(0xf2f3f6, 0xe9e6df, 0.9));
-  const key = new DirectionalLight(0xfff8f0, 2);
+  // hall recipe: a low cool-sky / warm-ground fill, a strong warm key on the desks and stage with soft shadows,
+  // warm spots from the truss on the podium and the plinth, and a cool rim from behind the stage
+  scene.add(new HemisphereLight(0x5b6aa6, 0x3b3027, 0.55));
+  const key = new DirectionalLight(0xffe4c4, 3.2);
   key.position.set(-6, 12, 13);
   key.target.position.set(0, 0, 2);
   key.castShadow = true;
@@ -233,11 +245,21 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
   key.shadow.bias = -0.0004;
   key.shadow.normalBias = 0.02;
   key.shadow.radius = 4;
-  key.shadow.intensity = 0.6; // gentle studio shadows, not black pools
-  const wash = new DirectionalLight(0xffffff, 1.3);
-  wash.position.set(4, 9, 5);
-  wash.target.position.set(0, 1.5, -2.5);
-  scene.add(key, key.target, wash, wash.target);
+  key.shadow.intensity = 0.8;
+  const rim = new DirectionalLight(0x9db4ff, 1.4);
+  rim.position.set(0, 9, -14);
+  rim.target.position.set(0, 0, 8);
+  scene.add(key, key.target, rim, rim.target);
+  const rig = new Box3().setFromObject(find('Truss') || root); // spots hang from its front beam, over the stage edge
+  for (const [name, candela, cone] of [['Podium', 90, 0.3], ['Plinth', 70, 0.24]]) {
+    const node = find(name);
+    if (!node) continue;
+    const at = new Box3().setFromObject(node).getCenter(new Vector3());
+    const spot = new SpotLight(0xffe2bd, candela, 0, cone, 0.55, 2);
+    spot.position.set(at.x, rig.min.y - 0.4, rig.min.z);
+    spot.target.position.copy(at).add(new Vector3(0, 0.8, 0));
+    scene.add(spot, spot.target);
+  }
 
   // ---- camera: Cam_Main's position and aim; the frustum is fitted to the tables, their labels and the
   // screen for whatever aspect the stage has (an off-centre projection, so nothing is wasted or cropped) ----
@@ -287,13 +309,58 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
     camera.quaternion.copy(yawQ).multiply(baseQuat);
   }
 
-  // ---- frame: the room (4× MSAA), ambient occlusion for the contact shadows (GTAO, ~1 m reach), then
-  // tone mapping and sRGB in the output pass ----
+  // ---- frame: the room (4× MSAA), ambient occlusion for the contact shadows (GTAO, ~1 m reach), the glow,
+  // then tone mapping and sRGB in the output pass ----
   const composer = new EffectComposer(renderer, new WebGLRenderTarget(1, 1, { type: HalfFloatType, samples: 4 }));
   const ao = new GTAOPass(scene, camera, 1, 1, undefined, { radius: 1, distanceExponent: 1.5, thickness: 1, scale: 1, samples: 16 });
   ao.blendIntensity = 0.85;
-  const passes = [new RenderPass(scene, camera), ao, new OutputPass()];
+  // Selective bloom: only the glowing meshes (on their own layer, with the few objects that stand in front of the
+  // LED wall drawn black so it glows around them), re-rendered at half size as their emissive colour, blurred and
+  // added before tone mapping. Lamps keep their state colour and lit white desk tops never bloom.
+  const glowComposer = new EffectComposer(renderer, new WebGLRenderTarget(1, 1, { type: HalfFloatType }));
+  glowComposer.renderToScreen = false;
+  const bloom = new UnrealBloomPass(new Vector2(1, 1), 0.55, 0.35, 0);
+  glowComposer.addPass(new RenderPass(scene, camera));
+  glowComposer.addPass(bloom);
+  const mix = new ShaderPass(new ShaderMaterial({
+    uniforms: { baseTexture: { value: null }, glowTexture: { value: glowComposer.renderTarget2.texture } },
+    vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'uniform sampler2D baseTexture; uniform sampler2D glowTexture; varying vec2 vUv;\n'
+      + 'void main() { gl_FragColor = texture2D(baseTexture, vUv) + texture2D(glowTexture, vUv); }',
+  }), 'baseTexture');
+  const passes = [new RenderPass(scene, camera), ao, mix, new OutputPass()];
   passes.forEach((p) => composer.addPass(p));
+  const glowing = [], blockers = []; // [mesh, weight] and meshes drawn black
+  root.traverse((o) => {
+    if (!o.isMesh) return;
+    const weight = GLOW.find(([re]) => re.test(o.material.name))?.[1];
+    if (weight) glowing.push([o, weight]);
+    else if (/^(Screen|Podium|Auctioneer|Plinth|Silhouette_)/.test(o.name)) blockers.push(o);
+    else return;
+    o.layers.enable(GLOW_LAYER);
+  });
+  const BLACK = new MeshBasicMaterial({ color: 0x000000 });
+  const glowOf = new Map(), swaps = [];
+  let glowOn = true;
+  function renderGlow() {
+    for (const [o, weight] of glowing) {
+      const src = o.material;
+      let g = glowOf.get(src);
+      if (!g) glowOf.set(src, (g = new MeshBasicMaterial()));
+      g.color.copy(src.emissive).multiplyScalar(src.emissiveIntensity * weight);
+      swaps.push(o, src);
+      o.material = g;
+    }
+    for (const o of blockers) { swaps.push(o, o.material); o.material = BLACK; }
+    const bg = scene.background;
+    scene.background = null;
+    camera.layers.set(GLOW_LAYER);
+    glowComposer.render();
+    camera.layers.set(0);
+    scene.background = bg;
+    for (let i = 0; i < swaps.length; i += 2) swaps[i].material = swaps[i + 1];
+    swaps.length = 0;
+  }
 
   // ---- DOM ----
   el.append(renderer.domElement);
@@ -307,6 +374,8 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
     if (!w || !h) return;
     renderer.setSize(w, h, false);
     composer.setSize(w, h);
+    glowComposer.setPixelRatio(1);
+    glowComposer.setSize(Math.ceil(w / 2), Math.ceil(h / 2));
     labels.setSize(w, h);
     fitCamera(w / h);
     placeCamera(0);
@@ -418,6 +487,7 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
     perf.level += 1;
     if (perf.level === 1) { renderer.setPixelRatio(1); composer.setPixelRatio(1); resize(); }
     else if (perf.level === 2) { renderer.shadowMap.enabled = false; key.castShadow = false; ao.enabled = false; }
+    else if (perf.level === 3) { glowOn = false; mix.enabled = false; } // the glow goes last: the hall's look rests on it
   }
 
   function update(dt, time) {
@@ -475,9 +545,11 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
     last = now;
     if (document.hidden || !visible) return;
     update(Math.min(0.05, dtMs / 1000), now / 1000);
+    if (glowOn) renderGlow();
+    renderer.shadowMap.needsUpdate = true;
     composer.render();
     labels.render(scene, camera);
-    if (now > perf.wait && perf.level < 2) {
+    if (now > perf.wait && perf.level < 3) {
       perf.n += 1;
       perf.sum += dtMs;
       if (perf.n === 90) {
@@ -509,6 +581,10 @@ export async function mountRoom3D(el, ctx, { onProgress, onLost } = {}) {
       renderer.domElement.remove();
       passes.forEach((p) => p.dispose());
       composer.dispose();
+      bloom.dispose();
+      glowComposer.dispose();
+      glowOf.forEach((m) => m.dispose());
+      BLACK.dispose();
       renderer.dispose();
     },
   };

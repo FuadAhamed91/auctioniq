@@ -282,7 +282,7 @@ svg .fill { fill: currentColor; stroke: none; }
 .room.is-3d .room3d { opacity: 1; }
 .room2d { position: absolute; inset: 0; transition: opacity 0.6s var(--ease); }
 .room.is-3d .room2d { opacity: 0; pointer-events: none; }
-.labels-layer { position: absolute; inset: 0; pointer-events: none; }
+.labels-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; } /* its own layer, under the stage overlays */
 .stage-hud { position: absolute; inset: 0 0 var(--controls-h) 0; z-index: 2; pointer-events: none; }
 
 .controls {
@@ -301,7 +301,9 @@ svg .fill { fill: currentColor; stroke: none; }
 .ctl-play { width: 40px; height: 40px; margin: 0 2px; border-radius: 50%; background: var(--ink); color: #fff; box-shadow: var(--shadow-sm); }
 .ctl-play:hover { background: #262c36; }
 .ctl-status { display: flex; align-items: baseline; gap: 12px; flex: 1; min-width: 0; font-size: 13px; }
+.ctl-lot { white-space: nowrap; }
 .ctl-phase { color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-short { display: none; }
 .ctl-phase[data-phase='sold'] { color: var(--red-ink); }
 .speed { display: flex; padding: 3px; border-radius: var(--r-sm); background: var(--tint-2); }
 .speed button {
@@ -337,6 +339,20 @@ svg .fill { fill: currentColor; stroke: none; }
   transform: translateX(-50%); pointer-events: auto; white-space: nowrap; animation: hudIn 0.3s var(--ease) both;
 }
 .hud-note:not(:has(button)) { padding-right: 16px; }
+/* single-player result card */
+.result-card {
+  position: absolute; left: 50%; bottom: 14px; display: grid; gap: 6px; width: min(480px, calc(100% - 24px)); padding: 14px 16px;
+  border-radius: 14px; background: rgb(255 255 255 / 0.97); box-shadow: var(--shadow-pop), var(--edge);
+  transform: translateX(-50%); pointer-events: auto; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.result-card.is-in { animation: hudIn 0.35s var(--ease) both; }
+.rc-verdict { margin: 0; font: 700 20px/1.2 var(--display); letter-spacing: -0.01em; color: var(--ink); }
+.rc-verdict[data-tone='sold'] { color: var(--red-ink); }
+.rc-verdict .mono { font-size: 0.85em; font-weight: 600; letter-spacing: 0; }
+.rc-runs { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+.rc-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.rc-actions .btn { height: 32px; padding: 0 12px; font-size: 12.5px; }
+.rc-actions .btn-primary { margin-left: auto; }
 
 /* ---------- purse strip ---------- */
 .purse-strip { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 8px; }
@@ -521,6 +537,10 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
 .vtable .vgroup th { padding: 16px 0 6px; text-align: left; font-size: 10px; border-bottom-color: var(--rule); }
 .vtable tbody .vgroup:first-child th { padding-top: 10px; }
 .vtable tr.is-baseline > * { color: var(--ink-2); }
+.drawer-body .vt-title { margin: 24px 0 0; font-size: 13px; font-weight: 600; color: var(--ink); }
+.drawer-body .vt-note { margin: 2px 0 8px; }
+.vt-value thead th { white-space: normal; vertical-align: bottom; }
+.vt-value thead th small { display: block; margin-top: 2px; }
 .vtag {
   display: inline-block; margin-left: 7px; padding: 0 6px; border-radius: 5px; background: var(--tint-2);
   font-size: 10.5px; font-weight: 500; line-height: 17px; color: var(--ink-2); vertical-align: 1px;
@@ -736,6 +756,9 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
 .tlabel[data-state='won'] .tl-chip { background: var(--red-ink); color: #fff; font-weight: 600; }
 .tlabel.is-hover .tl-code, .tlabel:hover .tl-code { box-shadow: var(--shadow); }
 .tlabel.is-selected .tl-code { border-color: var(--ink); background: var(--ink); color: #fff; }
+.tlabel.is-fresh { z-index: 1000 !important; } /* above the depth-sorted labels while its moment is told */
+.tlabel.is-fresh:not([data-state='won']) .tl-chip, .r2-table.is-fresh:not([data-state='won']) .r2-chip { animation: chipFocus 1.8s var(--ease); }
+.tlabel.is-fresh[data-state='out'], .r2-table.is-fresh[data-state='out'] { animation: holdFull 1.8s var(--ease); }
 /* auctioneer's caption, under the big screen (both rooms) */
 .caption {
   max-width: 100%; padding: 6px 12px; border-radius: 8px; background: rgb(255 255 255 / 0.96); box-shadow: var(--shadow-sm), var(--edge);
@@ -745,7 +768,9 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
 .caption.is-on { opacity: 1; }
 .caption .cap-bid { color: var(--brass-ink); font-weight: 600; }
 .caption[data-tone='sold'] { color: var(--red-ink); font-weight: 600; box-shadow: var(--shadow-sm), inset 0 0 0 1px rgb(226 90 76 / 0.45); }
-.caption-2d { width: fit-content; margin: 12px auto 0; }
+.caption b { font-weight: 600; }
+.caption .cap-sub { display: block; margin-top: 3px; font-size: 11.5px; font-weight: 500; color: var(--ink-2); }
+.caption-2d { width: fit-content; max-width: min(92%, 560px); margin: 12px auto 0; white-space: normal; text-align: center; text-wrap: balance; }
 .caption-3d { max-width: 90%; width: max-content; white-space: normal; text-align: center; text-wrap: balance; pointer-events: none; }
 
 /* ---------- motion ---------- */
@@ -757,6 +782,9 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
 @keyframes popIn { from { opacity: 0; transform: translate(-50%, -46%) scale(0.97); } }
 @keyframes fill { to { transform: scaleX(1); } }
 @keyframes soldFlash { 0%, 30% { background: #FFF1EE; box-shadow: var(--shadow-sm), inset 0 0 0 1.5px var(--red); } }
+@keyframes chipFocus { 0%, 72% { color: var(--ink); box-shadow: 0 0 0 1.5px var(--ink), var(--shadow); } }
+@keyframes holdFull { 0%, 80% { opacity: 1; } }
+@keyframes chipFlash { 0%, 75% { opacity: 1; color: var(--ink); box-shadow: 0 0 0 1.5px var(--ink), var(--shadow); } 100% { opacity: 0; } }
 @keyframes soldPulse { 0%, 35% { box-shadow: 0 0 0 4px rgb(226 90 76 / 0.25), 0 10px 30px -8px rgb(226 90 76 / 0.45); } }
 @keyframes stamp { from { opacity: 0; transform: scale(1.5); letter-spacing: 0.3em; } }
 @keyframes gavel { 0% { transform: rotate(0); } 40% { transform: rotate(-32deg); } 58% { transform: rotate(8deg); } 100% { transform: rotate(0); } }
@@ -810,6 +838,8 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
   .ctl-status { justify-content: center; }
   .ctl-phase { display: none; }
   .speed button { padding: 0 8px; }
+  .sp-long, .ctl-lot-k { display: none; }
+  .sp-short { display: inline; }
   .purse-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
   .pcell { gap: 3px; padding: 8px 5px 6px; border-radius: 10px; }
   .pc-code { font-size: 12px; }
@@ -820,6 +850,11 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
   /* small stage: only the leader's and the winner's chips stay up; every reason is in the ladder and team panel */
   .tlabel:not([data-state='leading'], [data-state='won'], .is-selected):not(:hover) .tl-chip,
   .r2-table:not([data-state='leading'], [data-state='won'], .is-selected):not(:hover) .r2-chip { opacity: 0; }
+  .tlabel.is-fresh:not([data-state='won']) .tl-chip, .r2-table.is-fresh:not([data-state='won']) .r2-chip { animation: chipFlash 1.8s var(--ease); }
+  .result-card { bottom: 10px; padding: 12px 14px; }
+  .rc-verdict { font-size: 18px; }
+  .rc-actions .btn { flex: 1 1 auto; }
+  .rc-actions .btn-primary { margin-left: 0; }
   .tabs {
     grid-area: tabs; position: sticky; top: 0; z-index: 8; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px;
     border-radius: 12px; background: #EFEDE7;

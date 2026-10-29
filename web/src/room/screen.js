@@ -1,6 +1,6 @@
 // The big screen: one content model, drawn as HTML (2D room) or onto a canvas texture (3D room).
 import { esc } from '../dom.js';
-import { money, moneyParts, int, runNo, feeSplit } from '../format.js';
+import { money, moneyParts, int, runNo } from '../format.js';
 
 export const COLORS = { ink: '#0F1218', stand: '#171C25', rail: '#2C3442', flood: '#EDE8DC', haze: '#9AA3B2', brass: '#E0A63C', teal: '#3FC1B0', red: '#E25A4C' };
 
@@ -22,12 +22,12 @@ export function screenModel(state, ctx) {
     case 'going':
       return { ...m, mode: 'bid', price: state.price, team: ctx.codes[state.leader] || '', going: state.phase === 'going' };
     case 'sold': {
-      const split = feeSplit(p, state.result.price, ctx.meta.rules?.overseasFeeCap);
+      const { split } = state.result;
       return { ...m, mode: 'sold', price: state.result.price, team: ctx.codes[state.result.team],
         split: split && `Player keeps ${money(split.keeps)} · ${money(split.bcci)} to the BCCI` };
     }
     case 'unsold':
-      return { ...m, mode: 'unsold', reason: state.result?.reason || '' };
+      return { ...m, mode: 'unsold', reason: /no bid at base/i.test(state.result?.reason || '') ? 'No bid at his base price' : state.result?.reason || '' };
     case 'interstitial':
       return { ...m, mode: 'inter', note: `Returns in accelerated round ${state.apps[state.appIdx + 1]?.round ?? 1}` };
     case 'break':
@@ -71,7 +71,7 @@ export function screenHTML(m, price) {
       break;
     default:
       body = `${m.note ? `<div class="scr-kick">${esc(m.note)}</div>` : ''}<div class="scr-name">${esc(m.name)}</div><div class="scr-role">${esc(m.role)}</div>
-        <div class="scr-line">Base <b class="mono">${esc(m.base)}</b>${m.open ? ` <i class="dot" aria-hidden="true"> · </i> <span class="scr-teal">${m.open} ${m.open === 1 ? 'table' : 'tables'} in</span>` : ''}</div>`;
+        <div class="scr-line">Base <b class="mono">${esc(m.base)}</b>${m.open ? ` <i class="dot" aria-hidden="true"> · </i> <span class="scr-teal">${m.open} ${m.open === 1 ? 'team' : 'teams'} interested</span>` : ''}</div>`;
   }
   return `<div class="scr" data-mode="${m.mode}">${top}<div class="scr-body">${body}</div></div>`;
 }
@@ -163,6 +163,6 @@ export function paintScreen(g, w, h, m, price) {
       line(m.name, C.flood, u * 50, u * 17, display(700));
       line(m.role, C.haze, u * 64, u * 7, sans(500));
       line(`Base ${m.base}`, C.flood, u * 79, u * 7, mono(600));
-      if (m.open) line(`${m.open} ${m.open === 1 ? 'table' : 'tables'} in`, C.teal, u * 90, u * 5.2, mono(600));
+      if (m.open) line(`${m.open} ${m.open === 1 ? 'team' : 'teams'} interested`, C.teal, u * 90, u * 5.2, mono(600));
   }
 }

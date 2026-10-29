@@ -4,7 +4,7 @@ Run headless from the repo root:
 
     blender -b --factory-startup -P blender/build_room.py
 
-Builds every object from an empty scene, writes web/public/assets/room.glb (Draco,
+Builds a dark broadcast auction hall from an empty scene, writes web/public/assets/room.glb (Draco,
 Y-up, modifiers applied, camera but no lights, neutral team materials) and then renders
 blender/preview.png from Cam_Main with stand-in lights and team colours that never reach
 the GLB. Blender works Z-up with +Y pointing from the camera to the stage, so a
@@ -22,20 +22,32 @@ ROOT = Path(__file__).resolve().parent.parent
 GLB_PATH = ROOT / "web" / "public" / "assets" / "room.glb"
 PREVIEW_PATH = ROOT / "blender" / "preview.png"
 
-# Shared materials: sRGB colour, roughness, metallic, emission strength. A bright studio set
-# with two dark accents: the LED wall and the hero cricketer on the plinth.
+# Shared materials: sRGB colour, roughness, metallic, emission strength. A deep indigo hall with
+# warm light on the desks and stage and a blue-violet LED backdrop behind the screen.
 MATERIALS = {
-    "M_Floor": ("#ECE9E2", 0.3, 0.0, 0.0),  # satin, slightly reflective
-    "M_Wall": ("#F3F1EC", 0.85, 0.0, 0.0),
-    "M_Surface": ("#FFFFFF", 0.5, 0.0, 0.0),  # stage, desk tops, the rail around each lamp
-    "M_Furniture": ("#E4E1DA", 0.55, 0.0, 0.0),  # podium body, chairs
-    "M_Trim": ("#D6D9DF", 0.4, 0.0, 0.0),
+    "M_Floor": ("#1E2230", 0.18, 0.0, 0.0),  # dark polished stone
+    "M_Carpet": ("#24306B", 0.9, 0.0, 0.0),  # under the table arc
+    "M_Inlay": ("#3F4F9A", 0.45, 0.0, 0.0),
+    "M_Wall": ("#1B2240", 0.85, 0.0, 0.0),
+    "M_Slat": ("#232C52", 0.7, 0.0, 0.0),  # vertical acoustic slats
+    "M_Ceiling": ("#0F1324", 0.9, 0.0, 0.0),
+    "M_Truss": ("#3A4150", 0.4, 0.5, 0.0),
+    "M_Fixture": ("#191D27", 0.5, 0.3, 0.0),  # spot cans, LED column housings
+    "M_Lens": ("#FFF1DC", 0.3, 0.0, 3.0),  # warm spot lenses
+    "M_Stage": ("#20242E", 0.22, 0.0, 0.0),  # glossy charcoal
+    "M_Walnut": ("#6B4A2F", 0.45, 0.0, 0.0),  # podium
+    "M_Surface": ("#FFFFFF", 0.5, 0.0, 0.0),  # desk tops, the rail around each lamp
+    "M_Furniture": ("#2A2E38", 0.55, 0.0, 0.0),  # chairs
+    "M_Trim": ("#3A4150", 0.4, 0.3, 0.0),
     "M_Plinth": ("#F7F6F2", 0.45, 0.0, 0.0),
-    "M_Flood": ("#FFF6E6", 0.5, 0.0, 0.8),  # light strips: a low glow so they read as fixtures
+    "M_Flood": ("#FFE9C7", 0.5, 0.0, 1.8),  # warm-white LED strips: stage edge, wall reveals
+    "M_LED_Blue": ("#2E5BFF", 0.4, 0.0, 1.0),  # backdrop blades, centre out to the edges
+    "M_LED_Indigo": ("#6B4BFF", 0.4, 0.0, 1.0),
+    "M_LED_Violet": ("#9B6BFF", 0.4, 0.0, 1.0),
     "M_ScreenFrame": ("#2C3442", 0.4, 0.0, 0.0),
     "M_Screen": ("#0F1218", 0.2, 0.0, 0.0),  # dark LED wall; the app maps content onto it
-    "M_Silhouette": ("#B7BDC6", 0.85, 0.0, 0.0),  # seated figures and auctioneer
-    "M_Hero": ("#0F1218", 0.75, 0.0, 0.0),  # plinth cricketers
+    "M_Silhouette": ("#8C857C", 0.8, 0.0, 0.0),  # warm mid-grey: seated figures' skin and trousers, auctioneer
+    "M_Hero": ("#0F1218", 0.75, 0.0, 0.0),  # plinth cricketers, silhouetted against the LED backdrop
     "M_Brass": ("#E0A63C", 0.22, 1.0, 0.0),
     "M_Teal": ("#3FC1B0", 0.4, 0.0, 1.5),
     "M_Red": ("#E25A4C", 0.45, 0.0, 0.3),
@@ -73,6 +85,10 @@ WALL_N_Y = 5.6
 WALL_H = 10.0
 WALL_T = 0.3
 
+TRUSS_Z = 8.6  # above every desk label; only its front beam (over the stage edge) crosses the view
+TRUSS_FRONT_Y, TRUSS_BACK_Y, TRUSS_HALF_W = -1.0, -21.0, 8.4
+LED_WALL_HALF_W, LED_PITCH = 6.12, 0.34
+
 STAGE_H = 0.6
 STAGE_HALF_W = 8.5
 STAGE_FRONT_Y = -1.5  # apex of the bowed front edge
@@ -95,6 +111,7 @@ SILHOUETTE_SCALE = 1.1
 
 ARC_RADIUS = 10.0
 ARC_SPAN = math.radians(140)
+CARPET_R, CARPET_W = ARC_RADIUS + 0.3, 4.2  # band under the desks and chairs
 # Tables turn toward a point behind the stage rather than toward the podium, so the
 # camera still sees the backs of the outermost tables.
 TABLE_FOCUS = Vector((0.0, 9.0))
@@ -396,13 +413,27 @@ def keeper_joints():
 # --- room --------------------------------------------------------------------------------
 
 
-def build_room(mats):
+def build_floor(mats):
     depth = WALL_N_Y - ROOM_SOUTH_Y
-    mid_y = (ROOM_SOUTH_Y + WALL_N_Y) / 2
     floor = MeshBuilder()
-    floor.box(v(0, mid_y, -0.05), (2 * ROOM_HALF_W, depth, 0.1), mats["M_Floor"])
+    floor.box(v(0, (ROOM_SOUTH_Y + WALL_N_Y) / 2, -0.05), (2 * ROOM_HALF_W, depth, 0.1), mats["M_Floor"])
     mesh_object("Floor", floor)
 
+    sweep = ARC_SPAN / 2 + math.radians(9)
+    arc = [arc_point(CARPET_R, a) for a in linspace(-sweep, sweep, 96)]
+    carpet = MeshBuilder()
+    carpet.strip(arc, CARPET_W, 0.0, 0.012, mats["M_Carpet"])
+    mesh_object("Carpet", carpet)
+
+    inlay = MeshBuilder()
+    for radius in (CARPET_R - CARPET_W / 2, CARPET_R + CARPET_W / 2):
+        inlay.strip([arc_point(radius, a) for a in linspace(-sweep, sweep, 96)], 0.08, 0.0, 0.016, mats["M_Inlay"])
+    mesh_object("Inlay", inlay)
+
+
+def build_walls(mats):
+    depth = WALL_N_Y - ROOM_SOUTH_Y
+    mid_y = (ROOM_SOUTH_Y + WALL_N_Y) / 2
     width = 2 * ROOM_HALF_W + 2 * WALL_T
     walls = {
         "Wall_North": (v(0, WALL_N_Y + WALL_T / 2, WALL_H / 2), (width, WALL_T, WALL_H)),
@@ -415,17 +446,81 @@ def build_room(mats):
         wall.box(center, size, mats["M_Wall"])
         mesh_object(name, wall)
 
-    blades = MeshBuilder()
-    for x in (-6.8, -6.2, 6.2, 6.8):
-        blades.box(v(x, WALL_N_Y - 0.02, 4.4), (0.06, 0.04, 7.6), mats["M_Flood"])
-    mesh_object("LightBlades", blades)
+    ceiling = MeshBuilder()
+    ceiling.box(v(0, mid_y, WALL_H + 0.1), (width, depth + 2 * WALL_T, 0.2), mats["M_Ceiling"])
+    mesh_object("Ceiling", ceiling)
 
-    inlay = MeshBuilder()
-    sweep = ARC_SPAN / 2 + math.radians(8)
-    for radius in (ARC_RADIUS - 1.9, ARC_RADIUS + 2.0):
-        points = [arc_point(radius, a) for a in linspace(-sweep, sweep, 96)]
-        inlay.strip(points, 0.05, 0.0, 0.006, mats["M_Trim"])
-    mesh_object("Inlay", inlay)
+    # Acoustic slats on the back wall beside the LED backdrop and on the visible ends of the side
+    # walls, and two warm LED reveals flanking the backdrop.
+    slat_h, slat_z = WALL_H - 0.4, WALL_H / 2
+    slats, reveals = MeshBuilder(), MeshBuilder()
+    for k in range(17):
+        for s in (-1, 1):
+            slats.box(v(s * (7.05 + 0.45 * k), WALL_N_Y - 0.04, slat_z), (0.16, 0.08, slat_h), mats["M_Slat"])
+    for k in range(34):
+        for s in (-1, 1):
+            slats.box(v(s * (ROOM_HALF_W - 0.04), -10.0 + 0.45 * k, slat_z), (0.08, 0.16, slat_h), mats["M_Slat"])
+    for s in (-1, 1):
+        reveals.box(v(s * 6.65, WALL_N_Y - 0.015, WALL_H / 2), (0.05, 0.03, WALL_H - 0.8), mats["M_Flood"])
+    mesh_object("Slats", slats)
+    mesh_object("LightBlades", reveals)
+
+
+def ladder(b, a, c, mat, depth=0.3, pitch=0.6):
+    """A ladder truss between a and c (level points): two chords and a strut every `pitch` metres."""
+    run = c - a
+    mid, length = (a + c) / 2, run.length
+    turn = Matrix.Rotation(math.atan2(run.y, run.x), 3, "Z")
+    for dz in (-depth / 2, depth / 2):
+        b.box(mid + v(0, 0, dz), (length + 0.05, 0.05, 0.05), mat, turn)
+    for k in range(int(length / pitch) + 1):
+        b.box(a + run * (k * pitch / length), (0.03, 0.03, depth), mat, turn)
+
+
+def add_spot(b, mount, target, mats):
+    """A spot can hung under the truss at `mount`, aimed at `target`, with a warm lens."""
+    aim = (target - mount).normalized()
+    frame = Matrix.Translation(mount) @ aim.to_track_quat("Z", "Y").to_matrix().to_4x4()
+    can = [(0, -0.12), (0.09, -0.12), (0.1, -0.1), (0.1, 0.14), (0, 0.14)]
+    b.lathe(can, mats["M_Fixture"], frame, 14)
+    b.lathe([(0, 0.13), (0.082, 0.13), (0.082, 0.15), (0, 0.15)], mats["M_Lens"], frame, 14)
+    top = TRUSS_Z - 0.15  # the truss's bottom chord
+    b.box(v(mount.x, mount.y, (mount.z + top) / 2), (0.03, 0.03, top - mount.z), mats["M_Fixture"])
+
+
+def build_truss(mats, spots):
+    corners = [v(x, y, TRUSS_Z) for x, y in ((-TRUSS_HALF_W, TRUSS_FRONT_Y), (TRUSS_HALF_W, TRUSS_FRONT_Y),
+                                              (TRUSS_HALF_W, TRUSS_BACK_Y), (-TRUSS_HALF_W, TRUSS_BACK_Y))]
+    truss = MeshBuilder()
+    for a, c in zip(corners, corners[1:] + corners[:1]):
+        ladder(truss, a, c, mats["M_Truss"])
+    for x in (-TRUSS_HALF_W, 0.0, TRUSS_HALF_W):  # hangers to the ceiling
+        truss.box(v(x, TRUSS_FRONT_Y, (TRUSS_Z + WALL_H) / 2), (0.03, 0.03, WALL_H - TRUSS_Z), mats["M_Truss"])
+    mesh_object("Truss", truss)
+
+    fixtures = MeshBuilder()
+    for mount, target in spots:
+        add_spot(fixtures, mount, target, mats)
+    mesh_object("Fixtures", fixtures)
+
+
+def build_backdrop(mats):
+    """Vertical LED blades behind the screen, blue at the centre to violet at the edges, and two slim
+    LED columns at the back corners of the stage."""
+    wall = MeshBuilder()
+    count = round(2 * LED_WALL_HALF_W / LED_PITCH) + 1
+    for k in range(count):
+        x = -LED_WALL_HALF_W + k * LED_PITCH
+        mat = mats["M_LED_Blue"] if abs(x) < 2.0 else mats["M_LED_Indigo"] if abs(x) < 4.3 else mats["M_LED_Violet"]
+        wall.box(v(x, WALL_N_Y - 0.025, (STAGE_H + 8.7) / 2), (0.17, 0.05, 8.7 - STAGE_H), mat)
+    mesh_object("LEDWall", wall, bevel=0.01)
+
+    columns = MeshBuilder()
+    for s in (-1, 1):
+        base = v(s * 7.55, 4.6, STAGE_H)
+        columns.box(base + v(0, 0, 3.1), (0.26, 0.26, 6.2), mats["M_Fixture"])
+        columns.box(base + v(0, -0.132, 3.1), (0.1, 0.01, 5.9), mats["M_LED_Violet"])
+    mesh_object("LEDColumns", columns, bevel=0.01)
 
 
 def stage_front():
@@ -441,12 +536,11 @@ def build_stage(mats):
     front = stage_front()
     back_left, back_right = Vector((-STAGE_HALF_W, WALL_N_Y)), Vector((STAGE_HALF_W, WALL_N_Y))
     stage = MeshBuilder()
-    stage.loft([[v(*p, z) for p in front + [back_right, back_left]] for z in (0.0, STAGE_H)], mats["M_Surface"])
-    stage.strip([back_left, *front, back_right], 0.02, STAGE_H - 0.055, STAGE_H - 0.032, mats["M_Trim"])
+    stage.loft([[v(*p, z) for p in front + [back_right, back_left]] for z in (0.0, STAGE_H)], mats["M_Stage"])
     mesh_object("Stage", stage, bevel=0.03)
 
     edge = MeshBuilder()
-    edge.strip(front, 0.03, 0.035, 0.06, mats["M_Flood"])
+    edge.strip(front, 0.03, STAGE_H - 0.06, STAGE_H - 0.03, mats["M_Flood"])
     mesh_object("EdgeLight", edge)
 
 
@@ -478,8 +572,8 @@ def build_podium(mats):
     body_h = PODIUM_H - 0.05
     bottom, top = (0.84, 0.5), (0.96, 0.58)
     podium = MeshBuilder()
-    podium.frustum(v(0, 0, STAGE_H), bottom, top, body_h, mats["M_Furniture"])
-    podium.box(v(0, 0, STAGE_H + PODIUM_H - 0.025), (1.06, 0.66, 0.05), mats["M_Surface"])
+    podium.frustum(v(0, 0, STAGE_H), bottom, top, body_h, mats["M_Walnut"])
+    podium.box(v(0, 0, STAGE_H + PODIUM_H - 0.025), (1.06, 0.66, 0.05), mats["M_Stage"])
     podium.box(v(0, 0, STAGE_H + 0.03), (0.92, 0.58, 0.06), mats["M_Trim"])
 
     band_h = 0.8 * body_h
@@ -670,10 +764,28 @@ def build_camera():
     scene.render.resolution_x, scene.render.resolution_y = RESOLUTION
 
 
+def spot_targets():
+    """(mount, target) pairs: cans on the front beam aimed back at the desks (their lenses face the
+    camera), on the side beams at the outer desks, and two at the podium and the plinth."""
+    desks = [arc_point(ARC_RADIUS, -ARC_SPAN / 2 + i * ARC_SPAN / (len(TEAMS) - 1)) for i in range(len(TEAMS))]
+    hang = TRUSS_Z - 0.55
+    front = ((-6.6, 2), (-4.4, 3), (-2.2, 4), (2.2, 5), (4.4, 6), (6.6, 7))  # (beam x, desk index)
+    pairs = [(v(x, TRUSS_FRONT_Y, hang), v(*desks[i], 0.8)) for x, i in front]
+    for s, near, far in ((-1, 0, 1), (1, 9, 8)):
+        pairs += [(v(s * TRUSS_HALF_W, -4.5, hang), v(*desks[near], 0.8)),
+                  (v(s * TRUSS_HALF_W, -8.5, hang), v(*desks[far], 0.8))]
+    pairs += [(v(0.0, TRUSS_FRONT_Y, hang), v(0, 0.3, STAGE_H + 1.2)),
+              (v(PLINTH.x, TRUSS_FRONT_Y, hang), v(*PLINTH, STAGE_H + 1.0))]
+    return pairs
+
+
 def build_scene():
     bpy.ops.wm.read_factory_settings(use_empty=True)
     mats = make_materials()
-    build_room(mats)
+    build_floor(mats)
+    build_walls(mats)
+    build_truss(mats, spot_targets())
+    build_backdrop(mats)
     build_stage(mats)
     build_screen(mats)
     build_podium(mats)
@@ -717,20 +829,23 @@ def add_light(name, kind, location, target, energy, color=(1, 1, 1), **settings)
 
 
 def light_preview():
-    """Stand-in soft studio lighting for the preview only; it is added after the export."""
+    """Stand-in hall lighting for the preview only (the app lights the room itself); it is added
+    after the export. The room is closed, so every light sits inside it."""
     scene = bpy.context.scene
     world = bpy.data.worlds.new("Preview")
     scene.world = world
     background = next(n for n in world.node_tree.nodes if n.type == "BACKGROUND")
-    background.inputs["Color"].default_value = (0.92, 0.93, 0.95, 1)
-    background.inputs["Strength"].default_value = 0.26
+    background.inputs["Color"].default_value = (0.03, 0.035, 0.07, 1)
 
-    add_light("Key", "AREA", (-6, -13, 12), (0, -2, 0), 1700, shape="RECTANGLE", size=7, size_y=4)
-    add_light("StageWash", "AREA", (4, -5, 9), (0, 2.5, 1.5), 550, shape="RECTANGLE", size=8, size_y=3)
-    add_light("Fill", "AREA", (9, -19, 5), (0, -6, 1), 250, size=6)
+    warm, cool = (1.0, 0.9, 0.78), (0.7, 0.8, 1.0)
+    add_light("Key", "AREA", (-5, -15, 9.5), (0, -5, 0.8), 1300, warm, shape="RECTANGLE", size=6, size_y=4)
+    for mount, target in spot_targets():
+        add_light("Spot", "SPOT", mount, target, 260, warm, spot_size=math.radians(34), spot_blend=0.6)
+    add_light("Rim", "AREA", (0, 4.2, 9.4), (0, -9, 0.8), 1500, cool, shape="RECTANGLE", size=10, size_y=1,
+              specular_factor=0.0)  # no hot reflection of the light itself in the polished floor
     scene.eevee.use_fast_gi = True
     scene.eevee.fast_gi_method = "GLOBAL_ILLUMINATION"
-    scene.eevee.fast_gi_distance = 1.5
+    scene.eevee.fast_gi_distance = 2.0
     scene.eevee.use_raytracing = True
     scene.eevee.taa_render_samples = 64
     scene.view_settings.view_transform = "Khronos PBR Neutral"
@@ -740,7 +855,8 @@ def tint_preview_teams():
     """Apply real team colours for the preview only; the exported GLB keeps neutral defaults."""
     for code, (primary, secondary) in PREVIEW_TEAM_COLOURS.items():
         for name, color in ((f"M_Desk_{code}", primary), (f"M_Plate_{code}", secondary), (f"M_Paddle_{code}", primary),
-                            (f"M_Jersey_{code}", primary), (f"M_Sleeve_{code}", secondary)):
+                            (f"M_Jersey_{code}", primary), (f"M_Sleeve_{code}", secondary),
+                            (f"M_PlateText_{code}", secondary)):
             principled(bpy.data.materials[name]).inputs["Base Color"].default_value = (*srgb_to_linear(color), 1.0)
 
 

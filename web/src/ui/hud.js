@@ -1,6 +1,19 @@
-// Stage overlays: run chip, fast-forward ticker, accelerated-round interstitial, loading / end / error states.
+// Stage overlays: run chip, fast-forward ticker, accelerated-round interstitial, the single-player result card,
+// and loading / end / error states.
 import { esc, retrigger } from '../dom.js';
-import { int, runNo, plural } from '../format.js';
+import { int, money, pct, runNo, plural } from '../format.js';
+
+/** "Across 1,000 runs: sold 96% · median ₹15.75 Cr · KKR buys him 28%" */
+function acrossRuns(p, s, meta) {
+  const sim = p.sim || {};
+  const head = `Across ${int(meta.runs)} runs:`;
+  if (!sim.price) return `${head} never sold.`;
+  const buyers = sim.buyers || [];
+  const team = s.result?.type === 'sold' ? meta.teams[s.result.team]?.code : null;
+  const share = team ? buyers.find(([code]) => code === team)?.[1] || 0 : null;
+  const buys = team ? `${team} buys him ${pct(share)}` : buyers[0] ? `${buyers[0][0]} buys him most (${pct(buyers[0][1])})` : '';
+  return [`${head} sold ${pct(sim.pSold)}`, `median ${money(sim.price.median)}`, buys].filter(Boolean).join(' · ');
+}
 
 export function mountHud(el, ctx) {
   const { replay, meta } = ctx;
@@ -15,10 +28,20 @@ export function mountHud(el, ctx) {
       <span class="kicker">Unsold in the main auction</span>
       <strong class="inter-title"></strong>
     </div>
+    <section class="result-card" id="result-card" aria-label="Result of this lot" hidden>
+      <p class="rc-verdict"></p>
+      <p class="rc-runs"></p>
+      <div class="rc-actions">
+        <button class="btn btn-quiet" type="button" data-act="replay">Replay lot</button>
+        <button class="btn btn-quiet" type="button" data-act="another">Show another run</button>
+        <button class="btn btn-primary" type="button" data-act="next">Next lot →</button>
+      </div>
+    </section>
     <div class="hud-note" id="hud-note" hidden></div>`;
   const run = el.querySelector('#hud-run');
   const ticker = el.querySelector('#ticker');
   const inter = el.querySelector('#interstitial');
+  const card = el.querySelector('#result-card');
   const note = el.querySelector('#hud-note');
   let tickTimer = 0, loadTimer = 0;
 
@@ -44,6 +67,28 @@ export function mountHud(el, ctx) {
     retrigger(inter, 'is-in');
   });
 
+  // single-player focus: the lot has told its story; sum it up and offer the next move
+  replay.on('ended', (ended) => {
+    card.hidden = !ended;
+    if (!ended) return;
+    const s = replay.state, p = s.player;
+    const r = s.result;
+    const verdict = card.querySelector('.rc-verdict');
+    verdict.dataset.tone = r?.type || 'none';
+    verdict.innerHTML = r?.type === 'sold'
+      ? `SOLD to ${esc(ctx.codes[r.team])} <span class="mono">· ${money(r.price)}</span>`
+      : r?.type === 'unsold' ? 'UNSOLD' : s.phase === 'never' ? 'Never called' : 'Not called in this run';
+    card.querySelector('.rc-runs').textContent = acrossRuns(p, s, meta);
+    const n = p.sim?.feature?.length || 0;
+    card.querySelector('[data-act="another"]').disabled = !(n > 1 || (n === 1 && s.featureIdx < 0));
+    card.querySelector('[data-act="next"]').disabled = p.id + 1 >= ctx.players.length;
+    retrigger(card, 'is-in');
+  });
+  card.addEventListener('click', (e) => {
+    const act = e.target.closest('[data-act]')?.dataset.act;
+    ({ replay: () => replay.replayLot(), another: () => replay.anotherRun(), next: () => replay.next() })[act]?.();
+  });
+
   replay.on('phase', (phase) => {
     if (phase !== 'interstitial' && phase !== 'break') inter.hidden = true;
     clearTimeout(loadTimer);
@@ -59,5 +104,5 @@ export function mountHud(el, ctx) {
       note.hidden = false;
     } else note.hidden = true;
   });
-  note.addEventListener('click', (e) => { if (e.target.closest('[data-restart]')) replay.goTo(0, 0, { play: true }); });
+  note.addEventListener('click', (e) => { if (e.target.closest('[data-restart]')) replay.goTo(0, 0, { play: true, focus: false }); });
 }

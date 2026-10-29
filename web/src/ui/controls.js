@@ -1,5 +1,6 @@
 // Transport controls under the stage, and the global keyboard shortcuts.
 import { int } from '../format.js';
+import { SPEEDS } from '../replay.js';
 
 const ICON = {
   prev: '<path d="M6 5v10" /><path d="M15 5l-7 5 7 5z" class="fill"/>',
@@ -9,8 +10,11 @@ const ICON = {
   next: '<path d="M14 5v10" /><path d="M5 5l7 5-7 5z" class="fill"/>',
 };
 const svg = (name) => `<svg viewBox="0 0 20 20" aria-hidden="true">${ICON[name]}</svg>`;
+const SPEED_LABEL = { 0.5: '<span class="sp-long">Slow</span><span class="sp-short">½×</span>', 1: '1×', 3: '3×' };
+const SPEED_TITLE = { 0.5: 'Slow: half speed (0)', 1: 'Presentation speed (1)', 3: 'Fast: three times (3)' };
+const SPEED_KEY = { 0: 0.5, 1: 1, 3: 3 };
 const PHASE = {
-  idle: 'Ready', loading: 'Loading', intro: 'On the block', open: 'Gates opening', bidding: 'Bidding', going: 'Going…',
+  idle: 'Ready', loading: 'Loading', intro: 'On the block', open: 'Who wants him', interest: 'Who wants him', bidding: 'Bidding', going: 'Going…',
   sold: 'Sold', unsold: 'Unsold', interstitial: 'Accelerated round', break: 'Break before the accelerated round',
   never: 'Never called', notcalled: 'Not called in this run',
   end: 'End of the list', error: 'Data error',
@@ -31,8 +35,7 @@ export function mountControls(el, ctx) {
       <span class="ctl-phase"></span>
     </div>
     <div class="speed" role="group" aria-label="Playback speed">
-      <button type="button" data-speed="1" aria-pressed="true" title="Normal speed (1)">1×</button>
-      <button type="button" data-speed="5" aria-pressed="false" title="Fast (5)">5×</button>
+      ${SPEEDS.map((sp) => `<button type="button" data-speed="${sp}" aria-pressed="${sp === replay.state.speed}" title="${SPEED_TITLE[sp]}">${SPEED_LABEL[sp]}</button>`).join('')}
     </div>`;
   const play = el.querySelector('.ctl-play');
   const lot = el.querySelector('.ctl-lot');
@@ -46,15 +49,17 @@ export function mountControls(el, ctx) {
     ({ prev: () => replay.prev(), toggle: () => replay.toggle(), skip: () => replay.skip(), next: () => replay.next() })[b.dataset.act]?.();
   });
 
-  const paintPlay = (on) => {
-    play.innerHTML = svg(on ? 'pause' : 'play');
-    play.setAttribute('aria-label', on ? 'Pause' : 'Play');
-    play.classList.toggle('is-playing', on);
+  const paintPlay = () => {
+    const { playing, ended } = replay.state;
+    play.innerHTML = svg(playing ? 'pause' : 'play');
+    play.setAttribute('aria-label', playing ? 'Pause' : ended ? 'Continue the auction' : 'Play');
+    play.title = playing ? 'Pause (Space)' : ended ? 'Continue the auction from the next lot (Space)' : 'Play (Space)';
+    play.classList.toggle('is-playing', playing);
   };
   const paintLot = () => {
     const p = replay.state.player;
     if (!p) return;
-    lot.textContent = `Lot ${int(p.lot)} / ${int(players.length)}`;
+    lot.innerHTML = `<span class="ctl-lot-k">Lot </span>${int(p.lot)} / ${int(players.length)}`;
     bar.style.transform = `scaleX(${((p.id + 1) / players.length).toFixed(4)})`;
   };
   const paintPhase = (ph) => {
@@ -63,10 +68,11 @@ export function mountControls(el, ctx) {
     phase.dataset.phase = ph;
   };
   replay.on('playing', paintPlay);
+  replay.on('ended', paintPlay);
   replay.on('run', paintLot);
   replay.on('phase', paintPhase);
   replay.on('speed', (sp) => el.querySelectorAll('[data-speed]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.speed) === sp))));
-  paintPlay(replay.state.playing);
+  paintPlay();
 }
 
 export function bindKeys(ctx) {
@@ -86,8 +92,7 @@ export function bindKeys(ctx) {
         e.preventDefault();
         replay.toggle();
         break;
-      case '1': replay.setSpeed(1); break;
-      case '5': replay.setSpeed(5); break;
+      case '0': case '1': case '3': replay.setSpeed(SPEED_KEY[e.key]); break;
       case 's': case 'S': case 'ArrowRight': e.preventDefault(); replay.skip(); break;
       case 'ArrowLeft': e.preventDefault(); replay.prev(); break;
       case 'n': case 'N': replay.anotherRun(); break;
