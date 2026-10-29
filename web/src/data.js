@@ -6,20 +6,21 @@ const dataUrl = (file) => new URL(`data/${file}`, document.baseURI).href;
 async function fetchBuffer(file, onProgress) {
   const res = await fetch(dataUrl(file));
   if (!res.ok) throw new Error(`${file}: HTTP ${res.status}`);
+  // content-length is the compressed size when the host gzips (GitHub Pages does), so it only
+  // drives the progress bar; every chunk is kept whatever its total turns out to be
   const total = Number(res.headers.get('content-length')) || 0;
   if (!onProgress || !res.body || !total) return res.arrayBuffer();
   const reader = res.body.getReader();
-  const out = new Uint8Array(total);
+  const chunks = [];
   let got = 0;
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
-    if (got + value.length > out.length) return new Blob([out.subarray(0, got), value]).arrayBuffer(); // compressed size lied
-    out.set(value, got);
+    chunks.push(value);
     got += value.length;
-    onProgress(got / total);
+    onProgress(Math.min(1, got / total));
   }
-  return out.buffer.slice(0, got);
+  return new Blob(chunks).arrayBuffer();
 }
 
 async function fetchJSON(file, onProgress) {
