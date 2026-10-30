@@ -845,6 +845,9 @@ a.note-src:hover { color: var(--ink); text-decoration-color: currentColor; }
   .pc-meta { font-size: 9.5px; letter-spacing: -0.03em; }
   .pm-w { display: none; }
   .result-card { bottom: 10px; padding: 12px 14px; }
+  /* the card fills most of a phone's stage and opens with the same sale, so the room's caption steps aside */
+  .stage:has(.result-card:not([hidden])) .caption { opacity: 0; }
+  .caption .cap-kind { display: none; } /* the set is on the lot card; one line clears the table labels */
   .rc-verdict { font-size: 18px; }
   .rc-actions .btn { flex: 1 1 auto; }
   .rc-actions .btn-primary { margin-left: 0; }
@@ -874,14 +877,22 @@ a.note-src:hover { color: var(--ink); text-decoration-color: currentColor; }
   .tl-code .tdot { width: 8px; height: 8px; margin-right: 4px; }
   .palette-wrap { padding: 12px; }
   .palette { max-height: calc(100dvh - 24px); }
-  .pal-cols { display: none; }
-  .pal-row { grid-template-columns: 30px minmax(0, 1fr) 64px 76px; gap: 10px; padding: 0 10px; height: 52px; }
-  .pal-row .pr-role { display: none; }
+  .pal-cols, .pal-row { grid-template-columns: 30px minmax(0, 1fr) 64px 76px; gap: 10px; }
+  .pal-cols { padding: 0 16px; }
+  .pal-row { padding: 0 10px; height: 52px; }
+  .pal-cols > :nth-child(3), .pal-row .pr-role { display: none; }
   .pal-foot > span:nth-child(-n + 2) { display: none; }
   .drawer-body { padding: 4px 18px 28px; }
+  /* the back-test tables keep their headline figures on a phone; intervals, Δ lines and n stay on wider screens */
+  .vtable th, .vtable td { padding: 8px 4px; }
+  .vtable thead th, .vtable th[scope='row'] { white-space: normal; }
+  .vtable .ci, .vtable .delta-row, .vtable .col-n { display: none; }
+  .vtable tr.has-delta > * { padding-bottom: 8px; border-bottom: 1px solid var(--line); }
   .keys { grid-template-columns: 1fr; }
   .intro { align-items: start; padding: 16px; }
   .intro-card { gap: 18px; padding: 28px 20px 24px; border-radius: 18px; }
+  .intro-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 14px; }
+  .intro-facts .dot { display: none; }
   .intro-actions .btn { width: 100%; }
   .intro-actions { width: 100%; max-width: 340px; flex-direction: column; }
   .glance-cols { grid-template-columns: minmax(0, 1fr); gap: 8px; }

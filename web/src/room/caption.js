@@ -15,7 +15,7 @@ export function captionModel(state, codes) {
     case 'interest': {
       const set = setName(p.setCode);
       const where = state.round ? `Accelerated round ${int(state.round)}` : `Lot ${int(p.lot)}`;
-      const kind = !state.round && set ? ` · ${set.kind}` : '';
+      const kind = !state.round && set ? `<span class="cap-kind"> · ${esc(set.kind)}</span>` : ''; // dropped on a phone
       return { tone: 'plain', html: `${where} · <b>${esc(p.name)}</b>${kind} · base ${price(state.app?.start ?? p.base)}` };
     }
     case 'bidding': {

@@ -40,7 +40,7 @@ function validationRow(r) {
   }).join('');
   const delta = deltaLine(r.delta);
   const cls = [r.mode === 'baseline' && 'is-baseline', delta && 'has-delta'].filter(Boolean).join(' ');
-  return `<tr${cls ? ` class="${cls}"` : ''}><th scope="row">${esc(r.model)}${tag}</th>${cells}<td class="mono">${int(r.n)}</td></tr>${
+  return `<tr${cls ? ` class="${cls}"` : ''}><th scope="row">${esc(r.model)}${tag}</th>${cells}<td class="mono col-n">${int(r.n)}</td></tr>${
     delta ? `<tr class="delta-row"><td colspan="${METRICS.length + 2}">${delta}</td></tr>` : ''}`;
 }
 
@@ -53,7 +53,7 @@ function validationTable(v) {
     ? `${group('Baselines')}${baselines.map(validationRow).join('')}${group('Simulation, one factor at a time')}${models.map(validationRow).join('')}`
     : models.map(validationRow).join('');
   return `<div class="table-wrap"><table class="vtable">
-      <thead><tr><th scope="col">Model</th>${METRICS.map(([, h]) => `<th scope="col">${h}</th>`).join('')}<th scope="col">n</th></tr></thead>
+      <thead><tr><th scope="col">Model</th>${METRICS.map(([, h]) => `<th scope="col">${h}</th>`).join('')}<th scope="col" class="col-n">n</th></tr></thead>
       <tbody>${body}</tbody>
     </table></div>
     <p class="fine">AUC: how well P(sold) separates sold from unsold players. Top-3: the real buyer was among the three likeliest. 80% cover: real

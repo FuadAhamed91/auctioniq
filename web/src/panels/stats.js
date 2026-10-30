@@ -139,15 +139,13 @@ export function mountStats(el, ctx) {
     }
     if (!runMark || !runLegend) return;
     const r = st.result;
-    if (r?.type === 'sold' && scale) {
-      const x = scale(r.price).toFixed(1);
-      runMark.setAttribute('transform', `translate(${x} 0)`);
-      runMark.hidden = false;
-      runLegend.hidden = false;
+    const sold = r?.type === 'sold' && !!scale;
+    // an SVG element has no .hidden property, so the marker's attribute is toggled directly
+    runMark.toggleAttribute('hidden', !sold);
+    runLegend.hidden = !sold;
+    if (sold) {
+      runMark.setAttribute('transform', `translate(${scale(r.price).toFixed(1)} 0)`);
       el.querySelector(`.brow[data-code="${ctx.codes[r.team]}"]`)?.classList.add('is-run');
-    } else {
-      runMark.hidden = true;
-      runLegend.hidden = true;
     }
   }
 

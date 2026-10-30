@@ -39,7 +39,8 @@ export function mountIntro(root, ctx, { onStart, onPick, onPlayer }) {
     <div class="intro-card">
       ${logoHTML('logo-xl')}
       <h1 class="intro-title" id="intro-title">The ${esc(meta.title)}, simulated ${int(meta.runs)} times with only what was known on the morning of ${esc(date(meta.date))}.</h1>
-      <p class="intro-facts mono">${int(players.length)} players<i class="dot" aria-hidden="true"> · </i>${meta.teams.length} franchises<i class="dot" aria-hidden="true"> · </i>${int(slots)} slots<i class="dot" aria-hidden="true"> · </i>${money(purse)} to spend</p>
+      <p class="intro-facts mono">${[`${int(players.length)} players`, `${meta.teams.length} franchises`, `${int(slots)} slots`, `${money(purse)} to spend`]
+        .map((fact) => `<span>${fact}</span>`).join('<i class="dot" aria-hidden="true"> · </i>')}</p>
       <div class="intro-actions">
         <button class="btn btn-primary" type="button" data-act="start">
           <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.5v11l9-5.5z" class="fill"/></svg>Start the auction
