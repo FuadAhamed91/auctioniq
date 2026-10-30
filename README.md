@@ -5,6 +5,9 @@
 **The IPL 2026 mini-auction, simulated 1,000 times with only what was known on the morning of
 16 December 2025, and replayed bid by bid in a 3D auction room.**
 
+**Live:** [auctioniq-chi.vercel.app](https://auctioniq-chi.vercel.app) · mirror on
+[GitHub Pages](https://fuadahamed91.github.io/auctioniq/)
+
 Ten rule-based franchise agents, one per team, bid only for the players they need, up to a price
 they can explain. Pick any player and the app fast-forwards the auction to his lot, plays the
 bidding live with every team's reasons, and shows what happened to him across all 1,000 runs.
