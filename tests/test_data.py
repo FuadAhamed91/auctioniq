@@ -73,6 +73,17 @@ def test_value_models_learn_only_from_earlier_auctions_of_the_same_kind():
             assert y < int(year) and CFG["auction"][str(y)]["kind"] == a["kind"], (year, y)
 
 
+def test_team_notes_predate_the_auction():
+    """The cited background on each franchise was all published before the auction."""
+    path = ROOT / "data" / "research" / "team_notes.csv"
+    if not path.exists():
+        pytest.skip("no team notes yet")
+    notes = pd.read_csv(path, dtype=str)
+    assert set(notes.team) <= set(TEAMS)
+    assert (pd.to_datetime(notes.date) < pd.Timestamp(CFG["data"]["cutoff"])).all()
+    assert notes.url.str.startswith("http").all() and notes.note.str.len().le(200).all()
+
+
 def test_only_the_comparison_script_reads_2026_results():
     readers = []
     for path in list(ROOT.glob("*/*.py")) + list(ROOT.glob("web/src/**/*.js")):

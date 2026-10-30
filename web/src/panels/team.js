@@ -3,7 +3,11 @@
 import { esc } from '../dom.js';
 import { money, moneyRange, int, pct, runNo } from '../format.js';
 import { teamDot, teamVars } from '../teams.js';
-import { teamAnalyst } from '../analyst.js';
+import { teamAnalyst, habitLines } from '../analyst.js';
+
+/** "2025-11-16" -> "Nov 2025" */
+const monthYear = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const safeUrl = (url) => (/^https?:\/\//i.test(url || '') ? url : null);
 
 const GATE_LABEL = { need: 'Need', slot: 'Squad slot', overseas: 'Overseas', purse: 'Purse' };
 // [key in decision.f, label, what it is]
@@ -73,13 +77,14 @@ export function mountTeamPanel(el, ctx) {
     <div class="tp-scroll">
       <div class="tp-now" id="tp-now"></div>
       <section class="tp-sec tp-analyst" id="tp-analyst" aria-live="polite"></section>
+      <section class="tp-sec tp-habits" id="tp-habits"></section>
       <section class="tp-sec" id="tp-decision"></section>
       <section class="tp-sec" id="tp-needs"></section>
       <section class="tp-sec" id="tp-squad"></section>
       <section class="tp-sec" id="tp-sim"></section>
     </div>`;
   const part = (id) => el.querySelector(`#${id}`);
-  const ui = { code: part('tp-code'), sub: part('tp-sub'), now: part('tp-now'), analyst: part('tp-analyst'), decision: part('tp-decision'), needs: part('tp-needs'), squad: part('tp-squad'), sim: part('tp-sim') };
+  const ui = { code: part('tp-code'), sub: part('tp-sub'), now: part('tp-now'), analyst: part('tp-analyst'), habits: part('tp-habits'), decision: part('tp-decision'), needs: part('tp-needs'), squad: part('tp-squad'), sim: part('tp-sim') };
   let numbersOpen = false; // "The numbers behind it" stays as the viewer left it
 
   const squadOf = (t) => {
@@ -108,6 +113,21 @@ export function mountTeamPanel(el, ctx) {
     const a = teamAnalyst(ctx, replay.state, ti);
     ui.analyst.innerHTML = a ? `<h4 class="analyst-head">${esc(a.title)}<span class="muted"> on ${esc(replay.state.player.name)}</span></h4>
       <div class="analyst">${a.lines.map((line) => `<p>${esc(line)}</p>`).join('')}</div>` : '';
+  }
+
+  /** The franchise's buying habits and cited background: information only, the bidding does not use them. */
+  function renderHabits() {
+    const T = meta.teams[ti], h = habitLines(T);
+    if (!h) { ui.habits.innerHTML = ''; return; }
+    const notes = (T.notes || []).filter((n) => n.note).map((n) => {
+      const url = safeUrl(n.url), src = [n.outlet, n.date && monthYear(n.date)].filter(Boolean).join(', ');
+      return `<li>${esc(n.note)}${src ? ` ${url ? `<a class="note-src" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(src)}</a>` : `<span class="note-src">${esc(src)}</span>`}` : ''}</li>`;
+    }).join('');
+    ui.habits.innerHTML = `<h4 class="habits-head">How ${esc(T.code)} usually build</h4>
+      <p class="habits-since">${esc(h.head)}</p>
+      <ul class="habits">${[...h.items, h.star].filter(Boolean).map((line) => `<li>${esc(line)}</li>`).join('')}</ul>
+      ${notes ? `<ul class="habit-notes">${notes}</ul>` : ''}
+      <p class="habits-foot">Background only: these habits did not pick mini-auction buyers better than chance, so the bidding runs on each team's current gaps and money.</p>`;
   }
 
   function renderDecision() {
@@ -183,7 +203,7 @@ export function mountTeamPanel(el, ctx) {
 
   function renderAll() {
     if (ti == null) return;
-    renderNow(); renderAnalyst(); renderDecision(); renderNeeds(); renderSquad(); renderSim();
+    renderNow(); renderAnalyst(); renderHabits(); renderDecision(); renderNeeds(); renderSquad(); renderSim();
   }
 
   function open(t) {

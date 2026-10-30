@@ -189,18 +189,65 @@ function closedLine(ctx, p, d) {
   return 'Not in the market for him.';
 }
 
+// ---- franchise habits (background only: they did not pick mini-auction buyers better than chance) ----
+
+const SPIN = new Set(['wrist_spin', 'finger_spin', 'spin_ar']);
+const PACE = new Set(['pp_pacer', 'death_pacer', 'pace_ar']);
+const ALLROUND = new Set(['pace_ar', 'spin_ar']);
+/** Per habit key: how to say it either way, which players fit it, and the history it points to. */
+const HABITS = {
+  vet: { more: 'More veterans', fewer: 'Fewer veterans', what: 'of their buys were 30 or older', fits: (p) => p.age >= 30, record: 'they have leaned on players aged 30 and over' },
+  youth: { more: 'More young Indian talent', fewer: 'Less young Indian talent', what: 'were uncapped Indians aged 23 or under', fits: (p) => p.age <= 23 && !p.capped && !p.overseas, record: 'they have often backed young uncapped Indians' },
+  overseas: { more: 'More overseas buys', fewer: 'Fewer overseas buys', what: 'of their buys were overseas players', fits: (p) => p.overseas, record: 'they have bought more overseas players than most' },
+  capped: { more: 'More capped players', fewer: 'Fewer capped players', what: 'of their buys were capped internationals', fits: (p) => p.capped, record: 'they have favoured capped internationals' },
+  spin: { more: 'More spinners', fewer: 'Fewer spinners', what: 'of their buys were spin bowlers', fits: (p) => SPIN.has(p.role), record: 'they have bought more spinners than most' },
+  pace: { more: 'More pace bowlers', fewer: 'Fewer pace bowlers', what: 'of their buys were pace bowlers', fits: (p) => PACE.has(p.role), record: 'they have bought more pace bowlers than most' },
+  allround: { more: 'More all-rounders', fewer: 'Fewer all-rounders', what: 'of their buys were all-rounders', fits: (p) => ALLROUND.has(p.role), record: 'they have bought more all-rounders than most' },
+  keeper: { more: 'More keepers', fewer: 'Fewer keepers', what: 'of their buys were wicketkeepers', fits: (p) => p.tags?.includes('wk'), record: 'they have bought more keepers than most' },
+  former: { more: 'More reunions', fewer: 'Fewer reunions', what: 'of their buys were their own former players, bought back', fits: (p, code) => p.prev?.team === code, record: 'they have often brought back their own former players' },
+  star: { more: 'More stars', fewer: 'Fewer stars', what: "of their buys were among the auction's top 10% of prices" },
+};
+const STAR_GAP = 0.08; // the money-on-stars line shows only when it is this far from the league
+
+/** "How CSK usually build": the head line, one line per clear habit, and the money-on-stars line. */
+export function habitLines(team) {
+  const h = team?.habits;
+  if (!h) return null;
+  const age = Number.isInteger(h.medianAge) ? int(h.medianAge) : h.medianAge?.toFixed(1);
+  const items = (h.items || []).filter((it) => HABITS[it.key]).map((it) => {
+    const w = HABITS[it.key];
+    return `${it.share > it.league ? w.more : w.fewer}: ${pct(it.share)} ${w.what} (league ${pct(it.league)})`;
+  });
+  const [mine, league] = h.starSpend || [];
+  const star = mine != null && league != null && Math.abs(mine - league) >= STAR_GAP
+    ? `${pct(mine)} of their auction money went on top-priced buys (league ${pct(league)})` : null;
+  return {
+    head: `Since ${h.since}: ${plural(h.buys, 'buy')}, median age ${age}.`,
+    items: items.length ? items : [`No buying habit stands out from the league since ${h.since}.`],
+    star,
+  };
+}
+
+/** One sentence of history when the player fits a habit the team has leaned towards (never the reason to bid). */
+function habitLine(team, p) {
+  const fit = (team?.habits?.items || []).find((it) => it.share > it.league && HABITS[it.key]?.fits?.(p, team.code));
+  return fit ? `It fits their record: ${HABITS[fit.key].record}.` : null;
+}
+
 /** Lines for a run without a logged decision: the team's pre-auction needs and what happened. */
 function fallbackLines(ctx, state, ti) {
   const T = ctx.meta.teams[ti];
   const needs = (T.needs || []).slice(0, 2).map((n) => roleWords(ctx, n.role)).map((r) => `${an(r.one)} ${r.one}`);
   const lines = needs.length ? [`Before the auction they were short of ${needs.join(' and ')}.`] : [];
+  const habit = habitLine(T, state.player);
+  if (habit) lines.push(habit);
   const r = state.result;
   if (r?.type === 'sold') lines.push(r.team === ti ? `They bought him for ${money(r.price)}.` : 'Not their buy in this run.');
   lines.push('Full reasons are recorded for the featured runs.');
   return lines;
 }
 
-/** "CSK's analyst" on the current lot: 2–4 short sentences, or null before a lot is loaded. */
+/** "CSK's analyst" on the current lot: 2–5 short sentences, or null before a lot is loaded. */
 export function teamAnalyst(ctx, state, ti) {
   const p = state.player, code = ctx.codes[ti];
   if (!p || state.phase === 'loading') return null;
@@ -210,12 +257,13 @@ export function teamAnalyst(ctx, state, ti) {
   const d = state.app?.teams?.[code];
   if (!d) return { title, lines: fallbackLines(ctx, state, ti) };
   const role = roleFor(ctx, p, d);
-  if (!d.open) return { title, lines: [closedLine(ctx, p, d), 'So they sit this one out.'] };
+  const habit = habitLine(ctx.meta.teams[ti], p);
+  if (!d.open) return { title, lines: [closedLine(ctx, p, d), habit, 'So they sit this one out.'].filter(Boolean) };
   const before = state.before?.[ti];
   const cricket = [gapLine(ctx, p, d, before), strengthLine(ctx, p, role)];
   const outcome = outcomeLine(state, ti, d);
   const dynamics = [moneyLine(p, before, d.f), marketLine(ctx, state.app?.market, p.role), styleLine(d.f)].filter(Boolean);
-  return { title, lines: [...cricket, ...dynamics.slice(0, outcome ? 1 : 2), outcome].filter(Boolean) };
+  return { title, lines: [...cricket, habit, ...dynamics.slice(0, outcome ? 1 : 2), outcome].filter(Boolean) };
 }
 
 // ---- why this price ----

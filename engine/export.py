@@ -153,8 +153,61 @@ def _q(v) -> dict:
     return {"p10": _num(np.percentile(v, 10), 2), "median": _num(np.median(v), 2), "p90": _num(np.percentile(v, 90), 2)}
 
 
+HABITS = ["vet", "youth", "overseas", "capped", "spin", "pace", "allround", "keeper", "former", "star"]
+NOTES = ROOT / "data" / "research" / "team_notes.csv"
+
+
+def team_habits() -> dict:
+    """What each franchise bought in the auctions on file, against the league: background for its panel.
+    Shares of its buys that were 30 or older (vet), uncapped Indians of 23 or under (youth), overseas,
+    capped, spin or pace bowlers, all-rounders, keepers, its own former players, or among the auction's
+    top 10% of prices (star); only clear differences are kept. Tested on past auctions, these habits do
+    not pick mini-auction buyers better than chance, so the agents do not use them."""
+    rows, seen = [], {}
+    for y in sorted(int(k) for k in CFG["auction"] if int(k) < YEAR):
+        a = inputs.auction_list(y)
+        a = a[a.status.eq("sold")]
+        key = a.cid.fillna(a.name)
+        age = ((pd.Timestamp(inputs.date_of(y)) - pd.to_datetime(a.dob, errors="coerce")).dt.days / 365.25
+               ).fillna(pd.to_numeric(a.get("age"), errors="coerce"))
+        style = a.bowling_style.astype(str).str.lower()
+        spin = style.str.contains("spin|break|orthodox|chinaman|googly")
+        bowler, capped, overseas = a.role.isin(["BOWLER", "ALL-ROUNDER"]), a.capped.astype(str).str.lower().eq("capped"), a.overseas.astype(bool)
+        rows.append(pd.DataFrame({
+            "year": y, "team": a.team, "price": a.price_lakh, "age": age, "vet": age >= 30,
+            "youth": (age <= 23) & ~capped & ~overseas, "overseas": overseas, "capped": capped,
+            "spin": bowler & spin, "pace": bowler & ~spin & style.str.contains("fast|medium"),
+            "allround": a.role.eq("ALL-ROUNDER"), "keeper": a.role.eq("WICKETKEEPER"),
+            "former": [t in seen.get(k, ()) for k, t in zip(key, a.team)],
+            "star": a.price_lakh >= a.price_lakh.quantile(0.9)}))
+        for k, t in zip(key, a.team):
+            seen.setdefault(k, set()).add(t)
+    df = pd.concat(rows, ignore_index=True)
+    league = df[HABITS].mean()
+    out = {}
+    for t, d in df.groupby("team"):
+        share = d[HABITS].mean()
+        z = (share - league) / np.sqrt(league * (1 - league) / len(d))
+        clear = [k for k in z.abs().sort_values(ascending=False).index
+                 if abs(z[k]) >= 1.5 and abs(share[k] - league[k]) >= 0.05][:3]
+        out[t] = {"since": int(d.year.min()), "buys": len(d), "medianAge": _num(d.age.median(), 1),
+                  "items": [{"key": k, "share": _num(share[k], 2), "league": _num(league[k], 2)} for k in clear],
+                  "starSpend": [_num(d.price[d.star].sum() / d.price.sum(), 2),
+                                _num(df.price[df.star].sum() / df.price.sum(), 2)]}
+    return out
+
+
+def team_notes() -> dict:
+    """Cited background on each franchise's auction habits, all published before the auction (docs/TEAMS.md)."""
+    if not NOTES.exists():
+        return {}
+    notes = pd.read_csv(NOTES, dtype=str).fillna("")
+    return {t: d[["note", "outlet", "date", "url"]].to_dict("records") for t, d in notes.groupby("team")}
+
+
 def meta_json(ctx: dict, team_sum: list, buyer: np.ndarray, validation: dict | None, glance: dict) -> dict:
     retained = ctx["retained"]
+    habits, notes = team_habits(), team_notes()
     teams = []
     for i, spec in enumerate(ctx["teams"]):
         ts = team_sum[i]
@@ -173,6 +226,7 @@ def meta_json(ctx: dict, team_sum: list, buyer: np.ndarray, validation: dict | N
                           "overseas": bool(r.overseas), "tags": _tags(r)} for _, r in squad.iterrows()],
             "template": {k: round(float(v), 2) for k, v in zip(needs.ROLES, ctx["tmpl"])},
             "needs": _team_needs(ctx, spec),
+            "habits": habits.get(spec["code"]), "notes": notes.get(spec["code"], []),
             "sim": {"spend": _q(ts["spend"]), "purseLeft": _q(ts["purseLeft"]), "bought": _q(ts["bought"]),
                     "needsFilled": _q(ts["needsFilled"]),
                     "topTargets": [[int(p), _num(probs[p])] for p in top if probs[p] > 0]},

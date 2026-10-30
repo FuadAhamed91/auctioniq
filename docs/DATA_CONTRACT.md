@@ -115,6 +115,14 @@ buyer had a pre-auction need for the player. `kept` is null for the baseline and
 "market": { "alike": 2, "short": 6 },
 "why": { "role": "death_pacer", "kind": "depth", "have": 1.0, "usual": 3.1, "best": "A Player",
          "better": true, "keepers": 2 },
+// meta.teams[i].habits: what the franchise bought in the auctions on file, against the league (background
+// only; the agents do not use it). items: clear differences only, largest first; keys vet (30+), youth
+// (uncapped Indian, 23 or under), overseas, capped, spin, pace, allround, keeper, former (own former
+// players), star (top 10% of an auction's prices). starSpend: [team, league] share of money on star buys
+"habits": { "since": 2018, "buys": 96, "medianAge": 25.5,
+            "items": [{ "key": "youth", "share": 0.2, "league": 0.14 }], "starSpend": [0.34, 0.44] },
+// meta.teams[i].notes: cited background on the franchise's auction habits, all published before the auction
+"notes": [{ "note": "...", "outlet": "ESPNcricinfo", "date": "2025-11-16", "url": "https://..." }],
 // meta.highlights: auction-at-a-glance lists of player ids, computed from the 1,000 runs
 "highlights": {
   "contested": [[12, 6.2]],   // most wanted: [id, average number of teams ready to pay at least his base]

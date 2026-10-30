@@ -451,6 +451,17 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
 .analyst-head .muted { font-weight: 400; }
 .analyst { display: grid; gap: 6px; padding: 2px 0 2px 14px; border-left: 3px solid var(--t1, var(--rule)); }
 .analyst p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--ink); }
+.habits-head { margin: 0 0 6px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.habits-since { margin: 0 0 8px; font-size: 12.5px; color: var(--ink-2); }
+.habits, .habit-notes { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.habits li { position: relative; padding-left: 14px; font-size: 13px; line-height: 1.45; color: var(--ink); }
+.habits li::before { content: ''; position: absolute; left: 2px; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--t1, var(--rule)); }
+.habit-notes { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.habit-notes li { font-size: 12.5px; line-height: 1.5; color: var(--ink); }
+.note-src { margin-left: 4px; font-size: 11.5px; color: var(--ink-2); white-space: nowrap; }
+a.note-src { text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 2px; }
+a.note-src:hover { color: var(--ink); text-decoration-color: currentColor; }
+.habits-foot { margin: 10px 0 0; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
 .tp-numbers summary { width: max-content; font-size: 12.5px; font-weight: 500; color: var(--ink-2); cursor: pointer; }
 .tp-numbers summary:hover { color: var(--ink); }
 .tp-numbers[open] summary { margin-bottom: 12px; }

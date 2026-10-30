@@ -107,6 +107,17 @@ parts: **market**, one draw per player per run from the value model's own error,
 (how the whole room rates him that day), and **noise**, each team's own lognormal draw. A team bids
 until the price passes its walk-away, then drops out with the reason. Needs update after every sale.
 
+**Team habits: researched, tested, shown as background.** Each franchise's buys in the auctions on
+file (2018–2025) were profiled against the league: veterans, young uncapped Indians, overseas, capped,
+spin and pace bowlers, all-rounders, keepers, its own former players and top-priced buys (MI buy the
+youngest, PBKS spend most on stars and all-rounders, CSK and KKR bring back former players most). A
+conditional-logit model of which team buys a sold player, fitted on earlier auctions only, picked the
+real buyer no better than chance in the 2023 and 2024 mini auctions (in the top three 25–33% of the
+time against 30%), and bringing back former players held only in mega auctions, where right-to-match
+cards apply. In a mini auction a team's current gaps and money decide, so the agents do not use the
+habits; the app shows them in each team's panel, with cited reporting from before the auction
+(docs/TEAMS.md).
+
 ## 6. Engine (`engine/auction.py`)
 
 The procedure is researched in `docs/AUCTION.md`. The first 70 names are called set by set, the

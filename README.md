@@ -58,6 +58,11 @@ In plain terms, on 2024:
   archived official records, so players carry their earlier IPL price (Pat Cummins: ₹15.5 Cr in 2020)
   and the 2026 model learns from four mini auctions instead of two. Mixing in mega-auction data, even
   with a measure of how many similar players each auction offered, did worse on the back-tests.
+- **Team habits, tested.** Each franchise's buying habits since 2018 were profiled (MI buy the
+  youngest, PBKS spend most on stars and all-rounders, CSK and KKR bring back former players) and
+  tested on later auctions: in mini auctions they picked the real buyer no better than chance, so the
+  agents bid on each team's current gaps and money, and the habits appear in each team's panel as
+  background, with cited reporting ([`docs/TEAMS.md`](docs/TEAMS.md)).
 - **Honest limits:** the expensive end is under-priced. Only 5 of the 18 buys of ₹5 Cr or more came
   within a factor of two of the median (Mitchell Starc went for ₹24.75 Cr against a median of
   ₹3.30 Cr; Pat Cummins's ₹20.50 Cr fell inside his range). Bidding wars for a handful of stars, and
