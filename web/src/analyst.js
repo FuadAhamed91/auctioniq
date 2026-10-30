@@ -170,8 +170,9 @@ function outcomeLine(state, ti, d) {
     const worth = d.walk == null || about(d.walk) === money(drop.price) ? ', about their limit' : `; he wasn't worth more than about ${about(d.walk)} to them`;
     return `${lastBid ? 'They let him go' : 'They never raised the paddle and let him go'} at ${money(drop.price)}${worth}${letGoReason(d, state.app?.market)}.`;
   }
-  if (state.status[ti]?.state === 'leading') return `They hold the bid at ${money(state.price)}${d.walk != null ? ` and would go to about ${about(d.walk)}` : ''}.`;
-  if (!state.result && d.walk != null) return d.walk < start ? `They rate him at about ${about(d.walk)}, under his base: expect them to pass.` : `They would go to about ${about(d.walk)}.`;
+  // while the lot is live, how far a team will go stays with them, as it would in the room
+  if (state.status[ti]?.state === 'leading') return `They hold the bid at ${money(state.price)}.`;
+  if (!state.result && d.walk != null && d.walk < start) return `They rate him under his ${money(start)} base: expect them to pass.`;
   return null;
 }
 
@@ -243,7 +244,7 @@ function fallbackLines(ctx, state, ti) {
   if (habit) lines.push(habit);
   const r = state.result;
   if (r?.type === 'sold') lines.push(r.team === ti ? `They bought him for ${money(r.price)}.` : 'Not their buy in this run.');
-  lines.push('Full reasons are recorded for the featured runs.');
+  lines.push('Full reasons are recorded only for the runs replayed bid by bid.');
   return lines;
 }
 
@@ -359,16 +360,34 @@ export function priceAnalyst(ctx, state) {
   const p = state.player;
   if (!p) return [];
   const result = state.result?.type === 'sold' ? priceLine(ctx, state) : state.result?.type === 'unsold' ? unsoldLine(ctx, state) : null;
-  const note = state.logged ? null : 'Full reasons are recorded for the featured runs.';
+  const note = state.logged ? null : 'Full reasons are recorded only for the runs replayed bid by bid.';
   return [worthLine(ctx, p), demandLine(ctx, state), result, note, acrossRuns(ctx.meta, p)].filter(Boolean);
 }
 
 // ---- the spread ----
 
-/** "This run ₹X · across 1,000 runs, 80% of prices between ₹A and ₹B" (and how often he sells, if not here) */
+/** "₹6.25 Cr is 30% above the median of ₹4.80 Cr": where this run's price sits among all the runs. */
+function versusMedian(price, { median, p10, p90 }, where = '') {
+  const ratio = price / median, of = `the median of ${money(median)}${where}`;
+  const how = Math.abs(ratio - 1) < 0.05 ? `right on ${of}`
+    : ratio >= 2 ? `${ratio.toFixed(1)} times ${of}`
+    : `${Math.round(Math.abs(ratio - 1) * 100)}% ${ratio > 1 ? 'above' : 'below'} ${of}`;
+  const tail = price > p90 ? ', higher than 9 in 10 of his sales' : price < p10 ? ', lower than 9 in 10 of his sales' : '';
+  return `${money(price)} is ${how}${tail}`;
+}
+
+/** The reveal on the result card: this run against the median and 80% range of all the runs. */
 export function spreadLine(meta, p, result) {
-  const s = p.sim || {}, runs = `across ${int(meta.runs)} runs`;
-  const range = s.price ? `80% of prices between ${money(s.price.p10)} and ${money(s.price.p90)}` : '';
-  if (result?.type === 'sold') return `This run ${money(result.price)} · ${runs}, ${range}`;
-  return s.price ? `Unsold this run · ${runs} he sells ${pct(s.pSold)} of the time; ${range}` : `Unsold this run · ${runs} he never sells`;
+  const s = p.sim || {}, runs = `${int(meta.runs)} runs`;
+  if (!s.price) return `He never sells in any of the ${runs}.`;
+  const range = `80% of his prices fell between ${money(s.price.p10)} and ${money(s.price.p90)}`;
+  if (result?.type === 'sold') return `${versusMedian(result.price, s.price, ` across ${runs}`)}; ${range}.`;
+  const head = result?.type === 'unsold' ? 'Unsold this run.' : 'Not called in this run.';
+  return `${head} Across ${runs} he sells ${pct(s.pSold)} of the time, at a median of ${money(s.price.median)}; ${range}.`;
+}
+
+/** The short version under the 1,000-run numbers: "This run: ₹6.25 Cr is 30% above the median of ₹4.80 Cr." */
+export function runLine(p, result) {
+  if (result?.type === 'sold' && p.sim?.price) return `This run: ${versusMedian(result.price, p.sim.price)}.`;
+  return result?.type === 'unsold' ? 'Unsold this run.' : '';
 }

@@ -43,7 +43,7 @@ export function mountHud(el, ctx) {
 
   replay.on('run', (s) => {
     run.innerHTML = s.run != null
-      ? `<span class="mono">Run ${runNo(s.run)}</span><span class="muted"> of ${int(meta.runs)}</span>${s.feature?.tag ? `<i class="dot" aria-hidden="true"> · </i>${esc(s.feature.tag)}` : ''}`
+      ? `<span class="mono">Run ${runNo(s.run)}</span><span class="muted"> of ${int(meta.runs)}</span>`
       : '<span class="muted">Not called in any run</span>';
   });
 
@@ -121,5 +121,5 @@ export function mountHud(el, ctx) {
       note.hidden = false;
     } else note.hidden = true;
   });
-  note.addEventListener('click', (e) => { if (e.target.closest('[data-restart]')) replay.goTo(0, 0, { play: true, focus: false }); });
+  note.addEventListener('click', (e) => { if (e.target.closest('[data-restart]')) replay.goTo(0, null, { play: true, focus: false }); });
 }

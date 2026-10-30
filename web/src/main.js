@@ -89,7 +89,7 @@ async function boot() {
     /** A player picked from search, the intro or a link plays on his own and stops on his result. */
     selectPlayer(id) {
       teamPanel.close();
-      replay.goTo(id, 0, { play: true, focus: true });
+      replay.goTo(id, null, { play: true, focus: true });
     },
     openPalette() { intro?.close(); about.close(); palette.open(); },
     modalOpen: () => !!(intro?.isOpen || palette.isOpen || about.isOpen),
@@ -110,12 +110,12 @@ async function boot() {
   const another = $('#another-run');
   replay.on('run', (s) => {
     runChip.innerHTML = s.run != null
-      ? `<span class="mono">Run ${runNo(s.run)}</span><span class="muted mono">/${int(meta.runs)}</span>${s.feature?.tag ? `<i class="dot" aria-hidden="true"> · </i><span class="run-tag">${esc(s.feature.tag)}</span>` : ''}`
+      ? `<span class="mono">Run ${runNo(s.run)}</span><span class="muted mono">/${int(meta.runs)}</span>`
       : '<span class="muted">Not called in any run</span>';
     const n = s.player?.sim?.feature?.length || 0;
     another.disabled = !(n > 1 || (n === 1 && s.featureIdx < 0));
-    another.title = another.disabled ? 'No other featured run for this player'
-      : s.featureIdx < 0 ? 'Show his featured runs (N)' : `Show another run (N) · featured run ${s.featureIdx + 1} of ${n}`;
+    another.title = another.disabled ? 'No other recorded run for this player'
+      : s.featureIdx < 0 ? 'Show his recorded runs (N)' : `Show another run (N) · ${s.featureIdx + 1} of his ${n} recorded runs`;
   });
   another.addEventListener('click', () => replay.anotherRun());
   $('#search-btn').addEventListener('click', () => ctx.openPalette());
@@ -171,7 +171,7 @@ async function boot() {
     intro?.close();
     palette.close();
     teamPanel.close();
-    replay.goTo(link.p, 0, { run: link.run, play: true, focus: true });
+    replay.goTo(link.p, null, { run: link.run, play: true, focus: true });
   });
 
   // hand over from the loader: straight to a linked lot, otherwise the intro over lot 1
@@ -180,10 +180,10 @@ async function boot() {
   setTimeout(() => loader.remove(), 600);
   const link = parseLink();
   if (link) {
-    replay.goTo(link.p, 0, { run: link.run, play: true, focus: true });
+    replay.goTo(link.p, null, { run: link.run, play: true, focus: true });
     return;
   }
-  replay.goTo(0, 0, { play: false });
+  replay.goTo(0, null, { play: false });
   intro = mountIntro(overlays, ctx, {
     onStart: () => replay.startAuction(),
     onPick: () => palette.open(),

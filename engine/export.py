@@ -123,7 +123,7 @@ def players_json(ctx: dict, summary: pd.DataFrame, feat: list, price: np.ndarray
                 "buyers": sorted([[t, _num(s[t])] for t in mc.TEAMS if s[t] > 0], key=lambda x: -x[1]),
                 "price": {k: int(round(s[k])) for k in ("p10", "median", "p90", "mean")} if len(sold) else None,
                 "hist": hist,
-                "feature": [{"run": run, "tag": tag} for run, tag in feat[i]],
+                "feature": [{"run": run} for run in feat[i]],
                 "noNeeds": {"pSold": _num(no_needs.at[i, "p_sold"]),
                             "median": None if pd.isna(no_needs.at[i, "median"])
                             else int(round(no_needs.at[i, "median"]))},
@@ -269,17 +269,17 @@ def main() -> None:
     n = ctx["n_pool"]
     buyer, price = mc.outcome_arrays(results, n)
     summary = mc.player_summary(buyer, price)
-    feat = mc.featured(buyer, price, summary, CFG["montecarlo"]["featured"])
+    feat = mc.featured(buyer, CFG["montecarlo"]["featured"], CFG["montecarlo"]["seed"])
     wanted: dict[int, set] = {}
     for p, picks in enumerate(feat):
-        for run, _ in picks:
+        for run in picks:
             wanted.setdefault(run, set()).add(p)
     print("Simulating the value-only counterfactual")
     nb, npr = mc.outcome_arrays(mc.run_many(inputs.build(YEAR, set()), range(runs)), n)
     no_needs = mc.player_summary(nb, npr)
     print(f"Replaying {len(wanted)} featured runs in detail")
     detailed = mc.run_many(ctx, sorted(wanted), detail=wanted)
-    lots: dict[int, dict] = {p: {str(run): [] for run, _ in picks} for p, picks in enumerate(feat)}
+    lots: dict[int, dict] = {p: {str(run): [] for run in picks} for p, picks in enumerate(feat)}
     for run, _, _, details, _ in detailed:
         for p, apps in details.items():
             lots[p][str(run)] = apps

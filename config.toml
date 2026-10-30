@@ -168,7 +168,7 @@ need_only_multiple = 3.0      # need-only bidders (ablation) value a player at t
 [montecarlo]
 runs = 1000
 seed = 20251216
-featured = 6                  # runs kept per player for "Show another run"
+featured = 6                  # random runs per player replayed bid by bid ("Show another run")
 
 # Factors used for the 2026 run. Needs are the agents' core (tested directly against the real 2024
 # buyers); each add-on was kept only if it beat the simulation's own noise on the 2024 back-test

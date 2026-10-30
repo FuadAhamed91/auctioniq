@@ -56,7 +56,7 @@ export function mountRoom2D(el, ctx) {
   function paintScreen(animatePrice) {
     const m = screenModel(replay.state, ctx);
     // re-render only when the screen changes mode; during bidding the price and leader update in place
-    const key = [m.mode, m.name, m.open, m.note, m.sub, m.reason, m.split, m.corner].join('|');
+    const key = [m.mode, m.name, m.open, m.note, m.sub, m.reason, m.split, m.corner, m.median].join('|');
     if (key !== shownKey) {
       shownKey = key;
       screen.innerHTML = screenHTML(m, m.mode === 'bid' ? price.value || m.price : m.price);

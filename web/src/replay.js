@@ -1,5 +1,6 @@
-// Playback state machine: player -> featured run -> appearances -> events, on a virtual clock.
+// Playback state machine: player -> one of his recorded runs -> appearances -> events, on a virtual clock.
 // Two modes: 'auction' plays the list continuously; 'focus' plays one player's lot and stops on its result.
+// Like a live auction, the 1,000-run numbers stay sealed (state.revealed) until the hammer falls on him.
 import { UNSOLD } from './data.js';
 import { feeSplit } from './format.js';
 
@@ -29,7 +30,7 @@ export function createReplay({ meta, players, store }) {
     player: null, feature: null, featureIdx: 0, run: null,
     apps: [], appIdx: 0, app: null, logged: true, seq: 0, round: 0,
     econ: [], before: [], status: [], price: null, leader: -1, ladder: [], result: null,
-    phase: 'idle', playing: false, speed: 1, mode: 'auction', ended: false, error: null,
+    phase: 'idle', playing: false, speed: 1, mode: 'auction', ended: false, revealed: false, error: null,
   };
 
   let queue = [], wait = 0, busy = false, token = 0, outcomes = null, last = performance.now();
@@ -60,6 +61,13 @@ export function createReplay({ meta, players, store }) {
     state.ended = on;
     emit('ended', on);
   }
+  function setRevealed(on) {
+    if (state.revealed === on) return;
+    state.revealed = on;
+    emit('reveal', on);
+  }
+  /** The hammer has fallen on his last appearance of the run: the 1,000-run numbers can show. */
+  const revealIfLast = () => { if (state.appIdx + 1 >= state.apps.length) setRevealed(true); };
   /** Focus mode: the player's story is told; stop on the result. */
   function finish() {
     queue = [];
@@ -114,6 +122,7 @@ export function createReplay({ meta, players, store }) {
     state.price = price;
     // an overseas player keeps at most the fee cap; the rest of the price goes to the BCCI
     state.result = { type: 'sold', team: t, price, split: feeSplit(state.player, price, meta.rules?.overseasFeeCap) };
+    revealIfLast();
     state.ladder.push({ type: 'sold', team: t, price });
     setPhase('sold');
     emit('step', { type: 'sold', team: t, price, instant });
@@ -123,6 +132,7 @@ export function createReplay({ meta, players, store }) {
     if (state.leader >= 0) state.status[state.leader] = { ...state.status[state.leader], state: 'open' };
     state.leader = -1;
     state.result = { type: 'unsold', reason: reason || null };
+    revealIfLast();
     state.ladder.push({ type: 'unsold', text: reason || null });
     setPhase('unsold');
     emit('step', { type: 'unsold', text: reason, instant });
@@ -214,6 +224,7 @@ export function createReplay({ meta, players, store }) {
       econ: phase === 'notcalled' ? outcomes.stateAt(state.run, end) : startEcon(),
       before: [], price: null, leader: -1, ladder: [], result: null,
     });
+    setRevealed(true); // no lot to watch, so nothing to keep sealed
     emit('lot', { newPlayer });
     if (end - ffFrom > 0) emit('ff', { count: end - ffFrom, run: state.run });
     emit('econ', { animate: true });
@@ -223,11 +234,11 @@ export function createReplay({ meta, players, store }) {
   }
 
   /**
-   * Play player `id` in his featured run `featureIdx`, or in any run via opts.run (deep links).
-   * opts.play starts or stops playback, opts.focus picks single-player focus (true) or the continuous
-   * auction (false), and opts.ff = false replays a lot without the fast-forward ticker.
+   * Play player `id` in his recorded run `featureIdx` (a random one when null), or in any run via opts.run
+   * (deep links). opts.play starts or stops playback, opts.focus picks single-player focus (true) or the
+   * continuous auction (false), and opts.ff = false replays a lot without the fast-forward ticker.
    */
-  async function goTo(id, featureIdx = 0, opts = {}) {
+  async function goTo(id, featureIdx = null, opts = {}) {
     if (!players.length) return;
     id = Math.min(players.length - 1, Math.max(0, id));
     const my = ++token;
@@ -235,15 +246,19 @@ export function createReplay({ meta, players, store }) {
     wait = 0;
     busy = true;
     setEnded(false);
+    setRevealed(false);
     if (opts.focus !== undefined) setMode(opts.focus ? 'focus' : 'auction');
     if (opts.play !== undefined) setPlaying(opts.play);
     const player = players[id];
     const features = player.sim?.feature || [];
-    let fi = features.length ? ((featureIdx % features.length) + features.length) % features.length : 0;
+    // his recorded runs are a random draw from the 1,000; a fresh lot starts on any of them, so it can land
+    // above or below his median
+    const pick = featureIdx ?? Math.floor(Math.random() * features.length);
+    let fi = features.length ? ((pick % features.length) + features.length) % features.length : 0;
     let feature = features[fi] || null;
     if (Number.isInteger(opts.run) && opts.run >= 0 && opts.run < meta.runs) {
       fi = features.findIndex((f) => f.run === opts.run);
-      feature = fi >= 0 ? features[fi] : { run: opts.run, tag: null };
+      feature = fi >= 0 ? features[fi] : { run: opts.run };
     }
     const prev = { run: state.run, seq: state.seq, player: state.player };
     const newPlayer = prev.player !== player;
@@ -294,7 +309,7 @@ export function createReplay({ meta, players, store }) {
       setPhase('end');
       return;
     }
-    goTo(state.player.id + 1, 0);
+    goTo(state.player.id + 1);
   }
 
   function frame(now) {
@@ -325,7 +340,7 @@ export function createReplay({ meta, players, store }) {
     goTo,
     /** Play; after a focused lot has ended, carry on with the auction from the next lot. */
     play() {
-      if (state.phase === 'end') { goTo(0, 0, { play: true, focus: false }); return; }
+      if (state.phase === 'end') { goTo(0, null, { play: true, focus: false }); return; }
       if (state.ended) { api.continueAuction(); return; }
       setPlaying(true);
     },
@@ -343,7 +358,7 @@ export function createReplay({ meta, players, store }) {
       setPlaying(true);
     },
     continueAuction() {
-      if (state.player) goTo(state.player.id + 1, 0, { play: true, focus: false });
+      if (state.player) goTo(state.player.id + 1, null, { play: true, focus: false });
     },
     /** Finish the current lot instantly; if it is already finished, move on. */
     skip() {
@@ -364,8 +379,8 @@ export function createReplay({ meta, players, store }) {
     replayLot() {
       if (state.player) goTo(state.player.id, state.featureIdx, { run: state.run ?? undefined, play: true, ff: false });
     },
-    prev() { if (state.player) goTo(state.player.id - 1, 0, { play: state.mode === 'focus' || state.playing }); },
-    next() { if (state.player) goTo(state.player.id + 1, 0, { play: state.mode === 'focus' || state.playing }); },
+    prev() { if (state.player) goTo(state.player.id - 1, null, { play: state.mode === 'focus' || state.playing }); },
+    next() { if (state.player) goTo(state.player.id + 1, null, { play: state.mode === 'focus' || state.playing }); },
     anotherRun() {
       const n = state.player?.sim?.feature?.length || 0;
       if (n > 1 || (n === 1 && state.featureIdx < 0)) goTo(state.player.id, state.featureIdx + 1, { play: true, focus: true });

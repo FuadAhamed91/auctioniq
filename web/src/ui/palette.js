@@ -1,6 +1,6 @@
 // Command palette: find any player by name, country or role and fast-forward to his lot.
 import { esc } from '../dom.js';
-import { money, int, pct } from '../format.js';
+import { money, int } from '../format.js';
 
 const norm = (s) => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
@@ -25,7 +25,7 @@ export function mountPalette(root, ctx) {
           role="combobox" aria-expanded="true" aria-controls="pal-list" aria-autocomplete="list" />
         <kbd>Esc</kbd>
       </div>
-      <div class="pal-cols" aria-hidden="true"><span>Lot</span><span>Player</span><span>Role</span><span class="r">Base</span><span class="r">P(sold)</span><span class="r">Median</span></div>
+      <div class="pal-cols" aria-hidden="true"><span>Lot</span><span>Player</span><span>Role</span><span class="r">Base</span><span class="r">Last IPL</span></div>
       <ul class="pal-list" id="pal-list" role="listbox" aria-label="Players"></ul>
       <div class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd> choose</span><span><kbd>Enter</kbd> fast-forward to his lot</span><span class="pal-count mono"></span></div>
     </div>`;
@@ -65,8 +65,7 @@ export function mountPalette(root, ctx) {
         <span class="pr-name"><span class="pr-n">${highlight(p.name, q)}</span><span class="pr-country">${esc(p.country)}</span></span>
         <span class="pr-role">${esc(ctx.roleLabel(p.role))}</span>
         <span class="mono r">${money(p.base)}</span>
-        <span class="mono r">${pct(p.sim?.pSold)}</span>
-        <span class="mono r">${money(p.sim?.price?.median)}</span>
+        <span class="mono r">${p.prev ? money(p.prev.price) : '—'}</span>
       </li>`).join('') : `<li class="pal-empty">No player matches “${esc(q)}”.</li>`;
     count.textContent = `${int(results.length)} of ${int(players.length)}`;
     sync();

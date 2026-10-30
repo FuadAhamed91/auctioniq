@@ -75,6 +75,20 @@ def test_runs_are_reproducible():
     assert simulate(ctx, 3)["records"] != simulate(ctx, 4)["records"]
 
 
+def test_replayed_runs_are_a_random_draw_of_called_runs():
+    from engine.montecarlo import featured
+    rng = np.random.default_rng(1)
+    buyer = rng.integers(-2, 10, (200, 5))
+    buyer[:, 4] = -2  # never called
+    picks = featured(buyer, 6, seed=11)
+    assert picks == featured(buyer, 6, seed=11), "seeded"
+    assert picks[4] == []
+    for p, runs in enumerate(picks[:4]):
+        assert len(runs) == len(set(runs)) == 6
+        assert all(buyer[r, p] != -2 for r in runs), "only runs he was called in"
+    assert picks[0] != featured(buyer, 6, seed=12)[0]
+
+
 def test_detail_lots_explain_every_team():
     ctx = tiny_ctx()
     res = simulate(ctx, 0, detail=set(range(10)))

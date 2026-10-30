@@ -136,10 +136,15 @@ export function mountTeamPanel(el, ctx) {
     const gates = (d.gate || []).map(([kind, ok, text]) => `
       <li class="gate ${ok ? 'ok' : 'no'}"><span class="gate-i">${ok ? ICON_OK : ICON_NO}</span><span class="gate-k">${esc(GATE_LABEL[kind] || kind)}</span><span class="gate-t">${esc(text)}</span></li>`).join('');
     const showPrice = s.price != null && !s.result ? s.price : null;
+    // the build-up starts from the model's value and ends at their walk-away price, either of which would
+    // give the lot away, so it waits for the hammer (the analyst still says why they backed out)
+    const limit = d.open && d.f && d.walk != null
+      ? (s.revealed ? waterfall(d, showPrice) : '<p class="wf-note">How far they would go opens when the hammer falls.</p>')
+      : '';
     ui.decision.innerHTML = `<details class="tp-numbers"${numbersOpen ? ' open' : ''}>
         <summary>The numbers behind it</summary>
         <ul class="gates">${gates}</ul>
-        ${d.open && d.f && d.walk != null ? waterfall(d, showPrice) : ''}
+        ${limit}
       </details>`;
     ui.decision.querySelector('details').addEventListener('toggle', (e) => { numbersOpen = e.target.open; });
   }
@@ -235,6 +240,7 @@ export function mountTeamPanel(el, ctx) {
   replay.on('econ', () => { if (ti != null) { renderNow(); renderNeeds(); renderSquad(); } });
   replay.on('step', () => { if (ti != null) { renderAnalyst(); renderDecision(); } });
   replay.on('phase', () => { if (ti != null) { renderAnalyst(); renderDecision(); } });
+  replay.on('reveal', () => { if (ti != null) { renderAnalyst(); renderDecision(); } });
 
   return { open, close, get team() { return ti; } };
 }

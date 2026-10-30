@@ -1,6 +1,6 @@
 // First-load overlay: what this is, two ways in, and the auction at a glance.
 import { esc } from '../dom.js';
-import { money, moneyRange, int, pct, date } from '../format.js';
+import { money, int, pct, date } from '../format.js';
 import { logoHTML } from '../ui/logo.js';
 
 function glance(meta, players) {
@@ -17,10 +17,10 @@ function glance(meta, players) {
           </button></li>`).join('')}</ol>
       </div>`;
   };
-  const priceHint = (p) => (p.sim?.price ? `Median ${money(p.sim.price.median)}, 80%: ${moneyRange(p.sim.price.p10, p.sim.price.p90)}` : '');
+  // prices stay for the hammer: the big buys are named here, not priced
   const cols = [
     col('Most wanted', 'teams ready to bid', h.contested, (v) => v.toFixed(1), (p, v) => `${p.name}: on average ${v.toFixed(1)} teams are ready to pay at least his base price when he comes up`),
-    col('Likely top prices', 'median', h.priciest, money, priceHint),
+    col('Likely big buys', 'price at the hammer', h.priciest, () => '', (p) => `${p.name}: base ${money(p.base)}; watch his lot for the price`),
     col('Coin flips', 'P(sold)', h.coinFlips, pct, (p, v) => `${p.name}: sold in ${pct(v)} of ${int(meta.runs)} runs`),
   ].join('');
   return cols ? `<section class="glance" aria-label="Auction at a glance"><p class="glance-title">The auction at a glance · ${int(meta.runs)} runs</p><div class="glance-cols">${cols}</div></section>` : '';

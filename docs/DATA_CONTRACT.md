@@ -163,14 +163,17 @@ Array in official list order (`id` = array index).
     "buyers": [["KKR", 0.43], ["CSK", 0.21]],         // P(buyer) over all runs, sorted, > 0 only
     "price": { "p10": 1450, "median": 1900, "p90": 2450, "mean": 1930 },  // given sold; null if never sold
     "hist": [[1400, 12], [1500, 31]],                  // [bin lower edge, runs], given sold
-    "feature": [{ "run": 482, "tag": "Closest to median" }, { "run": 17, "tag": "High: 90th percentile" }]
+    "feature": [{ "run": 482 }, { "run": 17 }]
   }
 }
 ```
 
-`sim.feature[0]` is the run whose price is closest to the player's median (or an unsold run if he
-is unsold in most runs). The rest are alternates for "Show another run". Every featured run has a
-lot log in `lots/{id}.json`.
+`sim.feature` lists the runs replayed bid by bid: a seeded random draw of up to
+`[montecarlo] featured` runs from the runs the player was called in (empty if he was never called).
+They are a random draw, not the run nearest his median, so a replayed lot can land above or below
+it. The app starts a lot on a random one of them and keeps the 1,000-run numbers sealed until the
+hammer falls; "Show another run" steps through the rest. Every listed run has a lot log in
+`lots/{id}.json`.
 
 ## `outcomes.bin`
 

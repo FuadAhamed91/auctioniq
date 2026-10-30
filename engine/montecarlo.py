@@ -100,35 +100,17 @@ def player_summary(buyer: np.ndarray, price: np.ndarray) -> pd.DataFrame:
     return out
 
 
-def featured(buyer: np.ndarray, price: np.ndarray, summary: pd.DataFrame, k: int) -> list[list[tuple]]:
-    """Per player: the run closest to his median price first, then contrasting runs."""
+def featured(buyer: np.ndarray, k: int, seed: int) -> list[list[int]]:
+    """Per player: k runs drawn at random from the runs he was called in, replayed bid by bid in the app.
+
+    A random draw, not the run nearest his median, so a replayed lot can land above or below the median
+    like a live one. Seeded per player, so the export is reproducible.
+    """
     out = []
-    for p, row in summary.iterrows():
-        picks: list[tuple] = []
-        sold = np.flatnonzero(buyer[:, p] >= 0)
-        unsold = np.concatenate([np.flatnonzero(buyer[:, p] == -1), np.flatnonzero(buyer[:, p] == -2)])
-
-        def closest(runs, target):
-            return int(runs[np.argmin(np.abs(price[runs, p] - target))])
-
-        def add(run, tag):
-            if run not in [r for r, _ in picks] and len(picks) < k:
-                picks.append((run, tag))
-
-        if row.p_sold >= 0.5:
-            add(closest(sold, row["median"]), "Closest to median")
-        elif len(unsold):
-            add(int(unsold[0]), f"Most likely: unsold ({1 - row.p_sold:.0%} of runs)")
-        if len(sold):
-            for t in sorted(TEAMS, key=lambda t: -row[t])[:3]:
-                wins = sold[buyer[sold, p] == TEAMS.index(t)]
-                if len(wins):
-                    add(closest(wins, row["median"]), f"{t} buys ({row[t]:.0%} of runs)")
-            add(closest(sold, row.p90), "High: 90th percentile")
-            add(closest(sold, row.p10), "Low: 10th percentile")
-        if len(unsold) and row.p_sold < 1:
-            add(int(unsold[0]), f"Unsold ({1 - row.p_sold:.0%} of runs)")
-        out.append(picks)
+    for p in range(buyer.shape[1]):
+        called = np.flatnonzero(buyer[:, p] != -2)
+        rng = np.random.default_rng([seed, p])
+        out.append([int(r) for r in rng.choice(called, size=min(k, len(called)), replace=False)])
     return out
 
 

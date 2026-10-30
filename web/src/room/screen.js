@@ -22,7 +22,11 @@ export function screenModel(state, ctx) {
     case 'going':
       return { ...m, mode: 'bid', price: state.price, team: ctx.codes[state.leader] || '', going: state.phase === 'going' };
     case 'sold':
-      return { ...m, mode: 'sold', price: state.result.price, team: ctx.codes[state.result.team] };
+      // once the hammer has fallen on him for good, the screen also gives the median of all the runs
+      return {
+        ...m, mode: 'sold', price: state.result.price, team: ctx.codes[state.result.team],
+        median: state.revealed && p.sim?.price ? `${int(ctx.meta.runs)}-run median ${money(p.sim.price.median)}` : '',
+      };
     case 'unsold':
       return { ...m, mode: 'unsold', reason: /no bid at base/i.test(state.result?.reason || '') ? 'No bid at his base price' : state.result?.reason || '' };
     case 'interstitial':
@@ -57,7 +61,7 @@ export function screenHTML(m, price) {
       break;
     case 'sold':
       body = `<div class="scr-name scr-name-sm">${esc(m.name)}</div><div class="scr-stamp is-sold">SOLD</div>${big(m.price, 'is-sold')}
-        <div class="scr-line">to <b class="mono">${esc(m.team)}</b></div>`;
+        <div class="scr-line">to <b class="mono">${esc(m.team)}</b>${m.median ? `<i class="dot" aria-hidden="true"> · </i><span class="scr-median">${esc(m.median)}</span>` : ''}</div>`;
       break;
     case 'unsold':
       body = `<div class="scr-name scr-name-sm">${esc(m.name)}</div><div class="scr-stamp">UNSOLD</div>${m.reason ? `<div class="scr-line">${esc(m.reason)}</div>` : ''}`;
@@ -141,7 +145,7 @@ export function paintScreen(g, w, h, m, price) {
       line(m.name, C.haze, u * 28, u * 8, display(600));
       line('SOLD', C.red, u * 48, u * 17, display(800));
       bigPrice(m.price, C.red, u * 74, u * 24);
-      line(`to ${m.team}`, C.flood, u * 88, u * 7.5, mono(600));
+      line(m.median ? `to ${m.team} · ${m.median}` : `to ${m.team}`, C.flood, u * 88, u * 7.5, mono(600));
       break;
     case 'unsold':
       line(m.name, C.haze, u * 33, u * 8, display(600));

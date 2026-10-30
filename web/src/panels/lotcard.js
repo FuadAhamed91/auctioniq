@@ -1,4 +1,5 @@
-// Lot card: who is under the hammer and what the model thinks he is worth; the deeper numbers wait behind "More stats".
+// Lot card: who is under the hammer and, once it falls, what the model thought he was worth; the deeper
+// numbers wait behind "More stats".
 import { esc } from '../dom.js';
 import { money, moneyRange, int, ordinal, per100, plural, shortBowlerType, setName } from '../format.js';
 
@@ -91,7 +92,6 @@ export function mountLotCard(el, ctx) {
     const roles = [p.role, p.role2].filter(Boolean).map((r) => esc(ctx.roleLabel(r))).join(' / ');
     const sub = [esc(p.country), p.age || '', roles].filter(Boolean).join(DOT);
     const tags = TAGS.filter((t) => p.tags?.includes(t)).slice(0, 3).map((t) => `<span class="tag">${esc(ctx.tagLabel(t))}</span>`).join('');
-    const below = p.value && p.value.mid < p.base;
     const record = p.skills?.bat || p.skills?.bowl;
     el.innerHTML = `
       <header class="lc-head">
@@ -104,8 +104,7 @@ export function mountLotCard(el, ctx) {
       <div class="facts">
         <div class="fact"><span class="k">Base</span><span class="v mono">${money(p.base)}</span></div>
         <div class="fact"><span class="k">Last IPL</span><span class="v mono">${p.prev ? money(p.prev.price) : '—'}</span>${p.prev ? `<span class="s">${esc(p.prev.team)} · ${esc(p.prev.year)}</span>` : ''}</div>
-        <div class="fact"><span class="k">Model value</span><span class="v mono">${money(p.value?.mid)}</span>${p.value ? rangeBar(p.value) : ''}${below
-          ? '<span class="s" title="The model expects him to go unsold unless a team needs him">below base</span>' : ''}</div>
+        <div class="fact fact-value"></div>
       </div>
       ${record ? `<div class="skills">${skillLine('Batting', p.skills.bat)}${skillLine('Bowling', p.skills.bowl)}</div>${moreStats(p, ctx)}`
         : `<p class="lc-norecord" title="${p.capped ? '' : 'Uncapped, '}no Cricsheet data: role from the official list">No ball-by-ball record</p>`}`;
@@ -115,6 +114,19 @@ export function mountLotCard(el, ctx) {
       more.addEventListener('toggle', () => { moreOpen = more.open; });
     }
     el.scrollTop = 0;
+  }
+
+  /** The model's price stays sealed while the lot is live, so the bidding is not given away. */
+  function paintValue() {
+    const p = replay.state.player, node = el.querySelector('.fact-value');
+    if (!p || !node) return;
+    if (!replay.state.revealed) {
+      node.innerHTML = '<span class="k">Model value</span><span class="v mono is-sealed" title="Shown when the hammer falls">?</span><span class="s">after the hammer</span>';
+      return;
+    }
+    const below = p.value && p.value.mid < p.base;
+    node.innerHTML = `<span class="k">Model value</span><span class="v mono">${money(p.value?.mid)}</span>${p.value ? rangeBar(p.value) : ''}${below
+      ? '<span class="s" title="The model expects him to go unsold unless a team needs him">below base</span>' : ''}`;
   }
 
   /** The top line names the set, or the accelerated round he came back in. */
@@ -134,5 +146,7 @@ export function mountLotCard(el, ctx) {
     const p = replay.state.player;
     if (p && p !== shown) { shown = p; render(p); }
     paintSet();
+    paintValue();
   });
+  replay.on('reveal', paintValue);
 }

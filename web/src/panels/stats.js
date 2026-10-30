@@ -1,7 +1,9 @@
-// "Across 1,000 runs": P(sold), price distribution with its 80% range, and who buys him.
+// "Across 1,000 runs": P(sold), price distribution with its 80% range, and who buys him. Sealed while his
+// lot is live; when the hammer falls, this run is marked against them.
 import { esc } from '../dom.js';
 import { money, moneyRange, int, pct } from '../format.js';
 import { teamDot, teamVars } from '../teams.js';
+import { runLine } from '../analyst.js';
 
 const W = 320, H = 132, PAD_T = 8, PAD_B = 22, PLOT_H = H - PAD_T - PAD_B;
 const NICE = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 2500, 5000];
@@ -62,9 +64,19 @@ function histogram(p, runs) {
 }
 
 export function mountStats(el, ctx) {
-  const { replay, meta, players } = ctx;
-  let shown = null;
+  const { replay, meta } = ctx;
+  let shown = null, open = false; // open: his numbers are on show (the hammer has fallen on him)
   let scale = null;
+
+  function seal() {
+    el.innerHTML = `
+      <h3 class="panel-title stats-title">Across ${int(meta.runs)} runs</h3>
+      <div class="sealed">
+        <p class="sealed-head">Sealed until the hammer falls</p>
+        <p class="sealed-sub">Watch this run first, then see where its price sits against all ${int(meta.runs)} runs.</p>
+      </div>`;
+    scale = null;
+  }
 
   function render(p) {
     const s = p.sim || {};
@@ -86,6 +98,7 @@ export function mountStats(el, ctx) {
           <span class="kpi-s">${price ? `80%: ${moneyRange(price.p10, price.p90)}` : 'never sold'}</span>
         </div>
       </div>
+      <p class="run-vs" hidden></p>
       ${price && s.hist?.length ? `
         <figure class="hist">
           ${histogram(p, runs)}
@@ -118,7 +131,12 @@ export function mountStats(el, ctx) {
     const st = replay.state;
     const runMark = el.querySelector('.m-run');
     const runLegend = el.querySelector('.lg-run');
+    const vs = el.querySelector('.run-vs');
     el.querySelectorAll('.brow.is-run').forEach((b) => b.classList.remove('is-run'));
+    if (vs) {
+      vs.textContent = st.player ? runLine(st.player, st.result) : '';
+      vs.hidden = !vs.textContent;
+    }
     if (!runMark || !runLegend) return;
     const r = st.result;
     if (r?.type === 'sold' && scale) {
@@ -133,11 +151,19 @@ export function mountStats(el, ctx) {
     }
   }
 
-  replay.on('lot', () => {
+  function paint() {
     const p = replay.state.player;
-    if (p && p !== shown) { shown = p; render(p); }
+    if (!p) return;
+    if (p !== shown || replay.state.revealed !== open) {
+      shown = p;
+      open = replay.state.revealed;
+      if (open) render(p); else seal();
+    }
     showRun();
-  });
+  }
+
+  replay.on('lot', paint);
+  replay.on('reveal', paint);
   replay.on('step', (step) => { if (step.type === 'sold' || step.type === 'unsold') showRun(); });
-  if (players[0]) { shown = players[0]; render(players[0]); }
+  seal();
 }
