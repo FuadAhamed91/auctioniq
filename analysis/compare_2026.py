@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 
 from analysis import metrics
-from analysis.tune import baselines, need_hits, predictions
+from analysis.tune import baselines, need_check, predictions
 from config import CFG, ROOT
 from engine import inputs
 
@@ -28,7 +28,6 @@ def load() -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     if missing:
         print(f"{missing} pool players have no 2026 result row; counted as unsold")
     act = pd.DataFrame({"sold": real.status.eq("sold"), "team": real.team, "price": real.price_lakh})
-    act["need_hit"] = need_hits(ctx, act.team.fillna(""))
     return sim, act, ctx
 
 
@@ -47,6 +46,12 @@ def table(results: dict[str, dict]) -> str:
         cells = [f"{r[k]['est']:.3f} [{r[k]['lo']:.3f}, {r[k]['hi']:.3f}]" if k in r else "–" for k in keys]
         lines.append(f"| {name} | " + " | ".join(cells) + " |")
     return "\n".join(lines)
+
+
+def needs_line(n: dict) -> str:
+    return (f"Pre-auction needs, no simulation: the real buyer was one of the three neediest teams in "
+            f"{n['top3']:.0%} of the {n['n']} buys (30% by chance); the buyer's need gate was open in "
+            f"{n['est']:.0%} of buys, against {n['base']:.0%} of all teams for the same players.")
 
 
 def misses(sim: pd.DataFrame, act: pd.DataFrame, names: pd.Series, n: int = 12) -> str:
@@ -70,17 +75,17 @@ def main() -> None:
     sim, act, ctx = load()
     results = {"AuctionIQ": metrics.evaluate(sim, act)}
     for name, pred in comparisons(ctx).items():
-        results[name] = metrics.evaluate(pred.reset_index(drop=True), act.drop(columns="need_hit"))
+        results[name] = metrics.evaluate(pred.reset_index(drop=True), act)
     report = "\n\n".join([
         "# AuctionIQ vs the real IPL 2026 auction",
         f"{len(act)} players in the list, {int(act.sold.sum())} sold in reality. "
         f"Simulation: {CFG['montecarlo']['runs']} runs with only pre-auction data. "
         "Each metric shows the estimate and a bootstrap 95% interval (players resampled, 2,000 draws).",
-        "## Metrics", table(results),
+        "## Metrics", table(results), needs_line(need_check(ctx, act)),
         "MAE and Spearman use players sold in reality (simulated median price given sold; base price if never "
         "sold in a run). Coverage = real price inside the simulated 10th–90th percentile. Top 3 = the real "
-        "buyer is among the three teams that bought him most often. Need hit = the real buyer had a "
-        "pre-auction need for him. The 2024 numbers in the app are tuning-set fits; this is the held-out test.",
+        "buyer is among the three teams that bought him most often. The 2024 numbers in the app are "
+        "tuning-set fits; this is the held-out test.",
         "## Biggest misses", misses(sim, act, ctx["pool"]["name"]),
     ])
     OUT.mkdir(exist_ok=True)
