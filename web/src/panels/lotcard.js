@@ -6,6 +6,22 @@ const TAGS = ['overseas', 'uncapped', 'wk', 'lap', 'lhb']; // the tags worth a p
 const MIN_BALLS = 60; // below this a skill shows its ball count but no percentile
 const DOT = '<i class="dot" aria-hidden="true"> · </i>';
 
+const BUZZ = { watch: 'One to watch', trial: 'Trials', league: 'State league' };
+
+/** "Pre-auction buzz": what was said about him before the auction, one line per kind, with sources. */
+function buzzBlock(p) {
+  const lines = Object.entries(BUZZ).map(([kind, label]) => {
+    const rows = (p.buzz || []).filter((b) => b.signal === kind);
+    if (!rows.length) return '';
+    const what = kind === 'trial' ? [...new Set(rows.flatMap((b) => String(b.team).split(';')).filter(Boolean))].join(', ')
+      : rows.find((b) => b.detail)?.detail || '';
+    const src = rows.slice(0, 3).map((b) => (/^https?:\/\//.test(b.url)
+      ? `<a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.outlet)}</a>` : esc(b.outlet))).join(', ');
+    return `<li><b>${label}</b>${what ? ` · ${esc(what)}` : ''} <span class="muted">(${src})</span></li>`;
+  }).join('');
+  return lines ? `<div class="lc-buzz"><span class="k">Pre-auction buzz</span><ul>${lines}</ul></div>` : '';
+}
+
 const pctOf = (x, max) => `${Math.max(0, Math.min(100, (x / max) * 100)).toFixed(2)}%`;
 const rated = (s) => s?.pct != null && s.balls >= MIN_BALLS;
 
@@ -83,6 +99,7 @@ export function mountLotCard(el, ctx) {
         <h2 class="lc-name">${esc(p.name)}</h2>
         <p class="lc-sub">${sub}</p>
         ${tags ? `<div class="tags">${tags}</div>` : ''}
+        ${buzzBlock(p)}
       </header>
       <div class="facts">
         <div class="fact"><span class="k">Base</span><span class="v mono">${money(p.base)}</span></div>

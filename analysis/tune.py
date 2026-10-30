@@ -30,6 +30,7 @@ SEARCH = {  # coordinate search; each range brackets the weight's plausible valu
     "market_share": [0.6, 0.8, 1.0, 1.25, 1.5],  # above 1: errors on a new auction exceed the in-sample ones
     "noise_sigma": [0.05, 0.15, 0.3, 0.45],
     "pressure_beta": [0.2, 0.5, 0.8, 1.1, 1.4],
+    "pressure_range": [(0.5, 1.6), (0.5, 2.5)],  # how far a rich team may push for a player it needs
     "scarcity_alpha": [0.0, 0.1, 0.25, 0.5],
     "scarcity_range": [(0.8, 1.4), (0.8, 2.0), (0.8, 3.0)],  # how far scarcity may push a price
     "need_slope": [0.2, 0.4, 0.8, 1.2],

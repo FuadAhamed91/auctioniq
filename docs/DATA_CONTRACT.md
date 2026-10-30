@@ -107,6 +107,9 @@ buyer had a pre-auction need for the player. `kept` is null for the baseline and
 // the official list his set comes), base (base price), overseas
 "drivers": [["history", 0.62], ["list", 0.31], ["age", -0.12]],
 // players[i].skills.bat and .bowl also carry pp and death: his share of balls in the powerplay / at the death
+// players[i].buzz: pre-auction signals for an uncapped player (data/research/buzz.csv), each cited:
+// signal is watch (named one to watch) | trial (franchise trials; team = codes joined by ";") | league
+"buzz": [{ "signal": "league", "team": "", "detail": "UP T20 2025: ...", "outlet": "Sportstar", "date": "2025-12-12", "url": "https://..." }],
 // lots/{id}.json, per appearance: market.alike = comparable players of his role still in the pool besides
 // him; market.short = teams that could buy him (a slot, and an overseas slot if needed) short of one.
 // Per team decision, why = the cricket behind its interest: the role he would fill, how many the squad

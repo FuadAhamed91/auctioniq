@@ -16,6 +16,7 @@ from engine import needs
 from pipeline import register, skills as sk
 
 AUC = ROOT / "data" / "auctions"
+RESEARCH = ROOT / "data" / "research"
 OUT = ROOT / "pipeline" / "out"
 TEAMS = ["CSK", "DC", "GT", "KKR", "LSG", "MI", "PBKS", "RCB", "RR", "SRH"]
 NE, A, R, S = CFG["needs"], CFG["agents"], CFG["roles"], CFG["skills"]
@@ -62,6 +63,13 @@ def auction_list(year: int) -> pd.DataFrame:
     df = pd.read_csv(AUC / f"{tag}.csv")
     df["cid"] = cricsheet_ids(df, tag)
     return df
+
+
+@lru_cache(maxsize=None)
+def research(kind: str) -> pd.DataFrame:
+    """Pre-auction research (data/research/{kind}.csv): one row per player, auction and source."""
+    path = RESEARCH / f"{kind}.csv"
+    return pd.read_csv(path) if path.exists() else pd.DataFrame(columns=["year", "name", "signal"])
 
 
 def market(year: int) -> float:
@@ -190,6 +198,11 @@ def value_frame(df: pd.DataFrame, year: int, factors: set) -> pd.DataFrame:
     # list order, and after the first few only the players a franchise asks for are called
     setn = df.set_no.fillna(df.set_no.max() + 1)  # late additions without a set come last
     out["set_pos"] = setn / setn.max()
+    # pre-auction buzz around an uncapped player (data/research/buzz.csv): how many kinds of signal
+    # named him (one to watch, franchise trials, a standout state-league season), in sources dated
+    # before that auction
+    buzz = research("buzz")
+    out["buzz"] = df.name.map(buzz[buzz.year.eq(year)].groupby("name").signal.nunique()).fillna(0).to_numpy(float)
     out["prev_price"] = pp
     return out.astype({c: float for c in out.columns})
 

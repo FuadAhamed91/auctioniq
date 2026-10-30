@@ -15,7 +15,8 @@ from config import CFG
 V = CFG["value"]
 Z80 = 1.2816  # standard normal quantile for an 80% interval
 BASE_FEATURES = ["log_base", "has_prev", "log_prev", "overseas", "capped", "intl_caps", "age", "age2",
-                 "pace", "spin", "allround", "keeper", "skill_z", "evidence", "ipl_exp", "set_pos"]
+                 "pace", "spin", "allround", "keeper", "skill_z", "evidence", "ipl_exp", "set_pos",
+                 "buzz"]
 _erfc = np.frompyfunc(math.erfc, 1, 1)
 
 

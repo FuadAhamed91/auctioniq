@@ -395,3 +395,18 @@ on the name alone that may be someone else: 2018 Mandeep Singh no. 529 (uncapped
 the capped Mandeep Singh's id; 2019 Rajesh Bishnoi (bowler) shares the id of the 2020–21 lists'
 Rajesh Bishnoi (born 1987, batsman, the 2019 list's "Rajesh Bishnoi Sr"); 2019 Gurinder Singh
 (Meghalaya) shares the id of the 2020 list's Gurinder Singh (Uttarakhand).
+
+## Pre-auction research (data/research)
+
+Collected by research agents from public reporting; every row cites its outlet, URL and publication
+date, and every source was published before the auction it describes (2020: 19 Dec 2019; 2021:
+18 Feb 2021; 2023: 23 Dec 2022; 2024: 19 Dec 2023; 2026: 16 Dec 2025). Names match the auction files.
+
+- **buzz.csv**: uncapped players in each list flagged before the auction: named one to watch,
+  reported at franchise trials, or a standout state T20 league season (164 rows, 29 sources). Used
+  by the value model as `buzz`. Coverage is heavier for 2026, when state leagues and their coverage grew.
+- **availability.csv**: players with a reported injury, part-season availability or unavailability
+  (72 rows). Tested on the past auctions and not used: it barely moved the back-tests and its
+  coverage is much denser for 2026.
+- **team_notes.csv**: cited background on each franchise's auction habits (see docs/TEAMS.md); shown
+  in the app, not used by the model.

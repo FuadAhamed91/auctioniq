@@ -151,7 +151,7 @@ fill = 0.3                    # in the last accelerated round, an open slot make
 need_floor = 0.7              # need multiplier = floor + slope x min(need, cap)
 need_slope = 0.4
 need_cap = 1.5
-scarcity_alpha = 0.1          # scarcity = ((demand + 1) / (supply + 1)) ^ alpha
+scarcity_alpha = 0.25         # scarcity = ((demand + 1) / (supply + 1)) ^ alpha
 scarcity_comparable = 0.6     # supply counts players worth at least 60% of this one
 scarcity_range = [0.8, 1.4]
 pressure_beta = 1.1           # pressure = (purse per open slot / auction average) ^ beta
@@ -172,7 +172,7 @@ featured = 6                  # runs kept per player for "Show another run"
 
 # Factors used for the 2026 run. Needs are the agents' core (tested directly against the real 2024
 # buyers); each add-on was kept only if it beat the simulation's own noise on the 2024 back-test
-# (none did: start speed cut price error but cost buyer accuracy; matchups and home fit did nothing).
+# (matchups did, just: buyer accuracy beyond the noise; start speed and home fit did not).
 # Evidence and the tuned weights: analysis/out/validation_2024.json.
 [model]
-factors = ["needs"]
+factors = ["matchups", "needs"]

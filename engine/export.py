@@ -22,7 +22,8 @@ TAGS = {"wk": "Keeper", "lhb": "Left-handed bat", "lap": "Left-arm pace", "overs
 # value-model features grouped the way a scout talks about a player
 DRIVERS = {"history": ["has_prev", "log_prev"], "pedigree": ["capped", "intl_caps", "ipl_exp"],
            "form": ["skill_z", "evidence", "start_z"], "role": ["pace", "spin", "allround", "keeper"],
-           "age": ["age", "age2"], "list": ["set_pos"], "base": ["log_base"], "overseas": ["overseas"]}
+           "age": ["age", "age2"], "list": ["set_pos"], "base": ["log_base"], "overseas": ["overseas"],
+           "buzz": ["buzz"]}
 
 
 def _num(v, nd=3):
@@ -74,6 +75,9 @@ def players_json(ctx: dict, summary: pd.DataFrame, feat: list, price: np.ndarray
                  no_needs: pd.DataFrame) -> list:
     pool, vals, drv = ctx["pool"], ctx["values"], ctx["drivers"]
     groups = {g: [c for c in cols if c in drv] for g, cols in DRIVERS.items()}
+    buzz = inputs.research("buzz")
+    buzz = {n: d[["signal", "team", "detail", "outlet", "date", "url"]].fillna("").to_dict("records")
+            for n, d in buzz[buzz.year.eq(YEAR)].groupby("name")}
     zero = zero_points(inputs.skills_asof(inputs.date_of(YEAR)))
     rel = lambda v, side: _num(v - zero[side], 4) if v is not None and not pd.isna(v) else None
     prev = inputs.prev_prices(YEAR)
@@ -113,6 +117,7 @@ def players_json(ctx: dict, summary: pd.DataFrame, feat: list, price: np.ndarray
             "drivers": sorted(([g, _num(drv.loc[i, cols].sum(), 2)] for g, cols in groups.items() if cols),
                               key=lambda x: -abs(x[1])),
             "prev": {"price": int(pv.price_lakh), "team": pv.team, "year": int(pv.year)} if pv is not None else None,
+            "buzz": buzz.get(r["name"], []),  # pre-auction signals, sources dated before the auction
             "sim": {
                 "pSold": _num(s.p_sold), "pCalled": _num(s.p_called),
                 "buyers": sorted([[t, _num(s[t])] for t in mc.TEAMS if s[t] > 0], key=lambda x: -x[1]),

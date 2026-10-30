@@ -284,12 +284,12 @@ const DRIVERS = {
   list: (p, up) => (up ? 'among the first names on the official list' : 'deep in the official list'),
   base: (p, up, ctx) => (up ? `he set ${p.base >= ctx.maxBase ? 'the top base price' : 'a high base price'}` : 'a low base price'),
   overseas: (p, up) => (up ? 'overseas stars draw a premium' : 'he competes for scarce overseas slots'),
+  buzz: (p, up) => (up && p.buzz?.length ? 'tipped before the auction as an uncapped player to watch' : null),
 };
 
 function worthLine(ctx, p) {
-  const top = (p.drivers || []).filter(([g]) => DRIVERS[g]).slice(0, 3);
-  const phrases = top.length
-    ? top.map(([g, v]) => DRIVERS[g](p, v >= 0, ctx))
+  const top = (p.drivers || []).filter(([g]) => DRIVERS[g]).map(([g, v]) => DRIVERS[g](p, v >= 0, ctx)).filter(Boolean).slice(0, 3);
+  const phrases = top.length ? top
     : [DRIVERS.history(p, !!p.prev), DRIVERS.pedigree(p, p.capped), DRIVERS.form(p, Math.max(p.skills?.bat?.pct ?? 0, p.skills?.bowl?.pct ?? 0) >= 50)];
   return `His worth: ${phrases.join('; ')}.`;
 }

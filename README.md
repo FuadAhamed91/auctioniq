@@ -22,42 +22,48 @@ tuning-set numbers.
 
 | Model (2024 back-test) | MAE, log price ↓ | Spearman ↑ | Sold/unsold AUC ↑ | Real buyer in top 3 ↑ | 80% range coverage |
 |---|---|---|---|---|---|
-| **Value + needs (the model)** | 0.777 | 0.658 | 0.800 | 42% | 75% |
-| + matchups ✗ dropped | 0.774 | 0.660 | 0.799 | 38% | 75% |
-| + start speed ✗ dropped | 0.766 | 0.664 | 0.800 | 32% | 74% |
-| + home fit ✗ dropped | 0.776 | 0.660 | 0.799 | 39% | 74% |
-| Without needs | 0.774 | 0.677 | 0.800 | 35% | 75% |
-| Need only (no value) | 0.791 | 0.671 | 0.742 | 26% | 68% |
+| Value + needs (the agents' core) | 0.770 | 0.667 | 0.810 | 33% | 74% |
+| **+ matchups ✓ kept (the model)** | 0.765 | 0.666 | 0.810 | 38% | 72% |
+| + start speed ✗ dropped | 0.762 | 0.670 | 0.812 | 36% | 76% |
+| + home fit ✗ dropped | 0.769 | 0.668 | 0.813 | 31% | 74% |
+| Without needs | 0.757 | 0.699 | 0.811 | 31% | 72% |
+| Need only (no value) | 0.791 | 0.672 | 0.741 | 22% | 68% |
 | Base price | 0.853 | 0.650 | 0.636 | – | 58% |
 | Last IPL price | 0.845 | 0.649 | 0.654 | – | 43% |
 
 In plain terms, on 2024:
 
 - **Sold or unsold:** called right for 85% of the 332 players (saying "unsold" for everyone scores 78%).
-  Of the players it gave an 80%+ chance, most sold; of those under 20%, few did.
-- **Price:** for 56% of the 72 players sold, the real price was within 25% of the simulated median
-  (83% for buys up to ₹1 Cr), and 75% fell inside the 80% range.
-- **Buyer:** the real buyer was among the three likeliest teams 42% of the time (30% by chance).
+- **Price:** for 53% of the 72 players sold, the real price was within 25% of the simulated median
+  (81% for buys up to ₹1 Cr), and 72% fell inside the 80% range.
+- **Buyer:** the real buyer was among the three likeliest teams 38% of the time (30% by chance; the
+  figure moves about 5 points between identical batches of runs).
 - **Team needs are the core** of every agent: they decide who bids at all. Tested directly, with no
   simulation in between, the real buyer was one of the three teams with the greatest pre-auction
-  need for the player in 43% of buys (30% by chance). **Add-ons:** none kept. Start speed cut the
-  price error but cost buyer accuracy beyond the simulation's seed-to-seed noise; matchups and home
-  fit were within noise. With 72 sales nothing clears a strict 95% test; the paired intervals are in
-  `analysis/out/validation_2024.json` and the app.
+  need for the player in 43% of buys (30% by chance). **Add-ons:** matchups kept (buyer accuracy just
+  beyond the simulation's seed-to-seed noise); start speed and home fit dropped. With 72 sales
+  nothing clears a strict 95% test; the paired intervals are in `analysis/out/validation_2024.json`
+  and the app.
 - **The value model alone**, before any simulation, on every past auction with earlier auctions of
   its kind to learn from (mega and mini auctions are priced differently, so they are never mixed):
 
   | Auction | Trained on | Sold/unsold AUC | Price rank (Spearman) | MAE, log price |
   |---|---|---|---|---|
-  | 2021 mini | 2020 | 0.82 | 0.76 | 0.80 |
-  | 2023 mini | 2020, 2021 | 0.83 | 0.81 | 0.66 |
-  | 2024 mini | 2020, 2021, 2023 | 0.80 | 0.68 | 0.89 |
+  | 2021 mini | 2020 | 0.82 | 0.77 | 0.79 |
+  | 2023 mini | 2020, 2021 | 0.83 | 0.81 | 0.65 |
+  | 2024 mini | 2020, 2021, 2023 | 0.81 | 0.70 | 0.88 |
   | 2025 mega | 2022 | 0.87 | 0.85 | 0.60 |
 
 - **Research into earlier auctions.** The 2018 mega and 2019–2021 mini auctions were rebuilt from the
   archived official records, so players carry their earlier IPL price (Pat Cummins: ₹15.5 Cr in 2020)
   and the 2026 model learns from four mini auctions instead of two. Mixing in mega-auction data, even
   with a measure of how many similar players each auction offered, did worse on the back-tests.
+- **Pre-auction buzz.** For the 2020–2026 auctions a research step recorded which uncapped players
+  were named ones to watch, reported at franchise trials, or had a standout state T20 league season,
+  from sources dated before each auction (`data/research/buzz.csv`). Flagged players sold 40–55% of the
+  time against 17–20% for the rest, and the signal improved all three mini back-tests. Reported
+  injuries and part-season availability were researched the same way and dropped: they barely moved
+  the back-tests.
 - **Team habits, tested.** Each franchise's buying habits since 2018 were profiled (MI buy the
   youngest, PBKS spend most on stars and all-rounders, CSK and KKR bring back former players) and
   tested on later auctions: in mini auctions they picked the real buyer no better than chance, so the
@@ -65,9 +71,28 @@ In plain terms, on 2024:
   background, with cited reporting ([`docs/TEAMS.md`](docs/TEAMS.md)).
 - **Honest limits:** the expensive end is under-priced. Only 5 of the 18 buys of ₹5 Cr or more came
   within a factor of two of the median (Mitchell Starc went for ₹24.75 Cr against a median of
-  ₹3.30 Cr; Pat Cummins's ₹20.50 Cr fell inside his range). Bidding wars for a handful of stars, and
-  uncapped players whose hype came from state T20 leagues that Cricsheet doesn't cover (Sameer Rizvi,
-  ₹8.4 Cr in 2024), are beyond any public ball-by-ball data.
+  ₹3.80 Cr; Pat Cummins's ₹20.50 Cr fell inside his range). Bidding wars for a handful of stars are
+  beyond any public data.
+
+## Against the real 2026 auction
+
+`python -m analysis.compare_2026` scores the 1,000 runs against what really happened (the app never
+reads the real results). The first run, before any change, is the honest held-out test
+([`analysis/out/comparison_2026.md`](analysis/out/comparison_2026.md)):
+
+| Real 2026 auction | Held-out test | After seeing the results |
+|---|---|---|
+| Sold/unsold AUC (base price: 0.62) | 0.81 | 0.81 |
+| Real buyer in the top 3 (30% by chance) | 45% | 45% |
+| Real prices inside the 80% range | 73% | 70% |
+| Price rank (Spearman) | 0.67 | 0.74 |
+| MAE, log price (base price: 0.615) | 0.68 | 0.61 |
+
+The right-hand column ([`comparison_2026_after_seeing.md`](analysis/out/comparison_2026_after_seeing.md))
+comes from the model after the pre-auction buzz research was added and the weights re-tuned, on the
+2024 back-test only. The research used only sources dated before the auction, but it was gathered
+after the auction took place, so that column is not a clean test. The biggest misses in both are
+uncapped players bought on hype (Prashant Veer and Kartik Sharma, ₹14.2 Cr each).
 
 
 ## How it works
@@ -88,13 +113,15 @@ official auction lists, caps, purses, squads ────────┤
 2. **Home grounds** (`pipeline/venues.py`). Runs per over, boundary rate, pace and spin economy and
    wickets at each team's grounds, weighted by games hosted.
 3. **Value** (`analysis/value_model.py`). A censored (Tobit) ridge regression of log price on skill,
-   role, age, overseas and capped status, international caps, base price, previous IPL price and how
-   far down the official list the player's set comes, with an 80% interval. Unsold players count as
+   role, age, overseas and capped status, international caps, base price, previous IPL price, how far
+   down the official list the player's set comes and pre-auction buzz for uncapped players, with an
+   80% interval. Unsold players count as
    "price below base". Fitted only on earlier auctions of the same kind: mini and mega auctions are
    priced differently, so they are never mixed.
 4. **Needs** (`engine/needs.py`). Squad template from the role mix of recent IPL squads; depth gaps,
-   upgrade gaps, keepers. Lineup weaknesses (matchups), how fast openers and finishers start (start
-   speed) and home fit are built and were tested, but the 2024 back-test dropped them.
+   upgrade gaps, keepers, and lineup weaknesses (matchups: a batting core that struggles against a
+   bowler type, or no left-arm pace). How fast openers and finishers start (start speed) and home fit
+   are built and were tested, but the 2024 back-test dropped them.
 5. **Agents** (`engine/agents.py`). Gate: role need, squad slot, overseas slot, affordability.
    Walk-away price = value × need × scarcity × purse pressure × home fit × style × market × noise,
    where *market* is how the whole room rates the player that run. Each lot is settled from the

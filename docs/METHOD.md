@@ -54,8 +54,10 @@ A censored (Tobit) ridge regression on log price, fitted by EM. Sold players giv
 unsold players say only that their price was below their base. Prices are modelled relative to
 the auction's money per open slot. Features: log base price, previous IPL auction price, overseas,
 capped, international caps and career IPL caps (both printed on the official list), age, role group,
-keeper, main-role skill, evidence, how far down the official list the player's set comes (and start
-speed when that factor is on). Set position matters because sets are called in list order and, after
+keeper, main-role skill, evidence, how far down the official list the player's set comes, pre-auction
+buzz for an uncapped player (how many kinds of signal named him before the auction: one to watch,
+franchise trials, a standout state T20 league season; data/research/buzz.csv) (and start speed when
+that factor is on). Set position matters because sets are called in list order and, after
 the first ten, a player is called only if a franchise asks for him; the list is published about a
 week before the auction. The 80% interval is `exp(μ ± 1.2816σ)`.
 
@@ -80,7 +82,10 @@ the density of his price, an unsold one the chance his price fell short of base)
 rank correlation of the median price given a sale, and the sold/unsold AUC. The ridge penalty is the
 one with the best mean log-likelihood over the mini back-tests. Set position was kept because it
 improved both kinds: sold/unsold AUC 0.70 → 0.79 on 2024 and 0.80 → 0.87 on 2025. Adding the 2020 and
-2021 auctions lifted the 2024 log-likelihood from −0.710 to −0.669 and its AUC from 0.79 to 0.80.
+2021 auctions lifted the 2024 log-likelihood from −0.710 to −0.669 and its AUC from 0.79 to 0.80. Buzz
+improved all three mini back-tests (mean log-likelihood −0.5645 → −0.5516); reported injuries and
+part-season availability (data/research/availability.csv) were tested the same way and dropped, as
+they barely moved the back-tests and their coverage is much denser for 2026.
 
 ## 4. Needs (`engine/needs.py`)
 
@@ -164,7 +169,7 @@ needs, and need-only bidders, are reported for comparison.
 
 **Why six blocks, and why needs are not ablated.** With three blocks the noise estimate swung tenfold
 between two otherwise identical tunings, and decisions flipped with it. In the simulation, needs
-add about 7 points of buyer accuracy against 8 points of noise, while the direct test above is clear;
+add only a few points of buyer accuracy, within the noise, while the direct test above is clear;
 the agents are built on needs, so they stay, and the table still shows the model without them.
 
 Because the weights and factors were chosen on 2024, those numbers are tuning-set fits; the honest
