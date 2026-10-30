@@ -16,46 +16,53 @@ bidding live with every team's reasons, and shows what happened to him across al
 ## What the back-test says
 
 The whole pipeline was re-run for the **2024 mini-auction** with only what was known before it
-(skills to 18 Dec 2023, value model trained on the 2023 mini-auction alone) and scored against what
-really happened. Weights and add-ons were chosen on this auction, so these are tuning-set numbers.
+(skills to 18 Dec 2023, value model trained on the 2020, 2021 and 2023 mini-auctions) and scored
+against what really happened. Weights and add-ons were chosen on this auction, so these are
+tuning-set numbers.
 
 | Model (2024 back-test) | MAE, log price ↓ | Spearman ↑ | Sold/unsold AUC ↑ | Real buyer in top 3 ↑ | 80% range coverage |
 |---|---|---|---|---|---|
-| Value + needs (the agents' core) | 0.777 | 0.648 | 0.786 | 35% | 68% |
-| + matchups ✗ dropped | 0.779 | 0.647 | 0.784 | 37% | 68% |
-| + start speed ✓ kept | 0.769 | 0.645 | 0.785 | 37% | 69% |
-| + home fit ✗ dropped | 0.770 | 0.644 | 0.784 | 33% | 69% |
-| Without needs | 0.775 | 0.662 | 0.783 | 31% | 67% |
-| Need only (no value) | 0.778 | 0.678 | 0.744 | 28% | 64% |
+| **Value + needs (the model)** | 0.777 | 0.658 | 0.800 | 42% | 75% |
+| + matchups ✗ dropped | 0.774 | 0.660 | 0.799 | 38% | 75% |
+| + start speed ✗ dropped | 0.766 | 0.664 | 0.800 | 32% | 74% |
+| + home fit ✗ dropped | 0.776 | 0.660 | 0.799 | 39% | 74% |
+| Without needs | 0.774 | 0.677 | 0.800 | 35% | 75% |
+| Need only (no value) | 0.791 | 0.671 | 0.742 | 26% | 68% |
 | Base price | 0.853 | 0.650 | 0.636 | – | 58% |
-| Last IPL price | 0.832 | 0.643 | 0.626 | – | 47% |
+| Last IPL price | 0.845 | 0.649 | 0.654 | – | 43% |
 
+In plain terms, on 2024:
+
+- **Sold or unsold:** called right for 85% of the 332 players (saying "unsold" for everyone scores 78%).
+  Of the players it gave an 80%+ chance, most sold; of those under 20%, few did.
+- **Price:** for 56% of the 72 players sold, the real price was within 25% of the simulated median
+  (83% for buys up to ₹1 Cr), and 75% fell inside the 80% range.
+- **Buyer:** the real buyer was among the three likeliest teams 42% of the time (30% by chance).
 - **Team needs are the core** of every agent: they decide who bids at all. Tested directly, with no
-  simulation in between, the real 2024 buyer was one of the three teams with the greatest
-  pre-auction need for the player in 45% of the 72 buys (30% by chance). **Kept add-on:** start
-  speed (lower price error, beyond the simulation's own seed-to-seed noise). **Dropped:** matchups
-  and home fit (within noise). With 72 sales nothing clears a strict 95% test; the paired intervals
-  are in `analysis/out/validation_2024.json` and the app.
-- **The value model alone**, before any simulation, on a mini and a mega auction, each fitted only on
-  earlier auctions of the same kind (mega and mini auctions are priced differently, so they are
-  never mixed):
+  simulation in between, the real buyer was one of the three teams with the greatest pre-auction
+  need for the player in 43% of buys (30% by chance). **Add-ons:** none kept. Start speed cut the
+  price error but cost buyer accuracy beyond the simulation's seed-to-seed noise; matchups and home
+  fit were within noise. With 72 sales nothing clears a strict 95% test; the paired intervals are in
+  `analysis/out/validation_2024.json` and the app.
+- **The value model alone**, before any simulation, on every past auction with earlier auctions of
+  its kind to learn from (mega and mini auctions are priced differently, so they are never mixed):
 
   | Auction | Trained on | Sold/unsold AUC | Price rank (Spearman) | MAE, log price |
   |---|---|---|---|---|
-  | 2024 mini | 2023 | 0.79 | 0.67 | 0.88 |
-  | 2025 mega | 2022 | 0.87 | 0.86 | 0.59 |
+  | 2021 mini | 2020 | 0.82 | 0.76 | 0.80 |
+  | 2023 mini | 2020, 2021 | 0.83 | 0.81 | 0.66 |
+  | 2024 mini | 2020, 2021, 2023 | 0.80 | 0.68 | 0.89 |
+  | 2025 mega | 2022 | 0.87 | 0.85 | 0.60 |
 
-  Adding where the official list puts the player's set lifted the sold/unsold AUC from 0.70 to 0.79
-  on 2024 and from 0.80 to 0.87 on 2025.
-- **How close are the prices?** Of the 72 players sold in 2024, half went within 25% of the
-  simulated median, and 81% of those who went for up to ₹1 Cr. The expensive end is under-priced:
-  only 5 of the 18 buys of ₹5 Cr or more came within a factor of two (Mitchell Starc ₹24.75 Cr
-  against a median of ₹2.20 Cr, Pat Cummins ₹20.50 Cr against ₹6.80 Cr), so the 80% ranges held 69%
-  of real prices rather than 80%. The 2026 model learns from the 2023 and 2024 auctions together,
-  so it has seen those record prices.
-- **Honest limits:** bidding wars for a handful of stars, and uncapped players whose hype came from
-  state T20 leagues that Cricsheet doesn't cover (Sameer Rizvi went for ₹8.4 Cr in 2024), are beyond
-  any public ball-by-ball data.
+- **Research into earlier auctions.** The 2018 mega and 2019–2021 mini auctions were rebuilt from the
+  archived official records, so players carry their earlier IPL price (Pat Cummins: ₹15.5 Cr in 2020)
+  and the 2026 model learns from four mini auctions instead of two. Mixing in mega-auction data, even
+  with a measure of how many similar players each auction offered, did worse on the back-tests.
+- **Honest limits:** the expensive end is under-priced. Only 5 of the 18 buys of ₹5 Cr or more came
+  within a factor of two of the median (Mitchell Starc went for ₹24.75 Cr against a median of
+  ₹3.30 Cr; Pat Cummins's ₹20.50 Cr fell inside his range). Bidding wars for a handful of stars, and
+  uncapped players whose hype came from state T20 leagues that Cricsheet doesn't cover (Sameer Rizvi,
+  ₹8.4 Cr in 2024), are beyond any public ball-by-ball data.
 
 
 ## How it works
@@ -81,13 +88,13 @@ official auction lists, caps, purses, squads ────────┤
    "price below base". Fitted only on earlier auctions of the same kind: mini and mega auctions are
    priced differently, so they are never mixed.
 4. **Needs** (`engine/needs.py`). Squad template from the role mix of recent IPL squads; depth gaps,
-   upgrade gaps, keepers; openers and finishers are judged partly on how fast they score in their
-   first ten balls (start speed, kept by the back-test). Lineup weaknesses (matchups) and home fit
-   are built and were tested, but the 2024 back-test dropped them.
+   upgrade gaps, keepers. Lineup weaknesses (matchups), how fast openers and finishers start (start
+   speed) and home fit are built and were tested, but the 2024 back-test dropped them.
 5. **Agents** (`engine/agents.py`). Gate: role need, squad slot, overseas slot, affordability.
    Walk-away price = value × need × scarcity × purse pressure × home fit × style × market × noise,
    where *market* is how the whole room rates the player that run. Each lot is settled from the
-   walk-away prices alone; the bid-by-bid replay is drawn afterwards and cannot change the result.
+   walk-away prices alone; the bid-by-bid replay is built afterwards, two paddles at a time as in the
+   room (when one team backs out, the next comes in), and cannot change the result.
 6. **Engine** (`engine/auction.py`). The real procedure, researched in [`docs/AUCTION.md`](docs/AUCTION.md):
    set order, random draw inside sets, price-point bid ladder, accelerated rounds from player 71,
    repeated rounds while squads fill, purse reserve, overseas fee cap.
@@ -100,9 +107,10 @@ Data sources and checks: [`data/SOURCES.md`](data/SOURCES.md).
 ## No peeking
 
 - Matches dated 16 Dec 2025 or later are dropped (`tests/test_data.py` checks it).
-- The 2026 simulation learns from the 2023 and 2024 mini-auctions (a 2022 or 2025 mega-auction
-  price counts only as a player's previous price) and uses the 2026 list, purses, slots and retained
-  squads. The 2024 back-test uses only what was known before 19 Dec 2023.
+- The 2026 simulation learns from the 2020, 2021, 2023 and 2024 mini-auctions (prices from every
+  auction since 2018, mega ones included, count only as a player's previous price) and uses the 2026
+  list, purses, slots and retained squads. The 2024 back-test uses only what was known before
+  19 Dec 2023.
 - The real 2026 results live in `data/actual_2026/` and are read only by `analysis/compare_2026.py`,
   a separate script for the demo that the app never runs. A test fails if any other code reads them.
 
@@ -126,11 +134,13 @@ a dark broadcast hall with an LED wall, a lighting truss and a stone floor. The 
 nameplates, paddles and the representatives' kits, and lights the hall (warm key, truss spots, a glow on the lamps
 and the LED wall, stepped down automatically on slower graphics).
 
-In the app: pick any player (`/`), and the auction fast-forwards to his lot in the run closest to his
-median price, plays it at presentation pace with a sentence for every step, and stops on a result card
-(replay the lot, show another run, or go to the next lot). `N` shows another run, `Space` pauses or
-carries on with the auction, `0`/`1`/`3` set the speed (Slow, 1×, 3×), clicking a table opens that
-team's decision. `?2d` forces the 2D room; links like `#p=7&r=0` open a player and run.
+In the app: pick any player (`/`), and the auction fast-forwards to his lot in a typical run, plays it
+at presentation pace and stops on a result card with the spread across all 1,000 runs: replay the lot,
+show another run (each likely buyer, a high one, a low one, an unsold one), or ask "Why this price?". Click any
+table to hear its analyst: a few sentences, in cricket terms, on why that team went for the player,
+how far it would go and why it stopped. The analysts are written rules that read the same decisions
+the agents made, so they never contradict the auction. `N` shows another run, `Space` pauses or
+carries on with the auction, `0`/`1`/`3` set the speed (Slow, 1×, 3×). `?2d` forces the 2D room; links like `#p=7&r=0` open a player and run.
 
 ## Repository
 

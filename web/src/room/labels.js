@@ -1,6 +1,7 @@
-// CSS2D overlays for the 3D room: one label per table (code + reason chip) and the auctioneer's caption under the screen.
+// CSS2D overlays for the 3D room: one label per table (its code, ringed in the table's state colour) and
+// the auctioneer's caption under the screen. Reasons are not shown over the desks; each table's analyst
+// gives them in the team panel.
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import { chipText, freshness } from './chips.js';
 import { teamDot } from '../teams.js';
 
 export function createLabels(container, teams, captionAnchor) {
@@ -14,12 +15,13 @@ export function createLabels(container, teams, captionAnchor) {
     el.className = 'tlabel';
     el.dataset.team = t.ti;
     el.dataset.state = 'idle';
-    el.setAttribute('aria-label', `${t.code}: open decision panel`);
-    el.innerHTML = `<span class="tl-code mono">${teamDot(t.code)}${t.code}</span><span class="tl-chip"></span>`;
+    el.setAttribute('aria-label', `${t.code}: hear its analyst`);
+    el.title = `${t.code} · hear its analyst`;
+    el.innerHTML = `<span class="tl-code mono">${teamDot(t.code)}${t.code}</span>`;
     const obj = new CSS2DObject(el);
     obj.center.set(0.5, 1);
     t.anchor.add(obj);
-    return { el, chip: el.querySelector('.tl-chip'), fresh: freshness(el) };
+    return el;
   });
 
   const caption = document.createElement('div');
@@ -33,25 +35,18 @@ export function createLabels(container, teams, captionAnchor) {
     render: (scene, camera) => renderer.render(scene, camera),
     setSize: (w, h) => renderer.setSize(w, h),
     /** Mirror the replay's per-team state onto the labels. */
-    update(state, codes) {
-      state.status.forEach((st, i) => {
-        const it = items[i];
-        if (!it) return;
-        const text = chipText(st, state);
-        if (it.el.dataset.state !== st.state) it.el.dataset.state = st.state;
-        if (it.chip.textContent !== text) { it.chip.textContent = text; it.fresh(text); }
-        it.el.title = text ? `${codes[i]} · ${text}` : codes[i];
-      });
+    update(state) {
+      state.status.forEach((st, i) => { if (items[i] && items[i].dataset.state !== st.state) items[i].dataset.state = st.state; });
     },
     setCaption(model) {
       caption.innerHTML = model?.html || '';
       caption.dataset.tone = model?.tone || 'plain';
       caption.classList.toggle('is-on', !!model);
     },
-    /** Where each table's chip hangs: 'left', 'right' or 'below' its code pill. */
-    setSides(sides) { items.forEach((it, i) => { it.el.dataset.side = sides[i]; }); },
-    setSelected(ti) { items.forEach((it, i) => it.el.classList.toggle('is-selected', i === ti)); },
-    setHover(ti) { items.forEach((it, i) => it.el.classList.toggle('is-hover', i === ti)); },
+    /** The 3D room passes where each label has open space; with no chips over the desks there is nothing to place. */
+    setSides() {},
+    setSelected(ti) { items.forEach((el, i) => el.classList.toggle('is-selected', i === ti)); },
+    setHover(ti) { items.forEach((el, i) => el.classList.toggle('is-hover', i === ti)); },
     get element() { return renderer.domElement; },
   };
 }

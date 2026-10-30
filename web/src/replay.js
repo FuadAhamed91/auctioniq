@@ -28,7 +28,7 @@ export function createReplay({ meta, players, store }) {
   const state = {
     player: null, feature: null, featureIdx: 0, run: null,
     apps: [], appIdx: 0, app: null, logged: true, seq: 0, round: 0,
-    econ: [], status: [], price: null, leader: -1, ladder: [], result: null,
+    econ: [], before: [], status: [], price: null, leader: -1, ladder: [], result: null,
     phase: 'idle', playing: false, speed: 1, mode: 'auction', ended: false, error: null,
   };
 
@@ -168,11 +168,15 @@ export function createReplay({ meta, players, store }) {
   }
 
   // ---- lots ----
+  /** Every team's purse and places as the lot opens (the analysts reason from these). */
+  const snapshot = (econ) => econ.map(({ purse, slots, os }) => ({ purse, slots, os }));
+
   function startApp(i, ffFrom, newPlayer, breakShown = false) {
     const app = state.apps[i];
+    const econ = outcomes.stateAt(state.run, app.seq);
     Object.assign(state, {
       appIdx: i, app, seq: app.seq, round: app.round,
-      econ: outcomes.stateAt(state.run, app.seq), status: idleStatus(),
+      econ, before: snapshot(econ), status: idleStatus(),
       price: null, leader: -1, ladder: [], result: null,
     });
     const count = Math.max(0, app.seq - ffFrom);
@@ -208,7 +212,7 @@ export function createReplay({ meta, players, store }) {
     Object.assign(state, {
       apps: [], appIdx: 0, app: null, seq: end, round: 0, status: idleStatus(),
       econ: phase === 'notcalled' ? outcomes.stateAt(state.run, end) : startEcon(),
-      price: null, leader: -1, ladder: [], result: null,
+      before: [], price: null, leader: -1, ladder: [], result: null,
     });
     emit('lot', { newPlayer });
     if (end - ffFrom > 0) emit('ff', { count: end - ffFrom, run: state.run });

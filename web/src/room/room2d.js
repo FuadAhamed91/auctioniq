@@ -2,7 +2,6 @@
 import { tweener, retrigger } from '../dom.js';
 import { moneyParts } from '../format.js';
 import { screenModel, screenHTML, leadLine } from './screen.js';
-import { chipText, freshness } from './chips.js';
 import { captionModel } from './caption.js';
 import { teamDot, teamVars } from '../teams.js';
 
@@ -17,10 +16,9 @@ export function mountRoom2D(el, ctx) {
     <div class="r2-screen"><div class="r2-card"></div><div class="caption caption-2d" aria-hidden="true"></div></div>
     <div class="r2-gavel">${GAVEL}</div>
     ${codes.map((c, i) => `
-      <button class="r2-table" type="button" data-team="${i}" data-state="idle" style="${teamVars(c)}" aria-label="${c}: open decision panel">
+      <button class="r2-table" type="button" data-team="${i}" data-state="idle" style="${teamVars(c)}" aria-label="${c}: hear its analyst" title="${c} · hear its analyst">
         <span class="r2-paddle" aria-hidden="true"><i></i></span>
         <span class="r2-desk"><span class="r2-lamp" aria-hidden="true"></span><span class="r2-code mono">${teamDot(c)}${c}</span></span>
-        <span class="r2-chip"></span>
       </button>`).join('')}`;
   el.append(root);
   const screenBox = root.querySelector('.r2-screen');
@@ -28,7 +26,6 @@ export function mountRoom2D(el, ctx) {
   const caption = root.querySelector('.caption');
   const gavel = root.querySelector('.r2-gavel');
   const tables = [...root.querySelectorAll('.r2-table')];
-  const fresh = tables.map((t) => freshness(t));
   let shownKey = '';
 
   function layout() {
@@ -79,15 +76,7 @@ export function mountRoom2D(el, ctx) {
   }
 
   function paintTables() {
-    const s = replay.state;
-    s.status.forEach((st, i) => {
-      const t = tables[i];
-      t.dataset.state = st.state;
-      const chip = t.querySelector('.r2-chip');
-      const text = chipText(st, s);
-      if (chip.textContent !== text) { chip.textContent = text; fresh[i](text); }
-      t.title = text ? `${codes[i]} · ${text}` : codes[i];
-    });
+    replay.state.status.forEach((st, i) => { tables[i].dataset.state = st.state; });
   }
 
   const offs = [

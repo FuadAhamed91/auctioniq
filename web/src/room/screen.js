@@ -21,11 +21,8 @@ export function screenModel(state, ctx) {
     case 'bidding':
     case 'going':
       return { ...m, mode: 'bid', price: state.price, team: ctx.codes[state.leader] || '', going: state.phase === 'going' };
-    case 'sold': {
-      const { split } = state.result;
-      return { ...m, mode: 'sold', price: state.result.price, team: ctx.codes[state.result.team],
-        split: split && `Player keeps ${money(split.keeps)} · ${money(split.bcci)} to the BCCI` };
-    }
+    case 'sold':
+      return { ...m, mode: 'sold', price: state.result.price, team: ctx.codes[state.result.team] };
     case 'unsold':
       return { ...m, mode: 'unsold', reason: /no bid at base/i.test(state.result?.reason || '') ? 'No bid at his base price' : state.result?.reason || '' };
     case 'interstitial':
@@ -60,7 +57,7 @@ export function screenHTML(m, price) {
       break;
     case 'sold':
       body = `<div class="scr-name scr-name-sm">${esc(m.name)}</div><div class="scr-stamp is-sold">SOLD</div>${big(m.price, 'is-sold')}
-        <div class="scr-line">to <b class="mono">${esc(m.team)}</b></div>${m.split ? `<div class="scr-split">${esc(m.split)}</div>` : ''}`;
+        <div class="scr-line">to <b class="mono">${esc(m.team)}</b></div>`;
       break;
     case 'unsold':
       body = `<div class="scr-name scr-name-sm">${esc(m.name)}</div><div class="scr-stamp">UNSOLD</div>${m.reason ? `<div class="scr-line">${esc(m.reason)}</div>` : ''}`;
@@ -141,11 +138,10 @@ export function paintScreen(g, w, h, m, price) {
       line(m.going ? `${m.team} · going once, going twice` : `${m.team} leading`, C.flood, u * 85, u * 7.5, mono(600));
       break;
     case 'sold':
-      line(m.name, C.haze, u * (m.split ? 24 : 28), u * 8, display(600));
-      line('SOLD', C.red, u * (m.split ? 42 : 48), u * 17, display(800));
-      bigPrice(m.price, C.red, u * (m.split ? 66 : 74), u * 24);
-      line(`to ${m.team}`, C.flood, u * (m.split ? 79 : 88), u * 7.5, mono(600));
-      if (m.split) line(m.split, C.haze, u * 90, u * 5.2, sans(500));
+      line(m.name, C.haze, u * 28, u * 8, display(600));
+      line('SOLD', C.red, u * 48, u * 17, display(800));
+      bigPrice(m.price, C.red, u * 74, u * 24);
+      line(`to ${m.team}`, C.flood, u * 88, u * 7.5, mono(600));
       break;
     case 'unsold':
       line(m.name, C.haze, u * 33, u * 8, display(600));

@@ -1,13 +1,12 @@
 // Bid ladder: the last few events, newest on top. The teams that opened share one line, drop-outs are one
-// muted line each, and the sale stands out in red (with the overseas fee split when the cap bites).
-import { esc } from '../dom.js';
-import { money, feeSplit } from '../format.js';
+// muted line each (the reasons are with each table's analyst), and the sale stands out in red.
+import { money } from '../format.js';
 import { teamDot } from '../teams.js';
 
 const KEEP = 8; // rows on show; the oldest fade out at the bottom
 
 export function mountLadder(el, ctx) {
-  const { replay, codes, meta } = ctx;
+  const { replay, codes } = ctx;
   el.innerHTML = `
     <h3 class="panel-title ladder-title">Bids</h3>
     <ol class="ladder-list" aria-live="off"></ol>
@@ -18,7 +17,6 @@ export function mountLadder(el, ctx) {
 
   const code = (t) => (t != null && t >= 0 ? codes[t] : '');
   const team = (t) => `<span class="lcode mono">${teamDot(code(t))}${code(t)}</span>`;
-  const lower = (text) => (text ? text[0].toLowerCase() + text.slice(1) : '');
 
   function add(cls, html, step) {
     const li = document.createElement('li');
@@ -60,17 +58,14 @@ export function mountLadder(el, ctx) {
         lastBid = add('lrow-bid is-current', `${team(step.team)}<span class="ltext">${step.entry ? 'enters' : ''}</span><span class="lprice mono">${money(step.price)}</span>`, step);
         break;
       case 'drop':
-        add('lrow-drop', `<span class="ltext">${code(step.team)} out · ${esc(lower(step.text))}</span>`, step);
+        add('lrow-drop', `<span class="ltext">${code(step.team)} out</span>`, step);
         break;
-      case 'sold': {
+      case 'sold':
         lastBid?.classList.remove('is-current');
-        const split = feeSplit(replay.state.player, step.price, meta.rules?.overseasFeeCap);
-        add('lrow-sold', `${team(step.team)}<span class="ltext">Sold</span><span class="lprice mono">${money(step.price)}</span>${split
-          ? `<span class="lsplit">Overseas cap: he keeps <span class="mono">${money(split.keeps)}</span>, <span class="mono">${money(split.bcci)}</span> goes to the BCCI</span>` : ''}`, step);
+        add('lrow-sold', `${team(step.team)}<span class="ltext">Sold</span><span class="lprice mono">${money(step.price)}</span>`, step);
         break;
-      }
       case 'unsold':
-        add('lrow-unsold', `<span class="ltext">Unsold${step.text ? ` · ${esc(lower(step.text))}` : ''}</span>`, step);
+        add('lrow-unsold', '<span class="ltext">Unsold</span>', step);
         break;
       default:
     }

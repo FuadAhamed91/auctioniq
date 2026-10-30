@@ -1,7 +1,9 @@
-// Team decision panel: why a franchise is (or is not) in for this lot, and how its auction is going.
+// Team panel: the table's analyst on the current lot (cricket first, then the auction), the numbers behind
+// it on request, and how the franchise's auction is going.
 import { esc } from '../dom.js';
-import { money, moneyRange, int, pct, plural, runNo } from '../format.js';
+import { money, moneyRange, int, pct, runNo } from '../format.js';
 import { teamDot, teamVars } from '../teams.js';
+import { teamAnalyst } from '../analyst.js';
 
 const GATE_LABEL = { need: 'Need', slot: 'Squad slot', overseas: 'Overseas', purse: 'Purse' };
 // [key in decision.f, label, what it is]
@@ -70,13 +72,15 @@ export function mountTeamPanel(el, ctx) {
     </header>
     <div class="tp-scroll">
       <div class="tp-now" id="tp-now"></div>
+      <section class="tp-sec tp-analyst" id="tp-analyst" aria-live="polite"></section>
       <section class="tp-sec" id="tp-decision"></section>
       <section class="tp-sec" id="tp-needs"></section>
       <section class="tp-sec" id="tp-squad"></section>
       <section class="tp-sec" id="tp-sim"></section>
     </div>`;
   const part = (id) => el.querySelector(`#${id}`);
-  const ui = { code: part('tp-code'), sub: part('tp-sub'), now: part('tp-now'), decision: part('tp-decision'), needs: part('tp-needs'), squad: part('tp-squad'), sim: part('tp-sim') };
+  const ui = { code: part('tp-code'), sub: part('tp-sub'), now: part('tp-now'), analyst: part('tp-analyst'), decision: part('tp-decision'), needs: part('tp-needs'), squad: part('tp-squad'), sim: part('tp-sim') };
+  let numbersOpen = false; // "The numbers behind it" stays as the viewer left it
 
   const squadOf = (t) => {
     const T = meta.teams[t];
@@ -89,7 +93,8 @@ export function mountTeamPanel(el, ctx) {
     ui.code.innerHTML = `${teamDot(T.code)}${T.code}`;
     el.style.cssText = teamVars(T.code);
     const home = (T.home || []).map((h) => h.city || h.venue).filter(Boolean).join(' / ');
-    ui.sub.textContent = `${home ? `Home: ${home} · ` : ''}spending style ×${T.style.toFixed(2)}`;
+    const style = T.style > 1.05 ? 'pays above the market' : T.style < 0.95 ? 'rarely overpays' : 'pays around the market';
+    ui.sub.textContent = `${home ? `Home: ${home} · ` : ''}${style}`;
     const where = !s.player ? '' : s.run == null ? 'Before the auction'
       : s.phase === 'notcalled' ? `Run ${runNo(s.run)} · end of the run` : `Run ${runNo(s.run)} · before lot ${int(s.player.lot)} (${s.player.name})`;
     ui.now.innerHTML = `
@@ -99,34 +104,24 @@ export function mountTeamPanel(el, ctx) {
       <p class="tp-context">${esc(where)}</p>`;
   }
 
+  function renderAnalyst() {
+    const a = teamAnalyst(ctx, replay.state, ti);
+    ui.analyst.innerHTML = a ? `<h4 class="analyst-head">${esc(a.title)}<span class="muted"> on ${esc(replay.state.player.name)}</span></h4>
+      <div class="analyst">${a.lines.map((line) => `<p>${esc(line)}</p>`).join('')}</div>` : '';
+  }
+
   function renderDecision() {
-    const s = replay.state, p = s.player, T = meta.teams[ti];
-    const d = s.app?.teams?.[T.code];
-    if (!p) { ui.decision.innerHTML = ''; return; }
-    if (!d) {
-      const why = { never: 'Never called in any run, so no team decided on him.', notcalled: 'Not called in this run — no team nominated him.' }[s.phase]
-        || (s.phase === 'loading' ? 'Loading…' : 'No decision log was exported for this lot.');
-      ui.decision.innerHTML = `<div class="sec-head"><span class="k">Decision · ${esc(p.name)}</span></div><p class="muted small">${why}</p>`;
-      return;
-    }
+    const s = replay.state, d = s.player && s.app?.teams?.[meta.teams[ti].code];
+    if (!d) { ui.decision.innerHTML = ''; return; }
     const gates = (d.gate || []).map(([kind, ok, text]) => `
       <li class="gate ${ok ? 'ok' : 'no'}"><span class="gate-i">${ok ? ICON_OK : ICON_NO}</span><span class="gate-k">${esc(GATE_LABEL[kind] || kind)}</span><span class="gate-t">${esc(text)}</span></li>`).join('');
-    const mine = s.ladder.filter((x) => x.team === ti);
-    const bids = mine.filter((x) => x.type === 'bid');
-    const drop = mine.find((x) => x.type === 'drop');
-    let outcome;
-    if (!d.open) outcome = 'Gate closed — not bidding on this lot.';
-    else if (s.result?.type === 'sold' && s.result.team === ti) outcome = `<b class="sold">Won at ${money(s.result.price)}</b> after ${plural(bids.length, 'bid')}.`;
-    else if (drop) outcome = `Out at ${money(drop.price)}${drop.text ? ` · ${esc(drop.text)}` : ''}${bids.length ? ` after ${plural(bids.length, 'bid')}` : ''}.`;
-    else if (bids.length) outcome = `${plural(bids.length, 'bid')} so far, last ${money(bids[bids.length - 1].price)}.`;
-    else if (s.result) outcome = 'Did not bid.';
-    else outcome = 'In the room, waiting to bid.';
     const showPrice = s.price != null && !s.result ? s.price : null;
-    ui.decision.innerHTML = `
-      <div class="sec-head"><span class="k">Decision · ${esc(p.name)}</span><span class="verdict ${d.open ? 'is-open' : ''}">${d.open ? 'Gate open' : 'Gate closed'}</span></div>
-      <ul class="gates">${gates}</ul>
-      ${d.open && d.f && d.walk != null ? waterfall(d, showPrice) : ''}
-      <p class="tp-outcome">${outcome}</p>`;
+    ui.decision.innerHTML = `<details class="tp-numbers"${numbersOpen ? ' open' : ''}>
+        <summary>The numbers behind it</summary>
+        <ul class="gates">${gates}</ul>
+        ${d.open && d.f && d.walk != null ? waterfall(d, showPrice) : ''}
+      </details>`;
+    ui.decision.querySelector('details').addEventListener('toggle', (e) => { numbersOpen = e.target.open; });
   }
 
   function renderNeeds() {
@@ -139,7 +134,7 @@ export function mountTeamPanel(el, ctx) {
         const match = p && (p.role === n.role || p.role2 === n.role);
         const got = squad.filter((x) => x.role === n.role).length;
         return `<li class="need${match ? ' is-match' : ''}">
-          <div class="need-top"><span class="need-role">${esc(ctx.roleLabel(n.role))}</span><span class="chip chip-quiet">${esc(n.kind)}</span>${match ? '<span class="chip chip-teal">this lot</span>' : ''}<span class="mono need-score">${n.score.toFixed(1)}</span></div>
+          <div class="need-top"><span class="need-role">${esc(n.role ? ctx.roleLabel(n.role) : n.kind === 'keeper' ? 'Keeper' : 'Squad')}</span><span class="chip chip-quiet">${esc(n.kind)}</span>${match ? '<span class="chip chip-teal">this lot</span>' : ''}<span class="mono need-score">${n.score.toFixed(1)}</span></div>
           <span class="need-bar"><i style="width:${pctW(n.score, max)}"></i></span>
           <p class="need-text">${esc(n.text)}${got ? ` · <span class="flood">${got} bought this run</span>` : ''}</p>
         </li>`;
@@ -188,7 +183,7 @@ export function mountTeamPanel(el, ctx) {
 
   function renderAll() {
     if (ti == null) return;
-    renderNow(); renderDecision(); renderNeeds(); renderSquad(); renderSim();
+    renderNow(); renderAnalyst(); renderDecision(); renderNeeds(); renderSquad(); renderSim();
   }
 
   function open(t) {
@@ -218,8 +213,8 @@ export function mountTeamPanel(el, ctx) {
 
   replay.on('lot', () => { if (ti != null) renderAll(); });
   replay.on('econ', () => { if (ti != null) { renderNow(); renderNeeds(); renderSquad(); } });
-  replay.on('step', () => { if (ti != null) renderDecision(); });
-  replay.on('phase', () => { if (ti != null) renderDecision(); });
+  replay.on('step', () => { if (ti != null) { renderAnalyst(); renderDecision(); } });
+  replay.on('phase', () => { if (ti != null) { renderAnalyst(); renderDecision(); } });
 
   return { open, close, get team() { return ti; } };
 }

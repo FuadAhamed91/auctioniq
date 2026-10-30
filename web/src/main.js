@@ -79,6 +79,7 @@ async function boot() {
 
   const ctx = {
     meta, players, replay, store, codes: replay.codes,
+    maxBase: Math.max(...players.map((p) => p.base)), // the top base price on the list
     roleLabel: (k) => roles[k] || k,
     tagLabel: (k) => meta.tags?.[k] || k,
     btLabel: (k) => bowlerTypes[k] || k,
