@@ -15,7 +15,7 @@ show how that price compares with all 1,000 runs.
 
 > Unofficial. Not affiliated with the IPL or the BCCI. Teams appear by their codes and team colours only: no logos, photos or likenesses.
 
-![AuctionIQ: the 3D auction room with the lot card, the 1,000-run panel and the purse strip](docs/img/app.png)
+![AuctionIQ as the hammer falls: in this run Cameron Green goes to CSK for ₹33.50 Cr, 72% above his median of ₹19.50 Cr across 1,000 runs](docs/img/app.png)
 
 ## How it did on the real 2026 auction
 
