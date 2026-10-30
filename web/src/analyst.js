@@ -348,11 +348,11 @@ function unsoldLine(ctx, state) {
   return `No team had both the gap and the room${parts.length ? `: ${parts.join(', ')}` : ''}.`;
 }
 
-/** "Across 1,000 runs: sold 99% · median … · 80% between … and …" */
+/** "Across 1,000 runs: sold 99% · median …" */
 function acrossRuns(meta, p) {
   const s = p.sim || {}, head = `Across ${int(meta.runs)} runs:`;
   if (!s.price) return `${head} never sold.`;
-  return `${head} sold ${pct(s.pSold)} · median ${money(s.price.median)} · 80% between ${money(s.price.p10)} and ${money(s.price.p90)}.`;
+  return `${head} sold ${pct(s.pSold)} · median ${money(s.price.median)}.`;
 }
 
 /** "Why this price?": 4–6 lines once the lot is over. */
@@ -376,14 +376,13 @@ function versusMedian(price, { median, p10, p90 }, where = '') {
   return `${money(price)} is ${how}${tail}`;
 }
 
-/** The reveal on the result card: this run against the median and 80% range of all the runs. */
+/** The reveal on the result card: this run against his median across all the runs. */
 export function spreadLine(meta, p, result) {
   const s = p.sim || {}, runs = `${int(meta.runs)} runs`;
   if (!s.price) return `He never sells in any of the ${runs}.`;
-  const range = `80% of his prices fell between ${money(s.price.p10)} and ${money(s.price.p90)}`;
-  if (result?.type === 'sold') return `${versusMedian(result.price, s.price, ` across ${runs}`)}; ${range}.`;
+  if (result?.type === 'sold') return `${versusMedian(result.price, s.price, ` across ${runs}`)}.`;
   const head = result?.type === 'unsold' ? 'Unsold this run.' : 'Not called in this run.';
-  return `${head} Across ${runs} he sells ${pct(s.pSold)} of the time, at a median of ${money(s.price.median)}; ${range}.`;
+  return `${head} Across ${runs} he sells ${pct(s.pSold)} of the time, at a median of ${money(s.price.median)}.`;
 }
 
 /** The short version under the 1,000-run numbers: "This run: ₹6.25 Cr is 30% above the median of ₹4.80 Cr." */

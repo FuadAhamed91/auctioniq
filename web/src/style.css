@@ -200,9 +200,6 @@ svg .fill { fill: currentColor; stroke: none; }
 .fact .v { font-size: clamp(14px, 1.1vw, 16px); font-weight: 500; white-space: nowrap; }
 .fact .s { font-size: 12px; color: var(--ink-2); }
 .fact .v.is-sealed { color: var(--ink-2); }
-.vrange { position: relative; display: block; height: 4px; margin: 2px 0; border-radius: 2px; background: var(--track); }
-.vr-band { position: absolute; top: 0; bottom: 0; border-radius: 2px; background: #9AA3B0; }
-.vr-mid { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; border-radius: 1px; background: var(--ink); }
 .skills { display: grid; gap: 12px; }
 .sk { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; gap: 4px 12px; font-size: 12.5px; }
 .sk > .k { font-size: 12.5px; color: var(--ink); }
@@ -403,9 +400,7 @@ svg .fill { fill: currentColor; stroke: none; }
 .run-vs { margin: 0; padding-left: 10px; border-left: 3px solid var(--brass); font-size: 13px; }
 .hist { margin: 0; }
 .hist-svg { display: block; width: 100%; height: auto; overflow: visible; }
-.hband { fill: rgb(15 18 24 / 0.045); }
-.hbar { fill: #D3D7DD; transition: fill 0.3s; }
-.hbar.in-band { fill: #6B7584; }
+.hbar { fill: #9AA3B0; transition: fill 0.3s; }
 .hbase-line, .htick { stroke: var(--rule); }
 .hlabel { fill: var(--ink-2); font: 400 10px var(--mono); }
 .hm { fill: none; stroke-width: 1.5; }
@@ -418,7 +413,6 @@ path.m-model { fill: var(--ink); stroke: #fff; stroke-width: 1.5; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 12px; color: var(--ink-2); }
 .lg { white-space: nowrap; }
 .sw { display: inline-block; margin-right: 6px; vertical-align: -1px; }
-.sw-band { width: 12px; height: 10px; border-radius: 2px; background: #6B7584; }
 .sw-median { width: 2px; height: 11px; background: var(--ink); }
 .sw-base { height: 11px; border-left: 1.5px dashed var(--ink-2); }
 .sw-model { width: 7px; height: 7px; margin-right: 8px; background: var(--ink); transform: rotate(45deg); vertical-align: 0; }
@@ -584,9 +578,7 @@ a.note-src:hover { color: var(--ink); text-decoration-color: currentColor; }
 .cal-label { fill: var(--ink-2); font: 400 10px var(--mono); }
 .cal-title { fill: var(--ink-2); font: 500 10.5px var(--sans); }
 .cal-diag-line { stroke: var(--muted); stroke-dasharray: 4 4; }
-.cal-range { stroke: rgb(15 18 24 / 0.16); stroke-width: 1.5; }
 .cal-pt { fill: var(--ink); stroke: #fff; stroke-width: 1.5; transition: r 0.15s; }
-.cal-pt.is-out { fill: #fff; stroke: var(--ink); }
 .cal-pt.is-hot { r: 6; }
 .cal-rug-tick { stroke: var(--ink-2); stroke-width: 1.5; }
 .cal-rug-tick.is-hot { stroke: var(--ink); stroke-width: 2.5; }
@@ -600,8 +592,6 @@ a.note-src:hover { color: var(--ink); text-decoration-color: currentColor; }
 .cal-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12px; color: var(--ink-2); }
 .cal-legend i { display: inline-block; margin-right: 6px; vertical-align: middle; }
 .cal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
-.cal-dot.is-out { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink); }
-.cal-bar { width: 16px; height: 2px; background: rgb(15 18 24 / 0.3); }
 .cal-diag { width: 16px; border-top: 1.5px dashed var(--muted); }
 .cal-rug { width: 1.5px; height: 10px; background: var(--ink-2); }
 .keys { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin: 0; }

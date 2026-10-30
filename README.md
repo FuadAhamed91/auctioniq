@@ -175,7 +175,7 @@ and the LED wall, stepped down automatically on slower graphics).
 In the app: pick any player (`/`), and the auction fast-forwards to his lot in one of his runs, picked
 at random from six drawn from the 1,000, and plays it at presentation pace like a live auction. The
 model's value, the 1,000-run numbers and each team's limit stay sealed until the hammer falls; then a
-result card says how this run's price compares with the median and the 80% range of all the runs:
+result card says how this run's price compares with his median across all the runs:
 replay the lot, show another run, or ask "Why this price?". Click any table to hear its analyst: a
 few sentences, in cricket terms, on why that team went for the player and why it stopped. The analysts are written rules that read the same decisions
 the agents made, so they never contradict the auction. `N` shows another run, `Space` pauses or

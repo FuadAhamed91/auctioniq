@@ -1,14 +1,8 @@
-// 2024 back-test calibration chart: simulated median (x) vs real price (y), log scales, 10–90% bars.
+// 2024 back-test calibration chart: simulated median (x) vs real price (y), log scales.
 import { esc } from '../dom.js';
-import { money, moneyRange, pct, int } from '../format.js';
+import { money, pct, int } from '../format.js';
 
 const STEPS = [10, 30, 100, 300, 1000, 3000, 10000, 30000];
-
-/** Share of sold players whose real price fell inside the simulated 10–90% range. */
-export function coverage(points) {
-  const sold = (points || []).filter((p) => p.sold && p.price != null && p.p10 != null && p.p90 != null);
-  return { inside: sold.filter((p) => p.price >= p.p10 && p.price <= p.p90).length, n: sold.length };
-}
 
 export function mountCalibration(fig, points) {
   const sold = points.filter((p) => p.sold && p.price > 0 && p.median > 0);
@@ -16,9 +10,7 @@ export function mountCalibration(fig, points) {
   const unplaced = points.filter((p) => !p.sold && !(p.median > 0)).length;
   fig.innerHTML = `<div class="cal-plot"></div><div class="cal-tip" hidden></div>
     <figcaption class="cal-legend">
-      <span><i class="cal-dot"></i>real price inside the 80% range</span>
-      <span><i class="cal-dot is-out"></i>outside</span>
-      <span><i class="cal-bar"></i>simulated 10–90% range</span>
+      <span><i class="cal-dot"></i>real 2024 price</span>
       <span><i class="cal-diag"></i>simulated = real</span>
       ${unsold.length ? `<span><i class="cal-rug"></i>unsold in 2024 (${int(unsold.length)}), at simulated median${unplaced ? `; ${int(unplaced)} never sold in the simulation either` : ''}</span>` : ''}
     </figcaption>`;
@@ -31,7 +23,7 @@ export function mountCalibration(fig, points) {
     if (!W || !sold.length) return;
     const H = Math.round(Math.min(400, Math.max(250, W * 0.7)));
     const m = { l: 62, r: 14, t: 12, b: unsold.length ? 58 : 34 };
-    const vals = [...sold.flatMap((p) => [p.price, p.median, p.p10, p.p90]), ...unsold.map((p) => p.median)].filter((v) => v > 0);
+    const vals = [...sold.flatMap((p) => [p.price, p.median]), ...unsold.map((p) => p.median)].filter((v) => v > 0);
     const lo = Math.min(...vals) * 0.8, hi = Math.max(...vals) * 1.2;
     const t = (v) => (Math.log(v) - Math.log(lo)) / (Math.log(hi) - Math.log(lo));
     const X = (v) => m.l + t(v) * (W - m.l - m.r);
@@ -47,11 +39,9 @@ export function mountCalibration(fig, points) {
       <text class="cal-label" x="${m.l - 8}" y="${(Y(v) + 3.5).toFixed(1)}" text-anchor="end">${money(v)}</text>`).join('');
     marks = [];
     const dots = sold.map((p) => {
-      const inside = p.p10 != null && p.p90 != null && p.price >= p.p10 && p.price <= p.p90;
       const x = X(p.median), y = Y(p.price);
       marks.push({ p, x, y });
-      const bar = p.p10 > 0 && p.p90 > 0 ? `<line class="cal-range" x1="${X(p.p10).toFixed(1)}" x2="${X(p.p90).toFixed(1)}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"/>` : '';
-      return `${bar}<circle class="cal-pt${inside ? '' : ' is-out'}" data-i="${marks.length - 1}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6"/>`;
+      return `<circle class="cal-pt" data-i="${marks.length - 1}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6"/>`;
     }).join('');
     const rugY = baseY + 30;
     const rug = unsold.map((p) => {
@@ -79,7 +69,7 @@ export function mountCalibration(fig, points) {
     plot.querySelector(`[data-i="${i}"]`)?.classList.add('is-hot');
     tip.innerHTML = `<b>${esc(p.name)}</b>
       <span>${p.sold ? `Real price <span class="mono">${money(p.price)}</span>` : 'Unsold in 2024'}</span>
-      <span>Simulated median <span class="mono">${money(p.median)}</span>${p.p10 != null && p.p90 != null ? ` · 80%: <span class="mono">${moneyRange(p.p10, p.p90)}</span>` : ''}</span>
+      <span>Simulated median <span class="mono">${money(p.median)}</span></span>
       <span>P(sold) <span class="mono">${pct(p.pSold)}</span></span>`;
     tip.hidden = false;
     const w = plot.clientWidth, left = Math.min(Math.max(8, x + 14), w - tip.offsetWidth - 8);

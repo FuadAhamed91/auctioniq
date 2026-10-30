@@ -1,7 +1,7 @@
 // Team panel: the table's analyst on the current lot (cricket first, then the auction), the numbers behind
 // it on request, and how the franchise's auction is going.
 import { esc } from '../dom.js';
-import { money, moneyRange, int, pct, runNo } from '../format.js';
+import { money, int, pct, runNo } from '../format.js';
 import { teamDot, teamVars } from '../teams.js';
 import { teamAnalyst, habitLines } from '../analyst.js';
 
@@ -188,15 +188,14 @@ export function mountTeamPanel(el, ctx) {
 
   function renderSim() {
     const T = meta.teams[ti], sim = T.sim || {};
-    const range = (x, fmt) => (x ? `80%: ${fmt(x.p10)}–${fmt(x.p90)}` : '');
     const targets = (sim.topTargets || []).filter(([id]) => players[id]);
     ui.sim.innerHTML = `
-      <div class="sec-head"><span class="k">Across ${int(meta.runs)} runs</span></div>
+      <div class="sec-head"><span class="k">Across ${int(meta.runs)} runs</span><span class="muted">medians</span></div>
       <div class="kpis kpis-4">
-        <div class="kpi"><span class="k">Spend</span><span class="kpi-v mono">${money(sim.spend?.median)}</span><span class="kpi-s">${sim.spend ? `80%: ${moneyRange(sim.spend.p10, sim.spend.p90)}` : ''}</span></div>
-        <div class="kpi"><span class="k">Purse left</span><span class="kpi-v mono">${money(sim.purseLeft?.median)}</span><span class="kpi-s">${sim.purseLeft ? `80%: ${moneyRange(sim.purseLeft.p10, sim.purseLeft.p90)}` : ''}</span></div>
-        <div class="kpi"><span class="k">Players bought</span><span class="kpi-v mono">${int(sim.bought?.median)}</span><span class="kpi-s">${range(sim.bought, int)}</span></div>
-        <div class="kpi"><span class="k">Needs filled</span><span class="kpi-v mono">${pct(sim.needsFilled?.median)}</span><span class="kpi-s">${range(sim.needsFilled, pct)}</span></div>
+        <div class="kpi"><span class="k">Spend</span><span class="kpi-v mono">${money(sim.spend?.median)}</span></div>
+        <div class="kpi"><span class="k">Purse left</span><span class="kpi-v mono">${money(sim.purseLeft?.median)}</span></div>
+        <div class="kpi"><span class="k">Players bought</span><span class="kpi-v mono">${int(sim.bought?.median)}</span></div>
+        <div class="kpi"><span class="k">Needs filled</span><span class="kpi-v mono">${pct(sim.needsFilled?.median)}</span></div>
       </div>
       ${targets.length ? `<div class="targets">
         <div class="sec-head"><span class="k">Top targets</span><span class="muted">P(${esc(T.code)} buys him)</span></div>

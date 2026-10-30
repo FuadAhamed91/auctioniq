@@ -1,7 +1,7 @@
 // About / Method drawer: how the numbers are made, and how the model did on the 2024 auction.
 import { esc } from '../dom.js';
 import { money, int, pct, date, plural, signed } from '../format.js';
-import { coverage, mountCalibration } from './backtest.js';
+import { mountCalibration } from './backtest.js';
 
 const KEYS = [['Space', 'Play / pause (after a single lot: carry on with the auction)'], ['0 · 1 · 3', 'Speed: slow · 1× · 3×'],
   ['S or →', 'Finish lot (again: next lot)'], ['←', 'Previous lot'], ['N', 'Show another run'], ['/ or Ctrl K', 'Search players'], ['Esc', 'Close panels']];
@@ -17,7 +17,6 @@ const pts = (x) => `${signed(x == null ? x : x * 100, 1)} pts`;
 const METRICS = [
   ['auc', 'AUC', dec(3), ratio, diff3, 'AUC'],
   ['top3', 'Top-3', pct, share, pts, 'top-3'],
-  ['cover80', '80% cover', pct, share, pts, '80% cover'],
   ['spearman', 'Spearman', dec(3), ratio, diff3, 'Spearman'],
   ['mae', 'MAE <small>(log price)</small>', dec(3), ratio, diff3, 'MAE'],
 ];
@@ -56,9 +55,8 @@ function validationTable(v) {
       <thead><tr><th scope="col">Model</th>${METRICS.map(([, h]) => `<th scope="col">${h}</th>`).join('')}<th scope="col" class="col-n">n</th></tr></thead>
       <tbody>${body}</tbody>
     </table></div>
-    <p class="fine">AUC: how well P(sold) separates sold from unsold players. Top-3: the real buyer was among the three likeliest. 80% cover: real
-      prices inside the simulation's 80% range. Spearman: rank correlation of simulated and real prices. MAE (log price): mean absolute error of the
-      natural log of price.${baselines.length ? ' Baselines take the base price, or his last IPL price, as the prediction.' : ''}
+    <p class="fine">AUC: how well P(sold) separates sold from unsold players. Top-3: the real buyer was among the three likeliest. Spearman: rank
+      correlation of simulated and real prices. MAE (log price): mean absolute error of the natural log of price.${baselines.length ? ' Baselines take the base price, or his last IPL price, as the prediction.' : ''}
       Small figures are 95% intervals; Δ is the paired difference against the model a row would replace, with its 95% interval
       (for MAE below zero is better, for top-3 above zero is better).</p>
     ${v.kept?.length || v.dropped?.length ? `<p class="fine">Kept after the ablation: ${esc((v.kept || []).join(', ') || '—')}. Dropped: ${esc((v.dropped || []).join(', ') || '—')}.</p>` : ''}`;
@@ -93,11 +91,9 @@ function valueTable(rows) {
 
 function backtest(v) {
   const points = v?.points || [];
-  const cov = coverage(points);
   return `<p>The same pipeline, run with only what was known before the ${esc(v?.auction || '2024 auction')}, scored against what really happened.</p>
-    ${cov.n ? `<p class="cal-note"><b class="mono">${pct(cov.inside / cov.n)}</b> of real prices fell inside the simulated 80% range <span class="muted">(${int(cov.inside)} of ${int(cov.n)} sold players)</span>.</p>` : ''}
     ${v?.needHit?.top3 != null ? `<p class="cal-note"><b class="mono">${pct(v.needHit.top3)}</b> of real buys went to one of the three teams with the greatest pre-auction need for the player <span class="muted">(30% by chance${v.needHit.n ? `; ${plural(v.needHit.n, 'buy')}` : ''})</span>.</p>` : ''}
-    ${cov.n ? '<figure class="cal"></figure>' : ''}
+    ${points.some((p) => p.sold) ? '<figure class="cal"></figure>' : ''}
     ${validationTable(v)}
     ${valueTable(v?.valueBacktests)}`;
 }
@@ -129,11 +125,11 @@ export function mountAbout(root, ctx) {
         <section><h3>Skills</h3>
           <p>Batting and bowling are measured as runs added per 100 balls, adjusted for the phase of the innings and the venue (a death-overs bowler is not punished for bowling at the death), and centred so that zero is an average T20 regular in the same role group. Every skill shows its percentile and the number of balls it rests on; matchups split batting by the six bowler types.</p></section>
         <section><h3>Value model</h3>
-          <p>The model value is the price the model expects a player to fetch, with an 80% interval. The simulation turns it into a full distribution of prices, and the back-test below checks the simulation's 80% ranges against real prices: if they are calibrated, about four in five real prices land inside.</p></section>
+          <p>The model value is the price the model expects a player to fetch. The simulation turns it into a full distribution of prices, whose median is the price you see after the hammer, and the back-test below checks the simulation against real prices.</p></section>
         <section><h3>Franchise agents</h3>
           <p>Each franchise is a rule-based agent. When a lot opens it checks four gates: a squad need, a free slot (squads hold ${int(r.maxSquad)}), an overseas slot if needed (at most ${int(r.maxOverseas)}), and enough purse after keeping ${money(r.reservePerSlot)} back for every slot still missing from the ${int(r.minSquad)}-man minimum. If all pass it sets a walk-away price, model value × need × scarcity × purse pressure × home fit × spending style × room rating × its own noise, capped by its purse, and bids on the official price points until the price passes it. Click any table to hear its analyst on the current lot, in cricket terms; the gates are one click further, under “The numbers behind it”, and the walk-away build-up joins them when the hammer falls.</p></section>
         <section><h3>Monte Carlo</h3>
-          <p>The whole auction is played ${int(meta.runs)} times (seed ${esc(meta.seed)}). Rules, squads and purses are identical in every run. Each run draws how the whole room rates each player that day (the room rating: one draw shared by all ten teams) on top of each team's own noise; the spread you see is the uncertainty in how the room behaves. For each player six runs are drawn at random and recorded bid by bid, and his lot plays one of them, so the price can land above or below his median as in a live auction. His model value and the 1,000-run numbers stay sealed until the hammer falls; then the result card says how this run compares with the median and the 80% range, and “Show another run” plays the next one.</p></section>
+          <p>The whole auction is played ${int(meta.runs)} times (seed ${esc(meta.seed)}). Rules, squads and purses are identical in every run. Each run draws how the whole room rates each player that day (the room rating: one draw shared by all ten teams) on top of each team's own noise; the spread you see is the uncertainty in how the room behaves. For each player six runs are drawn at random and recorded bid by bid, and his lot plays one of them, so the price can land above or below his median as in a live auction. His model value and the 1,000-run numbers stay sealed until the hammer falls; then the result card says how this run compares with his median, and “Show another run” plays the next one.</p></section>
         <section><h3>Back-test: ${esc(meta.validation?.auction || '2024 auction')}</h3>
           ${backtest(meta.validation)}</section>
         <section><h3>Keyboard</h3>

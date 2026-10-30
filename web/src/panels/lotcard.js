@@ -1,7 +1,7 @@
 // Lot card: who is under the hammer and, once it falls, what the model thought he was worth; the deeper
 // numbers wait behind "More stats".
 import { esc } from '../dom.js';
-import { money, moneyRange, int, ordinal, per100, plural, shortBowlerType, setName } from '../format.js';
+import { money, int, ordinal, per100, plural, shortBowlerType, setName } from '../format.js';
 
 const TAGS = ['overseas', 'uncapped', 'wk', 'lap', 'lhb']; // the tags worth a pill, most telling first; at most three
 const MIN_BALLS = 60; // below this a skill shows its ball count but no percentile
@@ -23,17 +23,7 @@ function buzzBlock(p) {
   return lines ? `<div class="lc-buzz"><span class="k">Pre-auction buzz</span><ul>${lines}</ul></div>` : '';
 }
 
-const pctOf = (x, max) => `${Math.max(0, Math.min(100, (x / max) * 100)).toFixed(2)}%`;
 const rated = (s) => s?.pct != null && s.balls >= MIN_BALLS;
-
-/** Thin bar under the model value: the 80% range as a band, the value as a tick. */
-function rangeBar({ lo, mid, hi }) {
-  const max = hi * 1.06;
-  const label = `80% range ${moneyRange(lo, hi)}`;
-  return `<span class="vrange" role="img" aria-label="${esc(label)}" title="${esc(label)}">
-      <i class="vr-band" style="left:${pctOf(lo, max)};width:calc(${pctOf(hi, max)} - ${pctOf(lo, max)})"></i><i class="vr-mid" style="left:${pctOf(mid, max)}"></i>
-    </span>`;
-}
 
 /** "Batting · 87th pct · 813 balls" over a slim percentile bar. */
 function skillLine(label, s) {
@@ -125,7 +115,7 @@ export function mountLotCard(el, ctx) {
       return;
     }
     const below = p.value && p.value.mid < p.base;
-    node.innerHTML = `<span class="k">Model value</span><span class="v mono">${money(p.value?.mid)}</span>${p.value ? rangeBar(p.value) : ''}${below
+    node.innerHTML = `<span class="k">Model value</span><span class="v mono">${money(p.value?.mid)}</span>${below
       ? '<span class="s" title="The model expects him to go unsold unless a team needs him">below base</span>' : ''}`;
   }
 

@@ -1,7 +1,7 @@
-// "Across 1,000 runs": P(sold), price distribution with its 80% range, and who buys him. Sealed while his
-// lot is live; when the hammer falls, this run is marked against them.
+// "Across 1,000 runs": P(sold), his median price with the spread of prices behind it, and who buys him.
+// Sealed while his lot is live; when the hammer falls, this run is marked against them.
 import { esc } from '../dom.js';
-import { money, moneyRange, int, pct } from '../format.js';
+import { money, int, pct } from '../format.js';
 import { teamDot, teamVars } from '../teams.js';
 import { runLine } from '../analyst.js';
 
@@ -34,8 +34,7 @@ function histogram(p, runs) {
   const max = Math.max(...hist.map(([, n]) => n));
   const bars = hist.map(([edge, n]) => {
     const x = sx(edge), bw = Math.max(1, sx(edge + w) - x - 1.5), h = (n / max) * PLOT_H;
-    const inBand = edge + w > price.p10 && edge < price.p90;
-    return `<rect class="hbar${inBand ? ' in-band' : ''}" x="${x.toFixed(1)}" y="${(PAD_T + PLOT_H - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="1"><title>${money(edge)}–${money(edge + w)}: ${int(n)} runs</title></rect>`;
+    return `<rect class="hbar" x="${x.toFixed(1)}" y="${(PAD_T + PLOT_H - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="1"><title>${money(edge)}–${money(edge + w)}: ${int(n)} runs</title></rect>`;
   }).join('');
   const step = NICE.find((s) => (x1 - x0) / s <= 3.2) || 10000;
   const ticks = [];
@@ -51,8 +50,7 @@ function histogram(p, runs) {
     return `<line class="hm ${cls}" x1="${x}" x2="${x}" y1="${PAD_T - 4}" y2="${PAD_T + PLOT_H}"/>`;
   };
   const midX = p.value?.mid != null && p.value.mid >= x0 && p.value.mid <= x1 ? sx(p.value.mid) : null;
-  return `<svg class="hist-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Price if sold across ${int(runs)} runs: median ${money(price.median)}, 80% between ${money(price.p10)} and ${money(price.p90)}">
-      <rect class="hband" x="${sx(price.p10).toFixed(1)}" y="${PAD_T}" width="${Math.max(1, sx(price.p90) - sx(price.p10)).toFixed(1)}" height="${PLOT_H}"/>
+  return `<svg class="hist-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Price if sold across ${int(runs)} runs: median ${money(price.median)}">
       ${bars}
       <line class="hbase-line" x1="0" x2="${W}" y1="${PAD_T + PLOT_H + 0.5}" y2="${PAD_T + PLOT_H + 0.5}"/>
       ${axis}
@@ -95,7 +93,7 @@ export function mountStats(el, ctx) {
         <div class="kpi">
           <span class="k">Median if sold</span>
           <span class="kpi-v mono">${price ? money(price.median) : '—'}</span>
-          <span class="kpi-s">${price ? `80%: ${moneyRange(price.p10, price.p90)}` : 'never sold'}</span>
+          <span class="kpi-s">${price ? '' : 'never sold'}</span>
         </div>
       </div>
       <p class="run-vs" hidden></p>
@@ -103,7 +101,6 @@ export function mountStats(el, ctx) {
         <figure class="hist">
           ${histogram(p, runs)}
           <figcaption class="legend">
-            <span class="lg"><i class="sw sw-band"></i>80% of sales</span>
             <span class="lg"><i class="sw sw-median"></i>Median</span>
             <span class="lg"><i class="sw sw-base"></i>Base</span>
             <span class="lg"><i class="sw sw-model"></i>Model value</span>

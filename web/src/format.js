@@ -16,13 +16,6 @@ export function moneyParts(lakhs) {
     : { num: `₹${(lakhs / 100).toFixed(2)}`, unit: 'Cr' };
 }
 
-/** Lakhs range in one unit when both ends share it: ₹14.50–24.50 Cr. */
-export function moneyRange(lo, hi) {
-  if (Math.round(lo) === Math.round(hi)) return money(lo);
-  const a = moneyParts(lo), b = moneyParts(hi);
-  return a.unit === b.unit ? `${a.num}–${b.num.slice(1)} ${a.unit}` : `${money(lo)}–${money(hi)}`;
-}
-
 export const int = (n) => (n == null ? '—' : Math.round(n).toLocaleString('en-US'));
 
 export function pct(p) {
