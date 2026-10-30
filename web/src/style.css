@@ -33,7 +33,6 @@
   --r-sm: 10px;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --controls-h: 56px;
-  --logo-ring: var(--page);
   color-scheme: light;
 }
 
@@ -79,12 +78,13 @@ svg .fill { fill: currentColor; stroke: none; }
 
 /* ---------- logo ---------- */
 .logo {
-  display: inline-flex; align-items: baseline;
+  display: inline-flex; align-items: center; gap: 0.3em;
   font: 700 23px/1 var(--display); letter-spacing: -0.025em; color: var(--ink); white-space: nowrap;
 }
-.logo-q { height: 0.8em; width: auto; margin-left: 0.035em; overflow: visible; transform: translateY(0.035em); }
-.logo-paddle circle { fill: var(--brass); stroke: var(--logo-ring); }
-.logo-paddle path { stroke: var(--brass); fill: none; }
+.logo-mark { flex: none; height: 1.4em; width: auto; }
+.lm-handle { fill: currentColor; }
+.lm-collar { fill: var(--teal); }
+.lm-brass, .logo-iq { fill: var(--brass); color: var(--brass); }
 .logo-xl { font-size: clamp(44px, 7vw, 64px); }
 
 /* ---------- loader ---------- */
@@ -617,7 +617,6 @@ a.note-src:hover { color: var(--ink); text-decoration-color: currentColor; }
 }
 .intro.is-leaving { animation: fadeOut 0.45s var(--ease) forwards; pointer-events: none; }
 .intro-card {
-  --logo-ring: var(--panel);
   display: grid; justify-items: center; gap: 24px; max-width: 840px; padding: 40px 48px 32px; text-align: center;
   border-radius: 20px; background: var(--panel); box-shadow: var(--shadow-pop), var(--edge);
 }
