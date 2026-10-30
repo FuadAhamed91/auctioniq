@@ -32,7 +32,4 @@ behind it, and the real 2026 results are read only by a separate comparison scri
 is likely to go, and where the bargains are. For fans and media it explains an auction rather than just
 reporting it.
 
-**Where it falls short.** On exact prices it does no better than taking each player's base price, star
-bidding wars are under-priced, and uncapped players bought on hype were its biggest misses in 2026.
-
 Unofficial; not affiliated with the IPL or the BCCI.

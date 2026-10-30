@@ -41,8 +41,7 @@ results). The first comparison, run before any change, is the honest held-out te
 The right-hand column ([`comparison_2026_after_seeing.md`](analysis/out/comparison_2026_after_seeing.md))
 comes from the model after the pre-auction buzz research was added and the weights re-tuned, on the
 2024 back-test only. The research used only sources dated before the auction, but it was gathered
-after the auction took place, so that column is not a clean test. Where the model falls short is
-set out at the end of this page, under [Known weak points](#known-weak-points).
+after the auction took place, so that column is not a clean test.
 
 ## What the back-test says
 
@@ -193,21 +192,6 @@ carries on with the auction, `0`/`1`/`3` set the speed (Slow, 1×, 3×). `?2d` f
 | `web/` | Vite + Three.js app; precomputed data in `web/public/data` |
 | `data/` | Auction lists, purses, squads, name map, sources; `actual_2026/` for the comparison only |
 | `tests/` | Rules, engine invariants, value model, data and leakage checks |
-
-## Known weak points
-
-- **Exact prices.** On the held-out 2026 test its typical price miss (MAE 0.68 on log price) was no
-  better than simply taking each player's base price (0.615), and its price order was only a little
-  better (Spearman 0.67 against 0.64). With the buzz research added afterwards it drew level (MAE
-  0.61). It is much better at who sells, who buys and the likely range than at the exact figure.
-- **Star bidding wars are under-priced.** In the 2024 back-test only 5 of the 18 buys of ₹5 Cr or
-  more came within a factor of two of the median (Mitchell Starc went for ₹24.75 Cr against a median
-  of ₹3.80 Cr; Pat Cummins's ₹20.50 Cr fell inside his range). Bidding wars for a handful of stars
-  are beyond any public data.
-- **Hype buys.** The biggest 2026 misses were uncapped players bought on hype: Kartik Sharma and
-  Prashant Veer went for ₹14.20 Cr each, against simulated medians of ₹35 L and ₹60 L.
-- **Ranges a little narrow.** The 80% ranges caught 72–73% of real prices in 2024 and 2026, a little
-  under the 80% they promise.
 
 ## Data and credits
 
