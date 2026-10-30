@@ -13,12 +13,13 @@ const ratio = (lo, hi) => `${dec(2)(lo)}–${dec(2)(hi)}`;
 const share = (lo, hi) => `${pc(lo)}–${pc(hi)}%`;
 const diff3 = (x) => signed(x, 3);
 const pts = (x) => `${signed(x == null ? x : x * 100, 1)} pts`;
+// what the model does best first, price error last
 const METRICS = [
-  ['mae', 'MAE <small>(log price)</small>', dec(3), ratio, diff3, 'MAE'],
-  ['spearman', 'Spearman', dec(3), ratio, diff3, 'Spearman'],
   ['auc', 'AUC', dec(3), ratio, diff3, 'AUC'],
   ['top3', 'Top-3', pct, share, pts, 'top-3'],
   ['cover80', '80% cover', pct, share, pts, '80% cover'],
+  ['spearman', 'Spearman', dec(3), ratio, diff3, 'Spearman'],
+  ['mae', 'MAE <small>(log price)</small>', dec(3), ratio, diff3, 'MAE'],
 ];
 const DOT = '<i class="dot" aria-hidden="true"> · </i>';
 
@@ -55,9 +56,9 @@ function validationTable(v) {
       <thead><tr><th scope="col">Model</th>${METRICS.map(([, h]) => `<th scope="col">${h}</th>`).join('')}<th scope="col">n</th></tr></thead>
       <tbody>${body}</tbody>
     </table></div>
-    <p class="fine">MAE (log price): mean absolute error of the natural log of price. Spearman: rank correlation of simulated and real prices.
-      AUC: how well P(sold) separates sold from unsold players. Top-3: the real buyer was among the three likeliest. 80% cover: real prices inside
-      the simulation's 80% range.${baselines.length ? ' Baselines take the base price, or his last IPL price, as the prediction.' : ''}
+    <p class="fine">AUC: how well P(sold) separates sold from unsold players. Top-3: the real buyer was among the three likeliest. 80% cover: real
+      prices inside the simulation's 80% range. Spearman: rank correlation of simulated and real prices. MAE (log price): mean absolute error of the
+      natural log of price.${baselines.length ? ' Baselines take the base price, or his last IPL price, as the prediction.' : ''}
       Small figures are 95% intervals; Δ is the paired difference against the model a row would replace, with its 95% interval
       (for MAE below zero is better, for top-3 above zero is better).</p>
     ${v.kept?.length || v.dropped?.length ? `<p class="fine">Kept after the ablation: ${esc((v.kept || []).join(', ') || '—')}. Dropped: ${esc((v.dropped || []).join(', ') || '—')}.</p>` : ''}`;
@@ -130,9 +131,9 @@ export function mountAbout(root, ctx) {
         <section><h3>Value model</h3>
           <p>The model value is the price the model expects a player to fetch, with an 80% interval. The simulation turns it into a full distribution of prices, and the back-test below checks the simulation's 80% ranges against real prices: if they are calibrated, about four in five real prices land inside.</p></section>
         <section><h3>Franchise agents</h3>
-          <p>Each franchise is a rule-based agent. When a lot opens it checks four gates: a squad need, a free slot (squads hold ${int(r.maxSquad)}), an overseas slot if needed (at most ${int(r.maxOverseas)}), and enough purse after keeping ${money(r.reservePerSlot)} back for every slot still missing from the ${int(r.minSquad)}-man minimum. If all pass it sets a walk-away price, model value × need × scarcity × purse pressure × home fit × spending style × room rating × its own noise, capped by its purse, and bids on the official price points until the price passes it. Click any table to hear its analyst on the current lot, in cricket terms; the gates and the walk-away build-up are one click further, under “The numbers behind it”.</p></section>
+          <p>Each franchise is a rule-based agent. When a lot opens it checks four gates: a squad need, a free slot (squads hold ${int(r.maxSquad)}), an overseas slot if needed (at most ${int(r.maxOverseas)}), and enough purse after keeping ${money(r.reservePerSlot)} back for every slot still missing from the ${int(r.minSquad)}-man minimum. If all pass it sets a walk-away price, model value × need × scarcity × purse pressure × home fit × spending style × room rating × its own noise, capped by its purse, and bids on the official price points until the price passes it. Click any table to hear its analyst on the current lot, in cricket terms; the gates are one click further, under “The numbers behind it”, and the walk-away build-up joins them when the hammer falls.</p></section>
         <section><h3>Monte Carlo</h3>
-          <p>The whole auction is played ${int(meta.runs)} times (seed ${esc(meta.seed)}). Rules, squads and purses are identical in every run. Each run draws how the whole room rates each player that day (the room rating: one draw shared by all ten teams) on top of each team's own noise; the spread you see is the uncertainty in how the room behaves. Each replay shows one featured run, by default the run whose price for that player is closest to his median; after his lot, the result card offers other runs worth watching (a high price, a low one, another buyer, or a run where he went unsold).</p></section>
+          <p>The whole auction is played ${int(meta.runs)} times (seed ${esc(meta.seed)}). Rules, squads and purses are identical in every run. Each run draws how the whole room rates each player that day (the room rating: one draw shared by all ten teams) on top of each team's own noise; the spread you see is the uncertainty in how the room behaves. For each player six runs are drawn at random and recorded bid by bid, and his lot plays one of them, so the price can land above or below his median as in a live auction. His model value and the 1,000-run numbers stay sealed until the hammer falls; then the result card says how this run compares with the median and the 80% range, and “Show another run” plays the next one.</p></section>
         <section><h3>Back-test: ${esc(meta.validation?.auction || '2024 auction')}</h3>
           ${backtest(meta.validation)}</section>
         <section><h3>Keyboard</h3>
