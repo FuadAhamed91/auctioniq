@@ -89,17 +89,13 @@ def test_detail_lots_explain_every_team():
     assert kinds & {"sold", "unsold"}
 
 
-def test_replay_settings_never_change_outcomes():
-    ctx = tiny_ctx()
-    base = simulate(ctx, 2)["records"]
-    saved = (CFG["agents"]["entry_spread"], CFG["agents"]["duel"])
-    try:
-        CFG["agents"]["entry_spread"], CFG["agents"]["duel"] = 0.0, 0.0
-        assert simulate(ctx, 2)["records"] == base
-        CFG["agents"]["entry_spread"], CFG["agents"]["duel"] = 1.0, 1.0
-        assert simulate(ctx, 2)["records"] == base
-    finally:
-        CFG["agents"]["entry_spread"], CFG["agents"]["duel"] = saved
+def test_two_teams_bid_at_a_time():
+    """Two paddles at a time: the team just outbid answers back, or it is out for good and a team
+    that has not bid yet comes in."""
+    for row in simulate(tiny_ctx(), 1)["log"]:
+        b = [e[1] for e in row["events"] if e[0] == "bid"]
+        for i in range(2, len(b)):
+            assert b[i] == b[i - 2] or b[i] not in b[:i], (row["player"], b)
 
 
 def test_settlement_rule():

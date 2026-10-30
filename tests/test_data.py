@@ -39,7 +39,7 @@ def test_2026_pool_carries_no_results():
     assert pool.lot_no.is_unique and (pool.base_lakh >= 30).all()
 
 
-@pytest.mark.parametrize("year", [2022, 2023, 2024, 2025])
+@pytest.mark.parametrize("year", [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025])
 def test_past_auction_prices_sit_on_the_ladder(year):
     a = pd.read_csv(AUC / f"auction_{year}.csv")
     sold = a[(a.status == "sold") & (a.price_lakh > a.base_lakh)]
@@ -50,12 +50,20 @@ def test_past_auction_prices_sit_on_the_ladder(year):
         assert price % step == 0, (year, price)
 
 
-def test_2022_mega_auction_is_complete():
-    """The 2022 file holds the whole auction-day pool, sold and unsold, with the official totals."""
-    a = pd.read_csv(AUC / "auction_2022.csv")
+OFFICIAL = {  # auction-day pool, sold, total spend (lakhs), overseas sold, per the official records
+    2018: (581, 169, 43170, 56), 2019: (352, 60, 10680, 20), 2020: (338, 62, 14030, 29),
+    2021: (298, 57, 14530, 22), 2022: (600, 204, 55170, 67),
+}
+
+
+@pytest.mark.parametrize("year", sorted(OFFICIAL))
+def test_older_auctions_match_the_official_totals(year):
+    """Each file holds the whole auction-day pool, sold and unsold, with the official totals."""
+    a = pd.read_csv(AUC / f"auction_{year}.csv")
     sold = a[a.status == "sold"]
-    assert (len(a), len(sold), int(sold.price_lakh.sum()), int(sold.overseas.sum())) == (600, 204, 55170, 67)
-    assert a.lot_no.tolist() == list(range(1, 601))
+    assert (len(a), len(sold), int(sold.price_lakh.sum()), int(sold.overseas.sum())) == OFFICIAL[year]
+    assert a.lot_no.tolist() == list(range(1, len(a) + 1))
+    assert sold.team.isin(TEAMS).all()
 
 
 def test_value_models_learn_only_from_earlier_auctions_of_the_same_kind():

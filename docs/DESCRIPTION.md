@@ -17,13 +17,15 @@ published auction procedure: sets, random draw inside sets, price-point bid ladd
 purse reserve, overseas fee cap.
 
 **How we know it's sound.** Every weight was tuned, and every add-on kept or dropped, on the 2024
-auction using only data from before it. Team needs are the agents' core: the real 2024 buyer was one of
-the three neediest teams in 45% of buys (30% by chance). Start speed stayed; matchups and home fit were
-dropped because they did not beat the simulation's own noise. On 2024 the model separates sold from
-unsold far better than a base-price anchor (AUC 0.79 vs 0.64) and puts the real buyer among its three
-likeliest teams 37% of the time (31% without team needs). Half of real prices fall within 25% of its
-median, but record bids for a few stars are badly under-priced, so its 80% ranges hold 69% of real
-prices rather than 80%. Checked on its own, the value model reaches AUC 0.87 on the 2025 mega auction.
+auction using only data from before it; earlier official auction records (2018–2021) were researched
+so players carry their past IPL prices, and mega and mini auctions are never mixed. Team needs are the
+agents' core: the real 2024 buyer was one of the three neediest teams in 43% of buys (30% by chance).
+Matchups, start speed and home fit were dropped because they did not beat the simulation's own noise.
+On 2024 the model calls sold or unsold right for 85% of players, separates them far better than a
+base-price anchor (AUC 0.80 vs 0.64), and puts the real buyer among its three likeliest teams 42% of the
+time (35% without team needs). 56% of real prices fall within 25% of its median and 75% inside its 80%
+ranges, but record bids for a few stars are badly under-priced. Checked on its own, the value model
+reaches AUC 0.80–0.83 on three past mini auctions and 0.87 on the 2025 mega auction.
 Every number in the app shows its range and the evidence behind it, and the real 2026 results are read
 only by a separate comparison script.
 

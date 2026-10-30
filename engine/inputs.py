@@ -71,9 +71,9 @@ def market(year: int) -> float:
 
 
 def prev_prices(year: int) -> pd.DataFrame:
-    """Each player's most recent IPL auction price before `year`."""
+    """Each player's most recent IPL auction price before `year`, from every earlier auction on file."""
     rows = []
-    for y in range(2022, year):
+    for y in range(min(map(int, CFG["auction"])), year):
         path = AUC / f"auction_{y}.csv"
         if path.exists():
             a = pd.read_csv(path)
@@ -286,5 +286,5 @@ def build(year: int, factors: set, mode: str = "value", ridge: float | None = No
         "avg_per_slot": market(year),
         "value_sigma": model.sigma,
         "cfg": {"agents": dict(A), "needs": dict(NE), "rules": dict(CFG["rules"])},
-        "pool": prof, "retained": rprof, "values": vals,
+        "pool": prof, "retained": rprof, "values": vals, "drivers": model.contributions(vf),
     }

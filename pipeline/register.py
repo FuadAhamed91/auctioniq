@@ -38,6 +38,10 @@ from config import CFG, ROOT
 AUC = ROOT / "data" / "auctions"
 RAW = ROOT / "data" / "raw"
 SOURCES = {  # file tag -> path
+    "auction_2018": AUC / "auction_2018.csv",
+    "auction_2019": AUC / "auction_2019.csv",
+    "auction_2020": AUC / "auction_2020.csv",
+    "auction_2021": AUC / "auction_2021.csv",
     "auction_2022": AUC / "auction_2022.csv",
     "auction_2023": AUC / "auction_2023.csv",
     "auction_2024": AUC / "auction_2024.csv",
@@ -245,9 +249,25 @@ def load_records() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def cluster(records: pd.DataFrame) -> list[dict]:
+def squad_contradicts(ref: Reference | None, row: dict, group: dict) -> bool:
+    """True when the IPL team sheets of a DOB-less row hold a compatible name and every such player's
+    known birthday conflicts with all birthdays of `group` (two people: MI's retained Rohit Sharma
+    vs the uncapped Rohit Sharma of the 2021 auction list)."""
+    if ref is None or not row["ctx"] or not group["dobs"]:
+        return False
+    listed = tokens(row["name"])
+    found = set()
+    for season, team in row["ctx"]:
+        for pid, sheet in ref.rosters.get((season, team), {}).items():
+            if any(name_score(listed, f) >= 1 for f in ref.forms.get(pid, []) + [tokens(sheet)]):
+                found.add(pid)
+    return bool(found) and all(dob_relation(d, ref.info(pid)["dob"]) == "conflict" for pid in found for d in group["dobs"])
+
+
+def cluster(records: pd.DataFrame, ref: Reference | None = None) -> list[dict]:
     """Group rows into people: same normalised name and compatible DOB; DOB-less rows join the only
-    candidate, or the one sharing a team/season context, else stay on their own."""
+    candidate (unless its birthday contradicts the player on the row's team sheets), or the one
+    sharing a team/season context, else stay on their own."""
     people = []
     for _, grp in records.groupby(records["name"].map(key_of), sort=False):
         groups: list[dict] = []
@@ -260,7 +280,10 @@ def cluster(records: pd.DataFrame) -> list[dict]:
             g["dobs"].add(r["dob"])
         for r in grp[grp["dob"] == ""].to_dict("records"):  # retained-squad rows carry no DOB
             if len(groups) == 1:
-                groups[0]["rows"].append(r)
+                if squad_contradicts(ref, r, groups[0]):
+                    groups.append({"rows": [r], "dobs": set()})
+                else:
+                    groups[0]["rows"].append(r)
                 continue
             teams = {t for _, t in r["ctx"]} | ({r["team"]} if r["team"] else set())
             linked = [g for g in groups if any(t in teams for x in g["rows"] for _, t in x["ctx"])]
@@ -500,7 +523,7 @@ def person_keys(person: dict) -> list[str]:
 def build() -> tuple[pd.DataFrame, pd.DataFrame]:
     ref = Reference()
     records = load_records()
-    people = cluster(records)
+    people = cluster(records, ref)
     overrides = {}
     if OVERRIDES.exists():
         ov = pd.read_csv(OVERRIDES, dtype=str).fillna("")

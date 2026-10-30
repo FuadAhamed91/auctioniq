@@ -92,6 +92,12 @@ unsold tables.
   `players_in_list` is the auction-day pool (2022: 590 + 10 added; 2023: 405 − 1 withdrawn + 1 added;
   2024: 333 − 3 withdrawn + 2 added; 2025: 574 + 3; 2026: 350 + 19); `date` is the first day (2022
   and 2025 ran over two days); `city` from the same announcements (2025: Jeddah, per IANS).
+- **auction_2018/2019/2020/2021.csv and the 2018–2021 rows of markets.csv** – same columns and rules
+  as 2023–2025, from the official lists (2018, 2019: iplt20.com list tables; 2020, 2021: BCCI PDFs),
+  the iplt20.com auction data feeds (2019–2021) and auction pages, and the official purse / slot
+  advisories; 2018 RTM buys from ESPNcricinfo. Lists that print no date of birth or styles (2018,
+  2019) borrow them from the player's row in a later official list. Details, links and decisions:
+  section "Auctions 2018–2021" at the end of this file.
 
 ## Validation
 
@@ -183,3 +189,209 @@ same first name, 6 hand overrides (`name_overrides.csv`, each with evidence: Dig
 and five players whose BCCI and Cricinfo birthdays differ). Same-name different people (Akash Singh,
 Shashank Singh, Lalit Yadav, Prince Yadav, Shivam Sharma, Himanshu Singh, Ankit Kumar) are keyed as
 `name|dob` (or `name|retained_YYYY|TEAM`); use `register.lookup()`.
+
+## Auctions 2018–2021 (auction_2018 … auction_2021.csv)
+
+Accessed 2026-10-30, every page and file through its Wayback capture (timestamp in the link; all
+captures and all events predate the 16 Dec 2025 cutoff). Build scripts: `.cache/scripts/parse1821.py`,
+`join1821.py`, `xref1821.py`, `profile1821.py`, `espn2018.py` (all four ESPNcricinfo lists),
+`build1821.py` and `validate1821.py`; parsed sources and the manual pairings with their evidence are in
+`.cache/parsed1821/` (`manual_join.csv`).
+
+| Auction | Kind, date, city | Purse / slots / overseas slots | Pool on auction day |
+|---|---|---|---|
+| 2018 | mega, 27–28 Jan 2018, Bengaluru | ₹443 Cr / 182 / 58 | 581 = 578 listed + 3 added |
+| 2019 | mini, 18 Dec 2018, Jaipur | ₹145.25 Cr / 70 / 20 | 352 = 351 listed + 1 added |
+| 2020 | mini, 19 Dec 2019, Kolkata | ₹207.65 Cr / 73 / 29 | 338 = 332 listed + 6 added |
+| 2021 | mini, 18 Feb 2021, Chennai | ₹196.60 Cr / 61 / 22 | 298 = 292 listed − 1 withdrawn + 7 added |
+
+### Sources
+
+Official auction lists:
+
+| Auction | List (capture) | Gave |
+|---|---|---|
+| 2018 | iplt20.com news 113978 [VIVO IPL 2018 Player Auction list announced](https://web.archive.org/web/20180122075407/http://www.iplt20.com/news/113978/vivo-ipl-2018-player-auction-list-announced) (20 Jan 2018), an HTML table of 578; the BCCI advisory ([bcci.tv 17044](https://web.archive.org/web/20180122013626/http://www.bcci.tv:80/news/2018/news/17044/vivo-ipl-2018-player-auction-list-announced)) gives this table as "the complete list" | list no., set no., set code, first name, surname, country, specialism, IPL caps, C/U/A, reserve. No DOB, age, styles, state or Test/ODI/T20I caps |
+| 2019 | iplt20.com news 149676 [Complete list of VIVO IPL 2019 Player Auction](https://web.archive.org/web/20190416122735/https://www.iplt20.com/news/149676/vivo-ipl-2019-player-auction-list-announced) (11 Dec 2018; earliest capture 16 Apr 2019), an HTML table of 351 | first name, surname, country, state association, specialism, reserve, C/U/A. No serial / list number, set, DOB, styles or caps |
+| 2020 | BCCI PDF [VIVO IPL 2020 Player Auction List & Sets - 11-12-2019.pdf](https://web.archive.org/web/20191228090148/http://relaunch-live.s3.amazonaws.com/cms/documents/5df0f069f0f2b-VIVO%20IPL%202020%20Player%20Auction%20List%20&%20Sets%20-%2011-12-2019.pdf) (332), linked from news 200294 | the fields of the 2022–2025 lists (+ "2019 Team", "2019 IPL"); a few DOBs with two-digit years, resolved by the printed age |
+| 2021 | [VIVO-IPL-2021-Player-Auction-List.pdf](https://web.archive.org/web/20210211155747/https://resources.platform.iplt20.com/IPL/document/2021/02/11/c467e02f-05b8-43c6-bd00-0fab10c0974b/VIVO-IPL-2021-Player-Auction-List.pdf) ("11-2-21", 292), linked from news 228297 | same fields as 2020 |
+
+Official results (iplt20.com):
+
+| Auction | Source (capture) | Gave |
+|---|---|---|
+| 2018–2021 | current site `/auction/{year}`: [2018](https://web.archive.org/web/20240118022816/https://www.iplt20.com/auction/2018), [2019](https://web.archive.org/web/20240118022814/https://www.iplt20.com/auction/2019), [2020](https://web.archive.org/web/20240118022816/https://www.iplt20.com/auction/2020), [2021](https://web.archive.org/web/20240118022815/https://www.iplt20.com/auction/2021) (18 Jan 2024) | sold players per team (name, type, price), unsold players (name, type, reserve), funds remaining / overseas / squad size per team. No nationality, no reserve for sold players, no RTM mark |
+| 2019–2021 | data feeds of the old site's auction page (feed URL in the page's [ipl_auction widget](https://web.archive.org/web/20200806035352/https://www.iplt20.com/resources/ver/widgets/ipl_auction.min.js)): [auction_2019.js](https://web.archive.org/web/20201007165312/http://datacdn.iplt20.com/dynamic/data/core/cricket/2012/ipl2019/auction_2019.js), [auction_2020.js](https://web.archive.org/web/20200806035356/http://datacdn.iplt20.com/dynamic/data/core/cricket/2012/ipl2020/auction_2020.js), [auction_2021.js](https://web.archive.org/web/20210421053832/http://datacdn.iplt20.com/dynamic/data/core/cricket/2012/ipl2021/auction_2021.js) | every pool record: name, Indian / Overseas, speciality, reserve, status (S sold, U unsold, A not reached), hammer price, franchise, RTM flag; per team the purse before the auction, purse left and the Indian / overseas squad before and after. Sold, unsold and funds equal the current-site pages. No 2018 feed is archived |
+| 2018–2021 | old-site auction page headers (official summary text): [2018 post](https://web.archive.org/web/20180130183723/http://www.iplt20.com/auction/2018); [2019 post](https://web.archive.org/web/20181219001242/https://www.iplt20.com/auction/2019); [2020 auction morning](https://web.archive.org/web/20191219035503/https://www.iplt20.com/auction/2020), [2020 post](https://web.archive.org/web/20191221103721/https://www.iplt20.com/auction/2020); [2021 pre](https://web.archive.org/web/20210212163622/https://www.iplt20.com/auction/2021), [2021 post](https://web.archive.org/web/20210223032042/https://www.iplt20.com/auction/2021) | 2018: 169 players for 182 slots, 113 Indian (71 uncapped), 56 overseas; 2019: 70 spots, 60 bought incl. 20 overseas, ₹1,06,80,00,000; 2020: "338 players to go under the hammer", then 62 sold (29 overseas, 33 Indian); 2021: "292 players", then 57 players for 61 slots, 22 overseas |
+
+Official advisories (purses, slots, rules):
+
+| Auction | Advisory (capture) | Gave |
+|---|---|---|
+| 2018 | news 112745 [IPL Player Policies declared for 2018 season](https://web.archive.org/web/20180102140547/http://www.iplt20.com/news/112745/ipl-player-policies-declared-for-2018-season) | salary cap ₹80 Cr; up to 5 players by retention + RTM; squad 18–25 with at most 8 overseas |
+| 2018 | news 113790 [VIVO IPL 2018 Player Retention](https://web.archive.org/web/20180104175748/http://www.iplt20.com/news/113790/vivo-ipl-2018-player-retention-announced) (4 Jan 2018) | the 18 retained players (6 overseas), salary cap remaining per team (CSK 47, DD 47, KXIP 67.5, KKR 59, MI 47, RR 67.5, RCB 49, SRH 59 Cr), RTM cards available (2 / 2 / 3 / 3 / 2 / 3 / 2 / 3) |
+| 2018 | news 113979 [578 players to go under the hammer](https://web.archive.org/web/20180123162201/http://www.iplt20.com:80/news/113979/578-players-to-go-under-the-hammer-at-vivo-ipl-2018-player-auction) (20 Jan 2018) | 578 players, 182 slots; 62 capped / 298 uncapped Indians, 182 capped / 34 uncapped overseas, 2 associate; reserve-price breakdown |
+| 2018 | news 114463 [Eight franchises buy 169 players](https://web.archive.org/web/20180201070237/http://www.iplt20.com:80/news/114463/eight-franchises-buy-169-players-at-vivo-ipl-2018-player-auction) (30 Jan 2018) | 169 sold, 113 Indian, 56 overseas, "RTM cards used – 19", players and purse spent (retention + auction) per team |
+| 2019 | news 149387 [VIVO IPL 2019 Player Contract extensions announced](https://web.archive.org/web/20181116002541/https://www.iplt20.com/news/149387/vivo-ipl-2019-player-contract-extensions-announced) (15 Nov 2018) | per team: players, overseas, money spent, salary cap available, slots, overseas slots (₹145.25 Cr, 70, 20; equal to the feed) |
+| 2019 | news 149678 [VIVO IPL 2019 Player Auction list announced](https://web.archive.org/web/20181211184215/https://www.iplt20.com/news/149678/vivo-ipl-2019-player-auction-list-announced) (11 Dec 2018) | 346 players, Jaipur 18 Dec 2018, reserve-price breakdown, link to news 149676 |
+| 2020 | news 197813 [VIVO IPL 2020 Player Contract extensions announced](https://web.archive.org/web/20191116082807/https://www.iplt20.com/news/197813/vivo-ipl-2020-player-contract-extensions-announced) (15 Nov 2019) | per-team table (₹207.65 Cr, 73 slots, 29 overseas; equal to the feed) |
+| 2020 | news 200294 [VIVO IPL 2020 Player Auction list announced](https://web.archive.org/web/20191213144710/https://www.iplt20.com/news/200294/vivo-ipl-2020-player-auction-list-announced) (12 Dec 2019) | 332 players (186 Indian, 143 overseas, 3 associate), Kolkata 19 Dec 2019, reserve breakdown, link to the PDF |
+| 2021 | news 228284 [IPL 2021 Player Retentions list](https://web.archive.org/web/20210120221738/https://www.iplt20.com/news/228284/ipl-2021-player-retentions-list) (20 Jan 2021) | retained / released players and the per-team table (₹196.60 Cr, 61 slots, 22 overseas) |
+| 2021 | news 228297 [VIVO IPL 2021 Player Auction list announced](https://web.archive.org/web/20210211161309/https://www.iplt20.com/news/228297/vivo-ipl-2021-player-auction-list-announced) (11 Feb 2021) | 292 players (164 Indian, 125 overseas, 3 associate), Chennai 18 Feb 2021, the same per-team table, link to the PDF |
+
+Other sources, used only where the official pages are silent:
+
+| Source | Used for |
+|---|---|
+| ESPNcricinfo [IPL 2018 player auction: list of sold and unsold players](https://web.archive.org/web/20180203010923/http://www.espncricinfo.com/story/_/id/22218394/ipl-2018-player-auction-list-sold-unsold-players) | the 19 right-to-match buys (= the official count; no archived official page marks them); the reserve of every sold 2018 player (all 169 equal the list); players called and left unsold |
+| ESPNcricinfo lists [2019](https://web.archive.org/web/20210420185843/https://www.espncricinfo.com/print/story/1166896), [2020](https://web.archive.org/web/20210423000623/https://www.espncricinfo.com/print/story/1210538), [2021](https://web.archive.org/web/20210220233654/https://www.espncricinfo.com/print/story/1252152) | cross-check of every sale (all equal the feed except one 2021 line, Fabian Allen under SRH; feed, page and team purses: PBKS); 2019: Qais Ahmad called and unsold |
+| ESPNcricinfo [Mark Wood withdraws from IPL auction](https://web.archive.org/web/20210217182559/https://www.espncricinfo.com/story/ipl-auction-2021-mark-wood-withdraws-from-ipl-auction-1252134) (17 Feb 2021) | his withdrawal (he is also absent from the feed and the page) |
+| ESPNcricinfo profile [Rahmat Shah](https://web.archive.org/web/20210411083211/https://www.espncricinfo.com/player/rahmat-shah-533956) | country of a 2018 addition (the 2018 page has no nationality and no official list carries him) |
+| iplt20.com player profiles: [Chris Gayle](https://web.archive.org/web/20251112144425/https://www.iplt20.com/players/chris-gayle/236), [Yuvraj Singh](https://web.archive.org/web/20251207042106/https://www.iplt20.com/players/yuvraj-singh/113), [Parthiv Patel](https://web.archive.org/web/20250805125528/https://www.iplt20.com/players/parthiv-patel/44), [Sanju Samson](https://web.archive.org/web/20251028005149/https://www.iplt20.com/players/sanju-samson/258), [Rashid Khan](https://web.archive.org/web/20251028012105/https://www.iplt20.com/players/rashid-khan/2885), [Shubman Gill](https://web.archive.org/web/20251212072026/https://www.iplt20.com/players/shubman-gill/3761), [Jofra Archer](https://web.archive.org/web/20251214012409/https://www.iplt20.com/players/jofra-archer/3502), [Axar Patel](https://web.archive.org/web/20251214022744/https://www.iplt20.com/players/axar-patel/1113), [Lasith Malinga](https://web.archive.org/web/20251214022031/https://www.iplt20.com/players/lasith-malinga/211), [Ruturaj Gaikwad](https://web.archive.org/web/20251214005356/https://www.iplt20.com/players/ruturaj-gaikwad/5443) | date of birth of 11 sold 2018 / 2019 rows (10 players) that no official list with a DOB covers; no capture was found for the other sold ones |
+| Official lists 2020–2025 (the two PDFs above and the 2022–2025 lists under "Sources") | DOB and batting / bowling style of 2018 / 2019 rows and of players added after a list |
+
+### What the files are built from
+
+- **Rows**: the auction-day pool in official list order, players added after the list appended in
+  the order of the official page / feed (`list_no`, `set_no`, `set_code` blank for them). A listed
+  player missing from the official page / feed stays in the file as unsold unless he is known to have
+  withdrawn (only Mark Wood, 2021): the 2018 page and the 2019 feed are incomplete (see below).
+- **status, team, price_lakh**: 2018 the current-site page (cross-checked line by line with
+  ESPNcricinfo: same team and price for all 169); 2019–2021 the feed (= the page).
+- **base_lakh**: the list's reserve, replaced by the auction-day reserve of the page / feed where they
+  differ and the auction-day value is a reserve tier of the player's status (apart from Alex Carey
+  2018, every Capped player of the four lists is at 50 L or more and every Uncapped / Associate one at
+  40 L or less): only Alex Carey, 2018 (list "Capped" at 30 L, page 50 L). Kept as listed where the
+  page / feed value fits no tier: Ishwar Pandey 2018 (page 25 L), Jeevan Mendis 2019 (feed 30 L,
+  capped), Nehal Pajni 2020 and Jacques Snyman 2021 (feed 50 L, uncapped; the 2021 announcement's tier
+  counts equal the list).
+- **rtm**: 2018 the 19 buys ESPNcricinfo flags as right-to-match (= the official 19; per team within
+  the RTM cards of news 113790: CSK 2, DD 2, KXIP 3, KKR 3, MI 2, RR 2, RCB 2, SRH 3); 0 for
+  2019–2021 (no RTM at these mini auctions; every feed record has `bought_via_rtm` false).
+- **name, country, overseas, capped, role**: from the list (BATSMAN → BATTER; C/U/A lower case). For
+  players added after the list: name and overseas flag from the feed / page, country from another
+  official list (Rahmat Shah: ESPNcricinfo), `capped` from the reserve tier (50 L or more: capped).
+- **dob, age, styles, caps**: 2020 and 2021 exactly as printed. The 2018 and 2019 lists print no DOB,
+  age, styles or international caps: `dob`, `batting_style` and `bowling_style` come from the same
+  player's row in the 2020–2025 official lists (same country; the same words of the name in any order,
+  or one name's words all inside the other's; exactly one DOB among the candidates; for a name close
+  to another player of the same list, role and state must also agree; a day/month swap between lists
+  takes the latest list; a DOB held by three quarters of the rows is taken when the others are one
+  character off), else, for sold players, the iplt20.com profile; `age`, `test_caps`, `odi_caps`,
+  `t20i_caps` blank; `ipl_caps` as printed in 2018, blank in 2019. Borrowed styles use the wording of
+  the latest list holding the player (2022+ "Off Spin" / "Leg Spin"; 2020–21 "Off Break" / "Leg Break").
+- **lot_no / list_no / sets**: `lot_no` 1..N; `list_no` the printed serial (2018, 2020, 2021; the 2019
+  table prints none, so `list_no`, `set_no` and `set_code` are blank there and `lot_no` keeps its row
+  order).
+- **markets.csv** rows: total purse = sum of the per-team purses before the auction (2018: retention
+  advisory; 2019 and 2020: contract-extension advisories, equal to the feed team by team; 2021: the
+  retention advisory's total, equal to the feed's, whose CSK / RR and DC / RCB purses and squads already
+  include trades made after the advisory); slots and overseas slots from the same advisories (2018
+  overseas slots = 8 per team − the 6 retained overseas players, per the 2018 policy; no 2018 advisory
+  states it); `players_in_list` = rows of the file; `date` = first auction day.
+
+### Validation
+
+| Auction | Rows | Sold (ours / official) | Overseas sold | Spend ₹ Cr (ours / official) | Teams reconciled |
+|---|---|---|---|---|---|
+| 2018 mega | 581 | 169 / 169 (RTM 19 / 19; Indian 113 / 113, of whom uncapped 71 / 71) | 56 / 56 | 431.70; every team's retention + auction spend equals the official "purse spent" | 8 / 8 |
+| 2019 mini | 352 | 60 / 60 | 20 / 20 | 106.80 / 106.80 | 8 / 8 |
+| 2020 mini | 338 | 62 / 62 (Indian 33 / 33) | 29 / 29 | 140.30 / 140.30 (feed purses) | 8 / 8 |
+| 2021 mini | 298 | 57 / 57 | 22 / 22 | 145.30 / 145.30 (feed purses) | 8 / 8 |
+
+"Teams reconciled": purse before the auction − our spend = funds remaining on the page (and in the
+feed), squad before + bought = squad after, and the same for overseas players, for every team.
+Per-team spend (₹ Cr):
+
+| Auction | CSK | DC | KKR | MI | PBKS | RR | RCB | SRH |
+|---|---|---|---|---|---|---|---|---|
+| 2018 | 40.50 | 45.40 | 59.00 | 46.35 | 67.40 | 65.85 | 48.85 | 58.35 |
+| 2019 | 5.20 | 17.80 | 9.15 | 7.60 | 32.50 | 13.80 | 16.35 | 4.40 |
+| 2020 | 14.45 | 18.85 | 27.15 | 11.10 | 26.20 | 14.15 | 21.50 | 6.90 |
+| 2021 | 17.35 | 11.25 | 7.55 | 11.70 | 34.40 | 24.20 | 35.05 | 3.80 |
+
+Other checks: list composition equals each announcement (2018: 62 / 298 / 182 / 34 / 2 and the
+reserve tiers, except that the list prints Alex Carey "Capped" at 30 L; 2020 and 2021 exactly);
+`lot_no` unique 1..N; teams only CSK, DC, KKR, MI, PBKS, RR, RCB, SRH; no player twice (same-name
+different people, kept apart by list number and role: 2018 three Amit Mishra, two Mandeep Singh, two
+Lalit Yadav; 2020 two Lalit Yadav, two Sumit Kumar); no price below the reserve.
+
+**Bid ladder.** 2020 and 2021: every sale above the reserve is on the published ladder (+5 L to
+₹1 Cr, +10 L to ₹2 Cr, +20 L to ₹5 Cr, +25 L above). 2018 and 2019 used **20 L steps up to ₹10 Cr**
+(the ladder inferred for 2024 in RULES.md): 20 sales in 2018 and 4 in 2019 between ₹5 and ₹10 Cr are
+multiples of 20 L but not of 25 L (₹5.20, 5.40, 5.60, 5.80, 6.20, 6.40, 7.20, 7.40, 7.60, 7.80, 8.40,
+8.80, 9.40, 9.60 Cr), and the four 2018 sales above ₹10 Cr (₹11.00, 11.00, 11.50, 12.50 Cr) are
+multiples of 25 L; every 2018 / 2019 sale fits that ladder. In 2020–2021 eight sales between ₹5 and
+₹10 Cr are not multiples of 20 L (₹5.25, 5.50, 6.75, 7.75, 8.50, 9.25 Cr), so the 25 L step above
+₹5 Cr was in force from 2020. Inferred from the official prices only; no ladder for these years was
+found in an official source.
+
+### Changes between list and auction day, conflicts and decisions
+
+- **2018.** Added after the list (on the page only): Rahmat Shah Zarmatai (Afghanistan, 50 L), Utkarsh
+  Singh and Pratham Singh (20 L). The page holds second records of three players: Mohammed Shami (sold
+  to DD by RTM; his list record also shows as unsold at 1 Cr), Mandeep Singh ("Mandeep Hardev Singh",
+  unsold) and Puneet Datey ("Puneed Datey"). RCB's ₹1.4 Cr Mandeep Singh is list no. 128, the capped
+  Punjab batsman (ESPNcricinfo gives his reserve as 50 L); the page's sold record carries the
+  All-Rounder label of the uncapped namesake (no. 529), who is kept as unsold. Harpreet Bhatia (no. 234)
+  and Lalit Yadav (no. 330) have no page record although ESPNcricinfo lists a Harpreet Bhatia and a
+  Lalit Yadav among the players called and left unsold: kept as unsold. "Manpreet Grewal" (no. 375,
+  capped, 44 IPL caps) is Manpreet Gony on the page; "Samarth Kumar" (no. 240) is R Samarth.
+- **2019.** The announcement says 346 players; the complete-list table has 351 (+1 at 2 Cr, +1 at 50 L,
+  +1 at 40 L, +2 at 20 L; no capture before 16 Apr 2019 exists, so the five cannot be dated). The
+  archived feed (captured Oct 2020) and the 2024 page hold 362 records: 12 are second records of
+  listed players (Seth Rance three times, Ryan McLaren, Swapnil Gugale, Sheldon Cottrell, Sai Kishore,
+  Tanveer Ul Haq, Shams Mulani, Lalit Yadav, Arun Karthick, R Sanjay Yadav, Harpreet Bhatia; five carry
+  record ids of the 2020 auction), one is an addition (James Fuller, 40 L, unsold), and two listed
+  players are missing: Qais Ahmad (called and unsold per ESPNcricinfo) and Tanush Kotian (no evidence
+  either way); both kept as unsold.
+- **2020.** Six added after the 11-12-19 list (record ids 4637–4643 follow the list's): Matthew Wade,
+  Ashoke Dinda, R Vinay Kumar ("Vinay Kumar"; called and unsold per ESPNcricinfo), Jake Weatherald,
+  Robin Bist and Sanjay Yadav (sold to SRH at 20 L); the official auction-morning page says 338.
+- **2021.** Mark Wood (no. 24, 2 Cr) withdrew on 17 Feb: not in the file. Seven added after the 11-2-21
+  list (ids 4969–4975): Xavier Bartlett, Mushfiqur Rahim, Rohit Damodaran, Jiyas K, Mayank Dagar, Ashok
+  Menaria and Saurabh Kumar (sold to PBKS at 20 L). List no. 279 "Ajay T" (JSCA) is the feed's "Rahul
+  Ajay Tripathy" (its record id sits between those of nos. 278 and 280). Nayan Doshi: list England
+  (ECB), feed "Indian"; the list is kept (overseas = 1).
+- **Names** are kept as printed in the list (e.g. 2018 "Vijay Murali", "Gowtham Krishnappa", "Faf Du
+  Plessis", "Rashid Khan Arman"); additions as on the page / feed. Page and feed spellings that differ
+  were paired by name similarity plus reserve, role and nationality; every non-exact pair was
+  reviewed, and the hard ones are in `.cache/parsed1821/manual_join.csv`.
+
+### Gaps
+
+- **Date of birth missing**: 2018 213 of 581 rows (sold 16 of 169: Kieron Pollard, Gautam Gambhir,
+  Brendon McCullum, Shane Watson, Mitchell Johnson, Suryakumar Yadav, R Vinay Kumar, Bipul Sharma, JP
+  Duminy, Mehdi Hasan, MD Nidheesh, Monu Singh, Manzoor Dar, Jatin Saxena, Javon Searless, Aryaman
+  Birla); 2019 94 of 352 (sold 6 of 60: Nathu Singh, Joe Denly, Harry Gurney, Milind Kumar, Agnivesh
+  Ayachi, Shrikant Mundhe); 2020 3 and 2021 2 (unsold additions: Ashoke Dinda, Robin Bist, Vinay Kumar;
+  Jiyas K, Ashok Menaria). No official list with a DOB covers them and no iplt20.com profile capture
+  was found.
+- 2018 / 2019: no age, styles or international caps from their own lists; 2019 no list numbers, sets
+  or IPL caps; the 2018 overseas slots are derived; the 2018 RTM flags rest on ESPNcricinfo.
+- The feeds' status A ("not reached") vs U would show which unsold players were called; the schema has
+  no column for it, and in 2019 it is unreliable (two players ESPNcricinfo lists as called are A).
+
+### Name mapping
+
+`pipeline/register.py` SOURCES now holds `auction_2018` … `auction_2021`; `python -m pipeline.register`
+gives name_map.csv 1679 keys (1316 matched) and unmatched.csv 363. Every lookup of the existing files
+(auction_2022–2025, pool_2026, retained_2024/2026: 2629 rows) is unchanged against the map before.
+
+| File | Rows matched | Sold rows matched | Unmatched sold |
+|---|---|---|---|
+| auction_2018 | 522 / 581 | 167 / 169 | MD Nidheesh (no DOB; the 2018 spelling "Nidheesh M D Dinesan" is not tied to his Cricsheet record), Aryaman Birla (no Cricsheet record) |
+| auction_2019 | 328 / 352 | 59 / 60 | Agnivesh Ayachi (no Cricsheet record) |
+| auction_2020 | 323 / 338 | 61 / 62 | Prince Balwant Rai Singh (no Cricsheet record) |
+| auction_2021 | 286 / 298 | 57 / 57 | – |
+
+Keeping the existing lookups unchanged took two things: (1) `cluster()` no longer attaches a DOB-less
+squad row to the only dated namesake when every player of that name on the row's IPL team sheets has
+a birthday that conflicts with the namesake's (`squad_contradicts`); without it MI's retained Rohit
+Sharma merges with the uncapped Rohit Sharma of the 2021 list (born 28/06/1993) and loses his id, and
+with the four new files left out the change alters no lookup; (2) a seventh override, Adam Zampa (the
+2020 list prints 31/03/1992, the 2022, 2023 and 2025 lists 31/12/1992). Unsold, DOB-less rows matched
+on the name alone that may be someone else: 2018 Mandeep Singh no. 529 (uncapped all-rounder) shares
+the capped Mandeep Singh's id; 2019 Rajesh Bishnoi (bowler) shares the id of the 2020–21 lists'
+Rajesh Bishnoi (born 1987, batsman, the 2019 list's "Rajesh Bishnoi Sr"); 2019 Gurinder Singh
+(Meghalaya) shares the id of the 2020 list's Gurinder Singh (Uttarakhand).

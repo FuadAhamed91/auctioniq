@@ -61,6 +61,11 @@ class ValueModel:
         self.beta, self.sigma = beta, sigma
         return self
 
+    def contributions(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Each feature's push on log value, against the average player of the training auctions."""
+        x = (df[self.cols].to_numpy(float) - self.mean) / self.sd
+        return pd.DataFrame(x * self.beta[1:], index=df.index, columns=self.cols)
+
     def predict(self, df: pd.DataFrame, log_mps: float) -> pd.DataFrame:
         """Model price (median) and 80% interval in lakhs for an auction with this money per slot."""
         mu = self._x(df) @ self.beta + log_mps

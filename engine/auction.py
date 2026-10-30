@@ -6,8 +6,8 @@ written to the run's event log.
 
 Each lot is settled from the teams' walk-away prices alone: the highest walk-away wins and pays
 one price point above the runner-up's last affordable bid (or that bid, if the winner cannot go
-one higher). The bid-by-bid replay is then drawn from a separate random stream, so how the war
-unfolds on screen can never change who wins or the price.
+one higher). The bid-by-bid replay is then built from that result, two paddles at a time as in the
+room, so how the war unfolds on screen can never change who wins or the price.
 """
 import numpy as np
 
@@ -20,13 +20,23 @@ A = CFG["agents"]
 UNSOLD = 65535
 
 
-def scarcity(ctx: dict, teams: list[Team], remaining: np.ndarray, p: int) -> float:
-    """((open demand for his role + 1) / (comparable players still available + 1)) ^ alpha."""
+def market_for(ctx: dict, teams: list[Team], remaining: np.ndarray, p: int) -> tuple[int, float, int]:
+    """For the player on the block: comparable players of his role still available (him included),
+    the open demand for that role among teams that could buy him (a squad slot, and an overseas slot
+    if he is overseas), and how many of those teams are short of one."""
     r = ctx["main"][p]
     worth = ctx["base"] if ctx["mode"] == "need_only" else ctx["value"]  # need-only bidders ignore value
-    supply = np.count_nonzero(remaining & (ctx["main"][: ctx["n_pool"]] == r)
-                              & (worth >= A["scarcity_comparable"] * worth[p]))
-    demand = sum(max(0.0, ctx["tmpl"][r] - t.squad.counts[r]) for t in teams if t.slots > 0)
+    supply = int(np.count_nonzero(remaining & (ctx["main"][: ctx["n_pool"]] == r)
+                                  & (worth >= A["scarcity_comparable"] * worth[p])))
+    gaps = [max(0.0, ctx["tmpl"][r] - t.squad.counts[r]) for t in teams
+            if t.slots > 0 and (t.os_slots > 0 or not ctx["overseas"][p])]
+    return supply, sum(gaps), sum(g >= 0.5 for g in gaps)
+
+
+def scarcity(ctx: dict, teams: list[Team], remaining: np.ndarray, p: int) -> float:
+    """((open demand for his role + 1) / (comparable players still available + 1)) ^ alpha: in a
+    mini auction, few options of one type wanted by several teams is what sends prices up."""
+    supply, demand, _ = market_for(ctx, teams, remaining, p)
     lo, hi = A["scarcity_range"]
     return float(np.clip(((demand + 1) / (supply + 1)) ** A["scarcity_alpha"], lo, hi))
 
@@ -45,36 +55,35 @@ def settle(walk: dict[int, float], base: int) -> tuple[int, int, int | None]:
     return win, (above if above <= walk[win] else last), run
 
 
-def bid_sequence(walk: dict[int, float], base: int, win: int, price: int, run: int | None,
-                 prng: np.random.Generator) -> tuple[list[int], list[int]]:
-    """Who held each price point from base to the final price, ending with the winner (and the
-    runner-up one point before). Drawn backwards so it always fits the settled outcome: a team can
-    hold a price only between its entry point and its walk-away, and the team just outbid usually
-    answers straight back (duels)."""
+def bid_sequence(walk: dict[int, float], base: int, win: int, price: int,
+                 run: int | None) -> tuple[list[int], list[int]]:
+    """Who held each price point from base to the final price, two paddles at a time as in the room:
+    the runner-up is in from the start and takes on the other bidders one by one, lowest limit first,
+    each backing out once the next bid passes its limit; the winner comes in last and outbids him.
+    The runner-up opens, or answers the opening bid, so that he holds his last affordable point and
+    the winner the price: the sequence always ends in the settled outcome."""
     ladder = [base]
     while ladder[-1] < price:
         ladder.append(rules.next_bid(ladder[-1]))
-    # Franchises often hold their paddle and join a war late, at a random point below their limit.
-    entry = {i: base + (walk[i] - base) * prng.uniform(0, A["entry_spread"]) for i in sorted(walk)}
-    leaders = [win]
-    if run is not None and len(ladder) > 1:
-        leaders.append(run)
-    while len(leaders) < len(ladder):
-        p = ladder[len(ladder) - 1 - len(leaders)]
-        able = [i for i in sorted(walk) if walk[i] >= p and i != leaders[-1]]
-        ready = [i for i in able if entry[i] <= p] or able
-        partner = leaders[-2] if len(leaders) > 1 else None
-        if partner in ready and prng.random() < A["duel"]:
-            leaders.append(partner)
-        else:
-            leaders.append(ready[prng.integers(len(ready))])
-    return ladder, leaders[::-1]
+    n = len(ladder) - 1
+    if run is None or n == 0:  # a single bid at base
+        return ladder, [win]
+    queue = sorted((i for i in walk if i not in (win, run)), key=lambda i: (walk[i], i)) + [win]
+    leaders = [run] if (n - 1) % 2 == 0 else [queue.pop(0), run]
+    rival = leaders[0] if len(leaders) == 2 else queue.pop(0)
+    while len(leaders) <= n:
+        p = ladder[len(leaders)]
+        # the next bid passes his limit (or is the winner's): he backs out and the next team comes in
+        if leaders[-1] == run and (walk[rival] < p or (len(leaders) == n and rival != win)):
+            rival = queue.pop(0)
+            continue
+        leaders.append(rival if leaders[-1] == run else run)
+    return ladder, leaders
 
 
 def simulate(ctx: dict, run: int, detail: set | None = None) -> dict:
     """Play one full auction. `detail` = players whose lots also keep every team's decision."""
     rng = np.random.default_rng([CFG["montecarlo"]["seed"], ctx["year"], run])
-    prng = np.random.default_rng([CFG["montecarlo"]["seed"], ctx["year"], run, 1])  # replay only
     teams = [Team(i, spec, ctx) for i, spec in enumerate(ctx["teams"])]
     n = ctx["n_pool"]
     # How the whole room rates each player this run: one draw from the value model's own error,
@@ -89,6 +98,7 @@ def simulate(ctx: dict, run: int, detail: set | None = None) -> dict:
         noise = np.exp(A["noise_sigma"] * rng.standard_normal(len(teams)))
         sc = scarcity(ctx, teams, remaining, p)
         want = detail is not None and p in detail
+        alike, _, short = market_for(ctx, teams, remaining, p) if want else (0, 0, 0)
         dec = [t.decide(p, sc, float(market[p]), float(noise[t.i]), want, p in shortlist[t.i]) for t in teams]
         events, walk = [], {}
         for t, d in zip(teams, dec):
@@ -105,7 +115,7 @@ def simulate(ctx: dict, run: int, detail: set | None = None) -> dict:
             records.append((p, UNSOLD, 0, rnd))
         else:
             win, price, run_up = settle(able, base)
-            ladder, leaders = bid_sequence(able, base, win, price, run_up, prng)
+            ladder, leaders = bid_sequence(able, base, win, price, run_up)
             out = set()
             for at, who in zip(ladder, leaders):
                 events.append(["bid", teams[who].code, at])
@@ -125,6 +135,8 @@ def simulate(ctx: dict, run: int, detail: set | None = None) -> dict:
         if want:
             details.setdefault(p, []).append({
                 "seq": len(records) - 1, "round": rnd, "start": base, "events": events,
+                # comparable players of his role left besides him; teams that could buy him short of one
+                "market": {"alike": alike - 1, "short": int(short)},
                 "teams": {t.code: _decision(d) for t, d in zip(teams, dec)},
             })
 
@@ -181,5 +193,6 @@ def _decision(d: dict) -> dict:
         "walk": round(min(d["walk"], d["cap"])) if f else None,
         "cap": d["cap"],
         "floor": d.get("floor"),
+        "why": d.get("why"),
         "f": {k: round(v, 1 if k == "value" else 3) for k, v in f.items()} if f else None,
     }

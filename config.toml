@@ -3,8 +3,9 @@
 [data]
 # No peeking: the 2026 simulation sees only matches dated before this day.
 cutoff = "2025-12-16"
-# Older matches are dropped; recency weighting makes them negligible anyway.
-history_start = "2017-01-01"
+# Older matches are dropped. 2014 gives even the 2018 auction four seasons of history; recency
+# weighting makes the old matches count for little in later auctions.
+history_start = "2014-01-01"
 cricsheet = "https://cricsheet.org/downloads/"
 register = "https://cricsheet.org/register/"
 player_meta_rda = "https://github.com/robjhyndman/cricketdata/raw/master/data/player_meta.rda"
@@ -73,9 +74,30 @@ reserve_per_slot = 30         # purse kept back for every minimum slot still unf
 
 # Auctions. `train` = the earlier auctions of the same kind that this auction's value model learns
 # from: mega and mini auctions price players differently, so they are never mixed (a mega-auction
-# price still counts as a player's previous price). 2024 is simulated in full for tuning, 2025 is a
-# back-test of the value model alone, 2026 is the prediction. accelerated_from = first list number
-# of the accelerated round. Procedure and sources: docs/AUCTION.md.
+# price still counts as a player's previous price). 2024 is simulated in full for tuning; every other
+# past auction with a `train` list is a back-test of the value model alone; 2026 is the prediction.
+# The 2018 and 2019 lists carry no international caps (2019 not even sets), so those two auctions only
+# supply earlier prices. accelerated_from = first list number of the accelerated round.
+# Procedure and sources: docs/AUCTION.md and data/SOURCES.md.
+[auction.2018]
+date = "2018-01-27"
+kind = "mega"
+rules = { increments = [[100, 5], [200, 10], [1000, 20], [1000000, 25]] }  # 20 L steps to ₹10 Cr, as the prices show
+
+[auction.2019]
+date = "2018-12-18"
+kind = "mini"
+rules = { increments = [[100, 5], [200, 10], [1000, 20], [1000000, 25]] }  # 20 L steps to ₹10 Cr, as the prices show
+
+[auction.2020]
+date = "2019-12-19"
+kind = "mini"
+
+[auction.2021]
+date = "2021-02-18"
+kind = "mini"
+train = [2020]
+
 [auction.2022]
 date = "2022-02-12"
 kind = "mega"
@@ -83,11 +105,12 @@ kind = "mega"
 [auction.2023]
 date = "2022-12-23"
 kind = "mini"
+train = [2020, 2021]
 
 [auction.2024]
 date = "2023-12-19"
 kind = "mini"
-train = [2023]
+train = [2020, 2021, 2023]
 accelerated_from = 71         # the first 70 names (10 sets) are called in set order
 # Lowest base price was ₹20 L. The published ladder says ₹25 L steps above ₹5 Cr, but every 2024
 # sale price between ₹5 Cr and ₹10 Cr is a multiple of ₹20 L (Head ₹6.80 Cr), so we follow the prices.
@@ -102,7 +125,7 @@ train = [2022]
 date = "2025-12-16"
 kind = "mini"
 city = "Abu Dhabi"
-train = [2023, 2024]
+train = [2020, 2021, 2023, 2024]
 accelerated_from = 71         # "after player No. 70" (docs/AUCTION.md)
 rules = { reserve_per_slot = 30, increments = [[100, 5], [200, 10], [500, 20], [1000000, 25]] }
 
@@ -138,11 +161,9 @@ home_fit_cap = 0.2
 home_scale = 0.2              # fit per run-per-over of spin edge
 style_prior = 5               # shrinks a team's past over/under-payment toward neutral
 style_range = [0.85, 1.2]
-market_share = 0.8            # share of the value model's error drawn once per player per run, shared by all teams
+market_share = 1.0            # share of the value model's error drawn once per player per run, shared by all teams
 noise_sigma = 0.3            # each team's own lognormal noise on its walk-away price
 need_only_multiple = 3.0      # need-only bidders (ablation) value a player at this many times base
-entry_spread = 0.6            # a team joins a bidding war at a random point up to 60% of the way to its walk-away
-duel = 0.85                   # chance the team just outbid answers straight back (replay realism; no effect on price)
 
 [montecarlo]
 runs = 1000
@@ -151,7 +172,7 @@ featured = 6                  # runs kept per player for "Show another run"
 
 # Factors used for the 2026 run. Needs are the agents' core (tested directly against the real 2024
 # buyers); each add-on was kept only if it beat the simulation's own noise on the 2024 back-test
-# (start speed did; matchups and home fit did not).
+# (none did: start speed cut price error but cost buyer accuracy; matchups and home fit did nothing).
 # Evidence and the tuned weights: analysis/out/validation_2024.json.
 [model]
-factors = ["needs", "start_speed"]
+factors = ["needs"]

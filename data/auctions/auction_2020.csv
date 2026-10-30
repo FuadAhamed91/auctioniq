@@ -1,0 +1,339 @@
+name,country,overseas,capped,role,base_lakh,set_no,set_code,status,team,price_lakh,rtm,lot_no,list_no,dob,age,batting_style,bowling_style,test_caps,odi_caps,t20i_caps,ipl_caps
+Aaron Finch,Australia,1,capped,BATTER,100,1,BA1,sold,RCB,440,0,1,1,1986-11-17,33,RHB,LEFT ARM Slow Orthodox,5,119,58,75
+Chris Lynn,Australia,1,capped,BATTER,200,1,BA1,sold,MI,200,0,2,2,1990-04-10,29,RHB,LEFT ARM Slow Orthodox,,4,18,41
+Eoin Morgan,England,1,capped,BATTER,150,1,BA1,sold,KKR,525,0,3,3,1986-09-10,33,LHB,RIGHT ARM Medium,16,233,86,52
+Cheteshwar Pujara,India,0,capped,BATTER,50,1,BA1,unsold,,,0,4,4,1988-01-25,32,RHB,RIGHT ARM Leg Break,75,5,,30
+Jason Roy,England,1,capped,BATTER,150,1,BA1,sold,DC,150,0,5,5,1990-07-21,29,RHB,RIGHT ARM Medium,5,84,32,8
+Robin Uthappa,India,0,capped,BATTER,150,1,BA1,sold,RR,300,0,6,6,1985-11-11,34,RHB,,,46,13,177
+Hanuma Vihari,India,0,capped,BATTER,50,1,BA1,unsold,,,0,7,7,1993-10-13,26,RHB,RIGHT ARM Off Break,7,,,24
+Stuart Binny,India,0,capped,ALL-ROUNDER,50,2,AL1,unsold,,,0,8,8,1984-06-03,35,RHB,RIGHT ARM Fast Medium,6,14,3,95
+Pat Cummins,Australia,1,capped,ALL-ROUNDER,200,2,AL1,sold,KKR,1550,0,9,9,1993-05-08,26,RHB,RIGHT ARM Fast,25,58,25,16
+Sam Curran,England,1,capped,ALL-ROUNDER,100,2,AL1,sold,CSK,550,0,10,10,1998-06-03,21,LHB,LEFT ARM Medium Fast,12,2,5,9
+Colin De Grandhomme,New Zealand,1,capped,ALL-ROUNDER,75,2,AL1,unsold,,,0,11,11,1986-07-22,33,RHB,RIGHT ARM Fast Medium,18,38,33,25
+Glenn Maxwell,Australia,1,capped,ALL-ROUNDER,200,2,AL1,sold,PBKS,1075,0,12,12,1988-10-14,31,RHB,RIGHT ARM Off Break,7,110,61,69
+Chris Morris,South Africa,1,capped,ALL-ROUNDER,150,2,AL1,sold,RCB,1000,0,13,13,1987-04-30,32,RHB,RIGHT ARM Fast,4,42,23,61
+Yusuf Pathan,India,0,capped,ALL-ROUNDER,100,2,AL1,unsold,,,0,14,14,1982-11-17,37,RHB,RIGHT ARM Off Break,,57,22,174
+Chris Woakes,England,1,capped,ALL-ROUNDER,150,2,AL1,sold,DC,150,0,15,15,1989-03-02,31,RHB,RIGHT ARM Fast Medium,31,99,8,18
+Alex Carey,Australia,1,capped,WICKETKEEPER,50,3,WK1,sold,DC,240,0,16,16,1991-08-27,28,LHB,,,29,25,
+Shai Hope,West Indies,1,capped,WICKETKEEPER,50,3,WK1,unsold,,,0,17,17,1993-11-10,26,RHB,,31,69,13,
+Heinrich Klaasen,South Africa,1,capped,WICKETKEEPER,50,3,WK1,unsold,,,0,18,18,1991-07-30,28,RHB,,1,14,9,7
+Naman Ojha,India,0,capped,WICKETKEEPER,50,3,WK1,unsold,,,0,19,19,1983-07-20,36,RHB,,1,1,2,113
+Kusal Perera,Sri Lanka,1,capped,WICKETKEEPER,50,3,WK1,unsold,,,0,20,20,1990-08-17,29,LHB,,18,98,42,2
+Mushfiqur Rahim,Bangladesh,1,capped,WICKETKEEPER,75,3,WK1,unsold,,,0,21,21,1987-06-09,32,RHB,,69,216,84,
+Sheldon Cottrell,West Indies,1,capped,BOWLER,50,4,FA1,sold,PBKS,850,0,22,22,1989-08-19,30,RHB,LEFT ARM Fast Medium,2,27,16,
+Nathan Coulter-Nile,Australia,1,capped,BOWLER,100,4,FA1,sold,MI,800,0,23,23,1987-10-11,32,RHB,RIGHT ARM Fast Medium,,32,28,26
+Mohit Sharma,India,0,capped,BOWLER,50,4,FA1,sold,DC,50,0,24,24,1988-09-18,31,RHB,RIGHT ARM Fast Medium,,26,8,85
+Tim Southee,New Zealand,1,capped,BOWLER,100,4,FA1,unsold,,,0,25,25,1988-12-11,31,RHB,RIGHT ARM Fast Medium,67,140,66,40
+Dale Steyn,South Africa,1,capped,BOWLER,200,4,FA1,sold,RCB,200,0,26,26,1983-06-27,36,RHB,RIGHT ARM Fast,93,125,44,92
+Andrew Tye,Australia,1,capped,BOWLER,100,4,FA1,sold,RR,100,0,27,27,1986-12-12,33,RHB,RIGHT ARM Fast Medium,,7,26,26
+Jaydev Unadkat,India,0,capped,BOWLER,100,4,FA1,sold,RR,300,0,28,28,1991-10-18,28,RHB,LEFT ARM Medium Fast,1,7,10,73
+Piyush Chawla,India,0,capped,BOWLER,100,5,SP1,sold,CSK,675,0,29,29,1988-12-24,31,LHB,RIGHT ARM Leg Break,3,25,7,157
+Zahir Khan,Afghanistan,1,capped,BOWLER,50,5,SP1,unsold,,,0,30,30,1998-12-20,21,LHB,LEFT ARM Slow Unorthodox,1,1,,0
+Ish Sodhi,New Zealand,1,capped,BOWLER,75,5,SP1,unsold,,,0,31,31,1992-10-31,27,RHB,RIGHT ARM Leg Break,17,31,40,8
+Hayden Walsh,West Indies,1,capped,BOWLER,50,5,SP1,unsold,,,0,32,32,1992-04-23,27,LHB,RIGHT ARM Leg Break,,4,10,
+Adam Zampa,Australia,1,capped,BOWLER,150,5,SP1,unsold,,,0,33,33,1992-03-31,28,RHB,RIGHT ARM Leg Break,,48,27,11
+Harpreet Bhatia,India,0,uncapped,BATTER,20,6,UBA1,unsold,,,0,34,34,1991-08-11,28,LHB,RIGHT ARM Medium,,,,4
+Priyam Garg,India,0,uncapped,BATTER,20,6,UBA1,sold,SRH,190,0,35,35,2000-11-30,19,RHB,RIGHT ARM Off Break,,,,
+Rohan Kadam,India,0,uncapped,BATTER,20,6,UBA1,unsold,,,0,36,36,1994-07-05,25,LHB,RIGHT ARM Leg Break,,,,
+Manjot Kalra,India,0,uncapped,BATTER,20,6,UBA1,unsold,,,0,37,37,1999-01-15,21,LHB,LEFT ARM Slow Orthodox,,,,0
+Virat Singh,India,0,uncapped,BATTER,20,6,UBA1,sold,SRH,190,0,38,38,1997-12-08,22,LHB,RIGHT ARM Off Break,,,,
+Rahul Tripathi,India,0,uncapped,BATTER,20,6,UBA1,sold,KKR,60,0,39,39,1991-03-02,29,RHB,RIGHT ARM Medium Fast,,,,34
+Varun Chakaravarthy,India,0,uncapped,ALL-ROUNDER,30,7,UAL1,sold,KKR,400,0,40,40,1991-08-29,28,RHB,RIGHT ARM Leg Break,,,,1
+Pavan Deshpande,India,0,uncapped,ALL-ROUNDER,20,7,UAL1,sold,RCB,20,0,41,41,1989-09-16,30,LHB,RIGHT ARM Off Break,,,,0
+Deepak Hooda,India,0,uncapped,ALL-ROUNDER,40,7,UAL1,sold,PBKS,50,0,42,42,1995-04-19,24,RHB,RIGHT ARM Off Break,,,,61
+Yashasvi Jaiswal,India,0,uncapped,ALL-ROUNDER,20,7,UAL1,sold,RR,240,0,43,43,2001-12-28,18,LHB,RIGHT ARM Leg Break,,,,
+Shahrukh Khan,India,0,uncapped,ALL-ROUNDER,20,7,UAL1,unsold,,,0,44,44,1995-05-27,24,RHB,RIGHT ARM Off Break,,,,
+Daniel Sams,Australia,1,uncapped,ALL-ROUNDER,20,7,UAL1,unsold,,,0,45,45,1992-10-27,27,RHB,LEFT ARM Medium Fast,,,,
+Ankush Bains,India,0,uncapped,WICKETKEEPER,20,8,UWK1,unsold,,,0,46,46,1995-12-16,24,RHB,,,,,0
+K.S Bharat,India,0,uncapped,WICKETKEEPER,20,8,UWK1,unsold,,,0,47,47,1993-10-03,26,RHB,,,,,0
+Kedar Devdhar,India,0,uncapped,WICKETKEEPER,20,8,UWK1,unsold,,,0,48,48,1989-12-14,30,RHB,,,,,1
+Anuj Rawat,India,0,uncapped,WICKETKEEPER,20,8,UWK1,sold,RR,80,0,49,49,1999-10-17,20,LHB,,,,,
+Prabhsimran Singh,India,0,uncapped,WICKETKEEPER,20,8,UWK1,sold,PBKS,55,0,50,50,2000-08-10,19,RHB,,,,,1
+Vishnu Vinod,India,0,uncapped,WICKETKEEPER,20,8,UWK1,unsold,,,0,51,51,1993-12-02,26,RHB,,,,,3
+Tushar Deshpande,India,0,uncapped,BOWLER,20,9,UFA1,sold,DC,20,0,52,52,1995-05-15,24,LHB,RIGHT ARM Fast,,,,
+Kulwant Khejroliya,India,0,uncapped,BOWLER,20,9,UFA1,unsold,,,0,53,53,1992-03-13,28,LHB,LEFT ARM Fast,,,,5
+Riley Meredith,Australia,1,uncapped,BOWLER,40,9,UFA1,unsold,,,0,54,54,1996-06-21,23,RHB,RIGHT ARM Fast,,,,
+Ishan Porel,India,0,uncapped,BOWLER,20,9,UFA1,sold,PBKS,20,0,55,55,1998-09-05,21,RHB,RIGHT ARM Fast Medium,,,,
+Akash Singh,India,0,uncapped,BOWLER,20,9,UFA1,sold,RR,20,0,56,56,2002-04-26,17,RHB,LEFT ARM Fast Medium,,,,
+Kartik Tyagi,India,0,uncapped,BOWLER,20,9,UFA1,sold,RR,130,0,57,57,2000-11-08,19,RHB,RIGHT ARM Medium Fast,,,,
+Noor Ahmad,Afghanistan,1,uncapped,BOWLER,30,10,USP1,unsold,,,0,58,58,2005-01-03,15,RHB,LEFT ARM Slow Unorthodox,,,,
+Ravi Bishnoi,India,0,uncapped,BOWLER,20,10,USP1,sold,PBKS,200,0,59,59,2000-09-05,19,RHB,RIGHT ARM Leg Break,,,,
+K.C Cariappa,India,0,uncapped,BOWLER,20,10,USP1,unsold,,,0,60,60,1994-04-13,25,RHB,RIGHT ARM Leg Break,,,,11
+R Sai Kishore,India,0,uncapped,BOWLER,20,10,USP1,sold,CSK,20,0,61,61,1996-11-06,23,LHB,LEFT ARM Slow Orthodox,,,,
+M Siddharth,India,0,uncapped,BOWLER,20,10,USP1,sold,KKR,20,0,62,62,1998-07-03,21,RHB,LEFT ARM Slow Orthodox,,,,
+Midhun Sudhesan,India,0,uncapped,BOWLER,20,10,USP1,unsold,,,0,63,63,1994-10-07,25,RHB,RIGHT ARM Leg Break,,,,1
+Martin Guptill,New Zealand,1,capped,BATTER,100,11,BA2,unsold,,,0,64,64,1986-09-30,33,RHB,,47,179,83,13
+Shimron Hetmyer,West Indies,1,capped,BATTER,50,11,BA2,sold,DC,775,0,65,65,1996-12-26,23,LHB,RIGHT ARM Leg Break,15,40,17,5
+Colin Ingram,South Africa,1,capped,BATTER,50,11,BA2,unsold,,,0,66,66,1985-07-03,34,LHB,RIGHT ARM Leg Break,,31,9,15
+Evin Lewis,West Indies,1,capped,BATTER,100,11,BA2,unsold,,,0,67,67,1991-12-27,28,LHB,,,46,26,16
+David Miller,South Africa,1,capped,BATTER,75,11,BA2,sold,RR,75,0,68,68,1989-06-10,30,LHB,,,126,72,79
+Saurabh Tiwary,India,0,capped,BATTER,50,11,BA2,sold,MI,50,0,69,69,1989-12-30,30,LHB,RIGHT ARM Off Break,,3,,81
+Manoj Tiwary,India,0,capped,BATTER,50,11,BA2,unsold,,,0,70,70,1985-11-14,34,RHB,RIGHT ARM Leg Break,,12,3,98
+Carlos Brathwaite,West Indies,1,capped,ALL-ROUNDER,50,12,AL2,unsold,,,0,71,71,1988-07-18,31,RHB,RIGHT ARM Fast,3,44,41,16
+Ben Cutting,Australia,1,capped,ALL-ROUNDER,75,12,AL2,unsold,,,0,72,72,1987-01-30,33,RHB,RIGHT ARM Medium Fast,,4,7,21
+Rishi Dhawan,India,0,capped,ALL-ROUNDER,50,12,AL2,unsold,,,0,73,73,1990-02-19,30,RHB,RIGHT ARM Medium Fast,,3,1,26
+Mitchell Marsh,Australia,1,capped,ALL-ROUNDER,200,12,AL2,sold,SRH,200,0,74,74,1991-10-20,28,RHB,RIGHT ARM Medium Fast,32,53,11,20
+Colin Munro,New Zealand,1,capped,ALL-ROUNDER,100,12,AL2,unsold,,,0,75,75,1987-03-11,33,LHB,RIGHT ARM Medium,1,57,60,13
+James Neesham,New Zealand,1,capped,ALL-ROUNDER,50,12,AL2,sold,PBKS,50,0,76,76,1990-09-17,29,LHB,RIGHT ARM Fast Medium,12,59,18,4
+Andile Phehlukwayo,South Africa,1,capped,ALL-ROUNDER,50,12,AL2,unsold,,,0,77,77,1996-03-03,24,RHB,RIGHT ARM Fast Medium,4,52,23,
+Marcus Stoinis,Australia,1,capped,ALL-ROUNDER,100,12,AL2,sold,DC,480,0,78,78,1989-08-16,30,RHB,RIGHT ARM Medium Fast,,41,19,29
+Josh Hazlewood,Australia,1,capped,BOWLER,200,13,FA2,sold,CSK,200,0,79,79,1991-01-08,29,LHB,RIGHT ARM Fast,49,44,7,
+Alzarri Joseph,West Indies,1,capped,BOWLER,50,13,FA2,unsold,,,0,80,80,1996-11-20,23,RHB,RIGHT ARM Fast,9,19,,3
+Adam Milne,New Zealand,1,capped,BOWLER,50,13,FA2,unsold,,,0,81,81,1992-04-13,27,RHB,RIGHT ARM Fast,,40,21,5
+Anrich Nortje,South Africa,1,capped,BOWLER,50,13,FA2,unsold,,,0,82,82,1993-11-16,26,RHB,RIGHT ARM Fast,2,4,1,0
+Mustafizur Rahman,Bangladesh,1,capped,BOWLER,100,13,FA2,unsold,,,0,83,83,1995-09-06,24,LHB,LEFT ARM Fast Medium,13,56,37,24
+Barinder Sran,India,0,capped,BOWLER,50,13,FA2,unsold,,,0,84,84,1992-12-10,27,LHB,LEFT ARM Fast Medium,,6,2,24
+Mark Wood,England,1,capped,BOWLER,50,13,FA2,unsold,,,0,85,85,1990-01-11,30,RHB,RIGHT ARM Fast Medium,13,51,5,1
+Shivam Chauhan,India,0,uncapped,BATTER,20,14,UBA2,unsold,,,0,86,86,1997-10-14,22,RHB,RIGHT ARM Medium,,,,
+Abhimanyu Easwaran,India,0,uncapped,BATTER,20,14,UBA2,unsold,,,0,87,87,1995-09-06,24,RHB,RIGHT ARM Leg Break,,,,
+Laurie Evans,England,1,uncapped,BATTER,40,14,UBA2,unsold,,,0,88,88,1987-10-12,32,RHB,,,,,
+Naushad Shaikh,India,0,uncapped,BATTER,20,14,UBA2,unsold,,,0,89,89,1991-10-15,28,RHB,RIGHT ARM Off Break,,,,
+Pratham Singh,India,0,uncapped,BATTER,20,14,UBA2,unsold,,,0,90,90,1992-08-31,27,LHB,RIGHT ARM Off Break,,,,0
+Himmat Singh,India,0,uncapped,BATTER,20,14,UBA2,unsold,,,0,91,91,1996-11-08,23,RHB,RIGHT ARM Off Break,,,,0
+Ayush Badoni,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,92,92,1999-12-03,20,RHB,RIGHT ARM Off Break,,,,
+Sandeep Bavanaka,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,sold,SRH,20,0,93,93,1992-04-25,27,LHB,LEFT ARM Slow Orthodox,,,,
+Pravin Dubey,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,94,94,1993-07-01,26,RHB,RIGHT ARM Leg Break,,,,0
+Chris Green,Australia,1,uncapped,ALL-ROUNDER,20,15,UAL2,sold,KKR,20,0,95,95,1993-10-01,26,RHB,RIGHT ARM Off Break,,,,
+Shubhang Hegde,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,96,96,2001-03-30,19,LHB,LEFT ARM Slow Orthodox,,,,
+Shams Mulani,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,97,97,1997-03-13,23,LHB,LEFT ARM Slow Orthodox,,,,
+Shubham Ranjane,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,98,98,1994-03-26,26,RHB,RIGHT ARM Medium Fast,,,,0
+Dhruv Shorey,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,99,99,1992-06-06,27,RHB,RIGHT ARM Off Break,,,,2
+Swapnil Singh,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,unsold,,,0,100,100,1991-01-22,29,RHB,LEFT ARM Slow Orthodox,,,,5
+Lalit Yadav,India,0,uncapped,ALL-ROUNDER,20,15,UAL2,sold,DC,20,0,101,101,1997-01-03,23,RHB,RIGHT ARM Off Break,,,,
+Shahbaz Ahamad,India,0,uncapped,WICKETKEEPER,20,16,UWK2,sold,RCB,20,0,102,102,1994-12-11,25,LHB,LEFT ARM Slow Orthodox,,,,
+Sheldon Jackson,India,0,uncapped,WICKETKEEPER,20,16,UWK2,unsold,,,0,103,103,1986-09-27,33,RHB,,,,,4
+Arun Karthick,India,0,uncapped,WICKETKEEPER,20,16,UWK2,unsold,,,0,104,104,1986-02-15,34,RHB,RIGHT ARM Leg Break,,,,17
+Nikhil Naik,India,0,uncapped,WICKETKEEPER,20,16,UWK2,sold,KKR,20,0,105,105,1994-11-09,25,RHB,,,,,3
+Agniv Pan,India,0,uncapped,WICKETKEEPER,20,16,UWK2,unsold,,,0,106,106,1997-01-01,23,LHB,,,,,
+Joshua Philippe,Australia,1,uncapped,WICKETKEEPER,20,16,UWK2,sold,RCB,20,0,107,107,1997-06-01,22,RHB,,,,,
+Luvnith Sisodia,India,0,uncapped,WICKETKEEPER,20,16,UWK2,unsold,,,0,108,108,2000-01-15,20,LHB,,,,,
+Upendra Singh Yadav,India,0,uncapped,WICKETKEEPER,20,16,UWK2,unsold,,,0,109,109,1996-10-08,23,RHB,RIGHT ARM Off Break,,,,
+Ben Dwarshuis,Australia,1,uncapped,BOWLER,40,17,UFA2,unsold,,,0,110,110,1994-06-23,25,LHB,LEFT ARM Fast Medium,,,,0
+Ali Khan,United States of America,1,associate,BOWLER,20,17,UFA2,unsold,,,0,111,111,1990-12-13,29,RHB,RIGHT ARM Fast,,,,
+Mohsin Khan,India,0,uncapped,BOWLER,20,17,UFA2,sold,MI,20,0,112,112,1998-07-15,21,LHB,LEFT ARM Fast Medium,,,,0
+Lukman Hussain Meriwala,India,0,uncapped,BOWLER,20,17,UFA2,unsold,,,0,113,113,1991-12-11,28,LHB,LEFT ARM Medium Fast,,,,
+Rahul Shukla,India,0,uncapped,BOWLER,20,17,UFA2,unsold,,,0,114,114,1990-08-28,29,RHB,RIGHT ARM Fast,,,,7
+Gourav Yadav,India,0,uncapped,BOWLER,20,17,UFA2,unsold,,,0,115,115,1991-10-31,28,RHB,RIGHT ARM Fast,,,,
+Zeeshan Ansari,India,0,uncapped,BOWLER,20,18,USP2,unsold,,,0,116,116,1999-12-16,20,RHB,RIGHT ARM Leg Break,,,,
+Satyajeet Bachhav,India,0,uncapped,BOWLER,20,18,USP2,unsold,,,0,117,117,1992-11-28,27,LHB,LEFT ARM Slow Orthodox,,,,
+Tejas Baroka,India,0,uncapped,BOWLER,20,18,USP2,unsold,,,0,118,118,1996-02-01,24,RHB,RIGHT ARM Leg Break,,,,1
+Shivil Kaushik,India,0,uncapped,BOWLER,20,18,USP2,unsold,,,0,119,119,1995-09-07,24,RHB,LEFT ARM Slow Unorthodox,,,,7
+Pradeep Sahu,India,0,uncapped,BOWLER,20,18,USP2,unsold,,,0,120,120,1985-08-21,34,RHB,RIGHT ARM Leg Break,,,,5
+Karanveer Singh,India,0,uncapped,BOWLER,20,18,USP2,unsold,,,0,121,121,1987-11-08,32,RHB,RIGHT ARM Leg Break,,,,9
+Tom Banton,England,1,capped,BATTER,100,19,BA3,sold,KKR,100,0,122,122,1998-11-11,21,RHB,,,,3,
+Alex Hales,England,1,capped,BATTER,100,19,BA3,unsold,,,0,123,123,1989-01-03,31,RHB,,11,70,60,6
+Janneman Malan,South Africa,1,capped,BATTER,50,19,BA3,unsold,,,0,124,124,1996-04-18,23,RHB,,,,2,
+Aiden Markram,South Africa,1,capped,BATTER,50,19,BA3,unsold,,,0,125,125,1994-10-04,25,RHB,RIGHT ARM Off Break,19,26,2,
+Shaun Marsh,Australia,1,capped,BATTER,150,19,BA3,unsold,,,0,126,126,1983-07-09,36,LHB,LEFT ARM Slow Orthodox,38,73,15,71
+Rilee Rossouw,South Africa,1,capped,BATTER,100,19,BA3,unsold,,,0,127,127,1989-10-09,30,LHB,RIGHT ARM Off Break,,36,15,5
+Fabian Allen,West Indies,1,capped,ALL-ROUNDER,50,20,AL3,sold,SRH,50,0,128,128,1995-05-07,24,RHB,LEFT ARM Slow Orthodox,,12,11,
+Corey Anderson,New Zealand,1,capped,ALL-ROUNDER,75,20,AL3,unsold,,,0,129,129,1990-12-13,29,LHB,LEFT ARM Medium,13,49,31,30
+Tom Curran,England,1,capped,ALL-ROUNDER,100,20,AL3,sold,RR,100,0,130,130,1995-03-12,25,RHB,RIGHT ARM Fast Medium,2,17,15,5
+Jason Holder,West Indies,1,capped,ALL-ROUNDER,75,20,AL3,unsold,,,0,131,131,1991-11-05,28,RHB,RIGHT ARM Fast,39,109,14,11
+Chris Jordan,England,1,capped,ALL-ROUNDER,75,20,AL3,sold,PBKS,300,0,132,132,1988-10-04,31,RHB,RIGHT ARM Fast Medium,8,31,43,11
+Daryl Mitchell,New Zealand,1,capped,ALL-ROUNDER,50,20,AL3,unsold,,,0,133,133,1991-05-20,28,RHB,RIGHT ARM Medium Fast,,,9,
+Rovman Powell,West Indies,1,capped,ALL-ROUNDER,50,20,AL3,unsold,,,0,134,134,1993-07-23,26,RHB,RIGHT ARM Medium Fast,,34,23,0
+Isuru Udana,Sri Lanka,1,capped,ALL-ROUNDER,50,20,AL3,sold,RCB,50,0,135,135,1988-02-17,32,RHB,LEFT ARM Medium Fast,15,27,89,
+David Willey,England,1,capped,ALL-ROUNDER,150,20,AL3,unsold,,,0,136,136,1990-02-28,30,LHB,LEFT ARM Fast Medium,,46,28,3
+Ben Dunk,Australia,1,capped,WICKETKEEPER,50,21,WK2,unsold,,,0,137,137,1987-03-11,33,LHB,RIGHT ARM Off Break,,,5,3
+Tom Latham,New Zealand,1,capped,WICKETKEEPER,50,21,WK2,unsold,,,0,138,138,1992-04-02,28,LHB,,46,95,13,
+Ben McDermott,Australia,1,capped,WICKETKEEPER,50,21,WK2,unsold,,,0,139,139,1994-12-12,25,RHB,,,,12,
+Glenn Phillips,New Zealand,1,capped,WICKETKEEPER,50,21,WK2,unsold,,,0,140,140,1996-12-06,23,RHB,RIGHT ARM Off Break,,,11,
+Tim Seifert,New Zealand,1,capped,WICKETKEEPER,50,21,WK2,unsold,,,0,141,141,1994-12-14,25,RHB,,,3,19,
+Mohammad Shahzad,Afghanistan,1,capped,WICKETKEEPER,50,21,WK2,unsold,,,0,142,142,1987-06-10,32,RHB,,2,84,65,
+Sean Abbott,Australia,1,capped,BOWLER,75,22,FA3,unsold,,,0,143,143,1992-02-29,28,RHB,RIGHT ARM Fast Medium,,1,4,2
+Pat Brown,England,1,capped,BOWLER,50,22,FA3,unsold,,,0,144,144,1998-08-23,21,RHB,RIGHT ARM Medium Fast,,,4,
+Beuran Hendricks,South Africa,1,capped,BOWLER,50,22,FA3,unsold,,,0,145,145,1990-06-08,29,LHB,LEFT ARM Fast Medium,,4,11,7
+Matt Henry,New Zealand,1,capped,BOWLER,50,22,FA3,unsold,,,0,146,146,1991-12-14,28,RHB,RIGHT ARM Fast Medium,10,52,6,2
+Kane Richardson,Australia,1,capped,BOWLER,150,22,FA3,sold,RCB,400,0,147,147,1991-02-12,29,RHB,RIGHT ARM Fast Medium,,22,15,14
+Oshane Thomas,West Indies,1,capped,BOWLER,50,22,FA3,sold,RR,50,0,148,148,1997-02-18,23,LHB,RIGHT ARM Fast,,19,10,4
+Naveen Ul Haq,Afghanistan,1,capped,BOWLER,50,22,FA3,unsold,,,0,149,149,1999-09-23,20,RHB,RIGHT ARM Fast Medium,,4,4,
+Qais Ahmad,Afghanistan,1,capped,BOWLER,50,23,SP2,unsold,,,0,150,150,2000-08-15,19,RHB,RIGHT ARM Leg Break,1,,,
+Fawad Ahmed,Australia,1,capped,BOWLER,50,23,SP2,unsold,,,0,151,151,1982-02-05,38,RHB,RIGHT ARM Leg Break,,3,2,
+Khary Pierre,West Indies,1,capped,BOWLER,50,23,SP2,unsold,,,0,152,152,1991-09-22,28,LHB,LEFT ARM Slow Orthodox,,,5,
+Waqar Salamkheil,Afghanistan,1,capped,BOWLER,50,23,SP2,unsold,,,0,153,153,2001-10-02,18,RHB,LEFT ARM Slow Unorthodox,1,,,
+Tabraiz Shamsi,South Africa,1,capped,BOWLER,50,23,SP2,unsold,,,0,154,154,1990-02-18,30,LHB,LEFT ARM Slow Unorthodox,2,17,16,4
+Shivam Bhambri,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,155,155,1995-09-30,24,RHB,,,,,
+Ricky Bhui,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,156,156,1996-09-29,23,RHB,RIGHT ARM Leg Break,,,,2
+Hiten Dalal,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,157,157,1994-09-25,25,RHB,,,,,
+Shubham Khajuria,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,158,158,1995-09-13,24,RHB,RIGHT ARM Medium,,,,
+Amandeep Khare,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,159,159,1997-08-05,22,RHB,RIGHT ARM Fast Medium,,,,
+Samarth R,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,160,160,1993-01-22,27,RHB,RIGHT ARM Off Break,,,,
+Mayank Rawat,India,0,uncapped,BATTER,20,24,UBA3,unsold,,,0,161,161,1999-12-04,20,RHB,RIGHT ARM Off Break,,,,
+N.Tilak Varma,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,162,162,2002-11-08,17,LHB,RIGHT ARM Off Break,,,,
+Prayas Barman,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,163,163,2002-10-25,17,RHB,RIGHT ARM Leg Break,,,,1
+Prashant Chopra,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,164,164,1992-10-07,27,RHB,RIGHT ARM Leg Break,,,,2
+Mayank Dagar,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,165,165,1996-11-11,23,RHB,LEFT ARM Slow Orthodox,,,,0
+C Hari Nishaanth,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,166,166,1996-08-16,23,LHB,RIGHT ARM Off Break,,,,
+Roosh Kalaria,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,167,167,1993-01-16,27,RHB,LEFT ARM Fast Medium,,,,
+Akshay Karnewar,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,168,168,1992-10-12,27,LHB,LEFT ARM Slow Orthodox,,,,
+Sumit Kumar,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,169,169,1995-12-12,24,RHB,RIGHT ARM Medium Fast,,,,
+Vishal Kushwah,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,170,170,1990-11-30,29,RHB,RIGHT ARM Medium Fast,,,,
+Akshdeep Nath,India,0,uncapped,ALL-ROUNDER,20,25,UAL3,unsold,,,0,171,171,1993-05-10,26,RHB,RIGHT ARM Medium,,,,14
+Avi Barot,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,172,172,1992-06-25,27,RHB,,,,,
+Aryan Juyal,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,173,173,2001-11-11,18,RHB,,,,,
+Sumit Kumar,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,174,174,1995-12-30,24,RHB,,,,,
+Anmol Malhotra,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,175,175,1995-11-29,24,RHB,RIGHT ARM Off Break,,,,
+Smit Patel,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,176,176,1993-05-16,26,RHB,,,,,
+Saurabh Rawat,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,177,177,1996-12-21,23,RHB,,,,,
+Jitesh Sharma,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,178,178,1993-10-22,26,RHB,,,,,0
+Mayank Sidhu,India,0,uncapped,WICKETKEEPER,20,26,UWK3,unsold,,,0,179,179,1997-11-22,22,RHB,,,,,
+Nandre Burger,South Africa,1,uncapped,BOWLER,20,27,UFA3,unsold,,,0,180,180,1995-08-11,24,LHB,LEFT ARM Fast,,,,
+Stephen Chipurupalli,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,181,181,1993-12-03,26,LHB,LEFT ARM Fast Medium,,,,
+Yash Dayal,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,182,182,1997-12-13,22,RHB,LEFT ARM Fast Medium,,,,
+C.V Milind,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,183,183,1994-09-04,25,LHB,LEFT ARM Fast,,,,0
+G Periyasamy,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,184,184,1994-03-05,26,RHB,RIGHT ARM Fast Medium,,,,
+Chetan Sakariya,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,185,185,1998-02-28,22,LHB,LEFT ARM Fast Medium,,,,
+Kuldeep Sen,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,186,186,1996-10-22,23,RHB,RIGHT ARM Fast Medium,,,,
+Anureet Singh,India,0,uncapped,BOWLER,30,27,UFA3,unsold,,,0,187,187,1988-03-02,32,RHB,RIGHT ARM Fast Medium,,,,23
+Pradeep Thippeswamy,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,188,188,1994-08-28,25,RHB,RIGHT ARM Fast Medium,,,,
+Tanveer Ul Haq,India,0,uncapped,BOWLER,20,27,UFA3,unsold,,,0,189,189,1991-12-03,28,RHB,LEFT ARM Fast,,,,
+Mihir Hirwani,India,0,uncapped,BOWLER,20,28,USP3,unsold,,,0,190,190,1994-05-14,25,RHB,RIGHT ARM Leg Break,,,,
+S Manigandan,India,0,uncapped,BOWLER,20,28,USP3,unsold,,,0,191,191,1996-05-06,23,RHB,RIGHT ARM Leg Break,,,,
+Shiva Singh,India,0,uncapped,BOWLER,20,28,USP3,unsold,,,0,192,192,1999-10-16,20,RHB,LEFT ARM Slow Orthodox,,,,
+Ajay Sonu T,India,0,uncapped,BOWLER,20,28,USP3,unsold,,,0,193,193,1999-10-10,20,RHB,RIGHT ARM Leg Break,,,,
+Pravin Tambe,India,0,uncapped,BOWLER,20,28,USP3,sold,KKR,20,0,194,194,1971-10-08,48,RHB,RIGHT ARM Leg Break,,,,33
+Sagar Udeshi,India,0,uncapped,BOWLER,20,28,USP3,unsold,,,0,195,195,1986-10-14,33,LHB,LEFT ARM Slow Orthodox,,,,
+Tom Bruce,New Zealand,1,capped,BATTER,50,29,BA4,unsold,,,0,196,196,1991-08-02,28,RHB,RIGHT ARM Off Break,,,15,
+Oshada Fernando,Sri Lanka,1,capped,BATTER,50,29,BA4,unsold,,,0,197,197,1992-04-15,27,RHB,RIGHT ARM Leg Break,2,6,3,
+Avishka Fernando,Sri Lanka,1,capped,BATTER,50,29,BA4,unsold,,,0,198,198,1998-04-05,22,RHB,,,15,10,
+Brandon King,West Indies,1,capped,BATTER,50,29,BA4,unsold,,,0,199,199,1994-12-16,25,RHB,RIGHT ARM Off Break,,1,3,
+Lendl Simmons,West Indies,1,capped,BATTER,75,29,BA4,unsold,,,0,200,200,1985-01-25,35,RHB,RIGHT ARM Medium,8,68,46,29
+Rassie Van Der Dussen,South Africa,1,capped,BATTER,50,29,BA4,unsold,,,0,201,201,1989-02-07,31,RHB,RIGHT ARM Off Break,,18,9,
+Ashton Agar,Australia,1,capped,ALL-ROUNDER,100,30,AL4,unsold,,,0,202,202,1993-10-14,26,LHB,LEFT ARM Slow Orthodox,4,9,,
+James Faulkner,Australia,1,capped,ALL-ROUNDER,50,30,AL4,unsold,,,0,203,203,1990-04-29,29,RHB,LEFT ARM Medium Fast,1,69,24,60
+Lewis Gregory,England,1,capped,ALL-ROUNDER,50,30,AL4,unsold,,,0,204,204,1992-05-24,27,RHB,RIGHT ARM Fast Medium,,,5,
+Moises Henriques,Australia,1,capped,ALL-ROUNDER,100,30,AL4,unsold,,,0,205,205,1987-02-01,33,RHB,RIGHT ARM Medium Fast,4,11,11,57
+Scott Kuggeleijn,New Zealand,1,capped,ALL-ROUNDER,50,30,AL4,unsold,,,0,206,206,1992-01-03,28,RHB,RIGHT ARM Fast Medium,,2,9,2
+Romario Shepherd,West Indies,1,capped,ALL-ROUNDER,50,30,AL4,unsold,,,0,207,207,1994-11-26,25,RHB,RIGHT ARM Fast Medium,,3,,
+D'Arcy Short,Australia,1,capped,ALL-ROUNDER,100,30,AL4,unsold,,,0,208,208,1990-08-09,29,LHB,LEFT ARM Slow Unorthodox,,4,20,7
+David Wiese,South Africa,1,capped,ALL-ROUNDER,75,30,AL4,unsold,,,0,209,209,1985-05-18,34,RHB,RIGHT ARM Medium Fast,,6,20,15
+Karim Janat,Afghanistan,1,capped,ALL-ROUNDER,50,30,AL4,unsold,,,0,210,210,1998-08-11,21,RHB,RIGHT ARM Medium Fast,,1,21,
+Kyle Abbott,South Africa,1,capped,BOWLER,150,31,FA4,unsold,,,0,211,211,1987-06-18,32,RHB,RIGHT ARM Fast,11,28,21,5
+Doug Bracewell,New Zealand,1,capped,BOWLER,50,31,FA4,unsold,,,0,212,212,1990-09-28,29,RHB,RIGHT ARM Fast Medium,27,19,18,1
+Marchant De Lange,South Africa,1,capped,BOWLER,75,31,FA4,unsold,,,0,213,213,1990-10-13,29,RHB,RIGHT ARM Fast,2,4,6,5
+Ben Laughlin,Australia,1,capped,BOWLER,50,31,FA4,unsold,,,0,214,214,1982-10-03,37,RHB,RIGHT ARM Fast Medium,,5,3,9
+Tymal Mills,England,1,capped,BOWLER,50,31,FA4,unsold,,,0,215,215,1992-08-12,27,RHB,LEFT ARM Fast,,,5,5
+James Pattinson,Australia,1,capped,BOWLER,100,31,FA4,unsold,,,0,216,216,1990-05-03,29,RHB,RIGHT ARM Fast,19,15,4,0
+Liam Plunkett,England,1,capped,BOWLER,100,31,FA4,unsold,,,0,217,217,1985-04-06,35,RHB,RIGHT ARM Fast Medium,13,89,22,7
+Sachin Baby,India,0,uncapped,BATTER,20,32,UBA4,unsold,,,0,218,218,1988-12-18,31,LHB,RIGHT ARM Off Break,,,,18
+Rajesh Bishnoi,India,0,uncapped,BATTER,20,32,UBA4,unsold,,,0,219,219,1987-08-10,32,RHB,,,,,3
+Unmukt Chand,India,0,uncapped,BATTER,20,32,UBA4,unsold,,,0,220,220,1993-03-26,27,RHB,RIGHT ARM Off Break,,,,21
+Cameron Delport,South Africa,1,uncapped,BATTER,40,32,UBA4,unsold,,,0,221,221,1989-05-12,30,LHB,RIGHT ARM Medium,,,,0
+Tanmay Mishra,India,0,uncapped,BATTER,20,32,UBA4,unsold,,,0,222,222,1986-12-22,33,RHB,RIGHT ARM Off Break,,,,1
+Priyank Panchal,India,0,uncapped,BATTER,20,32,UBA4,unsold,,,0,223,223,1990-04-09,30,RHB,RIGHT ARM Medium Fast,,,,
+Vishnu Solanki,India,0,uncapped,BATTER,20,32,UBA4,unsold,,,0,224,224,1992-10-15,27,RHB,RIGHT ARM Medium Fast,,,,
+Chaitanya Bishnoi,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,225,225,1994-08-25,25,LHB,LEFT ARM Slow Orthodox,,,,0
+Yudhvir Charak,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,226,226,1997-09-13,22,RHB,RIGHT ARM Fast Medium,,,,
+Chandrapal Chundawat,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,227,227,1994-09-08,25,RHB,LEFT ARM Slow Orthodox,,,,
+Tajinder Dhillon,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,sold,PBKS,20,0,228,228,1992-05-25,27,RHB,RIGHT ARM Off Break,,,,0
+Azim Kazi,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,229,229,1993-10-14,26,LHB,LEFT ARM Slow Orthodox,,,,
+Sujit Nayak,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,230,230,1989-06-23,30,LHB,LEFT ARM Slow Orthodox,,,,
+Abdul Samad,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,sold,SRH,20,0,231,231,2001-10-28,18,RHB,RIGHT ARM Leg Break,,,,
+Jalaj Saxena,India,0,uncapped,ALL-ROUNDER,30,33,UAL4,unsold,,,0,232,232,1986-12-15,33,RHB,RIGHT ARM Off Break,,,,0
+Utkarsh Singh,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,233,233,1998-05-07,21,LHB,RIGHT ARM Off Break,,,,
+Harsh Tyagi,India,0,uncapped,ALL-ROUNDER,20,33,UAL4,unsold,,,0,234,234,1999-12-23,20,LHB,LEFT ARM Slow Orthodox,,,,
+Aniket Choudhary,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,235,235,1990-01-28,30,RHB,LEFT ARM Fast Medium,,,,5
+Puneet Datey,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,236,236,1994-09-10,25,RHB,RIGHT ARM Fast Medium,,,,
+Akash Deep,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,237,237,1996-12-15,23,RHB,RIGHT ARM Fast Medium,,,,
+Nathan Ellis,Australia,1,uncapped,BOWLER,20,34,UFA4,unsold,,,0,238,238,1994-09-22,25,RHB,RIGHT ARM Fast,,,,
+Sayan Ghosh,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,239,239,1992-09-16,27,RHB,RIGHT ARM Fast Medium,,,,0
+Chemar Holder,West Indies,1,uncapped,BOWLER,20,34,UFA4,unsold,,,0,240,240,1998-03-03,22,RHB,RIGHT ARM Fast,,,,
+Arzan Nagwaswalla,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,241,241,1997-10-17,22,RHB,LEFT ARM Medium Fast,,,,
+Safvan Patel,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,242,242,1998-10-03,21,RHB,LEFT ARM Medium Fast,,,,
+Pradeep Sangwan,India,0,uncapped,BOWLER,30,34,UFA4,unsold,,,0,243,243,1990-11-05,29,RHB,LEFT ARM Fast Medium,,,,39
+Prithviraj Yarra,India,0,uncapped,BOWLER,20,34,UFA4,unsold,,,0,244,244,1998-02-20,22,LHB,LEFT ARM Fast,,,,2
+Ravi Bopara,England,1,capped,ALL-ROUNDER,50,35,AL5,unsold,,,0,245,245,1985-05-04,34,RHB,RIGHT ARM Medium,13,128,30,24
+Wanindu Hasaranga,Sri Lanka,1,capped,ALL-ROUNDER,50,35,AL5,unsold,,,0,246,246,1997-07-29,22,RHB,RIGHT ARM Leg Break,,12,8,
+Dimuth Karunarathna,Sri Lanka,1,capped,ALL-ROUNDER,50,35,AL5,unsold,,,0,247,247,1988-04-21,31,LHB,LEFT ARM Medium Fast,,62,28,
+Mohammad Mahmudullah,Bangladesh,1,capped,ALL-ROUNDER,75,35,AL5,unsold,,,0,248,248,1986-02-04,34,RHB,RIGHT ARM Off Break,48,185,83,
+Angelo Mathews,Sri Lanka,1,capped,ALL-ROUNDER,200,35,AL5,unsold,,,0,249,249,1987-06-02,32,RHB,RIGHT ARM Medium Fast,82,214,72,49
+Wiaan Mulder,South Africa,1,capped,ALL-ROUNDER,50,35,AL5,unsold,,,0,250,250,1998-02-19,22,RHB,RIGHT ARM Medium,1,10,,
+Dasun Shanaka,Sri Lanka,1,capped,ALL-ROUNDER,50,35,AL5,unsold,,,0,251,251,1991-09-09,28,RHB,RIGHT ARM Medium,3,22,35,
+Jon Jon Smuts,South Africa,1,capped,ALL-ROUNDER,50,35,AL5,unsold,,,0,252,252,1988-09-21,31,RHB,LEFT ARM Slow Orthodox,,,8,
+Ashton Turner,Australia,1,capped,ALL-ROUNDER,75,35,AL5,unsold,,,0,253,253,1993-01-25,27,RHB,RIGHT ARM Off Break,,3,11,4
+Dushmanta Chameera,Sri Lanka,1,capped,BOWLER,50,36,FA5,unsold,,,0,254,254,1992-01-11,28,RHB,RIGHT ARM Fast,8,23,19,0
+Saqib Mahmood,England,1,capped,BOWLER,75,36,FA5,unsold,,,0,255,255,1997-02-25,23,RHB,RIGHT ARM Fast Medium,,,3,
+Obed McCoy,West Indies,1,capped,BOWLER,50,36,FA5,unsold,,,0,256,256,1997-01-04,23,LHB,LEFT ARM Fast,,2,2,
+Nuwan Pradeep,Sri Lanka,1,capped,BOWLER,50,36,FA5,unsold,,,0,257,257,1986-10-19,33,RHB,RIGHT ARM Fast Medium,28,42,14,
+Blair Tickner,New Zealand,1,capped,BOWLER,50,36,FA5,unsold,,,0,258,258,1993-10-13,26,RHB,RIGHT ARM Medium Fast,,,3,
+Kesrick Williams,West Indies,1,capped,BOWLER,50,36,FA5,unsold,,,0,259,259,1990-01-08,30,RHB,RIGHT ARM Fast Medium,,8,21,
+Armaan Jaffer,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,260,260,1998-10-25,21,RHB,,,,,0
+Siddharth Krishnamurthy,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,261,261,1992-11-22,27,RHB,RIGHT ARM Medium Fast,,,,
+Rajat Patidar,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,262,262,1993-06-01,26,RHB,RIGHT ARM Off Break,,,,
+Shubham Singh Pundir,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,263,263,1998-10-16,21,LHB,RIGHT ARM Leg Break,,,,
+Himanshu Rana,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,264,264,1998-10-01,21,RHB,RIGHT ARM Medium,,,,
+Ekant Sen,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,265,265,1995-06-21,24,RHB,RIGHT ARM Medium Fast,,,,
+Subhranshu Senapati,India,0,uncapped,BATTER,20,37,UBA5,unsold,,,0,266,266,1996-12-30,23,RHB,RIGHT ARM Medium Fast,,,,
+Baba Aparajith,India,0,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,267,267,1994-07-08,25,RHB,RIGHT ARM Off Break,,,,0
+Gerald Coetzee,South Africa,1,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,268,268,2000-10-02,19,RHB,RIGHT ARM Fast,,,,
+George Garton,England,1,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,269,269,1997-04-15,22,LHB,LEFT ARM Fast,,,,
+Benny Howell,England,1,uncapped,ALL-ROUNDER,40,38,UAL5,unsold,,,0,270,270,1988-10-05,31,RHB,RIGHT ARM Medium,,,,
+Ankit Kaushik,India,0,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,271,271,1991-09-05,28,RHB,RIGHT ARM Medium Fast,,,,
+M Mohammed,India,0,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,272,272,1991-12-03,28,RHB,RIGHT ARM Fast Medium,,,,
+Ankit Sharma,India,0,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,273,273,1991-04-20,28,LHB,LEFT ARM Slow Orthodox,,,,22
+Jaskarandeep Singh,India,0,uncapped,ALL-ROUNDER,30,38,UAL5,unsold,,,0,274,274,1989-09-04,30,RHB,RIGHT ARM Fast,,,,8
+Vivek Singh,India,0,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,275,275,1993-11-01,26,LHB,RIGHT ARM Medium,,,,
+Gurinder Singh,India,0,uncapped,ALL-ROUNDER,20,38,UAL5,unsold,,,0,276,276,1992-07-09,27,RHB,LEFT ARM Slow Orthodox,,,,
+Vaibhav Arora,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,277,277,1997-12-14,22,RHB,RIGHT ARM Medium Fast,,,,
+Mukesh Choudhary,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,278,278,1996-07-06,23,LHB,LEFT ARM Fast,,,,
+Saurabh Dubey,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,279,279,1998-01-23,22,RHB,LEFT ARM Fast Medium,,,,
+Matt Kelly,Australia,1,uncapped,BOWLER,20,39,UFA5,unsold,,,0,280,280,1994-12-07,25,RHB,RIGHT ARM Fast Medium,,,,0
+Arafat Khan,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,281,281,1996-12-27,23,RHB,RIGHT ARM Medium Fast,,,,
+Zahoor Khan,UAE,1,associate,BOWLER,20,39,UFA5,unsold,,,0,282,282,1989-05-25,30,RHB,RIGHT ARM Fast,,,,
+Sushant Mishra,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,283,283,2000-12-23,19,LHB,LEFT ARM Fast Medium,,,,
+David Payne,England,1,uncapped,BOWLER,30,39,UFA5,unsold,,,0,284,284,1991-02-15,29,RHB,LEFT ARM Fast Medium,,,,
+Kanishk Seth,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,285,285,1997-11-04,22,RHB,LEFT ARM Fast Medium,,,,0
+Lalit Yadav,India,0,uncapped,BOWLER,20,39,UFA5,unsold,,,0,286,286,1995-12-17,24,RHB,RIGHT ARM Fast,,,,
+Dan Christian,Australia,1,capped,ALL-ROUNDER,75,40,AL6,unsold,,,0,287,287,1983-05-04,36,RHB,RIGHT ARM Medium,,19,16,40
+Anaru Kitchen,New Zealand,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,288,288,1984-02-21,36,RHB,LEFT ARM Slow Orthodox,,,5,
+Jeevan Mendis,Sri Lanka,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,289,289,1983-01-15,37,LHB,LEFT ARM Slow Unorthodox,,58,22,3
+Thisara Perera,Sri Lanka,1,capped,ALL-ROUNDER,100,40,AL6,unsold,,,0,290,290,1989-04-03,31,LHB,RIGHT ARM Medium,6,161,79,37
+Angelo Perera,Sri Lanka,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,291,291,1990-02-23,30,RHB,LEFT ARM Slow Orthodox,,6,6,
+Seekkuge Prasanna,Sri Lanka,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,292,292,1985-06-27,34,RHB,RIGHT ARM Leg Break,1,40,20,
+Sabbir Rahaman,Bangladesh,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,293,293,1991-08-20,28,RHB,RIGHT ARM Leg Break,11,66,44,
+Raymon Reifer,West Indies,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,294,294,1991-05-11,28,LHB,LEFT ARM Fast Medium,1,2,,
+Mohammad Saifuddin,Bangladesh,1,capped,ALL-ROUNDER,50,40,AL6,unsold,,,0,295,295,1996-11-01,23,LHB,RIGHT ARM Medium Fast,,20,13,
+Max Bryant,Australia,1,uncapped,BATTER,20,41,UBA6,unsold,,,0,296,296,1999-03-10,21,RHB,RIGHT ARM Medium Fast,,,,
+Rahul Gahlaut,India,0,uncapped,BATTER,20,41,UBA6,unsold,,,0,297,297,1995-09-18,24,LHB,RIGHT ARM Off Break,,,,
+Salman Khan,India,0,uncapped,BATTER,20,41,UBA6,unsold,,,0,298,298,1998-12-26,21,RHB,RIGHT ARM Leg Break,,,,
+Sharad Lumba,India,0,uncapped,BATTER,20,41,UBA6,unsold,,,0,299,299,1989-09-10,30,RHB,RIGHT ARM Off Break,,,,0
+Marco Marais,South Africa,1,uncapped,BATTER,20,41,UBA6,unsold,,,0,300,300,1993-10-17,26,RHB,RIGHT ARM Medium Fast,,,,
+George Munsey,Scotland,1,associate,BATTER,20,41,UBA6,unsold,,,0,301,301,1993-02-21,27,LHB,RIGHT ARM Leg Break,,,,
+Nehal Pajni,India,0,uncapped,BATTER,20,41,UBA6,unsold,,,0,302,302,2000-11-26,19,LHB,RIGHT ARM Off Break,,,,
+Himanshu Bisht,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,303,303,1996-11-17,23,RHB,RIGHT ARM Leg Break,,,,
+Rohit Damodaran,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,304,304,1992-05-28,27,RHB,RIGHT ARM Off Break,,,,
+Ayush Jamwal,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,305,305,1999-08-11,20,RHB,LEFT ARM Slow Orthodox,,,,
+Anirudha Joshi,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,sold,RR,20,0,306,306,1987-11-07,32,RHB,RIGHT ARM Off Break,,,,0
+Ripal Patel,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,307,307,1995-09-28,24,RHB,RIGHT ARM Fast Medium,,,,
+Abhimanyu Rana,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,308,308,1991-09-21,28,LHB,LEFT ARM Slow Orthodox,,,,
+Kshitiz Sharma,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,309,309,1990-04-21,29,RHB,RIGHT ARM Off Break,,,,0
+Nitin Sharma,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,310,310,1996-09-28,23,RHB,RIGHT ARM Fast Medium,,,,
+Akshay Solanki,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,311,311,1996-02-28,24,RHB,RIGHT ARM Off Break,,,,
+Pranshu Vijayran,India,0,uncapped,ALL-ROUNDER,20,42,UAL6,unsold,,,0,312,312,1995-11-18,24,LHB,RIGHT ARM Fast,,,,
+Nikhil Chaudhary,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,313,313,1996-05-04,23,RHB,RIGHT ARM Fast Medium,,,,
+Rajat Choudhary,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,314,314,1999-10-10,20,RHB,RIGHT ARM Off Break,,,,
+Khizar Dafedar,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,315,315,1997-10-10,22,RHB,RIGHT ARM Leg Break,,,,
+Digvijay Deshmukh,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,sold,MI,20,0,316,316,1998-04-12,21,RHB,RIGHT ARM Fast Medium,,,,
+Dharmendrasinh Jadeja,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,317,317,1990-08-04,29,LHB,LEFT ARM Slow Orthodox,,,,
+Aman Khan,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,318,318,1996-11-23,23,RHB,RIGHT ARM Fast Medium,,,,
+Prerak Mankad,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,319,319,1994-04-23,25,RHB,RIGHT ARM Medium Fast,,,,
+Dhrumil Matkar,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,320,320,1996-06-03,23,LHB,LEFT ARM Slow Orthodox,,,,
+Ramandeep Singh,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,unsold,,,0,321,321,1997-04-13,22,RHB,RIGHT ARM Medium,,,,
+Prince Balwant Rai Singh,India,0,uncapped,ALL-ROUNDER,20,43,UAL7,sold,MI,20,0,322,322,1999-05-05,20,RHB,RIGHT ARM Leg Break,,,,
+M Abhinav,India,0,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,323,323,1995-02-26,25,LHB,RIGHT ARM Leg Break,,,,
+Arjun Azad,India,0,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,324,324,2001-08-08,18,RHB,RIGHT ARM Leg Break,,,,
+Nachiket Bhute,India,0,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,325,325,1999-11-01,20,RHB,RIGHT ARM Medium Fast,,,,
+Corbin Bosch,South Africa,1,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,326,326,1994-09-10,25,RHB,RIGHT ARM Fast,,,,
+James Fuller,England,1,uncapped,ALL-ROUNDER,40,44,UAL8,unsold,,,0,327,327,1990-01-24,30,RHB,RIGH ARM Fast,,,,
+Shaik Ismail,India,0,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,328,328,2002-04-25,17,RHB,RIGHT ARM Leg Break,,,,
+Will Jacks,England,1,uncapped,ALL-ROUNDER,30,44,UAL8,unsold,,,0,329,329,1998-11-21,21,RHB,RIGHT ARM Off Break,,,,
+Jack Prestwidge,Australia,1,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,330,330,1996-02-28,24,RHB,RIGHT ARM Fast Medium,,,,
+Yash Rathod,India,0,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,331,331,2000-05-16,19,LHB,RIGHT ARM Leg Break,,,,
+Pratyush Singh,India,0,uncapped,ALL-ROUNDER,20,44,UAL8,unsold,,,0,332,332,1994-09-04,25,RHB,RIGHT ARM Leg Break,,,,0
+Matthew Wade,Australia,1,capped,WICKETKEEPER,100,,,unsold,,,0,333,,1987-12-26,,LHB,,,,,
+Ashoke Dinda,India,0,capped,BOWLER,50,,,unsold,,,0,334,,,,,,,,,
+Jake Weatherald,Australia,1,uncapped,BATTER,20,,,unsold,,,0,335,,1994-11-04,,LHB,RIGHT ARM Leg Spin,,,,
+Robin Bist,India,0,uncapped,BATTER,20,,,unsold,,,0,336,,,,,,,,,
+Sanjay Yadav,India,0,uncapped,ALL-ROUNDER,20,,,sold,SRH,20,0,337,,1995-05-10,,LHB,LEFT ARM Slow Orthodox,,,,
+Vinay Kumar,India,0,capped,BOWLER,100,,,unsold,,,0,338,,,,,,,,,

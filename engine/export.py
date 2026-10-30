@@ -19,6 +19,12 @@ TAGS = {"wk": "Keeper", "lhb": "Left-handed bat", "lap": "Left-arm pace", "overs
         "uncapped": "Uncapped", "fast_start": "Fast starter"}
 
 
+# value-model features grouped the way a scout talks about a player
+DRIVERS = {"history": ["has_prev", "log_prev"], "pedigree": ["capped", "intl_caps", "ipl_exp"],
+           "form": ["skill_z", "evidence", "start_z"], "role": ["pace", "spin", "allround", "keeper"],
+           "age": ["age", "age2"], "list": ["set_pos"], "base": ["log_base"], "overseas": ["overseas"]}
+
+
 def _num(v, nd=3):
     return None if v is None or (isinstance(v, float) and np.isnan(v)) else round(float(v), nd)
 
@@ -66,7 +72,8 @@ def zero_points(skills: pd.DataFrame) -> dict[str, float]:
 
 def players_json(ctx: dict, summary: pd.DataFrame, feat: list, price: np.ndarray, buyer: np.ndarray,
                  no_needs: pd.DataFrame) -> list:
-    pool, vals = ctx["pool"], ctx["values"]
+    pool, vals, drv = ctx["pool"], ctx["values"], ctx["drivers"]
+    groups = {g: [c for c in cols if c in drv] for g, cols in DRIVERS.items()}
     zero = zero_points(inputs.skills_asof(inputs.date_of(YEAR)))
     rel = lambda v, side: _num(v - zero[side], 4) if v is not None and not pd.isna(v) else None
     prev = inputs.prev_prices(YEAR)
@@ -92,14 +99,19 @@ def players_json(ctx: dict, summary: pd.DataFrame, feat: list, price: np.ndarray
                          "bowlBalls": int(r.bowl_balls), "iplMatches": int(r.ipl_matches)},
             "skills": {
                 "bat": {"rv": rel(r.bat_q, "bat"), "pct": _int(r.bat_pct) if pd.notna(r.bat_pct) else None,
-                        "balls": int(r.bat_balls), "sr": _num(r.bat_sr, 1)} if r.bat_balls else None,
+                        "balls": int(r.bat_balls), "sr": _num(r.bat_sr, 1),
+                        "pp": _num(r.bat_pp, 2), "death": _num(r.bat_death, 2)} if r.bat_balls else None,
                 "bowl": {"rv": rel(r.bowl_q, "bowl"), "pct": _int(r.bowl_pct) if pd.notna(r.bowl_pct) else None,
-                         "balls": int(r.bowl_balls), "econ": _num(r.bowl_econ, 2)} if r.bowl_balls else None,
+                         "balls": int(r.bowl_balls), "econ": _num(r.bowl_econ, 2),
+                         "pp": _num(r.bowl_pp, 2), "death": _num(r.bowl_death, 2)} if r.bowl_balls else None,
                 "start": {"rv": rel(r.start_q, "start"), "balls": int(r.start_balls)} if r.start_balls else None,
                 "vs": [{"type": t, "rv": rel(r.get(f"vs_{t}"), "bat"), "balls": _int(r.get(f"vsn_{t}"))}
                        for t in sk.BOWL_TYPES],
             },
             "value": {k: int(round(vals.at[i, f"value_{k}"])) for k in ("mid", "lo", "hi")},
+            # what lifts or lowers his value against the average player of past auctions (log scale)
+            "drivers": sorted(([g, _num(drv.loc[i, cols].sum(), 2)] for g, cols in groups.items() if cols),
+                              key=lambda x: -abs(x[1])),
             "prev": {"price": int(pv.price_lakh), "team": pv.team, "year": int(pv.year)} if pv is not None else None,
             "sim": {
                 "pSold": _num(s.p_sold), "pCalled": _num(s.p_called),

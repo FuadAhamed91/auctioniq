@@ -1,10 +1,10 @@
 """Tune the agent weights and run the ablation on the 2024 mini-auction, using only what was
-known before it: skills as of 19 Dec 2023, and a value model and team styles fitted on the 2023
-mini-auction (mega auctions are never mixed in). The real 2024 results are the target, so these are
-tuning-set numbers; the honest out-of-sample test is the 2026 comparison.
+known before it: skills as of 19 Dec 2023, and a value model and team styles fitted on the earlier
+mini auctions (`train` in config.toml; mega auctions are never mixed in). The real 2024 results are
+the target, so these are tuning-set numbers; the honest out-of-sample test is the 2026 comparison.
 
-The value model is also checked on its own, before any simulation, on the 2024 mini-auction and on
-the 2025 mega auction (fitted on the 2022 mega auction); its ridge penalty is chosen on 2024.
+The value model is also checked on its own, before any simulation, on every past auction that has
+earlier auctions of its kind to learn from; its ridge penalty is chosen on the mini-auction ones.
 
     python -m analysis.tune            # writes analysis/out/validation_2024.json
 """
@@ -19,17 +19,19 @@ from config import CFG, ROOT
 from engine import inputs, montecarlo as mc, needs
 
 YEAR = 2024
-BACKTESTS = [2024, 2025]  # value model alone, each fitted on the earlier auctions of its kind
+BACKTESTS = sorted(int(y) for y, a in CFG["auction"].items()  # past auctions with a `train` list
+                   if a.get("train") and int(y) < max(map(int, CFG["auction"])))
 STD = NormalDist()
 OUT = ROOT / "analysis" / "out"
 ALL = {"needs", "matchups", "start_speed", "home_fit"}
 FACTORS = ["needs", "matchups", "start_speed", "home_fit"]  # needs first: the core, then the add-ons
 LABELS = {"needs": "needs", "matchups": "matchups", "start_speed": "start speed", "home_fit": "home fit"}
 SEARCH = {  # coordinate search; each range brackets the weight's plausible values
-    "market_share": [0.6, 0.8, 1.0],
+    "market_share": [0.6, 0.8, 1.0, 1.25, 1.5],  # above 1: errors on a new auction exceed the in-sample ones
     "noise_sigma": [0.05, 0.15, 0.3, 0.45],
     "pressure_beta": [0.2, 0.5, 0.8, 1.1, 1.4],
-    "scarcity_alpha": [0.0, 0.1, 0.25],
+    "scarcity_alpha": [0.0, 0.1, 0.25, 0.5],
+    "scarcity_range": [(0.8, 1.4), (0.8, 2.0), (0.8, 3.0)],  # how far scarcity may push a price
     "need_slope": [0.2, 0.4, 0.8, 1.2],
 }
 
@@ -100,11 +102,14 @@ def value_check(year: int, ridge: float) -> dict:
 
 
 def tune_ridge() -> tuple[float, list]:
-    """Pick the value model's ridge penalty by its censored log-likelihood on 2024 (no simulation)."""
+    """Pick the value model's ridge penalty by its mean censored log-likelihood over the back-tests of
+    the same kind as the tuning auction (no simulation)."""
+    kind = CFG["auction"][str(YEAR)]["kind"]
+    years = [y for y in BACKTESTS if CFG["auction"][str(y)]["kind"] == kind]
     rows = []
     for lam in (2, 4, 8, 16, 32, 64):
-        rows.append({"ridge": lam, "loglik": value_check(YEAR, lam)["loglik"]})
-        print(f"ridge {lam:>3}: log-likelihood {rows[-1]['loglik']:.4f}", flush=True)
+        rows.append({"ridge": lam, "loglik": round(float(np.mean([value_check(y, lam)["loglik"] for y in years])), 4)})
+        print(f"ridge {lam:>3}: log-likelihood {rows[-1]['loglik']:.4f} over {years}", flush=True)
     return max(rows, key=lambda r: r["loglik"])["ridge"], rows
 
 
@@ -121,7 +126,7 @@ def search(runs: int, passes: int = 1) -> tuple[dict, list]:
     seen, log = {}, []
 
     def score(w: dict) -> float:
-        key = tuple(sorted(w.items()))
+        key = json.dumps(w, sort_keys=True)  # weights may be lists (a range)
         if key not in seen:
             ctx["cfg"]["agents"] = {**CFG["agents"], **w}
             m = metrics.point(predictions(ctx, runs), act)

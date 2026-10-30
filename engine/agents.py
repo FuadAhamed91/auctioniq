@@ -87,7 +87,21 @@ class Team:
                 out["walk"], out["floor"] = float(base), base
         if detail:
             out["gate"] = [(k, ok, self._gate_text(k, ok, p, need, fill, cap)) for k, ok in checks]
+            out["why"] = self.why(p, fill)
         return out
+
+    def why(self, p: int, fill: bool) -> dict:
+        """The cricket behind the interest, for the replay's analyst: the role he would fill, how many
+        the squad has there against a usual IPL squad, its best player there now, and whether he is
+        better."""
+        ctx, sq, r = self.ctx, self.squad, int(self.role[p])
+        Q, A_ = ctx["P"]["Q"], ctx["P"]["A"]
+        mates = [m for m in sq.members if A_[m, r] > 0]
+        best = max(mates, key=lambda m: Q[m, r]) if mates else None
+        return {"role": needs.ROLES[r], "kind": "fill" if fill else needs.KINDS[self.kind[p]],
+                "have": round(float(sq.counts[r]), 1), "usual": round(float(ctx["tmpl"][r]), 1),
+                "best": ctx["names"][best] if best is not None else None,
+                "better": bool(best is None or Q[p, r] > Q[best, r]), "keepers": int(sq.keepers)}
 
     def chip(self, p: int, fill: bool) -> str:
         if fill:

@@ -101,6 +101,20 @@ buyer had a pre-auction need for the player. `kept` is null for the baseline and
 // auc: how well the chance of a sale separates sold from unsold
 "valueBacktests": [{ "auction": 2025, "kind": "mega", "train": [2022], "n": 577, "n_sold": 182,
                      "loglik": -0.633, "mae": 0.590, "spearman": 0.856, "auc": 0.872 }],
+// players[i].drivers: what lifts or lowers his value against the average player of past auctions of
+// the same kind, grouped the way a scout talks (natural-log scale, largest first): history (last IPL
+// auction price), pedigree (caps), form (skills, evidence, start speed), role, age, list (how far down
+// the official list his set comes), base (base price), overseas
+"drivers": [["history", 0.62], ["list", 0.31], ["age", -0.12]],
+// players[i].skills.bat and .bowl also carry pp and death: his share of balls in the powerplay / at the death
+// lots/{id}.json, per appearance: market.alike = comparable players of his role still in the pool besides
+// him; market.short = teams that could buy him (a slot, and an overseas slot if needed) short of one.
+// Per team decision, why = the cricket behind its interest: the role he would fill, how many the squad
+// has there (have) against a usual IPL squad (usual), its best player there now (best), whether he is
+// better (better), keepers on the books, and kind: depth | upgrade | keeper | weakness | fill
+"market": { "alike": 2, "short": 6 },
+"why": { "role": "death_pacer", "kind": "depth", "have": 1.0, "usual": 3.1, "best": "A Player",
+         "better": true, "keepers": 2 },
 // meta.highlights: auction-at-a-glance lists of player ids, computed from the 1,000 runs
 "highlights": {
   "contested": [[12, 6.2]],   // most wanted: [id, average number of teams ready to pay at least his base]

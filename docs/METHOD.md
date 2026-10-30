@@ -61,17 +61,26 @@ week before the auction. The 80% interval is `exp(μ ± 1.2816σ)`.
 
 **Same kind only.** A mini-auction model learns only from earlier mini auctions and a mega-auction
 model only from earlier mega auctions, because the two are priced differently (whole squads rebuilt,
-far bigger purses, right-to-match cards). For 2026 that is the 2023 and 2024 mini auctions; for the
-2024 back-test, 2023. A mega-auction price still counts as a player's previous price. Mixing the two
-kinds (with an indicator for mega) was tried and changed the back-tests by less than their noise.
+far bigger purses, right-to-match cards). For 2026 that is the 2020, 2021, 2023 and 2024 mini
+auctions; for the 2024 back-test, 2020, 2021 and 2023. A mega-auction price still counts as a
+player's previous price. Two ways of mixing the kinds were tried on the mini back-tests and both did
+worse than keeping them apart: a mega indicator alone, and the indicator plus a supply measure (how
+many players of the same listed role sat at or above his base price, per open squad place). Marking
+whether a previous price came from a mega auction added nothing either.
 
-**Back-tests of the value model alone.** Before any simulation, the value model is scored on the
-2024 mini auction (fitted on 2023) and the 2025 mega auction (fitted on 2022): censored
-log-likelihood per player (a sold player scores the density of his price, an unsold one the chance
-his price fell short of base), the price error and rank correlation of the median price given a
-sale, and the sold/unsold AUC. The ridge penalty is the one with the best 2024 log-likelihood. Set
-position was kept because it improved both back-tests: sold/unsold AUC 0.70 → 0.79 on 2024 and
-0.80 → 0.87 on 2025.
+**Earlier auctions as price history.** The 2018 mega and the 2019, 2020 and 2021 mini auctions were
+rebuilt from the archived official records (data/SOURCES.md), so players such as Pat Cummins (₹15.5 Cr
+in 2020) carry their earlier IPL price. The 2018 and 2019 lists print no international caps, and 2019
+no sets either, so those two auctions only supply prices; 2020 and 2021 are full training auctions.
+
+**Back-tests of the value model alone.** Before any simulation, the value model is scored on every
+past auction that has earlier auctions of its kind to learn from: the 2021, 2023 and 2024 mini
+auctions and the 2025 mega auction. Scores: censored log-likelihood per player (a sold player scores
+the density of his price, an unsold one the chance his price fell short of base), the price error and
+rank correlation of the median price given a sale, and the sold/unsold AUC. The ridge penalty is the
+one with the best mean log-likelihood over the mini back-tests. Set position was kept because it
+improved both kinds: sold/unsold AUC 0.70 → 0.79 on 2024 and 0.80 → 0.87 on 2025. Adding the 2020 and
+2021 auctions lifted the 2024 log-likelihood from −0.710 to −0.669 and its AUC from 0.79 to 0.80.
 
 ## 4. Needs (`engine/needs.py`)
 
@@ -108,9 +117,11 @@ one name per slot, and pays at least base for them, as franchises completing the
 
 Each lot is **settled from the walk-away prices alone**: the highest walk-away wins and pays one price
 point above the runner-up's last affordable bid, or that bid if the winner cannot go one higher. The
-bid-by-bid replay (late entries, duels between two teams) is then drawn from a separate random stream
-and always ends in that result, so presentation can never change who wins or the price
-(`tests/test_engine.py` checks it). Bids move on fixed price points. Squad and overseas limits and the
+bid-by-bid replay is then built from that result, two paddles at a time as in the room: the runner-up
+is in from the start and takes on the other bidders one by one, lowest limit first, each backing out
+once the next bid passes its limit, and the winner comes in last and outbids him. It always ends in
+the settled result, so presentation can never change who wins or the price (`tests/test_engine.py`
+checks it). Bids move on fixed price points. Squad and overseas limits and the
 purse reserve follow `docs/RULES.md`. Every run writes an event log.
 
 ## 7. Monte Carlo (`engine/montecarlo.py`)
@@ -127,8 +138,8 @@ common random numbers) minimising price error plus a penalty for 80% ranges that
 
 **Team needs are the core.** They decide which teams bid at all, so they are tested directly
 against the real buyers, with no simulation in between: in 2024 the real buyer was one of the three
-teams with the greatest pre-auction need for the player in 45% of the 72 buys, against 30% by chance
-(about 2.7 standard errors). The need gate itself is permissive (open for 84% of teams on the
+teams with the greatest pre-auction need for the player in 43% of the 72 buys, against 30% by chance
+(about 2.5 standard errors). The need gate itself is permissive (open for 84% of teams on the
 players who sold), so it is the need score, not the gate, that carries this signal. Stricter gates
 (0.3 to 0.8) were tried: buyer accuracy moved by less than the noise and price error got worse.
 
@@ -142,9 +153,8 @@ needs, and need-only bidders, are reported for comparison.
 
 **Why six blocks, and why needs are not ablated.** With three blocks the noise estimate swung tenfold
 between two otherwise identical tunings, and decisions flipped with it. In the simulation, needs
-added about 3 points of buyer accuracy against 6 points of noise once the value model improved, while
-the direct test above is clear; the agents are built on needs, so they stay, and the table still
-shows the model without them.
+add about 7 points of buyer accuracy against 8 points of noise, while the direct test above is clear;
+the agents are built on needs, so they stay, and the table still shows the model without them.
 
 Because the weights and factors were chosen on 2024, those numbers are tuning-set fits; the honest
 test is the separate 2026 comparison. Naive baselines (every player at his base price, or at his last
